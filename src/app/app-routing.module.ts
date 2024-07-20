@@ -7,10 +7,13 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
-import { MatsidenavComponent } from './matsidenav/matsidenav.component';
+import { CustomerGuardService } from './customerGuard/customer-guard.service';
+import { TempPageComponent } from './temp-page/temp-page.component';
+import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
 { path: 'register', component: RegisterComponent },
 { path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'login', component: LoginComponent },
@@ -18,7 +21,15 @@ const routes: Routes = [
 { path: 'user', component: BoardUserComponent },
 { path: 'mod', component: BoardModeratorComponent },
 { path: 'admin', component: BoardAdminComponent },
-{ path: 'sidenav', component: MatsidenavComponent },
+{ path: 'passwordSetup', component: FreshUserRegisterComponent },
+
+{
+  path: 'customer/',canActivate:[CustomerGuardService] ,
+      children: [
+                  //ADMIN PANEL
+                  { path: '', component: HomeComponent},
+      ],
+}
 
 ];
 

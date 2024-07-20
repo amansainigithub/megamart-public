@@ -10,7 +10,8 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class LoginComponent implements OnInit {
   form: any = {
     username: null,
-    password: null
+    password: null,
+    userrole: 'ROLE_CUSTOMER'
   };
   isLoggedIn = false;
   isLoginFailed = false;
@@ -27,9 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, password } = this.form;
-
-    this.authService.login(username, password).subscribe(
+    const { username, password , userrole } = this.form;
+    this.authService.login(username, password , userrole).subscribe(
       data => {
         console.log("LOGIN:: "  + data) 
         this.tokenStorage.saveToken(data.accessToken);
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        window.location.href = '/customer';
+        //this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;

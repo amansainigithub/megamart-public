@@ -1,0 +1,28 @@
+<div class="card card-container" >
+    <div class="card-body">
+
+        <h5 class="text-center">Create Password</h5>
+  
+      <form #userlogin = "ngForm" (ngSubmit)="createAccount()" novalidate>
+      <label for="inputPassword5" class="form-label">password</label>
+  
+      <input type="text" id="inputPassword5" class="form-control" aria-describedby="Mobile OTP" name="password"
+        [(ngModel)]="setupPassForm.password">
+
+        <label for="inputPassword5" class="form-label">conform password</label>
+  
+        <input type="text" id="inputPassword5" class="form-control" aria-describedby="Mobile OTP" name="conformPassword"
+          [(ngModel)]="setupPassForm.conformPassword">
+  
+      <div id="mobileOtp" class="form-text">
+        OTPs are generated randomly and are often sent to a user's
+        mobile phone or email address in order to authenticate their identity.
+      </div>
+  
+      <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
+        <button  class="btn btn-success btn-sm btn-block">Create Account</button>
+      </div>
+    </form>
+  
+    </div>
+  </div>

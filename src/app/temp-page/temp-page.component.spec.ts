@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatsidenavComponent } from './matsidenav.component';
+import { TempPageComponent } from './temp-page.component';
 
-describe('MatsidenavComponent', () => {
-  let component: MatsidenavComponent;
-  let fixture: ComponentFixture<MatsidenavComponent>;
+describe('TempPageComponent', () => {
+  let component: TempPageComponent;
+  let fixture: ComponentFixture<TempPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MatsidenavComponent]
+      declarations: [TempPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MatsidenavComponent);
+    fixture = TestBed.createComponent(TempPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

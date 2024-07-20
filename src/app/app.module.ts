@@ -14,7 +14,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { MatsidenavComponent } from './matsidenav/matsidenav.component';
+import { TempPageComponent } from './temp-page/temp-page.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MatsidenavComponent } from './matsidenav/matsidenav.component';
     BoardModeratorComponent,
     ProfileComponent,
     HomeComponent,
-    MatsidenavComponent
+    TempPageComponent,
+    FreshUserRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { MatsidenavComponent } from './matsidenav/matsidenav.component';
     MatButtonModule,
     MatSidenavModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
