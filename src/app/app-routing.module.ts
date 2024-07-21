@@ -11,6 +11,7 @@ import { CustomerGuardService } from './customerGuard/customer-guard.service';
 import { TempPageComponent } from './temp-page/temp-page.component';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },

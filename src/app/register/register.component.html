@@ -10,105 +10,45 @@
         #f="ngForm"
         novalidate
       >
-        <!-- <div class="form-group">
-         
-          <div class="row">
-            <div class="col">
-              <label for="username">FirstName</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              placeholder="First name" 
-              name="firstName"
-              [(ngModel)]="form.firstName"
-              #firstName="ngModel"
-              aria-label="First name">
-            </div>
-            <div class="col">
-              <label for="username">LastName</label>
-              <input 
-              type="text" 
-              class="form-control" 
-              name="lastName"
-              [(ngModel)]="form.lastName"
-              placeholder="Last name" 
-              #lastName="ngModel"
-              aria-label="Last name">
-            </div>
-          </div>
-          </div> -->
-        <div class="form-group">
-          <label for="mobile">Enter mobile No</label>
+
+      <div class="col-md-12">
+        <label for="validationDefaultUsername" class="form-label">Enter Mobile Number</label>
+        <div class="input-group">
+          <span class="input-group-text" id="inputGroupPrepend2">+91</span>
           <input
-            type="tel"
-            class="form-control"
-            name="mobile"
-            [(ngModel)]="FreshUserform.mobile"
-            #mobile="ngModel"
-          />
+          type="tel"
+          class="form-control"
+          name="mobile"
+          required="required"
+          [(ngModel)]="FreshUserform.mobile"
+          #mobile="ngModel"
+          required
+        />  
         </div>
-        <!-- <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            minlength="6"
-            #password="ngModel"
-          />
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div>Password is required</div>
-            <div>
-              Password must be at least 6 characters
-            </div>
-          </div>
-        </div> -->
-<!-- 
-        <div class="form-group">
-          <label for="conformpassword">Conform Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="conformPassword"
-            [(ngModel)]="form.conformPassword"
-            required
-            minlength="6"
-            #password="ngModel"
-          />
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div>Conform Password is required</div>
-            <div>
-              conform Password must be at least 6 characters
-            </div>
-          </div>
-        </div> -->
+      </div>
 
         <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
           <button class="btn btn-primary btn-sm btn-block">Sign Up</button>
         </div>
   
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
-        </div>
       </form>
-  
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
-      </div>
     </div>
   </div>
   
 
+
+
+
+  <!-- OTP VERIFY FORM START -->
   <div class="card mobileOtpCard" *ngIf="mobileOtpForm">
     <div class="card-body">
   
       <form #userlogin = "ngForm" (ngSubmit)="verifyMobileOtp()" novalidate>
       <label for="inputPassword5" class="form-label">Enter OTP</label>
-  
-      <input type="text" id="inputPassword5" class="form-control" aria-describedby="Mobile OTP" name="mobileOtp"
+        <div>
+      <input type="text" id="inputPassword5"  class="form-control" aria-describedby="Mobile OTP" name="mobileOtp"
         [(ngModel)]="verifyOtpForm.mobileOtp">
+      </div>
   
       <div id="mobileOtp" class="form-text">
         OTPs are generated randomly and are often sent to a user's
@@ -122,3 +62,10 @@
   
     </div>
   </div>
+
+    <!-- OTP VERIFY FORM ENDING -->
+
+
+    
+
+    

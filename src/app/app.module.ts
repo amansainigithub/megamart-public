@@ -17,6 +17,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TempPageComponent } from './temp-page/temp-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { FreshUserRegisterComponent } from './components/fresh-user-register/fre
     FormsModule,
     HttpClientModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   providers: [authInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent]

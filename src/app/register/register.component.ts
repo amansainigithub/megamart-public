@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Route, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
 
 @Component({
   selector: 'app-register',
@@ -8,19 +10,6 @@ import { Route, Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  form: any = {
-    firstName: null,
-    lastName: null,
-    email: 'no@gmail.com',
-    mobile: null,
-    password: null,
-    conformPassword: null
-  };
-
-  mobileOtpData: any = {
-    mobileOtp: null,
-  };
-
 
   isSuccessful = false;
   isSignUpFailed = false;
@@ -32,84 +21,67 @@ export class RegisterComponent {
   //RegisterationForm
   registerForm:Boolean = true;
 
-  constructor(private authService: AuthService,private router:Router) { }
+  constructor(private authService: AuthService,private router:Router,private _snackBarHelper: SnackBarHelperService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-     this.mobileOtpForm = true;
-     this.registerForm = false;
-    const { firstName,lastName, email, mobile, password } = this.form;
-    this.authService.register(firstName,lastName, email,mobile, password).subscribe(
-      data => {
-        console.log(data);
-        // this.isSuccessful = true;
-        // this.isSignUpFailed = false;
-      },
-      err => {
-        // this.errorMessage = err.error.message;
-        // this.isSignUpFailed = true;
-      }
-    );
-  }
-
-  mobileOtpPayload: any = {
-    email: null,
-    username: null,
-    mobileOtp: null
-  };
 
 
-  otpSubmit(){
-    this.mobileOtpPayload.mobile = this.form.mobile;
-
-    this.authService.mobileOtpVerify(this.form).subscribe(
-      data => {
-        console.log(data);
-        // this.isSuccessful = true;
-        // this.isSignUpFailed = false;
-      },
-      err => {
-        // this.errorMessage = err.error.message;
-        // this.isSignUpFailed = true;
-      }
-  )
-
-}
 
 
+
+
+
+
+//***********************************************************
 FreshUserform: any = {
   mobile: null
 };
 
 onSubmitFreshUser()
 {
-  
-  this.mobileOtpForm = true;
-     this.registerForm = false;
+
+  if (/^\d{10}$/.test(this.FreshUserform.mobile)) {
+    this._snackBarHelper.normalSnackBar('Valid Mobile Number', 'cancle',2000);
+    } else {
+      this._snackBarHelper
+      .OpenSnackbar_verticalPosition_top_right('Invalid Mobile NUmber! Please Enter Ten Digit Mobile No.', 'cancle',3000);
+      return;
+    }
+
 
     const {mobile} = this.FreshUserform;
-    this.authService.saveFreshUser(mobile).subscribe(
+    this.authService.registerFreshUser(mobile).subscribe(
       data => {
-        console.log(data);
-        // this.isSuccessful = true;
-        // this.isSignUpFailed = false;
+
+        //console.log(data.message);
+
+        if(data.message == "FLY_LOGIN_PAGE"){
+          this._snackBarHelper.normalSnackBar('User Already Registered ! Please Login', 'cancle',2000);
+          this.router.navigateByUrl('/login');
+          return;
+        }else{
+          this.mobileOtpForm = true;
+          this.registerForm = false;
+          this._snackBarHelper.normalSnackBar('OTP Sent Success', 'cancle',2000);
+        }
       },
       err => {
-        alert(err)
-        // this.errorMessage = err.error.message;
-        // this.isSignUpFailed = true;
+        console.log(err);
+        this._snackBarHelper.normalSnackBar(err.error.message, 'cancle',2000);
       }
     );
 
 }
 
+//***********************************************************
+
+
 verifyOtpForm: any = {
   mobileOtp: null,
   username:null
 };
-
 
 verifyMobileOtp(){
 
@@ -117,17 +89,12 @@ verifyMobileOtp(){
   this.authService.verifyMobileOtp(this.verifyOtpForm).subscribe(
     data => {
       console.log(data);
-
-      alert("OTP Verified Success");
-      this.router.navigateByUrl('/passwordSetup',{ state: { example: 'AMAN SAINI' } });
-      // window.location.href = '/passwordSetup';
-      // this.isSuccessful = true;
-      // this.isSignUpFailed = false;
+      this._snackBarHelper.normalSnackBar("OTP Verified Success","Undo",2000);
+      
+      this.router.navigateByUrl('/passwordSetup',{ state: { username: this.verifyOtpForm.username  } });
     },
     err => {
-      alert("OTP Verified Failed");
-      // this.errorMessage = err.error.message;
-      // this.isSignUpFailed = true;
+      this._snackBarHelper.normalSnackBar("please Enter Correct OTP", 'cancle',2000);
     }
   );
 

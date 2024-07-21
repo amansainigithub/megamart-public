@@ -14,6 +14,20 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) { }
 
+
+
+  // register(firstName:String,lastName:String, email: string, mobile: string, password: string): Observable<any> {
+  //   return this.http.post(AUTH_API + 'customerSignUp', {
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     mobile,
+  //     password
+  //   }, httpOptions);
+  // }
+
+  // ===================/=
+
   login(username: string, password: string, userrole:string): Observable<any> {
     return this.http.post(AUTH_API + 'customerSignIn', {
       username,
@@ -22,33 +36,24 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(firstName:String,lastName:String, email: string, mobile: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'customerSignUp', {
-      firstName,
-      lastName,
-      email,
-      mobile,
-      password
-    }, httpOptions);
-  }
-
-  mobileOtpVerify(mobileOtpData:any){
-    console.log(mobileOtpData)
-    return this.http.post(AUTH_API+"verifyMobileOtp",mobileOtpData);
-  }
-
-  //Mobile is username of Customer to Login mobile ==> username
-  saveFreshUser(username: string): Observable<any> {
+  registerFreshUser(username: string): Observable<any> {
     
-    return this.http.post(AUTH_API + 'saveFreshUser', {
+    return this.http.post(AUTH_API + 'customerSignUp', {
       username
     }, httpOptions);
   }
 
-
   verifyMobileOtp(verifyOtpForm: any): Observable<any> {
     return this.http.post(AUTH_API + 'verifyFreshUserMobileOtp', verifyOtpForm);
   }
+
+
+  registerUser(registerForm: any): Observable<any> {
+    return this.http.post(AUTH_API + 'customerSignUpCompleted', registerForm);
+  }
+
+  
+  // ===================/=
 
 
 

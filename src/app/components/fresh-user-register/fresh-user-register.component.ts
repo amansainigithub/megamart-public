@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../_services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fresh-user-register',
@@ -9,16 +11,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FreshUserRegisterComponent {
 
   setupPassForm: any = {
+    username:null,
     password: null
   };
 
   receivedData:any;
 
-  constructor(private route: ActivatedRoute,private rou: Router) {
+  constructor(private route: ActivatedRoute,private router: Router,private authService: AuthService) {
     const state = history.state;
 
-    // Example: Accessing state variables
-    console.log(state.example);    // Output: '123'
+    if(state.username == 'undefined' || state.username == null || state.username == '' 
+      || state.username == 'null' || state.username == undefined ){
+        this.router.navigateByUrl('/register');
+      }
+    this.setupPassForm.username = state.username;
   
   }
 
@@ -28,7 +34,22 @@ export class FreshUserRegisterComponent {
 
   createAccount()
   {
-
+    console.log(this.createAccount);
+    this.authService.registerUser(this.setupPassForm).subscribe(
+      data => {
+        Swal.fire({
+          title: "Congratulations",
+          text: "Registration Completed Success",
+          icon: "success"
+        });
+        this.router.navigateByUrl('/login');
+      },
+      err => {
+        alert("Registeration Failed");
+        // this.errorMessage = err.error.message;
+        // this.isSignUpFailed = true;
+      }
+    );
   }
 
 }
