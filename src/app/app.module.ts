@@ -18,6 +18,7 @@ import { TempPageComponent } from './temp-page/temp-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -41,7 +42,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientModule,
     MatButtonModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent]

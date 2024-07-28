@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import Validation from '../utils/Validation';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+ 
   form: any = {
     username: null,
     password: null,
@@ -51,4 +54,51 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
+
+
+
+
+
+
+
+  // form = {
+  //   fullname: '',
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  //   acceptTerms: false,
+  //   submitted:false
+  // };
+
+  // onSubmit(): void {
+  //   console.log(JSON.stringify(this.form, null, 2));
+  // }
+
+  // onReset(form: NgForm): void {
+  //   form.reset();
+  // }
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
