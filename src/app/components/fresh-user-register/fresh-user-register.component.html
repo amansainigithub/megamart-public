@@ -3,24 +3,74 @@
 
         <h5 class="text-center">Create Password</h5>
   
-      <form #userlogin = "ngForm" (ngSubmit)="createAccount()" novalidate>
+      <form 
+      #userlogin = "ngForm"
+       (ngSubmit)="userlogin.form.valid && createAccount()" 
+       novalidate>
+
       <label for="inputPassword5" class="form-label">password</label>
   
-      <input type="text" id="inputPassword5" class="form-control" aria-describedby="Mobile OTP" name="password"
-        [(ngModel)]="setupPassForm.password">
+      <div class="input-group">
+          <input 
+          type="password" 
+          id="inputPassword5" 
+          class="form-control" 
+          aria-describedby="Mobile OTP" 
+          name="password"
+          required="required"
+          [(ngModel)]="setupPassForm.password"
+          #password="ngModel"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          [class.dirty]="password.dirty" 
+          [class.touched]="password.touched"
+          [ngClass]="{ 'is-invalid': password.errors && (password.touched || password.dirty ) }"
+            >
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+              <div *ngIf="password.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors?.['pattern']">
+                Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.
+              </div>
+            </div>
+          </div>
 
         <label for="inputPassword5" class="form-label">conform password</label>
+        <div class="input-group">
+        <input 
+            type="password" 
+            id="inputPassword5" 
+            class="form-control" 
+            aria-describedby="Mobile OTP" 
+            name="conformPassword"
+            required="required"
+            [(ngModel)]="setupPassForm.conformPassword"
+            #conformpassword="ngModel"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+            [class.dirty]="conformpassword.dirty" 
+            [class.touched]="conformpassword.touched"
+            [ngClass]="{ 'is-invalid': conformpassword.errors && (conformpassword.touched || conformpassword.dirty ) }">
+
+            <div *ngIf="conformpassword.invalid && (conformpassword.dirty || conformpassword.touched)" class="invalid-feedback">
+              <div *ngIf="conformpassword.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="conformpassword.errors?.['pattern']">
+                Password must be at least 8 characters long, include an uppercase letter, 
+                a lowercase letter, a number, and a special character.
+              </div>
+            </div>
+
+          </div>
   
-        <input type="text" id="inputPassword5" class="form-control" aria-describedby="Mobile OTP" name="conformPassword"
-          [(ngModel)]="setupPassForm.conformPassword">
-  
-      <div id="mobileOtp" class="form-text">
+      <!-- <div id="mobileOtp" class="form-text">
         OTPs are generated randomly and are often sent to a user's
         mobile phone or email address in order to authenticate their identity.
-      </div>
+      </div> -->
   
       <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
-        <button  class="btn btn-success btn-sm btn-block">Create Account</button>
+        <button  class="btn btn-success btn-sm btn-block"  [disabled]="userlogin.invalid">Create Account</button>
+        
       </div>
     </form>
   

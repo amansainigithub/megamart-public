@@ -27,14 +27,6 @@ export class RegisterComponent {
   }
 
 
-
-
-
-
-
-
-
-//***********************************************************
 FreshUserform: any = {
   mobile: null
 };
@@ -42,6 +34,7 @@ FreshUserform: any = {
 onSubmitFreshUser()
 {
 
+  //Mobile Number Validator
   if (/^\d{10}$/.test(this.FreshUserform.mobile)) {
     this._snackBarHelper.normalSnackBar('Valid Mobile Number', 'cancle',2000);
     } else {
@@ -74,9 +67,6 @@ onSubmitFreshUser()
     );
 
 }
-
-//***********************************************************
-
 
 verifyOtpForm: any = {
   mobileOtp: null,
