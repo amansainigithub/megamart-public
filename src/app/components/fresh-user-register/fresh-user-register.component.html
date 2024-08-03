@@ -50,6 +50,7 @@
             [class.dirty]="conformpassword.dirty" 
             [class.touched]="conformpassword.touched"
             [ngClass]="{ 'is-invalid': conformpassword.errors && (conformpassword.touched || conformpassword.dirty ) }">
+            
 
             <div *ngIf="conformpassword.invalid && (conformpassword.dirty || conformpassword.touched)" class="invalid-feedback">
               <div *ngIf="conformpassword.errors?.['required']">
