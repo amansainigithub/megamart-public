@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,11 @@ export class RegisterComponent {
   //RegisterationForm
   registerForm:Boolean = true;
 
-  constructor(private authService: AuthService,private router:Router,private _snackBarHelper: SnackBarHelperService) { }
+  constructor(
+    private authService: AuthService,
+    private router:Router,
+    private _snackBarHelper: SnackBarHelperService,
+    private toast:NgToastService) { }
 
   ngOnInit(): void {
   }
@@ -35,9 +40,12 @@ onSubmitFreshUser()
 {
 
   //Mobile Number Validator
-  if (/^\d{10}$/.test(this.FreshUserform.mobile)) {
-    this._snackBarHelper.normalSnackBar('Valid Mobile Number', 'cancle',2000);
-    } else {
+  if (/^\d{10}$/.test(this.FreshUserform.mobile)) 
+    {
+        console.log('Valid Mobile Number');
+    } 
+    else 
+    {
       this._snackBarHelper
       .OpenSnackbar_verticalPosition_top_right('Invalid Mobile NUmber! Please Enter Ten Digit Mobile No.', 'cancle',3000);
       return;
@@ -51,13 +59,14 @@ onSubmitFreshUser()
         //console.log(data.message);
 
         if(data.message == "FLY_LOGIN_PAGE"){
-          this._snackBarHelper.normalSnackBar('User Already Registered ! Please Login', 'cancle',2000);
+          this.toast.error({detail:"Error",summary:"User Already Registered", position:"topRight",duration:3000})
           this.router.navigateByUrl('/login');
           return;
         }else{
           this.mobileOtpForm = true;
           this.registerForm = false;
-          this._snackBarHelper.normalSnackBar('OTP Sent Success', 'cancle',2000);
+          // this._snackBarHelper.normalSnackBar('OTP Sent Success', 'cancle',2000);
+          this.toast.success({detail:"Success",summary:"OTP Sent Success", position:"topRight",duration:3000})
         }
       },
       err => {
@@ -79,12 +88,15 @@ verifyMobileOtp(){
   this.authService.verifyMobileOtp(this.verifyOtpForm).subscribe(
     data => {
       console.log(data);
-      this._snackBarHelper.normalSnackBar("OTP Verified Success","Undo",2000);
-      
+      // this._snackBarHelper.normalSnackBar("OTP Verified Success","Undo",2000);
+      this.toast.success({detail:"Success",summary:"OTP Verified Success", position:"topRight",duration:3000})
       this.router.navigateByUrl('/passwordSetup',{ state: { username: this.verifyOtpForm.username  } });
     },
     err => {
-      this._snackBarHelper.normalSnackBar("please Enter Correct OTP", 'cancle',2000);
+      // this._snackBarHelper.normalSnackBar("please Enter Correct OTP", 'cancle',2000);
+      this.toast.info({detail:"Error",summary:"please Enter Correct OTP", position:"topRight",duration:3000})
+
+      
     }
   );
 

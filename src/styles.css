@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  /* For snackbar background color */
+  .mat-snack-bar-container {
+    background-color: #ff5722; /* Example color: Deep Orange */
+  }
+  
+  /* For snackbar text color */
+  .mat-simple-snackbar {
+    color: #ffffff; /* Example color: White */
+  }
+  

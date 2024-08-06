@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CustomerGuardService } from './customerGuard/customer-guard.service';
 import { TempPageComponent } from './temp-page/temp-page.component';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
 { path: 'mod', component: BoardModeratorComponent },
 { path: 'admin', component: BoardAdminComponent },
 { path: 'passwordSetup', component: FreshUserRegisterComponent },
+{ path: 'forgot-password', component: ForgotPasswordComponent },
 
 {
   path: 'customer/',canActivate:[CustomerGuardService] ,

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { NgToastService } from 'ng-angular-popup';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,10 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(
+    private tokenStorageService: TokenStorageService, 
+    private toast:NgToastService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -36,4 +41,15 @@ export class AppComponent {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  genToast(){
+    this.toast.success({detail:"Success",summary:"This is Success", position:"topRight",duration:3000})
+    // this.toast.warning({detail:"Warning",summary:"This is Success", position:"botomCenter",duration:3000})
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.show();
+    // }, 5000);
+  }
+
+
 }

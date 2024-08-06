@@ -1,3 +1,17 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" 
+  size = "small" 
+  color = "#fff" 
+  type = "ball-clip-rotate" 
+  [fullScreen] = "true">
+  <p style="color: white" > 
+    Loading... </p>
+</ngx-spinner>
+
+
+
+
+
+
 <div id="app" *ngIf="!isLoggedIn" >
   <nav class="navbar navbar-expand navbar-light bg-light">
     <a href="#" class="navbar-brand">PUBLIC Mart</a>
@@ -78,3 +92,8 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<ng-toast />  <!-- takes default width of 350px and top-right position   -->
+
+<button type="button" (click)="genToast()" >click</button>
+

@@ -3,6 +3,8 @@ import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import Validation from '../utils/Validation';
+import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +22,13 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  progressBarShow:any = false;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(
+    private authService: AuthService, 
+    private tokenStorage: TokenStorageService ,
+    private _SSH:SnackBarHelperService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -31,6 +38,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    //this.spinner.show();
+    this.progressBarShow = true;
     const { username, password , userrole } = this.form;
     this.authService.login(username, password , userrole).subscribe(
       data => {
@@ -41,12 +50,16 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+        this.spinner.hide();
         window.location.href = '/customer';
         //this.reloadPage();
       },
       err => {
+        this._SSH.normalSnackBar('Invalid Username and Password', 'cancle',3000);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.spinner.hide();
+        
       }
     );
   }

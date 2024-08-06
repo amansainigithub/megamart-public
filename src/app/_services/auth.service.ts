@@ -52,6 +52,16 @@ export class AuthService {
     return this.http.post(AUTH_API + 'customerSignUpCompleted', registerForm);
   }
 
+  forgotPassowrd(forgotpassword: any): Observable<any> {
+    return this.http.post(AUTH_API + 'customerForgotPassword', forgotpassword);
+  }
+
+  
+  forgotPassowrdFinal(forgotpasswordfinal: any): Observable<any> {
+    return this.http.post(AUTH_API + 'customerForgotPasswordFinal', forgotpasswordfinal);
+  }
+
+
   
   // ===================/=
 

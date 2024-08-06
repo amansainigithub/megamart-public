@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { NgToastModule } from 'ng-angular-popup' // to be added
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 
 
@@ -34,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     TempPageComponent,
     FreshUserRegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +50,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgToastModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
+    MatProgressBarModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
