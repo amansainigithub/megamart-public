@@ -3,6 +3,8 @@ import { SnackBarHelperService } from '../../_helpers/snackBar_Service/snack-bar
 import { AuthService } from '../../_services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent {
 
-  constructor(private _SSH:SnackBarHelperService , private authService:AuthService , private router:Router){
+  constructor(private _SSH:SnackBarHelperService , private authService:AuthService , private router:Router , private toast:NgToastService){
 
   }
   response:any;
@@ -29,7 +31,7 @@ export class ForgotPasswordComponent {
 
   forgotPassworduserValidate(){
   if(this.form.password != this.form.conformPassword){
-      this._SSH.normalSnackBar("Password and conformPassword not match","","cancle");
+    this.toast.info({detail:"Password and conformPassword not match",summary:"", position:"topRight",duration:3000});
       return;
   }
     if(this.form.password == this.form.conformPassword && this.form.username != null){
@@ -46,11 +48,11 @@ export class ForgotPasswordComponent {
             this.response = data.message ;
 
           }else{
-            this._SSH.normalSnackBar("Please Enter a Valid mobile Number","",3000);
+            this.toast.error({detail:"Please Enter a Valid mobile number",summary:"Error", position:"topRight",duration:3000});
           }
         },
         err => {
-          // this._SSH.normalSnackBar("please Enter Correct OTP", 'cancle',2000);
+          this.toast.error({detail:"Please Enter a Correct OTP",summary:"Error", position:"topRight",duration:3000});
         }
       );
 
@@ -82,13 +84,22 @@ export class ForgotPasswordComponent {
           this.router.navigateByUrl("/login");
         },
         error=>{
-          console.log(error);
+          this.toast.error({detail:"Please Enter a Valid OTP!!",summary:"Error", position:"topRight",duration:3000});
         })
 
         
       }
     }
 
+  
+  //  AES ALGO
+ sendData() {
+  alert("Running....")
+    const data = { key: 'value' , name : 'DEMO USER' }; // Your JSON data here
+    this.authService.sendDataCall(data).subscribe(response => {
+      console.log('Response from server:', response);
+    });
+  }
    
 
 }
