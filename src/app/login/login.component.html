@@ -65,8 +65,8 @@
           #password="ngModel" 
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           [ngClass]="{ 'is-invalid': password.errors  && (username.touched || username.dirty ) }" />
-          <div class="mt-1">
-            <a href="00" routerLink="/forgot-password">Forgot Password ?</a>
+          <div class="mt-1" style="font-size: 13px;">
+            <a href="" routerLink="/forgot-password">Forgot Password ?</a>
           </div>
 
           <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
@@ -86,8 +86,12 @@
             <div *ngIf="progressBarShow">
               <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </div>
-            <hr>
-            <button mat-flat-button color="primary" routerLink="/register" >Create New Account</button>
+            
+            <div class="divider">
+              <span>or</span>
+            </div>
+
+            <button mat-flat-button style="background-color: #ffd413;" routerLink="/register" >Create New Account</button>
             <!-- <button mat-stroked-button color="primary" routerLink="/forgot-password" class="mt-1" >Forgot Password ?</button> -->
         </div>
 

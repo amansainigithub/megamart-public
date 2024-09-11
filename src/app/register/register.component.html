@@ -2,7 +2,7 @@
     <div class="card card-container">
 
       <h4 class="text-center">
-        Sign Up </h4>
+        Create Account </h4>
 
       <form
         *ngIf="!isSuccessful"
@@ -45,13 +45,22 @@
       </div>
 
         <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
-          <button class="btn btn-primary btn-sm btn-block" [disabled]="f.invalid">
+          <button mat-raised-button color="primary" [disabled]="f.invalid">
             <i class="bi bi-person-plus-fill"></i>
             Sign Up
           </button>
         </div>
-        <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
+
+        <div class="divider">
+          <span>or</span>
+      </div>
+
+        <!-- <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
         <button  routerLink="/login" mat-raised-button color="primary">Click here To Login</button>
+        </div> -->
+
+        <div class="text-center" style="font-size: 14px;">
+          Already have an account? <a href="" routerLink="/login">Login</a>
         </div>
   
       </form>

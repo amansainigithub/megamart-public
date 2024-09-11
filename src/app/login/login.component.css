@@ -32,3 +32,31 @@ label {
     border-radius: 50%;
   }
 
+
+  /* DIVIDER CSS */
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.divider:not(:empty)::before {
+    margin-right: 10px;
+}
+
+.divider:not(:empty)::after {
+    margin-left: 10px;
+}
+
+.divider span {
+    color: #aaa;
+    font-size: 14px;
+}

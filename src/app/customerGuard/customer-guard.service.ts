@@ -22,6 +22,7 @@ export class CustomerGuardService {
         return false;
       }
       else{
+        alert("reue");
         //Return False if localStorage is !Empty
         return true;
       }
