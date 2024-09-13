@@ -24,7 +24,9 @@ import { NgToastModule } from 'ng-angular-popup' // to be added
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -54,7 +56,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NgToastModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatIconModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

@@ -15,14 +15,15 @@ export class CustomerGuardService {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      
      
       if(window.localStorage.getItem(this.TOKEN_KEY) == null || window.localStorage.getItem(this.TOKEN_KEY) == undefined)
       {
-        //Return False if localStorage is Empty
+        alert("TOKEN STORAGE EMPTY");
         return false;
       }
       else{
-        alert("reue");
+        //alert("reue11");
         //Return False if localStorage is !Empty
         return true;
       }

@@ -4,6 +4,7 @@ import { Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
 import { NgToastService } from 'ng-angular-popup';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -26,9 +27,14 @@ export class RegisterComponent {
     private authService: AuthService,
     private router:Router,
     private _snackBarHelper: SnackBarHelperService,
-    private toast:NgToastService) { }
+    private toast:NgToastService,
+    private tokenStorageService:TokenStorageService) { }
 
   ngOnInit(): void {
+   var node =  this.tokenStorageService.getUser();
+   if(JSON.stringify(node) != '{}'){
+    window.location.href = '/home';
+   }
   }
 
 
@@ -38,7 +44,6 @@ FreshUserform: any = {
 
 onSubmitFreshUser()
 {
-
   //Mobile Number Validator
   if (/^\d{10}$/.test(this.FreshUserform.mobile)) 
     {
@@ -55,9 +60,6 @@ onSubmitFreshUser()
     const {mobile} = this.FreshUserform;
     this.authService.registerFreshUser(mobile).subscribe(
       data => {
-
-        //console.log(data.message);
-
         if(data.message == "FLY_LOGIN_PAGE"){
           this.toast.error({detail:"Error",summary:"User Already Registered", position:"topRight",duration:3000})
           this.router.navigateByUrl('/login');
@@ -94,9 +96,7 @@ verifyMobileOtp(){
     },
     err => {
       // this._snackBarHelper.normalSnackBar("please Enter Correct OTP", 'cancle',2000);
-      this.toast.info({detail:"Error",summary:"please Enter Correct OTP", position:"topRight",duration:3000})
-
-      
+      this.toast.info({detail:"Error",summary:"please Enter Correct OTP", position:"topRight",duration:3000});
     }
   );
 

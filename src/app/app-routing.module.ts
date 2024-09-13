@@ -15,7 +15,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', component: HomeComponent },
+  // { path: '', component: HomeComponent },
 { path: 'register', component: RegisterComponent },
 { path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'login', component: LoginComponent },
@@ -27,11 +27,11 @@ const routes: Routes = [
 { path: 'forgot-password', component: ForgotPasswordComponent },
 
 {
-  path: 'customer/',canActivate:[CustomerGuardService] ,
+  path: 'customer',canActivate:[CustomerGuardService] ,
       children: [
-                  //ADMIN PANEL
-                  { path: '', component: HomeComponent},
-      ],
+                  //ADMIN PANEL (Customer Panel)
+                  { path: 'shopper', component: HomeComponent},
+                ],
 }
 
 ];

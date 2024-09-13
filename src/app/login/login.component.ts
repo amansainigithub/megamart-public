@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.spinner.hide();
-        window.location.href = '/customer';
+        window.location.href = '/customer/shopper';
         //this.reloadPage();
       },
       err => {
@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
+
 
 
 
