@@ -58,3 +58,40 @@
     </div>
 </nav>
 </div>
+
+
+<div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <ul class="navbar-nav">
+            <li *ngFor="let pc of categories , let i = index" class="nav-item dropdown">
+                <a class="nav-link" href="#" id="menDropdown" role="button">{{pc.parentCategoryName}}</a>
+                
+                <div class="dropdown-menu p-4">
+                    <div class="d-flex flex-wrap">  <!-- Added flex-wrap for better responsiveness -->
+                     
+                        <div *ngFor="let bc of pc.babyCategoryDtos, let i = index" class="dropdown-column me-4">
+                            <div class="dropdown-title">{{bc.babyCategoryName}}</div>
+                            
+                            <a *ngFor="let bornC of bc.bornCategoryDtos, let i = index" href="#" class="dropdown-item">
+                              {{bornC.bornCategoryName}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+  </nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
