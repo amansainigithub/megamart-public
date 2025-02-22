@@ -1,85 +1,29 @@
-<div>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="menDropdown" role="button">MEN</a>
-                <div class="dropdown-menu p-4">
-                    <div class="d-flex">
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Topwear</div>
-                            <a href="#" class="dropdown-item">T-Shirts</a>
-                            <a href="#" class="dropdown-item">Casual Shirts</a>
-                            <a href="#" class="dropdown-item">Formal Shirts</a>
-                            <a href="#" class="dropdown-item">Sweatshirts</a>
-                        </div>
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Bottomwear</div>
-                            <a href="#" class="dropdown-item">Jeans</a>
-                            <a href="#" class="dropdown-item">Casual Trousers</a>
-                            <a href="#" class="dropdown-item">Shorts</a>
-                        </div>
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Footwear</div>
-                            <a href="#" class="dropdown-item">Casual Shoes</a>
-                            <a href="#" class="dropdown-item">Sneakers</a>
-                            <a href="#" class="dropdown-item">Flip Flops</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="womenDropdown" role="button">WOMEN</a>
-                <div class="dropdown-menu p-4">
-                    <div class="d-flex">
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Ethnic Wear</div>
-                            <a href="#" class="dropdown-item">Kurtas & Suits</a>
-                            <a href="#" class="dropdown-item">Sarees</a>
-                            <a href="#" class="dropdown-item">Lehenga Choli</a>
-                            <a href="#" class="dropdown-item">Dupattas</a>
-                        </div>
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Western Wear</div>
-                            <a href="#" class="dropdown-item">Tops</a>
-                            <a href="#" class="dropdown-item">Jeans</a>
-                            <a href="#" class="dropdown-item">Dresses</a>
-                        </div>
-                        <div class="dropdown-column me-4">
-                            <div class="dropdown-title">Footwear</div>
-                            <a href="#" class="dropdown-item">Flats</a>
-                            <a href="#" class="dropdown-item">Heels</a>
-                            <a href="#" class="dropdown-item">Sneakers</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-</div>
 
 
 <div>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
         <ul class="navbar-nav">
+
             <li *ngFor="let pc of categories , let i = index" class="nav-item dropdown">
                 <a class="nav-link" href="#" id="menDropdown" role="button">{{pc.parentCategoryName}}</a>
                 
-                <div class="dropdown-menu p-4">
+                <div class="dropdown-menu p-2">
                     <div class="d-flex flex-wrap">  <!-- Added flex-wrap for better responsiveness -->
                      
-                        <div *ngFor="let bc of pc.babyCategoryDtos, let i = index" class="dropdown-column me-4">
+                        <div *ngFor="let bc of pc.babyCategoryDtos, let i = index" class="dropdown-column me-4 mx-3">
                             <div class="dropdown-title">{{bc.babyCategoryName}}</div>
                             
-                            <a *ngFor="let bornC of bc.bornCategoryDtos, let i = index" href="#" class="dropdown-item">
+                            <a style="font-size: 13px;line-height: 1.1;" 
+                            *ngFor="let bornC of bc.bornCategoryDtos, let i = index" href="#" class="dropdown-item">
                               {{bornC.bornCategoryName}}
                             </a>
+                           
                         </div>
                     </div>
                 </div>
             </li>
+            
         </ul>
     </div>
   </nav>
