@@ -31,11 +31,93 @@
 
 
 
+<!-- Bootstrap Carousel Starting -->
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button *ngFor="let sliderIndex of homeSliderData; let i = index" 
+            type="button" 
+            data-bs-target="#carouselExampleIndicators" 
+            [attr.data-bs-slide-to]="i" 
+            [class.active]="i === 0"
+            [attr.aria-current]="i === 0 ? 'true' : null"
+            [attr.aria-label]="'Slide ' + (i + 1)">
+    </button>
+  </div>
+
+  <div class="carousel-inner">
+    <div *ngFor="let sliderIndex of homeSliderData; let i = index" 
+         class="carousel-item" 
+         [class.active]="i === 0">
+      <img [src]="sliderIndex.fileUrl" class="d-block w-100 carouselStyling" [alt]="sliderIndex.title">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+<!-- Bootstrap Carousel Ending -->
+
+
+
+<!-- OWL CAROUSEL SATRTING -->
+<owl-carousel-o [options]="customOptions">
+
+  <ng-container *ngFor="let slide of homeSliderData">
+    <ng-template carouselSlide [id]="slide.id">
+      <img [src]="slide.fileUrl" [alt]="slide.title" [title]="slide.title" class="carouselStyling">
+    </ng-template>
+  </ng-container>
+
+</owl-carousel-o>
+
+  <!-- OWL CAROUSEL ENDING -->
 
 
 
 
+  <!-- CATEGORIES STARTING -->
+  <div class="container">
+    <div class="categoryDesign prosto-one-regular" >Category</div>
+    <div class="line"></div>
+  </div>
 
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+        <a href="product-detail-page.html" class="text-decoration-none">
+          <div class="card product-card">
 
+            <img src="https://triprindia.com/cdn/shop/files/133close1_1024x.jpg?v=1708080238" 
+            class="card-img-top product-img" 
+            alt="Product Image">
+           
+            <div class="card-body text-center mt-2">
+              <p class="categoryName">
+                Product Name
+              </p>
+              <p class="categoryOff bg-dark text-white p-2">
+                Flat 60 to 70% OFF
+              </p>
+              <p class="shopNow button-92 mt-1 mb-2">
+                Shop Now
+              </p>
 
+            </div>
 
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  
+
+  <!-- CATEGORIES ENDING -->

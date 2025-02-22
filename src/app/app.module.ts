@@ -27,6 +27,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -59,7 +61,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressBarModule,
     MatMenuModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    CarouselModule,
+    RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],
