@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    navSpeed: 700,
+    navSpeed: 1000,
     navText: ['', ''],
     autoplay: true, // Enables autoplay
     autoplayTimeout: 10000, // Duration in milliseconds (5 seconds)
@@ -39,12 +39,44 @@ export class HomeComponent implements OnInit {
     },
     nav: false
 }
+
+
+customOptionsHotDeals: OwlOptions = {
+  loop: true,
+  mouseDrag: true,
+  touchDrag: true,
+  pullDrag: true,
+  dots: true,
+  navSpeed: 1000,
+  navText: ['', ''],
+  autoplay: true, // Enables autoplay
+  autoplayTimeout: 10000, // Duration in milliseconds (5 seconds)
+  autoplayHoverPause: true, // Pause on hover
+  responsive: {
+    0: {
+      items: 1
+    },
+    400: {
+      items: 2
+    },
+    740: {
+      items: 3
+    },
+    940: {
+      items: 5
+    }
+  },
+  nav: false
+}
   // Own Slider PROPERTIES
 
 
   categories: any;
   homeSliderData: any;
-
+  babyDataFilter: any;
+  hotDeals:any;
+  hotDealEngine:any;
+  
   constructor(
     private userService: UserService,
     private productCategory: ProductCategoryService,
@@ -61,8 +93,20 @@ export class HomeComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
         
+        //Categories Data
         this.categories = res.data.listOfCategories;
+
+        //Home Slider Data
         this.homeSliderData = res.data.homeSliderData;
+
+        //Baby Category Data
+        this.babyDataFilter = res.data.babyDataFilter;
+
+         //Hot Deals Data
+         this.hotDeals = res.data.hotDeals;
+
+         //Hot Deals Data
+         this.hotDealEngine = res.data.hotDealEngine;
 
         this.spinner.hide();
       },
@@ -77,7 +121,7 @@ export class HomeComponent implements OnInit {
 
 
 
-
+  
 
 
 

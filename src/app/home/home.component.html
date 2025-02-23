@@ -9,7 +9,7 @@
                 <a class="nav-link" href="#" id="menDropdown" role="button">{{pc.parentCategoryName}}</a>
                 
                 <div class="dropdown-menu p-2">
-                    <div class="d-flex flex-wrap">  <!-- Added flex-wrap for better responsiveness -->
+                    <div class="d-flex flex-wrap">
                      
                         <div *ngFor="let bc of pc.babyCategoryDtos, let i = index" class="dropdown-column me-4 mx-3">
                             <div class="dropdown-title">{{bc.babyCategoryName}}</div>
@@ -75,7 +75,6 @@
   </ng-container>
 
 </owl-carousel-o>
-
   <!-- OWL CAROUSEL ENDING -->
 
 
@@ -87,24 +86,24 @@
     <div class="line"></div>
   </div>
 
-  <div class="container mt-5">
+  <div class="container-fluid mt-2">
     <div class="row">
-      <div class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+      <div *ngFor="let babyData of babyDataFilter;  let i = index"  class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
         <a href="product-detail-page.html" class="text-decoration-none">
           <div class="card product-card">
 
-            <img src="https://triprindia.com/cdn/shop/files/133close1_1024x.jpg?v=1708080238" 
+            <img [src]="babyData.categoryFile" 
             class="card-img-top product-img" 
             alt="Product Image">
            
-            <div class="card-body text-center mt-2">
+            <div class="card-body text-center mt-3 mb-2">
               <p class="categoryName">
-                Product Name
+                {{babyData.categoryName}}
               </p>
-              <p class="categoryOff bg-dark text-white p-2">
+              <p class="categoryOff bg-dark text-white p-2 mt-1">
                 Flat 60 to 70% OFF
               </p>
-              <p class="shopNow button-92 mt-1 mb-2">
+              <p class="shopNow shopNowDesign mt-1 mb-2">
                 Shop Now
               </p>
 
@@ -115,9 +114,58 @@
       </div>
     </div>
   </div>
-  
-  
-
-  
-
   <!-- CATEGORIES ENDING -->
+
+
+
+
+  <!-- Hot Deals container First STARTING-->
+<div class="container-fluid text-center mt-2">
+
+  <div class="price-tag">
+   {{hotDealEngine.dealName}}
+  </div>
+
+  <owl-carousel-o [options]="customOptionsHotDeals">
+    <ng-container *ngFor="let hDeals of hotDeals">
+      <ng-template carouselSlide>
+        <a href="#" class="card dealCard">
+          <div class="product-image">
+            <img [src]="hDeals.fileUrl" [alt]="hDeals.name">
+            <div class="image-overlay">
+              <p>{{ hDeals.name }}</p>
+            </div>
+          </div>
+          <div class="card-body" style="background-color: #000080	;color: white;">
+            <p class="card-title font-weight-bolder text-center offerName mt-2">
+              {{ hDeals.offerName }}
+          </p>
+          </div>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
+  <!-- Hot Deals container First ENFING-->
+
+
+<!-- HotDeal Container Second -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#" class="card-link dealAnchor" >
+        <div class="card text-white dealCard">
+          <div class="image-container">
+            <img src="../../assets/images/wear.jpg" class="zoom-image dealImg">
+          </div>
+          <div class="card-img-overlay text-center dealCardOverlay" 
+               style="top: 50%; transform: translateY(20%);">
+            <h5 class="card-title mt-4">Men Top Wear</h5>
+            <p class="card-text">Upto 60% OFF</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div> -->
+<!-- HotDeal Container Second -->
