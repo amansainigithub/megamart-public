@@ -100,7 +100,7 @@
               <p class="categoryName">
                 {{babyData.categoryName}}
               </p>
-              <p class="categoryOff bg-dark text-white p-2 mt-1">
+              <p class="categoryOff bg-light text-dark p-2 mt-1">
                 Flat 60 to 70% OFF
               </p>
               <p class="shopNow shopNowDesign mt-1 mb-2">
@@ -115,8 +115,6 @@
     </div>
   </div>
   <!-- CATEGORIES ENDING -->
-
-
 
 
   <!-- Hot Deals container First STARTING-->
@@ -136,8 +134,8 @@
               <p>{{ hDeals.name }}</p>
             </div>
           </div>
-          <div class="card-body" style="background-color: #000080	;color: white;">
-            <p class="card-title font-weight-bolder text-center offerName mt-2">
+          <div class="card-body dealCardBody">
+            <p class="card-title font-weight-bolder text-center offerName">
               {{ hDeals.offerName }}
           </p>
           </div>
@@ -148,6 +146,79 @@
 </div>
   <!-- Hot Deals container First ENFING-->
 
+
+
+<!-- Summer Sale 1 Starting -->
+<div class="container d-flex justify-content-center">
+  <a href="your-link-here">
+      <img src="../../assets/summerSale/summerSale1.jpg" 
+      style="height: 350px; object-fit: cover; border-radius: 20px;" 
+      alt="Summer Sale">
+  </a>
+</div>
+<!-- Summer Sale 1 Ending -->
+
+
+<!-- Mens Category Card Starting -->
+<div class="container mt-4">
+  <div class="price-tag">Mens Category</div>
+
+  <div class="row">
+    <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+      <a href="#" class="text-decoration-none">
+        <div class="card cardMenAndWomen">
+          <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
+          <div class="card-title"> 
+            <p class="text-dark mt-3 cardTitleCategory">
+              {{data.categoryName}}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- Mens Category Card Ending -->
+
+
+<!-- Summer Sale 2 Starting -->
+<div class="container d-flex justify-content-center">
+  <a href="your-link-here">
+      <img src="../../assets/summerSale/summerSale3.png" 
+      style="height: 350px; object-fit: cover; border-radius: 20px;" 
+      alt="Summer Sale">
+  </a>
+</div>
+<!-- Summer Sale 2 Ending -->
+
+
+<!-- Women Category Card Starting -->
+<div class="container">
+  <div class="price-tag">Women Category</div>
+
+  <div class="row">
+    <div *ngFor="let data of womenList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+      <a href="#" class="text-decoration-none">
+        <div class="card cardMenAndWomen">
+          <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
+          <div class="card-title"> 
+            <p class="text-dark mt-3 cardTitleCategory">
+              {{data.categoryName}}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- Women Category Card Ending -->
+
+
+
+
+
+
+<!-- ==================================================================================================================== -->
 
 <!-- HotDeal Container Second -->
 <!-- <div class="container">

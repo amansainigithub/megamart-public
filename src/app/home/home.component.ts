@@ -76,6 +76,8 @@ customOptionsHotDeals: OwlOptions = {
   babyDataFilter: any;
   hotDeals:any;
   hotDealEngine:any;
+  mensList:any;
+  womenList:any;
   
   constructor(
     private userService: UserService,
@@ -107,6 +109,12 @@ customOptionsHotDeals: OwlOptions = {
 
          //Hot Deals Data
          this.hotDealEngine = res.data.hotDealEngine;
+
+         //Hot Deals Data
+         this.mensList = res.data.mensList;
+
+         //Hot Deals Data
+         this.womenList = res.data.womenList;
 
         this.spinner.hide();
       },
