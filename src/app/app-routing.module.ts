@@ -11,6 +11,7 @@ import { CustomerGuardService } from './customerGuard/customer-guard.service';
 import { TempPageComponent } from './temp-page/temp-page.component';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ProductSComponent } from './components/products/product-s/product-s.component';
 
 
 const routes: Routes = [
@@ -26,10 +27,12 @@ const routes: Routes = [
 { path: 'passwordSetup', component: FreshUserRegisterComponent },
 { path: 'forgot-password', component: ForgotPasswordComponent },
 
+{path: 'Search',component:ProductSComponent},
+
 {
   path: 'customer',canActivate:[CustomerGuardService] ,
       children: [
-                  //ADMIN PANEL (Customer Panel)
+                  //(Customer Panel)
                   { path: 'shopper', component: HomeComponent},
                 ],
 }

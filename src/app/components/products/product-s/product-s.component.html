@@ -1,0 +1,49 @@
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-2" style="background-color: #e9f7ef;">
+            <h3>FILTER</h3>
+        </div>
+
+       
+        <div class="col-md-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="container">
+                        <div class="row ">
+                            <div *ngFor="let data of productData" class="col-md-3 col-sm-6">
+                                <a href="#" class="card product-card">
+                                    <div  *ngIf="data?.productFilesResponses?.length" class="product-image-container">
+                                        <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image">
+                                        <div class="rating-review">
+                                            4.4 <i class="bi bi-star-fill"></i> | 1.3k
+                                        </div>
+                                        <div class="tag">OVERSIZED FIT</div>
+                                        <!-- <div class="tag-secondary">NEW ARRIVAL</div> -->
+                                    </div>
+                                    <div *ngIf="data?.productFilesResponses?.length" class="card-body p-1">
+                                        <p class="cardBodyZero product-title mx-2">{{data.brandField}}</p>
+
+                                        <p class="cardBodyZero productName mx-2">
+                                            {{ data?.productName | slice:0:30 }}{{ data?.productName?.length > 35 ? '...' : '' }}
+                                          </p>
+                                          
+                                        <p class="cardBodyZero mx-2 mt-1 p-1">
+                                            <span class="actualPrice">Rs.{{data.productPrice}}</span>
+                                            <span class="mrpPrice mx-1">{{data.productMrp}}</span>
+                                            <span class="priceOff mx-1">({{data.calculatedDiscount}})</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>        
+            
+
+    </div>
+</div>

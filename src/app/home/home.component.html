@@ -89,9 +89,11 @@
   <div class="container-fluid mt-2">
     <div class="row">
       <div *ngFor="let babyData of babyDataFilter;  let i = index"  class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
-        <a href="product-detail-page.html" class="text-decoration-none">
-          <div class="card product-card">
+        <a  
+        [routerLink]="['/Search']" [queryParams]="{ cI: babyData.id,cN:babyData.categoryName }" 
+        href="#" class="text-decoration-none">
 
+          <div class="card product-card">
             <img [src]="babyData.categoryFile" 
             class="card-img-top product-img" 
             alt="Product Image">
@@ -106,10 +108,9 @@
               <p class="shopNow shopNowDesign mt-1 mb-2">
                 Shop Now
               </p>
-
             </div>
-
           </div>
+
         </a>
       </div>
     </div>
@@ -193,7 +194,7 @@
 
 
 <!-- Women Category Card Starting -->
-<div class="container">
+<div class="container-fluid">
   <div class="price-tag">Women Category</div>
 
   <div class="row">
