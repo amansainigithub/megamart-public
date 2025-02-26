@@ -2,7 +2,7 @@
     border: 1px solid #ddd;
     /* border-radius: 10px; */
     overflow: hidden;
-    width: 260px; /* Custom width */
+    max-width: 260px; /* Custom width */
     margin: auto;
     display: flex;
     text-decoration: none;
@@ -14,7 +14,7 @@
 }
 .product-image {
     width: 100%;
-    height: 310px; /* Custom image height */
+    max-height: 310px; /* Custom image height */
     object-fit: cover;
     transition: transform 0.3s;
 }
