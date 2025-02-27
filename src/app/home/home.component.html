@@ -90,7 +90,7 @@
     <div class="row">
       <div *ngFor="let babyData of babyDataFilter;  let i = index"  class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
         <a  
-        [routerLink]="['/Search']" [queryParams]="{ cI: babyData.id,cN:babyData.categoryName }" 
+        [routerLink]="['/Search']" [queryParams]="{ cI: babyData.id,cN:babyData.categoryName,sQNext:'NO' }" 
         href="#" class="text-decoration-none">
 
           <div class="card product-card">
@@ -126,18 +126,20 @@
   </div>
 
   <owl-carousel-o [options]="customOptionsHotDeals">
-    <ng-container *ngFor="let hDeals of hotDeals">
+    <ng-container *ngFor="let data of hotDeals">
       <ng-template carouselSlide>
-        <a href="#" class="card dealCard">
+        <a 
+        [routerLink]="['/Search']" [queryParams]="{ cI: data.categoryId,cN:data.categoryName,sQNext:'DEAL' }"
+         href="#" class="card dealCard">
           <div class="product-image">
-            <img [src]="hDeals.fileUrl" [alt]="hDeals.name">
+            <img [src]="data.fileUrl" [alt]="data.name">
             <div class="image-overlay">
-              <p>{{ hDeals.name }}</p>
+              <p>{{ data.name }}</p>
             </div>
           </div>
           <div class="card-body dealCardBody">
             <p class="card-title font-weight-bolder text-center offerName">
-              {{ hDeals.offerName }}
+              {{ data.offerName }}
           </p>
           </div>
         </a>
@@ -166,7 +168,9 @@
 
   <div class="row">
     <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
-      <a href="#" class="text-decoration-none">
+      <a 
+      [routerLink]="['/Search']" [queryParams]="{ cI: data.id,cN:data.categoryName,sQNext:'YES' }" 
+      href="#" class="text-decoration-none">
         <div class="card cardMenAndWomen">
           <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
           <div class="card-title"> 
@@ -199,7 +203,9 @@
 
   <div class="row">
     <div *ngFor="let data of womenList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
-      <a href="#" class="text-decoration-none">
+      <a 
+      [routerLink]="['/Search']" [queryParams]="{ cI: data.id,cN:data.categoryName,sQNext:'YES' }"
+      href="#" class="text-decoration-none">
         <div class="card cardMenAndWomen">
           <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
           <div class="card-title"> 

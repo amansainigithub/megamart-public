@@ -20,4 +20,14 @@ export class ProductSService {
                     + 'getProductListByCategoryId?cI='+ cI + '&cN='+cN + '&page='+request.page + '&size=' +request.size, httpOptions);
     }
 
+    getProductListByBornCategoryIdService(cI:any , cN:any ,request:any): Observable<any> {
+      return this.http.get(API_URL + "/categoryController/" 
+                    + 'getProductListByBornCategoryId?cI='+ cI + '&cN='+cN + '&page='+request.page + '&size=' +request.size, httpOptions);
+    }
+
+    getProductListDeal99Service(cI:any , cN:any ,request:any): Observable<any> {
+      return this.http.get(API_URL + "/categoryController/" 
+                    + 'getProductListDeal99?cI='+ cI + '&cN='+cN + '&page='+request.page + '&size=' +request.size, httpOptions);
+    }
+
 }
