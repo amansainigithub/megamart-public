@@ -13,6 +13,7 @@ import { ProductWatchingService } from '../../../_services/productsService/produ
 export class ProductWatchingComponent {
 
   productData:any;
+  mainImage: string = '../../../../assets/images/wear.jpg'; // Default main image
 
 
   constructor(private route: ActivatedRoute,
@@ -36,21 +37,9 @@ export class ProductWatchingComponent {
       });
     }
   
-
-    mainImage: string = '../../../../assets/images/wear.jpg'; // Default main image
-  thumbnails: string[] = [
-    '../../../../assets/images/wear.jpg',
-    '../../../../assets/images/wear2.jpg',
-    '../../../../assets/images/wear3.png',
-    '../../../../assets/images/wear4.png'
-  ];
-
-  changeMainImage(newImage: string) {
-    this.mainImage = newImage;
-  }
-
+ 
   //GET Product Search By Category Starting
-  getProductWatching(cI:any , cN:any, pI:any , pN:any)
+  async getProductWatching(cI:any , cN:any, pI:any , pN:any)
  {
    this.spinner.show();
    this.pwService.productWatchingService(cI,cN,pI,pN)
@@ -58,21 +47,27 @@ export class ProductWatchingComponent {
      {
          next:(res:any)=> {
          this.productData = res.data;
-         console.log("Product Search Data");
+
+         //Set Image
+         this.mainImage = res.data.productFilesResponses[0].fileUrl;
+
+         console.log("----------------------------------");
          console.log(this.productData);
          
-         // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
          this.spinner.hide();
        },
        error:(err:any)=>  {
          console.log(err)
          this.spinner.hide();
-         // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
        }
      }
    );
  }
     //GET Product Search By Category ENDING
+ 
+//Change main Image    
+changeMainImage(newImage: string) {
+      this.mainImage = newImage;
+    }
   
-
 }

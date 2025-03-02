@@ -1,25 +1,31 @@
 <div class="container mt-4">
     <div class="row">
+
         <!-- Sidebar Thumbnails -->
-        <div class="col-md-1">
-            <div class="d-flex flex-column">
+        <div class="col-md-1" *ngIf="productData; else loadingTemplate">
+            <div class="d-flex flex-column vertical-thumbnails">
                 <img 
-                    *ngFor="let imgData of productData.productFilesResponses
-                    " 
+                    *ngFor="let imgData of productData.productFilesResponses" 
                     [src]="imgData.fileUrl" 
                     class="img-thumbnail mb-2" 
                     alt="Thumbnail"
-                    (mouseenter)="changeMainImage(imgData.fileUrl)"
-                >
+                    (mouseenter)="changeMainImage(imgData.fileUrl)">
             </div>
         </div>
 
+        <ng-template #loadingTemplate>
+            <p>Loading product details...</p>
+          </ng-template>
+
         <!-- Main Product Image -->
         <div class="col-md-4 ">
-            <img [src]="mainImage" class="img-fluid border sticky-image" alt="Product Image">
-        </div>
+            <img [src]="mainImage" class="img-fluid border sticky-image mb-2 " alt="Product Image">
 
-        
+            <div class="d-flex horizontal-thumbnails">
+                <img *ngFor="let imgData of productData.productFilesResponses"
+                 [src]="imgData.fileUrl" class="border img-thumbnail me-2" width="50px" alt="Color Option">
+            </div> 
+        </div>
 
         <!-- Product Details -->
         <div class="col-md-5">
@@ -27,7 +33,7 @@
             <p class="custom-spacing productName">{{productData.productName}}</p>
 
            <div class="mt-3">
-            <p class="text-success custom-spacing specialOffer">Special offer</p>
+            <p class="custom-spacing specialOffer">Special Offer</p>
 
             <p>
                 <span class="productPrice" >₹{{productData.productPrice}}</span>
@@ -41,7 +47,7 @@
            </div>
 
             <div class="rating align-items-center">
-                <span class="badge bg-success">3.7 ★</span>
+                <span class="badge" style="background-color: #26A541;">4.7 ★</span>
                 <p class="text-muted mt-1">15,039 ratings and 738 reviews</p>
             </div>
             
@@ -90,23 +96,20 @@
                 <button type="button" class="btn btn-warning  btn-lg flex-fill">
                     <i class="bi bi-cart4"></i> ADD TO CART
                 </button>
-                
             </div>
             
 
-            <!-- <div class="mt-4">
-                <p class="productDetails custom-spacing">Product Details</p>
-                <div class="row">
-                    <div class="col-sm-4 pdh mtt">Material composition</div>
-                    <div class="col-sm-8">Pure Cotton</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 pdh ">Fit type</div>
-                    <div class="col-sm-8">Classic Fit</div>
-                </div>
-            </div> -->
-
             <div class="mt-4">
+                <p class="productDetails custom-spacing">Product Details</p>
+                <div class="row mb-3 mt-1" *ngFor="let pd of productData.productDetailsResponses">
+                    <div class="col-6 col-sm-4  pdh">{{pd.pdKey}}</div>
+                    <div class="col-6 col-sm-8 ">{{pd.pdValue}}</div>
+                </div>
+            </div>
+            
+            
+
+            <!-- <div class="mt-4">
                 <p class="productDetails">Product Details</p>
                 <div class="row" >
                     <div class="col-md-6" *ngFor="let pd of productData.productDetailsResponses">
@@ -115,12 +118,11 @@
                         <hr>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div >
-                <ul class="list-unstyled">
-                    {{productData.description}}
-                </ul>
+            <hr>
+            <div>
+                <ul class="list-unstyled" [innerHTML]="productData.description"></ul>
             </div>
             
 
@@ -138,6 +140,6 @@
 
 
 
-<div class="container p-5 mt-5" style="margin-top: 50px;" >
-    <h1>Heelo</h1>
+<div class="container p-5 mt-5" style="margin-top: 250px;" >
+    <h1 style="margin-top: 250%;">Heelo</h1>
 </div>

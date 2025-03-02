@@ -41,7 +41,7 @@ body {
 .specialOffer{
     font-family: sans-serif;
     font-weight: 550;
-    color: #38da00;
+    color: 	rgb(38, 165, 65);
 }
 
 .productPrice{
@@ -58,7 +58,7 @@ body {
 .productOff{
     font-size: 18px;
     font-weight: 550;
-    color: #38da00;
+    color: 	rgb(38, 165, 65);
 }
 
 .btn-group {
@@ -81,17 +81,12 @@ body {
 
 .productDetails{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 450;
 
 }
-
 .pdh{
     font-weight: 550;
-}
-
-.mtt{
-    background-color: #ebf5fb;
-    border-radius: 4px;
+    color: #878787;
 }
 
 .radioBtn {
@@ -111,7 +106,7 @@ body {
   /* ============= */
   .sticky-image {
     position: sticky;
-    top: 20px; /* Adjust as needed */
+    top: 80px; /* Adjust as needed */
 }
 
 
@@ -123,3 +118,22 @@ body {
 }
 
 
+.vertical-thumbnails{
+    display: flex;
+}
+
+.horizontal-thumbnails {
+    display: none !important;
+}
+
+
+@media (max-width: 768px ) {
+    .horizontal-thumbnails {
+        display: flex !important;
+    }
+
+    .vertical-thumbnails {
+        display: none !important; /* Hide vertical thumbnails */
+    }
+
+}
