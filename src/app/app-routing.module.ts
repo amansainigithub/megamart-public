@@ -12,6 +12,7 @@ import { TempPageComponent } from './temp-page/temp-page.component';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProductSComponent } from './components/products/product-s/product-s.component';
+import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
 { path: 'forgot-password', component: ForgotPasswordComponent },
 
 {path: 'Search',component:ProductSComponent},
+{path: 'pw',component:ProductWatchingComponent},
 
 {
   path: 'customer',canActivate:[CustomerGuardService] ,

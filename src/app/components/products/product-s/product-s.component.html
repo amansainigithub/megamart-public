@@ -14,7 +14,14 @@
                         <div class="row">
                             <div class="row">
                                 <div *ngFor="let data of productData" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
-                                  <a href="#" class="card product-card h-100 ">
+                                  <a 
+                                  [routerLink]="['/pw']" [queryParams]="{ 
+                                                                        cI: data.bornCategoryId,
+                                                                        cN:data.bornCategoryName,
+                                                                        pI:data.id,
+                                                                        pN:data.productName }" 
+                                  href="#" 
+                                  class="card product-card h-100 ">
                                     <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
                                       <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
                                       <div class="rating-review">

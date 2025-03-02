@@ -30,6 +30,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { RouterModule } from '@angular/router';
 import { ProductSComponent } from './components/products/product-s/product-s.component';
+import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
 
 
 
@@ -47,6 +48,7 @@ import { ProductSComponent } from './components/products/product-s/product-s.com
     FreshUserRegisterComponent,
     ForgotPasswordComponent,
     ProductSComponent,
+    ProductWatchingComponent,
   ],
   imports: [
     BrowserModule,

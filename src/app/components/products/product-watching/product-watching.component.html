@@ -1,0 +1,143 @@
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar Thumbnails -->
+        <div class="col-md-1">
+            <div class="d-flex flex-column">
+                <img 
+                    *ngFor="let imgData of productData.productFilesResponses
+                    " 
+                    [src]="imgData.fileUrl" 
+                    class="img-thumbnail mb-2" 
+                    alt="Thumbnail"
+                    (mouseenter)="changeMainImage(imgData.fileUrl)"
+                >
+            </div>
+        </div>
+
+        <!-- Main Product Image -->
+        <div class="col-md-4 ">
+            <img [src]="mainImage" class="img-fluid border sticky-image" alt="Product Image">
+        </div>
+
+        
+
+        <!-- Product Details -->
+        <div class="col-md-5">
+            <p class="text-muted brandName custom-spacing brandName">{{productData.brandField}}</p>
+            <p class="custom-spacing productName">{{productData.productName}}</p>
+
+           <div class="mt-3">
+            <p class="text-success custom-spacing specialOffer">Special offer</p>
+
+            <p>
+                <span class="productPrice" >₹{{productData.productPrice}}</span>
+                <span class="productMrp ms-2" >
+                    <del>₹{{productData.productMrp}}</del>
+                </span>
+                <span class="productOff" >
+                   {{productData.calculatedDiscount}} off
+                </span>
+            </p>
+           </div>
+
+            <div class="rating align-items-center">
+                <span class="badge bg-success">3.7 ★</span>
+                <p class="text-muted mt-1">15,039 ratings and 738 reviews</p>
+            </div>
+            
+
+            <!-- <h6>Color</h6>
+            <div class="d-flex">
+                <img src="color1.jpg" class="border img-thumbnail me-2" width="50px" alt="Color Option">
+                <img src="color2.jpg" class="border img-thumbnail me-2" width="50px" alt="Color Option">
+                <img src="color3.jpg" class="border img-thumbnail me-2" width="50px" alt="Color Option">
+            </div> -->
+
+            <h6 class="mt-3">Select Size</h6>
+
+              <div class="btn-group" role="group" aria-label="Size Selection">
+                <ng-container *ngFor="let variant of productData.sellerProductVarientResponses; let i = index">
+                  <input type="radio" 
+                         class="btn-check" 
+                         name="btnradio" 
+                         [id]="'btnradio' + i" 
+                         autocomplete="off" 
+                         [checked]="i === 0">
+                  <label class="btn radioBtn" [for]="'btnradio' + i">
+                    {{ variant.productLabel }}
+                  </label>
+                </ng-container>
+                <p class="font-weight-bolder" >
+                    Size Chart 
+                    <img src="../../../../assets/SizeChart/size-guides.png" alt="">
+                </p>
+              </div>
+              
+
+            <!-- <h6 class="mt-3">Available offers</h6>
+            <ul class="list-unstyled">
+                <li>✅ Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
+                <li>✅ Bank Offer 10% off up to ₹1,250 on PNB Credit Card Transactions</li>
+                <li>✅ Special Price Get at flat ₹579</li>
+                <li><a href="#" class="text-primary">+4 more offers</a></li>
+            </ul> -->
+
+            <div class="mt-4 d-flex gap-2">
+                <button class="btn buyNow btn-lg flex-fill">
+                    <i class="bi bi-bag-heart"></i>
+                    BUY NOW
+                </button>
+                <button type="button" class="btn btn-warning  btn-lg flex-fill">
+                    <i class="bi bi-cart4"></i> ADD TO CART
+                </button>
+                
+            </div>
+            
+
+            <!-- <div class="mt-4">
+                <p class="productDetails custom-spacing">Product Details</p>
+                <div class="row">
+                    <div class="col-sm-4 pdh mtt">Material composition</div>
+                    <div class="col-sm-8">Pure Cotton</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 pdh ">Fit type</div>
+                    <div class="col-sm-8">Classic Fit</div>
+                </div>
+            </div> -->
+
+            <div class="mt-4">
+                <p class="productDetails">Product Details</p>
+                <div class="row" >
+                    <div class="col-md-6" *ngFor="let pd of productData.productDetailsResponses">
+                        <p class="mb-0" style="font-size: 12px;">{{pd.pdKey}}</p>
+                        <p>{{pd.pdValue}}</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <div >
+                <ul class="list-unstyled">
+                    {{productData.description}}
+                </ul>
+            </div>
+            
+
+            <h6 class="mt-3">Available offers</h6>
+            <ul class="list-unstyled">
+                <li>✅ Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
+                <li>✅ Bank Offer 10% off up to ₹1,250 on PNB Credit Card Transactions</li>
+                <li>✅ Special Price Get at flat ₹579</li>
+                <li><a href="#" class="text-primary">+4 more offers</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container p-5 mt-5" style="margin-top: 50px;" >
+    <h1>Heelo</h1>
+</div>

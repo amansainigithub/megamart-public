@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.img-thumbnail {
+    cursor: pointer;
+    transition: 0.3s;
+    height: 75px;
+    width: 75px;
+    object-fit: cover;
+}
+.img-thumbnail:hover {
+    border: 2px solid blue;
+}
+
+.product-container {
+    display: flex;
+    gap: 10px;
+  }
+
+.custom-spacing {
+    margin-bottom: 5px; 
+}
+
+.custom-spacing + .custom-spacing {
+    margin-top: 5px;
+}
+
+.brandName{
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 540;
+    text-transform: uppercase;
+    color: #85929e;
+}
+.productName{
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+.specialOffer{
+    font-family: sans-serif;
+    font-weight: 550;
+    color: #38da00;
+}
+
+.productPrice{
+    font-size: 28px;
+    font-family: sans-serif;
+    font-weight: 520;
+}
+
+.productMrp{
+    font-size: 16px;
+    color: #707b7c;
+}
+
+.productOff{
+    font-size: 18px;
+    font-weight: 550;
+    color: #38da00;
+}
+
+.btn-group {
+    gap: 15px; /* Add a gap between buttons */
+  }
+
+  .btn-group .btn {
+    border-radius: 8px; /* Apply rounded corners */
+    padding: 10px 19px;;
+  }
+
+.buyNow {
+    background-color: #3F0F74;
+    color: white;
+    border: none;
+}
+.buyNow:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.productDetails{
+    font-size: 20px;
+    font-weight: 500;
+
+}
+
+.pdh{
+    font-weight: 550;
+}
+
+.mtt{
+    background-color: #ebf5fb;
+    border-radius: 4px;
+}
+
+.radioBtn {
+    border: 2px solid #000; /* Black border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Adjust padding */
+  }
+  
+  .btn-check:checked + .radioBtn {
+    border-color:  #3F0F74;; /* Highlight border color when selected */
+    background-color:  #3F0F74;; /* Change background color when selected */
+    color: white;
+  }
+  
+
+
+  /* ============= */
+  .sticky-image {
+    position: sticky;
+    top: 20px; /* Adjust as needed */
+}
+
+
+.col-md-1 {
+    position: sticky;
+    top: 80px; /* Adjust based on your navbar height */
+    height: fit-content;
+    z-index: 999; /* Ensures it stays above other elements */
+}
+
+
