@@ -80,32 +80,31 @@
 
 
 
-  <!-- CATEGORIES STARTING -->
+  <!-- POPULAR CATEGORIES STARTING -->
   <div class="container-fluid">
     <div class="categoryDesign" >Shop our most popular categories</div>
     <!-- <div class="line"></div> -->
   </div>
-
-  <div class="container-fluid mt-2">
+  <div class="container-fluid mt-2 ">
     <div class="row">
-      <div *ngFor="let babyData of babyDataFilter;  let i = index"  class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+      <div *ngFor="let babyData of babyDataFilter;  let i = index"  class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
         <a  
         [routerLink]="['/Search']" [queryParams]="{ cI: babyData.id,cN:babyData.categoryName,sQNext:'NO' }" 
         href="#" class="text-decoration-none">
 
-          <div class="card product-card">
+          <div class="card product-card-popular-category">
             <img [src]="babyData.categoryFile" 
-            class="card-img-top product-img" 
-            alt="Product Image">
+                class="card-img-top product-img-popular-category" 
+                alt="Product Image">
            
-            <div class="card-body text-center mt-3 mb-2">
+            <div class="card-body text-center mt-3 mb-1">
               <p class="categoryName">
                 {{babyData.categoryName}}
               </p>
-              <p class="categoryOff bg-light text-dark p-2 mt-1">
+              <p class="categoryOff bg-light text-dark p-1 mt-1">
                 Flat 60 to 70% OFF
               </p>
-              <p class="shopNow shopNowDesign mt-1 mb-1">
+              <p class="shopNow shopNowDesign mb-1">
                 Shop Now
               </p>
             </div>
@@ -115,7 +114,8 @@
       </div>
     </div>
   </div>
-  <!-- CATEGORIES ENDING -->
+  <!--POPULAR  CATEGORIES ENDING -->
+
 
 
   <!-- Hot Deals @9999999 container First STARTING-->
@@ -131,7 +131,7 @@
         <a 
         [routerLink]="['/Search']" [queryParams]="{ cI: data.categoryId,cN:data.categoryName,sQNext:'DEAL' }"
          href="#" class="card dealCard">
-          <div class="product-image">
+          <div class="product-deal-image">
             <img [src]="data.fileUrl" [alt]="data.name">
             <div class="image-overlay">
               <p>{{ data.name }}</p>
@@ -160,10 +160,6 @@
   </a>
 </div> -->
 <!-- Summer Sale 1 Ending -->
-
-
-
-
 
 
 <!-- PRODUCT LIST STARTING -->
@@ -221,8 +217,10 @@
 <div class="container mt-4">
   <div class="price-tag">Mens Category</div>
 
-  <div class="row">
-    <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
+ 
+
+  <div class="row text-center card-container">
+    <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
       <a 
       [routerLink]="['/Search']" [queryParams]="{ cI: data.id,cN:data.categoryName,sQNext:'YES' }" 
       href="#" class="text-decoration-none">
@@ -239,17 +237,6 @@
   </div>
 </div>
 <!-- Mens Category Card Ending -->
-
-
-<!-- Summer Sale 2 Starting -->
-<!-- <div class="container d-flex justify-content-center">
-  <a href="your-link-here">
-      <img src="../../assets/summerSale/summerSale3.png" 
-      style="height: 350px; object-fit: cover; border-radius: 20px;" 
-      alt="Summer Sale">
-  </a>
-</div> -->
-<!-- Summer Sale 2 Ending -->
 
 
 <!-- Women Category Card Starting -->

@@ -1,55 +1,41 @@
-
 <div class="container-fluid mt-4">
-    <div class="row">
+  <div class="row">
 
-        <div class="col-md-2" style="background-color: #e9f7ef;">
-            <h3>FILTER</h3>
-        </div>
+    <div class="col-md-2" style="background-color: #e9f7ef;">
+      <h3>FILTER</h3>
+    </div>
 
-       
-        <div class="col-md-10">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="container">
-                        <div class="row">
-                            <div class="row">
-                                <div *ngFor="let data of productData" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
-                                  <a  
-                                  [routerLink]="['/pw']" [queryParams]="{ 
+
+    <div class="col-md-10">
+        <div class="row">
+          <div *ngFor="let data of productData" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
+            <a [routerLink]="['/pw']" [queryParams]="{ 
                                                                         cI: data.bornCategoryId,
                                                                         cN:data.bornCategoryName,
                                                                         pI:data.id,
-                                                                        pN:data.productName }" 
-                                  href="#" 
-                                  class="card product-card h-100 ">
-                                    <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
-                                      <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
-                                      <div class="rating-review">
-                                        4.4 <i class="bi bi-star-fill"></i> | 1.3k
-                                      </div>
-                                      <div class="tag">OVERSIZED FIT</div>
-                                    </div>
-                                    <div *ngIf="data?.productFilesResponses?.length" class="card-body p-2">
-                                      <p class="product-title">{{ data.brandField }}</p>
-                                      <p class="productName mb-1">
-                                        {{ data?.productName | slice:0:30 }}{{ data?.productName?.length > 35 ? '...' : '' }}
-                                      </p>
-                                      <p class="price-details mb-0">
-                                        <span class="actualPrice">Rs.{{ data.productPrice }}</span>
-                                        <span class="mrpPrice mx-1">Rs.{{ data.productMrp }}</span>
-                                        <span class="priceOff mx-1">({{ data.calculatedDiscount }})</span>
-                                      </p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                
+                                                                        pN:data.productName }" href="#"
+              class="card product-card h-100 ">
+              <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
+                <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
+                <div class="rating-review">
+                  4.4 <i class="bi bi-star-fill"></i> | 1.3k
                 </div>
-            </div>
-        </div>        
-            
-
+                <div class="tag">OVERSIZED FIT</div>
+              </div>
+              <div *ngIf="data?.productFilesResponses?.length" class="card-body p-2">
+                <p class="product-title">{{ data.brandField }}</p>
+                <p class="productName mb-1">
+                  {{ data?.productName | slice:0:30 }}{{ data?.productName?.length > 35 ? '...' : '' }}
+                </p>
+                <p class="price-details mb-0">
+                  <span class="actualPrice">Rs.{{ data.productPrice }}</span>
+                  <span class="mrpPrice mx-1">Rs.{{ data.productMrp }}</span>
+                  <span class="priceOff mx-1">({{ data.calculatedDiscount }})</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 </div>

@@ -62,23 +62,45 @@ body {
  /* ================================ */
 
 
-.product-img {
+
+  /* carouselStyling Starting */
+  .carouselStyling
+  {
+      object-fit: cover;
+      height: 300px;
+  }
+/* carouselStyling ENDING */
+/* ================================ */
+
+
+
+
+ /* ========POPULAR CATEGORY STARTING */
+ .categoryDesign {
+  font-size: 24px;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-family: Graphik Webfont, -apple-system, Helvetica Neue, Droid Sans, Arial, "sans-serif";
+}
+
+
+.product-img-popular-category {
     width: 100%;  
-    height: 200px; 
+    height: 180px; 
     object-fit: cover; 
   }
 
-  /* Hover Product Card Starting */
   .product-card {
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
   }
   
-  .product-img {
+  .product-img-popular-category{
     transition: transform 0.3s ease-in-out;
   }
   
-  .product-card:hover .product-img {
+  .product-card:hover .product-img-popular-category {
     transform: scale(1.1);
   }
 
@@ -94,67 +116,17 @@ body {
   .categoryOff{
     font-weight: bolder;
   }
-    /* Hover Product Card Ending */
 
-  /* ================================ */
-
-
- /* Category Heading Starting */
-.categoryDesign {
-        font-size: 24px;
-        color: #333;
-        font-weight: 500;
-        margin-bottom: 10px;
-        font-family: Graphik Webfont, -apple-system, Helvetica Neue, Droid Sans, Arial, "sans-serif";
-    }
-    .line {
-        width: 50px;
-        height: 4px;
-        background: #ffc912;
-        border-radius: 2px;
-        transition: width 0.3s ease-in-out;
-        margin: 0 auto;
-    }
-    .container:hover .line {
-        width: 260px;
-    }
-
-  /* Category Heading Ending */
-
-
-  /* ================================ */
-  /* carouselStyling Starting */
-  .carouselStyling
-  {
-      object-fit: cover;
-      height: 400px;
-  }
-    /* carouselStyling Ending */
-
-
-/* ================================ */
-
-    /* GOOGLE FONTS STARTING */
-    .prosto-one-regular {
-        font-family: "Prosto One", serif;
-        font-weight: 400;
-        font-style: normal;
-      }
-
-/* ================================ */
-.card-body {
+  .card-body {
     padding: 0 !important;
  }
  
-
- /* ================================ */
  .categoryName,
  .categoryOff {
    margin-bottom: 0; /* Remove bottom margin */
    padding-bottom: 0; /* Remove bottom padding */
  }
 
- /* ================================ */
 
  .shopNow{
     font-size: 20px;
@@ -162,55 +134,54 @@ body {
     margin-top: 5px;
     font-weight: 600;
  }
- /* ================================ */
+ /* ========POPULAR CATEGORY ENDING */
 
 
 
 
-
-/* CSS  Button Shop Now Starting*/
+ /* CSS  Button Shop Now Starting*/
 .shopNowDesign {
-    --c: #fff;
-    /* text color */
-    background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
-    #8CC63E;
-    /* background color */
-    color: #0000;
-    border: none;
-    transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
-    text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
-      calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
-    outline-offset: .1em;
-    transition: 0.3s;
-  }
-  
-  .product-card:hover,
-  .shopNowDesign:focus-visible {
-    --_p: 0%;
-    --_i: 1;
-  }
-  
-  .shopNowDesign:active {
-    text-shadow: none;
-    color: var(--c);
-    box-shadow: inset 0 0 9e9q #0005;
-    transition: 0s;
-  }
-  
-  .shopNowDesign {
-    font-weight: bold;
-    font-size: 20px;
-    margin: 0;
-    cursor: pointer;
-    padding: .1em .3em;
-  }
+  --c: #fff;
+  /* text color */
+  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
+  #8CC63E;
+  /* background color */
+  color: #0000;
+  border: none;
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+  text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+    calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+}
+
+.product-card:hover,
+.shopNowDesign:focus-visible {
+  --_p: 0%;
+  --_i: 1;
+}
+
+.shopNowDesign:active {
+  text-shadow: none;
+  color: var(--c);
+  box-shadow: inset 0 0 9e9q #0005;
+  transition: 0s;
+}
+
+.shopNowDesign {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+  cursor: pointer;
+  padding: .1em .3em;
+}
 /* CSS  Button Shop Now Starting*/
 
 
 
 
 
-   /*============== Hot Deals CSS Start=========================*/
+/*============== Hot Deals @99 CSS Start=========================*/
 
 .dealCard{
     border-radius: 10px;
@@ -219,22 +190,22 @@ body {
     color: black;
    }
 
-.product-image {
+.product-deal-image {
   max-width: 100%;
-  height: 320px; 
+  height: 350px; 
   overflow: hidden;
   position: relative;
   display: flex;
 }
 
-.product-image img {
+.product-deal-image img {
   width: 100%;
   height: 100%;
   object-fit: cover; 
   transition: transform 0.3s;
 }
 
-.product-image:hover img {
+.product-deal-image:hover img {
     transform: scale(1.1);
 }
 
@@ -261,8 +232,9 @@ body {
   background-color: #000080	;
   color: white;
 }
+/* ====================Hot Deals @999 CSS Ending======== */
 
-   /* ====================Hot Deals CSS Ending=========================================== */
+
 
 
 /* ====Price Tag Starting================= */
@@ -277,110 +249,12 @@ body {
 
 
 
-
-/* =====================Card For Categories (Men and Women) Start============================== */
-.cardMenAndWomen {
-  width: 105%;
-  height: 300px; /* Set a fixed height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.cardMenAndWomen:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.cardMenAndWomen img {
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-}
-
-.cardTitleCategory {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-  font-weight: 500;
-  /* text-align: center; */
-}
-
-
-.MW-Hover{
-  transition: transform 0.3s ease-in-out;
-}
-
-.cardMenAndWomen:hover .MW-Hover {
-  transform: scale(1.1);
-}
-
-
-/* =====================Card For Categories (Men and Women) Ending============================== */
-
-
-
-/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
-/* .image-container {
-  overflow: hidden;
-  border-radius: 10px; 
-}
-
-.zoom-image {
-  transition: transform 0.25s ease-in-out;
-}
-
-.card:hover .zoom-image {
-  transform: scale(1.1); 
-}
-
-.dealAnchor{
-  text-decoration: none; 
-  color: inherit; 
-  display: block;
-}
-
-.dealCard{
-  max-width: 300px; 
-  border-radius: 10px; 
-  margin-top: 10px; 
-  position: relative;
-}
-
-.image-container{
-  overflow: hidden; 
-  border-radius: 10px;
-}
-
-.dealImg{
-  height: 350px; 
-  width: 100%; object-fit: cover; 
-  display: block;
-  margin: auto; 
-  transition: transform 0.4s ease-in-out;
-}
-
-.dealCardOverlay{
-  top: 50%; 
-  transform: translateY(20%);
-} */
-/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
-
-
-
-
-
-
 /* PRODUCT LIST STARTING DESIGN*/
 .product-card {
   border: 1px solid #ddd;
   /* border-radius: 10px; */
   overflow: hidden;
-  max-width: 260px; /* Custom width */
+  max-width: 270px; /* Custom width */
   margin: auto;
   display: flex;
   text-decoration: none;
@@ -390,12 +264,9 @@ body {
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 8px;
 }
-
 .product-card:hover {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
 }
-
-
 .product-image-container {
   overflow: hidden;
   position: relative;
@@ -480,3 +351,249 @@ body {
 }
 
 /* PRODUCT LIST DESIGN ENDING  */
+
+
+
+
+
+
+/* ===Card For Categories (Men and Women) Start==== */
+.cardMenAndWomen {
+  max-width: 105%;
+  height: 300px; /* Set a fixed height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.cardMenAndWomen:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cardMenAndWomen img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.cardTitleCategory {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  font-weight: 500;
+  /* text-align: center; */
+}
+
+
+.MW-Hover{
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardMenAndWomen:hover .MW-Hover {
+  transform: scale(1.1);
+}
+/* ===Card For Categories (Men and Women) Ending== */
+
+
+
+/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
+/* .image-container {
+  overflow: hidden;
+  border-radius: 10px; 
+}
+
+.zoom-image {
+  transition: transform 0.25s ease-in-out;
+}
+
+.card:hover .zoom-image {
+  transform: scale(1.1); 
+}
+
+.dealAnchor{
+  text-decoration: none; 
+  color: inherit; 
+  display: block;
+}
+
+.dealCard{
+  max-width: 300px; 
+  border-radius: 10px; 
+  margin-top: 10px; 
+  position: relative;
+}
+
+.image-container{
+  overflow: hidden; 
+  border-radius: 10px;
+}
+
+.dealImg{
+  height: 350px; 
+  width: 100%; object-fit: cover; 
+  display: block;
+  margin: auto; 
+  transition: transform 0.4s ease-in-out;
+}
+
+.dealCardOverlay{
+  top: 50%; 
+  transform: translateY(20%);
+} */
+/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
+
+
+
+
+
+
+
+
+
+ /* POPULAR CATEGORY  STARTING */
+ @media (max-width: 400px) {
+  .col-lg-2.col-md-4.col-sm-6.col-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+
+  .product-card-popular-category {
+    height: auto; /* Maintain flexibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px; /* Reduce padding */
+  }
+
+  .product-img-popular-category {
+    width: 100%;
+    height: 100px; /* Adjust image height */
+    object-fit: cover;
+  }
+
+  .categoryName, .categoryOff, .shopNow {
+    font-size: 12px; /* Reduce font size */
+  }
+}
+
+@media (max-width: 350px) {
+  .col-lg-2.col-md-4.col-sm-6.col-6 {
+    flex: 0 0 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+
+  .product-img-popular-category {
+    height: 90px; /* Further reduce image height */
+  }
+
+  .categoryName, .categoryOff, .shopNow {
+    font-size: 11px; /* Adjust text size */
+  }
+
+  .categoryOff {
+    padding: 2px 4px; /* Reduce padding */
+  }
+}
+ /* POPULAR CATEGORY  ENDING */
+
+
+
+/* PRODUCT LIST STARTING */
+
+@media (max-width: 400px) {
+  .col-xl-3.col-lg-3.col-md-4.col-sm-4.col-6 {
+    flex: 0 0 50%; /* 2 items per row */
+    max-width: 50%;
+  }
+
+  .product-card {
+    height: auto; /* Flexible height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-image {
+    height: 120px; /* Adjusted image height */
+    object-fit: cover;
+  }
+
+  .product-title, .productName, .price-details {
+    font-size: 12px; /* Reduce text size */
+  }
+}
+
+@media (max-width: 350px) {
+  .col-xl-3.col-lg-3.col-md-4.col-sm-4.col-6 {
+    flex: 0 0 100%; /* 1 item per row */
+    max-width: 100%;
+  }
+
+  .product-image {
+    height: 100px; /* Reduce image height further */
+  }
+
+  .product-title, .productName, .price-details {
+    font-size: 11px; /* Further reduce font size */
+  }
+
+  .tag {
+    font-size: 10px; /* Adjust tag size */
+    padding: 2px 4px; /* Reduce padding */
+  }
+}
+
+
+/* PRODUCT LIST ENDING*/
+
+
+
+/* MENS CATEGORY STARTING */
+
+@media (max-width: 400px) {
+  .col-lg-2.col-md-4.col-sm-6.col-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+
+  .cardMenAndWomen {
+    height: 200px; /* Adjust card height for smaller screens */
+  }
+
+  .MW-Hover {
+    height: 120px; /* Adjust image height */
+  }
+
+  .cardTitleCategory {
+    font-size: 12px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 350px) {
+  .col-lg-2.col-md-4.col-sm-6.col-6 {
+    flex: 0 0 50%; /* Keep 2 cards per row */
+    max-width: 50%;
+  }
+
+  .cardMenAndWomen {
+    height: 200px; /* Reduce card height for very small screens */
+  }
+
+  .MW-Hover {
+    height: 100px; /* Reduce image height */
+  }
+
+  .cardTitleCategory {
+    font-size: 11px; /* Further reduce text size */
+  }
+}
+
+
+/* MENS CATEGORY ENDING */
+
+

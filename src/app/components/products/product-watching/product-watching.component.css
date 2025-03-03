@@ -265,3 +265,77 @@ body {
     margin: auto;
 }
 /* FEATURES CONTAINER DESIGN ENDING */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make filters collapsible on small screens */
+@media (max-width: 767px) {
+    .filter-sidebar {
+        display: none;
+    }
+}
+
+/* Adjust product card */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Ensure images are contained */
+.product-image-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Improve text and spacing */
+.product-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.productName {
+    font-size: 12px;
+}
+
+.price-details {
+    font-size: 14px;
+}
+
+.actualPrice {
+    font-weight: bold;
+    color: #000;
+}
+
+.mrpPrice {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.priceOff {
+    color: rgb(64, 190, 14);
+    font-size: 12px;
+}
