@@ -236,3 +236,32 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
+
+
+
+
+/* FEATURES CONTAINER DESIGN STARTING */
+
+.features-container {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+}
+.feature-item {
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+}
+.feature-icon {
+    width:40px;
+    height: 40px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ff9900;
+    margin: auto;
+}
+/* FEATURES CONTAINER DESIGN ENDING */
