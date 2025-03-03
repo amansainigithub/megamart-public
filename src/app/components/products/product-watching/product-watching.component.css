@@ -45,7 +45,7 @@ body {
 }
 
 .productPrice{
-    font-size: 28px;
+    font-size: 26px;
     font-family: sans-serif;
     font-weight: 520;
 }
@@ -136,4 +136,103 @@ body {
         display: none !important; /* Hide vertical thumbnails */
     }
 
+}
+
+
+
+
+/* =============================================================================== */
+/* SIMILAR PRODUCT CSS STARTING */
+
+.product-card {
+    border: 1px solid #ddd;
+    /* border-radius: 10px; */
+    overflow: hidden;
+    max-width: 260px; /* Custom width */
+    margin: auto;
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+}
+.product-image-container {
+    overflow: hidden;
+    position: relative;
+}
+.product-image {
+    width: 100%;
+    max-height: 310px; /* Custom image height */
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.product-image:hover {
+    transform: scale(1.1);
+}
+.product-title {
+    font-weight: bold;
+    color: #283747;
+    margin: 0;
+    padding: 0;
+}
+.productName{
+    font-size: 13px;
+    font-weight: 420;
+    color: #616a6b;
+}
+.cardBodyZero{
+    margin: 0;
+    padding: 0;
+}
+
+.actualPrice{
+    font-weight: 500;
+}
+
+.mrpPrice{
+    text-decoration: line-through;
+    font-size: 13px;
+    color: #717d7e;
+}
+.priceOff{
+    font-size: 13px;
+    font-weight: 450;
+    color: green;
+}
+
+.rating-review {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.rating-review i {
+    color: #FFD700;
+    margin: 0 5px;
+}
+.tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.tag-secondary {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
 }

@@ -77,6 +77,7 @@ customOptionsHotDeals: OwlOptions = {
   hotDeals:any;
   hotDealEngine:any;
   mensList:any;
+  productsList:any;
   womenList:any;
   
   constructor(
@@ -112,6 +113,9 @@ customOptionsHotDeals: OwlOptions = {
 
          //Hot Deals Data
          this.mensList = res.data.mensList;
+
+         //ProductLists
+         this.productsList = res.data.productsList;
 
          //Hot Deals Data
          this.womenList = res.data.womenList;

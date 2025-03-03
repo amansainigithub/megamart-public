@@ -67,7 +67,7 @@ import { ProductWatchingComponent } from './components/products/product-watching
     MatDividerModule,
     MatIconModule,
     CarouselModule,
-    RouterModule
+    RouterModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

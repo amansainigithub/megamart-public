@@ -81,9 +81,9 @@
 
 
   <!-- CATEGORIES STARTING -->
-  <div class="container">
-    <div class="categoryDesign prosto-one-regular" >Category</div>
-    <div class="line"></div>
+  <div class="container-fluid">
+    <div class="categoryDesign" >Shop our most popular categories</div>
+    <!-- <div class="line"></div> -->
   </div>
 
   <div class="container-fluid mt-2">
@@ -105,7 +105,7 @@
               <p class="categoryOff bg-light text-dark p-2 mt-1">
                 Flat 60 to 70% OFF
               </p>
-              <p class="shopNow shopNowDesign mt-1 mb-2">
+              <p class="shopNow shopNowDesign mt-1 mb-1">
                 Shop Now
               </p>
             </div>
@@ -118,11 +118,11 @@
   <!-- CATEGORIES ENDING -->
 
 
-  <!-- Hot Deals container First STARTING-->
+  <!-- Hot Deals @9999999 container First STARTING-->
 <div class="container-fluid  mt-2">
 
   <div class="price-tag">
-   {{hotDealEngine.dealName}}
+    {{hotDealEngine.dealName}}
   </div>
 
   <owl-carousel-o [options]="customOptionsHotDeals">
@@ -152,14 +152,69 @@
 
 
 <!-- Summer Sale 1 Starting -->
-<div class="container d-flex justify-content-center">
+<!-- <div class="container d-flex justify-content-center">
   <a href="your-link-here">
       <img src="../../assets/summerSale/gloabSale.png" 
       style="height: 250px;width: 1000px; object-fit: cover; border-radius: 20px;" 
       alt="Summer Sale">
   </a>
-</div>
+</div> -->
 <!-- Summer Sale 1 Ending -->
+
+
+
+
+
+
+<!-- PRODUCT LIST STARTING -->
+<div class="container">
+  <div class="row">
+
+      <div>
+        <h5 >Popular Products</h5>
+      </div>
+
+      <ng-container *ngFor="let data of productsList">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
+              
+              <a [routerLink]="['/pw']" [queryParams]="{ 
+                  cI: data.bornCategoryId,
+                  cN: data.bornCategoryName,
+                  pI: data.id,
+                  pN: data.productName }"
+                  class="card product-card h-100">
+                  
+                  <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
+                      <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
+                      <div class="rating-review">
+                          4.4 <i class="bi bi-star-fill"></i> | 1.3k
+                      </div>
+                      <div class="tag">OVERSIZED FIT</div>
+                  </div>
+
+                  <div *ngIf="data?.productFilesResponses?.length" class="px-2 p-2">
+                      <p class="product-title">{{ data.brandField }}</p>
+                      <p class="productName mb-1">
+                          {{ data?.productName | slice:0:30 }}{{ data?.productName?.length > 35 ? '...' : '' }}
+                      </p>
+                      <p class="price-details mb-0">
+                          <span class="actualPrice">Rs.{{ data.productPrice }}</span>
+                          <span class="mrpPrice mx-1">Rs.{{ data.productMrp }}</span>
+                          <span class="priceOff mx-1">({{ data.calculatedDiscount }})</span>
+                      </p>
+                  </div>
+              </a>
+
+          </div>
+      </ng-container>
+  </div>
+</div>
+<!-- PRODUCT LIST ENDING] -->
+
+
+
+
+
 
 
 <!-- Mens Category Card Starting -->
@@ -187,18 +242,18 @@
 
 
 <!-- Summer Sale 2 Starting -->
-<div class="container d-flex justify-content-center">
+<!-- <div class="container d-flex justify-content-center">
   <a href="your-link-here">
       <img src="../../assets/summerSale/summerSale3.png" 
       style="height: 350px; object-fit: cover; border-radius: 20px;" 
       alt="Summer Sale">
   </a>
-</div>
+</div> -->
 <!-- Summer Sale 2 Ending -->
 
 
 <!-- Women Category Card Starting -->
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="price-tag">Women Category</div>
 
   <div class="row">
@@ -217,7 +272,7 @@
       </a>
     </div>
   </div>
-</div>
+</div> -->
 <!-- Women Category Card Ending -->
 
 

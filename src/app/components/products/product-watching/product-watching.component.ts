@@ -13,6 +13,8 @@ import { ProductWatchingService } from '../../../_services/productsService/produ
 export class ProductWatchingComponent {
 
   productData:any;
+  similarProducts:any;
+  productId:any;
   mainImage: string = '../../../../assets/images/wear.jpg'; // Default main image
 
 
@@ -24,14 +26,12 @@ export class ProductWatchingComponent {
   
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
+        this.productId = params['pI'];
+
         const cI = params['cI'];
         const cN = params['cN'];
         const pI = params['pI'];
         const pN = params['pN'];
-        console.log('categoryId:', cI); 
-        console.log('categoryName:', cN);
-        console.log('productId:', pI); 
-        console.log('productname:', pN);
       
         this.getProductWatching(cI,cN,pI,pN);
       });
@@ -46,13 +46,18 @@ export class ProductWatchingComponent {
    .subscribe(
      {
          next:(res:any)=> {
-         this.productData = res.data;
+          
+         this.productData = res.data.pw;
+          //Set Image
+          this.mainImage = res.data.pw.productFilesResponses[0].fileUrl;
 
-         //Set Image
-         this.mainImage = res.data.productFilesResponses[0].fileUrl;
+         this.similarProducts = res.data.similarProducts.content;
+        
 
          console.log("----------------------------------");
+         console.log(res);
          console.log(this.productData);
+         console.log(this.similarProducts);
          
          this.spinner.hide();
        },
