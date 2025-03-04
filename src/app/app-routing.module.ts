@@ -38,7 +38,6 @@ const routes: Routes = [
                   { path: 'shopper', component: HomeComponent},
                 ],
 }
-
 ];
 
 @NgModule({

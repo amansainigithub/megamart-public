@@ -134,9 +134,15 @@ body {
     margin-top: 5px;
     font-weight: 600;
  }
- /* ========POPULAR CATEGORY ENDING */
 
+ .product-card-popular-category {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  transition: box-shadow 0.3s ease-in-out;
+}
 
+.product-card-popular-category:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
 
 
  /* CSS  Button Shop Now Starting*/
@@ -155,7 +161,7 @@ body {
   transition: 0.3s;
 }
 
-.product-card:hover,
+.product-card-popular-category:hover,
 .shopNowDesign:focus-visible {
   --_p: 0%;
   --_i: 1;
@@ -177,6 +183,8 @@ body {
 }
 /* CSS  Button Shop Now Starting*/
 
+
+ /* ========POPULAR CATEGORY ENDING======================= */
 
 
 

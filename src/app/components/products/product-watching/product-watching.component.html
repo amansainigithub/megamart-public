@@ -61,23 +61,23 @@
 
             <h6 class="mt-3">Select Size</h6>
 
-              <div class="btn-group" role="group" aria-label="Size Selection">
+            <div class="btn-group" role="group" aria-label="Size Selection">
                 <ng-container *ngFor="let variant of productData.sellerProductVarientResponses; let i = index">
                   <input type="radio" 
                          class="btn-check" 
                          name="btnradio" 
                          [id]="'btnradio' + i" 
                          autocomplete="off" 
-                         [checked]="i === 0">
+                         [value]="variant.productLabel" 
+                         (change)="onSizeChange($event)">
                   <label class="btn radioBtn" [for]="'btnradio' + i">
                     {{ variant.productLabel }}
                   </label>
                 </ng-container>
-                <p class="font-weight-bolder" >
-                    Size Chart 
-                    <img src="../../../../assets/SizeChart/size-guides.png" alt="">
-                </p>
               </div>
+              
+              <p>Selected Size: {{ selectedSize }}</p>
+              
               
 
             <!-- <h6 class="mt-3">Available offers</h6>
@@ -93,7 +93,8 @@
                     <i class="bi bi-bag-heart"></i>
                     BUY NOW
                 </button>
-                <button type="button" class="btn btn-warning  btn-lg flex-fill">
+                <button type="button" class="btn btn-warning  btn-lg flex-fill" 
+                (click)="addToCart(productData.id,productData.productName,productData.productPrice,productData.brandField)">
                     <i class="bi bi-cart4"></i> ADD TO CART
                 </button>
             </div>

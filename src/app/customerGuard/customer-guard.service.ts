@@ -19,7 +19,8 @@ export class CustomerGuardService {
      
       if(window.localStorage.getItem(this.TOKEN_KEY) == null || window.localStorage.getItem(this.TOKEN_KEY) == undefined)
       {
-        alert("TOKEN STORAGE EMPTY");
+        // alert("TOKEN STORAGE EMPTY");
+        this._router.navigate(['/home']);
         return false;
       }
       else{
