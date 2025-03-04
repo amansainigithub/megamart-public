@@ -104,7 +104,7 @@ changeMainImage(newImage: string) {
   
   addToCart(productId: string, productName: string, productPrice: number, brandField: string): void {
 
-    if(this.selectedSize === null || this.selectedSize === undefined){
+    if(this.selectedSize === null || this.selectedSize === undefined || this.selectedSize === ''){
       alert("Please Select Size.");
       return;
     }
