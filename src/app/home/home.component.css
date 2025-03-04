@@ -91,7 +91,8 @@ body {
     object-fit: cover; 
   }
 
-  .product-card {
+  .product-card-popular-category{
+    border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
   }
@@ -100,7 +101,7 @@ body {
     transition: transform 0.3s ease-in-out;
   }
   
-  .product-card:hover .product-img-popular-category {
+  .product-card-popular-category:hover .product-img-popular-category {
     transform: scale(1.1);
   }
 
@@ -405,6 +406,43 @@ body {
 .cardMenAndWomen:hover .MW-Hover {
   transform: scale(1.1);
 }
+
+.discount-tag {
+  position: absolute;
+  right: -60px; /* Initially outside the card */
+  background-color: #0000FF;
+  color: white;
+  font-size: 12px; /* Smaller size */
+  padding: 3px 8px; /* Adjusted padding */
+  border-radius: 3px;
+  opacity: 0; /* Initially hidden */
+  transition: right 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.tag1 {
+  top: 10px;
+  transition-delay: 0s; /* Instant */
+}
+
+.tag2 {
+  top: 35px;
+  transition-delay: 0.1s; /* Slight delay */
+}
+
+.tag3 {
+  top: 60px;
+  transition-delay: 0.2s; /* More delay */
+}
+
+/* Hover Effect */
+.cardMenAndWomen:hover .discount-tag {
+  right: 10px; /* Moves inside smoothly */
+  opacity: 1; /* Becomes visible */
+}
+
+
+
+
 /* ===Card For Categories (Men and Women) Ending== */
 
 

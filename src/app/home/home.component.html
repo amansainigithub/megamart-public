@@ -119,7 +119,7 @@
 
 
   <!-- Hot Deals @9999999 container First STARTING-->
-<div class="container-fluid  mt-2">
+<!-- <div class="container-fluid  mt-2">
 
   <div class="price-tag">
     {{hotDealEngine.dealName}}
@@ -128,9 +128,8 @@
   <owl-carousel-o [options]="customOptionsHotDeals">
     <ng-container *ngFor="let data of hotDeals">
       <ng-template carouselSlide>
-        <a 
-        [routerLink]="['/Search']" [queryParams]="{ cI: data.categoryId,cN:data.categoryName,sQNext:'DEAL' }"
-         href="#" class="card dealCard">
+        <a [routerLink]="['/Search']" [queryParams]="{ cI: data.categoryId,cN:data.categoryName,sQNext:'DEAL' }"
+          href="#" class="card dealCard">
           <div class="product-deal-image">
             <img [src]="data.fileUrl" [alt]="data.name">
             <div class="image-overlay">
@@ -140,13 +139,13 @@
           <div class="card-body dealCardBody">
             <p class="card-title font-weight-bolder text-center offerName mt-1">
               {{ data.offerName }}
-          </p>
+            </p>
           </div>
         </a>
       </ng-template>
     </ng-container>
   </owl-carousel-o>
-</div>
+</div> -->
   <!-- Hot Deals container First ENFING-->
 
 
@@ -217,24 +216,30 @@
 <div class="container mt-4">
   <div class="price-tag">Mens Category</div>
 
- 
-
   <div class="row text-center card-container">
     <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
-      <a 
-      [routerLink]="['/Search']" [queryParams]="{ cI: data.id,cN:data.categoryName,sQNext:'YES' }" 
-      href="#" class="text-decoration-none">
-        <div class="card cardMenAndWomen">
-          <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
-          <div class="card-title"> 
-            <p class="text-dark mt-3 cardTitleCategory">
-              {{data.categoryName}}
-            </p>
-          </div>
-        </div>
-      </a>
+        <a 
+        [routerLink]="['/Search']" [queryParams]="{ cI: data.id, cN: data.categoryName, sQNext: 'YES' }" 
+        href="#" class="text-decoration-none">
+            <div class="card cardMenAndWomen position-relative">
+                <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
+                
+                <!-- Discount Tags (Initially hidden) -->
+                <div class="discount-tag tag1">70% OFF</div>
+                <div class="discount-tag tag2">Limited Offer</div>
+                <div class="discount-tag tag3">Best Deal</div>
+                
+                <div class="card-title"> 
+                    <p class="text-dark mt-3 cardTitleCategory">
+                        {{ data.categoryName }}
+                    </p>
+                </div>
+            </div>
+        </a>
     </div>
-  </div>
+</div>
+
+
 </div>
 <!-- Mens Category Card Ending -->
 
