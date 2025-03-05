@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddToCartService } from './_services/addToCartService/add-to-cart.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private tokenStorageService: TokenStorageService, 
     private toast:NgToastService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    public cartService:AddToCartService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -35,6 +37,9 @@ export class AppComponent {
 
       this.username = user.username;
     }
+
+    //Load the Cart Items
+    this.cartService.loadCart();
   }
 
   logout(): void {

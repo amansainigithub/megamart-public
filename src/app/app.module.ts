@@ -31,8 +31,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { RouterModule } from '@angular/router';
 import { ProductSComponent } from './components/products/product-s/product-s.component';
 import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
-
-
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import { ProductWatchingComponent } from './components/products/product-watching
     ForgotPasswordComponent,
     ProductSComponent,
     ProductWatchingComponent,
+    AddToCartComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +69,7 @@ import { ProductWatchingComponent } from './components/products/product-watching
     MatIconModule,
     CarouselModule,
     RouterModule,
+    MatBadgeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

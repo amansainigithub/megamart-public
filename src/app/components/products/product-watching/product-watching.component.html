@@ -69,14 +69,14 @@
                          [id]="'btnradio' + i" 
                          autocomplete="off" 
                          [value]="variant.productLabel" 
-                         (change)="onSizeChange($event)">
+                         (change)="cartService.onSizeChange($event)">
                   <label class="btn radioBtn" [for]="'btnradio' + i">
                     {{ variant.productLabel }}
                   </label>
                 </ng-container>
               </div>
               
-              <p>Selected Size: {{ selectedSize }}</p>
+              <p>Selected Size: {{ cartService.selectedSize }}</p>
               
               
 
@@ -94,7 +94,13 @@
                     BUY NOW
                 </button>
                 <button type="button" class="btn btn-warning  btn-lg flex-fill" 
-                (click)="addToCart(productData.id,productData.productName,productData.productPrice,productData.brandField)">
+                (click)="cartService.addToCart
+                (productData.id,
+                productData.productName,
+                productData.productPrice,
+                productData.brandField,
+                productData.productFilesResponses[0].fileUrl,
+                productData.colorVariant)">
                     <i class="bi bi-cart4"></i> ADD TO CART
                 </button>
             </div>

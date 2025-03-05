@@ -1,0 +1,48 @@
+.cart-item img {
+    max-width: 120px;
+}
+
+.pName{
+    font-size: 22px;
+    color: #2e4053;
+}
+
+.pfs{
+    font-size: 14px;
+}
+
+.SAndC{
+    font-weight: 500;
+}
+
+.price {
+    font-size: 1.2rem;
+}
+
+.pmrp {
+        text-decoration: line-through;
+        color: #5d6d7e;
+        font-size: 14px;
+    }
+
+
+
+
+    @keyframes moveTruck {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(10px); }
+        100% { transform: translateX(0); }
+    }
+
+    @keyframes colorChange {
+        0% { color: #d35400; }  /* Orange */
+        33% { color: #27ae60; } /* Green */
+        66% { color: #2980b9; } /* Blue */
+        100% { color: #d35400; } /* Back to Orange */
+    }
+
+    .running-truck {
+        display: inline-block;
+        animation: moveTruck 1s infinite ease-in-out, colorChange 1s infinite;
+        font-size: 18px;
+    }

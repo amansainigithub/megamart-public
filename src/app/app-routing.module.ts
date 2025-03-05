@@ -13,6 +13,7 @@ import { FreshUserRegisterComponent } from './components/fresh-user-register/fre
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProductSComponent } from './components/products/product-s/product-s.component';
 import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
 
 {path: 'Search',component:ProductSComponent},
 {path: 'pw',component:ProductWatchingComponent},
+{path: 'cart',component:AddToCartComponent},
 
 {
   path: 'customer',canActivate:[CustomerGuardService] ,

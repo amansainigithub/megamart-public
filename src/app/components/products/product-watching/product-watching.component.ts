@@ -4,6 +4,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ProductSService } from '../../../_services/productsService/productSService/product-s.service';
 import { NgToastService } from 'ng-angular-popup';
 import { ProductWatchingService } from '../../../_services/productsService/productWatchigService/product-watching.service';
+import { AddToCartComponent } from '../../add-to-cart/add-to-cart.component';
+import { AddToCartService } from '../../../_services/addToCartService/add-to-cart.service';
 
 @Component({
   selector: 'app-product-watching',
@@ -22,12 +24,10 @@ export class ProductWatchingComponent {
       private spinner: NgxSpinnerService,
       private pwService:ProductWatchingService,
       private toast:NgToastService ,
+      public cartService:AddToCartService,
     ) {}
   
     ngOnInit() {
-
-      this.loadCart()
-
 
       this.route.queryParams.subscribe(params => {
         this.productId = params['pI'];
@@ -82,12 +82,6 @@ changeMainImage(newImage: string) {
 
 
 
-    selectedSize: string = '';
-
-    onSizeChange(event: any) {
-      this.selectedSize = event.target.value;
-    }
-    
 
 
 
@@ -99,80 +93,7 @@ changeMainImage(newImage: string) {
 
 
 
-  //Add To Cart Functionality Starting
-  private cartItems: any[] = [];
-  
-  addToCart(productId: string, productName: string, productPrice: number, brandField: string): void {
 
-    if(this.selectedSize === null || this.selectedSize === undefined || this.selectedSize === ''){
-      alert("Please Select Size.");
-      return;
-    }
-
-   const productSize = this.selectedSize;
-
-    console.log(productId, productName, productPrice, brandField, productSize);
-
-    const existingItem = this.cartItems.find(item => item.pId === productId && item.pSize === productSize);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-        existingItem.totalPrice = existingItem.pPrice * existingItem.quantity; // Update total price
-    } else {
-        const cartItem = {
-            pId: productId,
-            pName: productName,
-            pPrice: productPrice,
-            pBrand: brandField,
-            pSize: productSize,
-            quantity: 1,
-            totalPrice: productPrice
-        };
-        this.cartItems.push(cartItem);
-    }
-
-    this.saveCart();
-    this.toast.success({detail:"Success",summary:"Item Added to Cart", position:"bottomRight",duration:2000});
-}
-
-
-  private saveCart() {
-    localStorage.setItem('cart', JSON.stringify(this.cartItems)); // Convert to string and store in localStorage
-  }
-
-  private loadCart() {
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      this.cartItems = JSON.parse(cart); // Convert back to array if found
-    }
-  }
-
-  getCartItems() {
-    return this.cartItems;
-  }
-
-  clearCart() {
-    this.cartItems = [];
-    localStorage.removeItem('cart'); // Clear localStorage
-  }
-
-  removeFromCart(productId: any, productSize: any) {
-    this.cartItems = this.cartItems.filter(item => !(item.pId === productId && item.pSize === productSize));
-    this.saveCart();
-  }
-
-  updateQuantity(productId: any, productSize: any, quantity: number) {
-    const item = this.cartItems.find(item => item.pId === productId && item.pSize === productSize);
-    if (item) {
-      item.quantity = quantity > 0 ? quantity : 1; // Prevent quantity from going below 1
-      item.totalPrice = item.pPrice * item.quantity; // Update total price
-      this.saveCart();
-    }
-  }
-
-  getCartTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
-  }
 
 
 }

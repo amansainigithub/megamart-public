@@ -1,0 +1,72 @@
+<div class="container mt-4">
+    <h4>Shopping Cart</h4>
+    <div class="row">
+        <div class="col-md-9 mt-2" *ngFor="let data of cartService.getCartItems()">
+            <div class="row p-2 cart-item">
+
+                <div class="col-md-2">
+                    <img [src]="data.pFileUrl" alt="Product Image" class="img-fluid">
+                </div>
+
+                <div class="col-md-8">
+                    <p class="pName p-0">{{data.pName}}</p>
+
+                    <p class="text-success m-0 p-0">
+                        <span class="bg-light p-1 pfs">In Stock</span>
+                    </p>
+
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-truck running-truck me-2"></i> 
+                        <span class="text-success pfs mx-1">FREE Shipping</span>
+                    </div>
+
+                    <p class="m-0 p-0 pfs">
+                        <span class="SAndC">Size</span> : {{data.pSize}}
+                    </p>
+                    <p class="m-0 p-0 pfs">
+                        <span class="SAndC">Brand</span> : {{data.pBrand}}
+                    </p>
+                    <p class="m-0 p-0 pfs">
+                        <span class="SAndC">Color</span>: {{data.pColor}}
+                    </p>
+
+                    
+                    <!-- <div class="input-group mb-3 mt-1">
+                        <button class="btn btn-outline-secondary" type="button">-</button>
+                        <input type="text" class="form-control text-center" [value]="data.quantity" style="max-width: 50px;">
+                        <button class="btn btn-outline-secondary"
+                         type="button" (click)="cartService.updateQuantity(data.pId,data.pSize,1)" >+</button>
+                    </div> -->
+
+                    <div class="input-group mb-3 mt-1" style="max-width: 100px;">
+                        <select class="form-select text-center" 
+                                [(ngModel)]="data.quantity" 
+                                (change)="cartService.updateQuantity(data.pId, data.pSize, data.quantity)">
+                            <option *ngFor="let qty of quantityOptions" [value]="qty">{{ qty }}</option>
+                        </select>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-2 text-center mt-3">
+                    <span class="badge bg-danger">70% off</span>
+                    <p class="price  p-0 m-0">Price {{data.pPrice}}</p>
+                    <p class="pmrp">MRP ₹2,499.00</p>
+                    <button class="btn btn-link text-danger" 
+                        (click)="cartService.removeFromCart(data.pId,data.pSize)" >
+                        Delete
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="border p-3">
+                <p class="h5">Subtotal ({{cartService.getCartLength()}} items):
+                     <span class="text-danger">₹{{cartService.getCartTotalPrice()}}</span>
+                </p>
+                <button class="btn btn-warning w-100">Proceed to Buy</button>
+            </div>
+        </div>
+    </div>
+</div>
