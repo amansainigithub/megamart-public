@@ -271,19 +271,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Make filters collapsible on small screens */
 @media (max-width: 767px) {
     .filter-sidebar {
@@ -338,4 +325,15 @@ body {
 .priceOff {
     color: rgb(64, 190, 14);
     font-size: 12px;
+}
+
+.productOff {
+    background: linear-gradient(to right, #FFD700, #FFC107); /* Yellow gradient */
+    color: black;
+    /* font-weight: bold; */
+    font-size: 14px;
+    padding: 3px 13px;
+    display: inline-block;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    text-transform: uppercase;
 }

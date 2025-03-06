@@ -40,7 +40,7 @@
                 <span class="productMrp ms-2" >
                     <del>₹{{productData.productMrp}}</del>
                 </span>
-                <span class="productOff" >
+                <span class="productOff mx-1" >
                    {{productData.calculatedDiscount}} off
                 </span>
             </p>
@@ -100,7 +100,9 @@
                 productData.productPrice,
                 productData.brandField,
                 productData.productFilesResponses[0].fileUrl,
-                productData.colorVariant)">
+                productData.colorVariant,
+                productData.productMrp,
+                productData.calculatedDiscount)">
                     <i class="bi bi-cart4"></i> ADD TO CART
                 </button>
             </div>

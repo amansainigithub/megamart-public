@@ -1,8 +1,8 @@
-<div class="container mt-4">
+<div class="container  bg-light p-5 rounded-3">
     <h4>Shopping Cart</h4>
     <div class="row">
-        <div class="col-md-9 mt-2" *ngFor="let data of cartService.getCartItems()">
-            <div class="row p-2 cart-item">
+        <div class="col-md-8">
+            <div class="row border mb-3 p-2 cart-item bg-white" *ngFor="let data of cartService.getCartItems()">
 
                 <div class="col-md-2">
                     <img [src]="data.pFileUrl" alt="Product Image" class="img-fluid">
@@ -16,7 +16,7 @@
                     </p>
 
                     <div class="d-flex align-items-center">
-                        <i class="bi bi-truck running-truck me-2"></i> 
+                        <i class="bi bi-truck running-truck me-2"></i>
                         <span class="text-success pfs mx-1">FREE Shipping</span>
                     </div>
 
@@ -30,43 +30,103 @@
                         <span class="SAndC">Color</span>: {{data.pColor}}
                     </p>
 
-                    
-                    <!-- <div class="input-group mb-3 mt-1">
-                        <button class="btn btn-outline-secondary" type="button">-</button>
-                        <input type="text" class="form-control text-center" [value]="data.quantity" style="max-width: 50px;">
-                        <button class="btn btn-outline-secondary"
-                         type="button" (click)="cartService.updateQuantity(data.pId,data.pSize,1)" >+</button>
-                    </div> -->
-
-                    <div class="input-group mb-3 mt-1" style="max-width: 100px;">
-                        <select class="form-select text-center" 
-                                [(ngModel)]="data.quantity" 
-                                (change)="cartService.updateQuantity(data.pId, data.pSize, data.quantity)">
+                    <div class="input-group mb-3 mt-1 d-flex align-items-center" style="max-width: 300px;">
+                        <select class="form-select text-center me-2" [(ngModel)]="data.quantity"
+                            (change)="cartService.updateQuantity(data.pId, data.pSize, data.quantity)"
+                            style="width: 60px;">
                             <option *ngFor="let qty of quantityOptions" [value]="qty">{{ qty }}</option>
                         </select>
+
+                        <a href="javascript:void(0);" class="text-danger mx-5 text-decoration-none"
+                            (click)="cartService.removeFromCart(data.pId, data.pSize)">
+                            Remove
+                        </a>
                     </div>
-                    
+
+
+
                 </div>
 
                 <div class="col-md-2 text-center mt-3">
-                    <span class="badge bg-danger">70% off</span>
+                    <span class="badge discount-badge">{{ data.pCalculatedDiscount}} off</span>
                     <p class="price  p-0 m-0">Price {{data.pPrice}}</p>
-                    <p class="pmrp">MRP ₹2,499.00</p>
-                    <button class="btn btn-link text-danger" 
-                        (click)="cartService.removeFromCart(data.pId,data.pSize)" >
-                        Delete
-                    </button>
+                    <p class="pmrp">MRP ₹{{data.pMrp}}</p>
                 </div>
 
             </div>
         </div>
-        <div class="col-md-3">
+
+
+
+<!-- =========  COL_MD-4  ========= -->
+
+        <div class="col-md-4">
+
             <div class="border p-3">
                 <p class="h5">Subtotal ({{cartService.getCartLength()}} items):
-                     <span class="text-danger">₹{{cartService.getCartTotalPrice()}}</span>
+                    <span class="text-danger">₹{{cartService.getCartTotalPrice()}}</span>
                 </p>
                 <button class="btn btn-warning w-100">Proceed to Buy</button>
             </div>
+
+
+            <!-- Offers & Coupons Section -->
+            <!-- <div class="coupon-box">
+                <h6><strong>Offers & Benefits</strong> <span class="float-end text-primary">All Coupons ></span></h6>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                        <strong>🤑 Shoppers100</strong><br>
+                        <small class="text-muted">• Flat ₹100 off on orders above ₹999</small>
+                    </div>
+                    <button class="apply-btn">APPLY</button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>🤑 BB150</strong><br>
+                        <small class="text-muted">• Flat ₹150 off on orders above ₹1499</small>
+                    </div>
+                    <button class="apply-btn">APPLY</button>
+                </div>
+            </div> -->
+
+            <!-- Price Details Section -->
+            <div class="price-box">
+               <div>
+                <h6>PRICE DETAILS ({{cartService.getCartLength()}} items)</h6>
+               </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span class="pdKeys">Total MRP (Inc. of Taxes)</span>
+                    <span class="pdKeys">₹{{cartService.getTotalMrpPrice()}}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span class="pdKeys">Shoppers Discount</span>
+                    <span class="text-success pdKeys">- ₹{{cartService.getDiscountPrice()}}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span class="pdKeys">Shipping Charges</span>
+                    <span class="text-success pdKeys">Free</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span><strong>Cart total</strong></span>
+                    <span class="text-success pdKeys">₹{{cartService.getCartTotalPrice()}}</span>
+                </div>
+            </div>
+
+            <!-- Total Amount Section -->
+            <div class="price-box mt-3">
+                <div class="d-flex justify-content-between">
+                    <h6><strong>Total Amount</strong></h6>
+                    <h6><strong>₹{{cartService.getCartTotalPrice()}}</strong></h6>
+                </div>
+                <div class="savings">You Saved ₹{{cartService.getDiscountPrice()}} on this order</div>
+                  
+                <button class="order-btn mt-3">Procced to Buy</button>
+            </div>
+
+
         </div>
     </div>
 </div>

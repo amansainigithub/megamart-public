@@ -28,7 +28,14 @@ ngOnInit() {
 //Add To Cart Functionality Starting
 private cartItems: any[] = [];
 
-addToCart(productId: string, productName: string, productPrice: number, brandField: string , fileUrl:any , colorVariant:any): void {
+addToCart(productId: string, 
+          productName: string, 
+          productPrice: number, 
+          brandField: string , 
+          fileUrl:any , 
+          colorVariant:any,
+          productMrp:any,
+          calculatedDiscount:any): void {
 
   if(this.selectedSize === null || this.selectedSize === undefined || this.selectedSize === ''){
     alert("Please Select Size.");
@@ -43,9 +50,10 @@ addToCart(productId: string, productName: string, productPrice: number, brandFie
   const existingItem = this.cartItems.find(item => item.pId === productId && item.pSize === productSize);
 
   if (existingItem) {
-      existingItem.quantity += 1;
-      existingItem.totalPrice = existingItem.pPrice * existingItem.quantity; // Update total price
-  } else {
+    existingItem.quantity = Number(existingItem.quantity) + 1;
+    existingItem.totalPrice = existingItem.pPrice * existingItem.quantity; // Update total price
+}
+ else {
       const cartItem = {
           pId: productId,
           pName: productName,
@@ -55,7 +63,9 @@ addToCart(productId: string, productName: string, productPrice: number, brandFie
           quantity: 1,
           totalPrice: productPrice,
           pFileUrl:fileUrl,
-          pColor:colorVariant
+          pColor:colorVariant,
+          pMrp:productMrp,
+          pCalculatedDiscount:calculatedDiscount
       };
       this.cartItems.push(cartItem);
   }
@@ -92,9 +102,6 @@ removeFromCart(productId: any, productSize: any) {
 
 updateQuantity(productId: any, productSize: any, quantity: number) {
   const item = this.cartItems.find(item => item.pId === productId && item.pSize === productSize);
-
-  console.log(item);
-  
   if (item) {
     item.quantity = quantity > 0 ? quantity : 1; // Prevent quantity from going below 1
     item.totalPrice = item.pPrice * item.quantity; // Update total price
@@ -111,5 +118,12 @@ getCartLength(){
     return this.cartItems.length;
 }
 
+getTotalMrpPrice(): number {
+  return this.cartItems.reduce((total, item) => total + Number(item.pMrp) * item.quantity, 0);
+}
+
+getDiscountPrice(): number {
+  return this.getTotalMrpPrice() - this.getCartTotalPrice();
+}
 
 }
