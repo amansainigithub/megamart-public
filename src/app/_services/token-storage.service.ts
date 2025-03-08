@@ -11,7 +11,8 @@ export class TokenStorageService {
   constructor() { }
 
   signOut(): void {
-    window.localStorage.clear();
+    window.localStorage.removeItem('PUBLIC-AUTH-TOKEN-CRED');
+    window.localStorage.removeItem('PUBLIC-AUTH-USER-CRED');
   }
 
   public saveToken(token: string): void {

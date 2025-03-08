@@ -4,6 +4,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RazorpayService } from '../../_services/payments/razorpayService/razorpay.service';
 import Swal from 'sweetalert2';
+import { TokenStorageService } from '../../_services/token-storage.service';
+import { Router } from '@angular/router';
 
 declare var Razorpay: any;
 
@@ -17,7 +19,9 @@ export class AddToCartComponent {
     private spinner: NgxSpinnerService,
     private toast: NgToastService,
     public cartService: AddToCartService,
-    private razorpayService: RazorpayService
+    private razorpayService: RazorpayService,
+    private tokenStorageService:TokenStorageService,
+    private router:Router
   ) {}
 
   quantityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -25,7 +29,13 @@ export class AddToCartComponent {
   //Razorpay Integration Working Starting
   razorpayKey = 'rzp_test_cFBctGmM8MII0E';
   amountPaying(amount: any) {
-    alert('Amount:: ' + amount);
+
+    const user = this.tokenStorageService.getUser();
+    if (!user || Object.keys(user).length === 0) {
+      console.log("User is null, undefined, or an empty object");
+      this.router.navigateByUrl('/login');
+      return;
+    }
 
     this.razorpayService.createOrderPaymentService(amount).subscribe({
       next: (res: any) => {
@@ -46,6 +56,11 @@ export class AddToCartComponent {
 
             //update Pament to Database
             this.paymentUpdate(response);
+
+            //Clear Cart Items
+            localStorage.removeItem('cart');
+            this.router.navigateByUrl('/home');
+            
           },
           prefill: {
             name: 'Aman Saini',
