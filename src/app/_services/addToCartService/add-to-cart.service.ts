@@ -21,9 +21,11 @@ ngOnInit() {
 }
 
 
-  onSizeChange(event: any) {
-    this.selectedSize = event.target.value;
-  }
+onSizeChange(selectedSize: string) {
+  this.selectedSize = selectedSize;
+  console.log('Size changed:', this.selectedSize);
+}
+
   
 //Add To Cart Functionality Starting
 private cartItems: any[] = [];

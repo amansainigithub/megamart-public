@@ -16,7 +16,12 @@ export class ProductWatchingService {
 
   constructor(private http:HttpClient) { }
 
-  productWatchingService(cI:any , cN:any , pI:any , pN:any): Observable<any> {
-        return this.http.get(API_URL + "/categoryController/" + 'productWatching?cI='+ cI + '&cN='+cN + '&pI='+pI + '&pN='+pN, httpOptions);
+  productWatchingService(pI:any , pN:any): Observable<any> {
+        return this.http.get(API_URL + "/categoryController/" + 'productWatching?cI='+'&pI='+pI + '&pN='+pN, httpOptions);
       }
+
+  productWatchingWithSizeService(pI:any ,pl:any): Observable<any> {
+      return this.http.get(API_URL + "/categoryController/" + 
+                          'productWatchingWithSize?pI='+pI + '&pl='+pl, httpOptions);
+  }
 }

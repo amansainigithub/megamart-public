@@ -1,99 +1,113 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ProductSService } from '../../../_services/productsService/productSService/product-s.service';
 import { NgToastService } from 'ng-angular-popup';
 import { ProductWatchingService } from '../../../_services/productsService/productWatchigService/product-watching.service';
-import { AddToCartComponent } from '../../add-to-cart/add-to-cart.component';
 import { AddToCartService } from '../../../_services/addToCartService/add-to-cart.service';
 
 @Component({
   selector: 'app-product-watching',
   templateUrl: './product-watching.component.html',
-  styleUrl: './product-watching.component.css'
+  styleUrl: './product-watching.component.css',
 })
 export class ProductWatchingComponent {
+  // Main Object
+  productData: any;
+  similarProducts: any;
 
-  productData:any;
-  similarProducts:any;
-  productId:any;
+  // Param Collectors
+  productId: any;
+  productName: any;
+  size: any;
+  selectedSize: string | null = null;
+  productInventory:any;
+  isOutOfStock: boolean = false; // Track stock status
+  
   mainImage: string = '../../../../assets/images/wear.jpg'; // Default main image
 
+  constructor(
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+    private pwService: ProductWatchingService,
+    private toast: NgToastService,
+    public cartService: AddToCartService,
+    private router: Router
+  ) {}
 
-  constructor(private route: ActivatedRoute,
-      private spinner: NgxSpinnerService,
-      private pwService:ProductWatchingService,
-      private toast:NgToastService ,
-      public cartService:AddToCartService,
-    ) {}
-  
-    ngOnInit() {
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.productId = params['pI'];
+      this.productName = params['pN'];
+      this.size = params['size'];
 
-      this.route.queryParams.subscribe(params => {
-        this.productId = params['pI'];
+      if (this.size !== null || this.size === undefined || this.size === '') {
+        this.getProductWatching(this.productId, this.productName);
+      } else {
+      }
+    });
+  }
 
-        const cI = params['cI'];
-        const cN = params['cN'];
-        const pI = params['pI'];
-        const pN = params['pN'];
-      
-        this.getProductWatching(cI,cN,pI,pN);
-      });
-    }
-  
- 
   //GET Product Search By Category Starting
-  async getProductWatching(cI:any , cN:any, pI:any , pN:any)
- {
-   this.spinner.show();
-   this.pwService.productWatchingService(cI,cN,pI,pN)
-   .subscribe(
-     {
-         next:(res:any)=> {
-          
-         this.productData = res.data.pw;
-          //Set Image
-          this.mainImage = res.data.pw.productFilesResponses[0].fileUrl;
+  async getProductWatching(pI: any, pN: any) {
+    this.spinner.show();
+    this.pwService.productWatchingService(pI, pN).subscribe({
+      next: (res: any) => {
+        console.log(res);
 
-         this.similarProducts = res.data.similarProducts.content;
-        
+        this.productData = res.data.pw;
+        //Set Image
+        this.mainImage = res.data.pw.productFilesResponses[0].fileUrl;
 
-         console.log("----------------------------------");
-         console.log(res);
-         console.log(this.productData);
-         console.log(this.similarProducts);
-         
-         this.spinner.hide();
-       },
-       error:(err:any)=>  {
-         console.log(err)
-         this.spinner.hide();
-       }
-     }
-   );
- }
-    //GET Product Search By Category ENDING
- 
-//Change main Image    
-changeMainImage(newImage: string) {
-      this.mainImage = newImage;
-    }
+        this.similarProducts = res.data.similarProducts.content;
+
+        this.spinner.hide();
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.spinner.hide();
+      },
+    });
+  }
+  //GET Product Search By Category ENDING
+
+  //Change main Image
+  changeMainImage(newImage: string) {
+    this.mainImage = newImage;
+  }
+
+  
+
+  selectSize(size: string) {
+    this.spinner.show();
+    this.selectedSize = size;
+  
+    setTimeout(() => {
+      const variant = this.productData.sellerProductVarientResponses.find(
+        (variant: any) => variant.productLabel === size
+      );
+  
+      if (variant) {
+        // Update product details
+        this.productData.productPrice = variant.productPrice;
+        this.productData.productMrp = variant.productMrp;
+        this.productData.calculatedDiscount = variant.calculatedDiscount;
+        this.productInventory = variant.productInventory;
+  
+        // Check if product is out of stock
+        this.isOutOfStock = variant.productInventory <= 0;
+        this.spinner.hide();
+      }
+    }, 0); // 2 seconds delay
+  }
   
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  outOfStockRollback(){
+    this.isOutOfStock =false;
+    this.selectedSize = "";
+    this.cartService.selectedSize ="";
+  }
+  
+  
 }
