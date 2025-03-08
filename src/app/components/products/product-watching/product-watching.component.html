@@ -52,56 +52,7 @@
             </div>
             
 
-            <h6 class="mt-3">Select Size</h6>
-
-            <!-- <div class="btn-group" role="group" aria-label="Size Selection">
-                <ng-container *ngFor="let variant of productData.sellerProductVarientResponses; let i = index">
-                    
-                  <section *ngIf="variant.productInventory > 0 ">
-                    <input type="radio" 
-                         class="btn-check" 
-                         name="btnradio" 
-                         [id]="'btnradio' + i" 
-                         autocomplete="off" 
-                         [value]="variant.productLabel" 
-                         (change)="cartService.onSizeChange($event)">
-
-
-                        <label class="btn radioBtn" [for]="'btnradio' + i" >
-                            {{ variant.productLabel }}
-                        </label>
-                  </section>
-
-
-                  <section *ngIf="variant.productInventory === '0' ">
-                    <input type="radio" 
-                         class="btn-check" 
-                         name="btnradio" 
-                         [id]="'btnradio' + i" 
-                         autocomplete="off" 
-                         [value]="variant.productLabel" 
-                         (change)="cartService.onSizeChange($event)">
-
-                         <label 
-                         class="btn radioBtn out-of-stock" 
-                         [for]="'btnradio' + i">
-                         {{ variant.productLabel }}
-                     </label>
-                     
-                      
-                  </section>
-                </ng-container>
-              </div> -->
-              
-              <p>Selected Size: {{ cartService.selectedSize }}</p>
-
-
-
-
-
-
-
-              <h6 class="mt-3">Select Size</h6>
+            
               <div class="btn-group size-selector-group" role="group" aria-label="Size Selection">
                 <ng-container *ngFor="let variant of productData.sellerProductVarientResponses; let i = index">
                   

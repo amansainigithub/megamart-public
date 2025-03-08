@@ -70,27 +70,7 @@
             </div>
 
 
-            <!-- Offers & Coupons Section -->
-            <!-- <div class="coupon-box">
-                <h6><strong>Offers & Benefits</strong> <span class="float-end text-primary">All Coupons ></span></h6>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                        <strong>🤑 Shoppers100</strong><br>
-                        <small class="text-muted">• Flat ₹100 off on orders above ₹999</small>
-                    </div>
-                    <button class="apply-btn">APPLY</button>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>🤑 BB150</strong><br>
-                        <small class="text-muted">• Flat ₹150 off on orders above ₹1499</small>
-                    </div>
-                    <button class="apply-btn">APPLY</button>
-                </div>
-            </div> -->
-
-            <!-- Price Details Section -->
+            
             <div class="price-box">
                <div>
                 <h6>PRICE DETAILS ({{cartService.getCartLength()}} items)</h6>
@@ -121,9 +101,12 @@
                     <h6><strong>Total Amount</strong></h6>
                     <h6><strong>₹{{cartService.getCartTotalPrice()}}</strong></h6>
                 </div>
-                <div class="savings">You Saved ₹{{cartService.getDiscountPrice()}} on this order</div>
+               
+                <div class="savings"><i class="bi bi-emoji-heart-eyes text-success"></i>
+                    Yay! Your total discount is ₹{{cartService.getDiscountPrice()}}
+                </div>
                   
-                <button class="order-btn mt-3">Procced to Buy</button>
+                <button class="order-btn mt-3" (click)="amountPaying(cartService.getCartTotalPrice())">Procced to Buy</button>
             </div>
 
 

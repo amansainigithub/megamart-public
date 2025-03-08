@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NgToastService } from 'ng-angular-popup';
 import { ProductWatchingService } from '../../../_services/productsService/productWatchigService/product-watching.service';
 import { AddToCartService } from '../../../_services/addToCartService/add-to-cart.service';
+import { RazorpayService } from '../../../_services/payments/razorpayService/razorpay.service';
 
 @Component({
   selector: 'app-product-watching',
@@ -29,9 +30,7 @@ export class ProductWatchingComponent {
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private pwService: ProductWatchingService,
-    private toast: NgToastService,
     public cartService: AddToCartService,
-    private router: Router
   ) {}
 
   ngOnInit() {
@@ -109,5 +108,11 @@ export class ProductWatchingComponent {
     this.cartService.selectedSize ="";
   }
   
+
+
+
+
+
+ 
   
 }
