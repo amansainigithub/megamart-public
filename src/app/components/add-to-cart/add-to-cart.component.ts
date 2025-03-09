@@ -37,7 +37,12 @@ export class AddToCartComponent {
       return;
     }
 
-    this.razorpayService.createOrderPaymentService(amount).subscribe({
+    //Check isValid Cart items
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    console.log(cart); // Check if cart is correctly retrieved
+
+
+    this.razorpayService.createOrderPaymentService(amount , cart ).subscribe({
       next: (res: any) => {
         console.log(res);
         const parsedResponse = JSON.parse(res.data);
@@ -55,7 +60,7 @@ export class AddToCartComponent {
             //alert('Payment Successful!');
 
             //update Pament to Database
-            this.paymentUpdate(response);
+            this.paymentUpdate(response , cart);
 
             //Clear Cart Items
             localStorage.removeItem('cart');
@@ -92,11 +97,11 @@ export class AddToCartComponent {
     });
   }
 
+  paymentUpdate(paymentTransaction:any ,cart:any) {
 
+    paymentTransaction.cartItems = cart; // Add cart to the paymentTransaction object
+    console.log(paymentTransaction); // Check the updated object before sending
 
-
-
-  paymentUpdate(paymentTransaction:any) {
     this.razorpayService.paymentTransaction(paymentTransaction).subscribe(
       (data) => {
         Swal.fire({
