@@ -48,10 +48,11 @@
                 </div>
 
                 <div class="col-md-2 text-center mt-3">
-                    <span class="badge discount-badge">{{ data.pCalculatedDiscount}} off</span>
-                    <p class="price  p-0 m-0">Price {{data.pPrice}}</p>
-                    <p class="pmrp">MRP ₹{{data.pMrp}}</p>
+                    <span class="badge discount-badge">{{ data.pCalculatedDiscount }} off</span>
+                    <p class="price p-0 m-0">Price ₹{{ data.pPrice * data.quantity }}</p>
+                    <p class="pmrp">MRP ₹{{ data.pMrp * data.quantity }}</p>
                 </div>
+                
 
             </div>
         </div>

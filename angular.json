@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/jet-angular-2",
+            "outputPath": "dist/Ecomm_FE_Customer_panel",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

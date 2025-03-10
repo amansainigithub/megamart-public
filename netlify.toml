@@ -1,8 +1,5 @@
-[build]
-publish ="dist/Ecomm_FE_Customer_panel"
-command = "ng build"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
