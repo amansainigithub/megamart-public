@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import * as CryptoJS from 'crypto-js';
-
-const AUTH_API = 'http://localhost:8080/customer/api/v1/';
+import { PUBLIC_API_URL } from '../URL/ApiUrls';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,21 +15,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
 
-
-  // register(firstName:String,lastName:String, email: string, mobile: string, password: string): Observable<any> {
-  //   return this.http.post(AUTH_API + 'customerSignUp', {
-  //     firstName,
-  //     lastName,
-  //     email,
-  //     mobile,
-  //     password
-  //   }, httpOptions);
-  // }
-
-  // ===================/=
-
   login(username: string, password: string, userrole:string): Observable<any> {
-    return this.http.post(AUTH_API + 'customerSignIn', {
+    return this.http.post(PUBLIC_API_URL + 'customerSignIn', {
       username,
       password,
       userrole
@@ -40,51 +25,26 @@ export class AuthService {
 
   registerFreshUser(username: string): Observable<any> {
     
-    return this.http.post(AUTH_API + 'customerSignUp', {
+    return this.http.post(PUBLIC_API_URL + 'customerSignUp', {
       username
     }, httpOptions);
   }
 
   verifyMobileOtp(verifyOtpForm: any): Observable<any> {
-    return this.http.post(AUTH_API + 'verifyFreshUserMobileOtp', verifyOtpForm);
+    return this.http.post(PUBLIC_API_URL + 'verifyFreshUserMobileOtp', verifyOtpForm);
   }
 
 
   registerUser(registerForm: any): Observable<any> {
-    return this.http.post(AUTH_API + 'customerSignUpCompleted', registerForm);
+    return this.http.post(PUBLIC_API_URL + 'customerSignUpCompleted', registerForm);
   }
 
   forgotPassowrd(forgotpassword: any): Observable<any> {
-    return this.http.post(AUTH_API + 'customerForgotPassword', forgotpassword);
+    return this.http.post(PUBLIC_API_URL + 'customerForgotPassword', forgotpassword);
   }
 
   
   forgotPassowrdFinal(forgotpasswordfinal: any): Observable<any> {
-    return this.http.post(AUTH_API + 'customerForgotPasswordFinal', forgotpasswordfinal);
+    return this.http.post(PUBLIC_API_URL + 'customerForgotPasswordFinal', forgotpasswordfinal);
   }
-
-
-  
-  // ===========AES ALGORITHM========/=
-
-  private apiUrl = 'http://localhost:8080/api/data'; // Adjust URL as needed
-  private secretKey = CryptoJS.enc.Utf8.parse('1234567890008iu7yhygtfredfvgbhgg'); // 32 char secret key for AES-256
-
-
-  encryptData(data: any): string {
-    const jsonData = JSON.stringify(data);
-    const encrypted = CryptoJS.AES.encrypt(jsonData, this.secretKey, {
-      mode: CryptoJS.mode.ECB,
-      padding: CryptoJS.pad.Pkcs7
-    }).toString();
-    return encrypted;
-  }
-
-  sendDataCall(data: any): Observable<any> {
-    const encryptedData = this.encryptData(data);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(AUTH_API + 'sswordFinal', { data: encryptedData }, { headers });
-  }
-
-
 }
