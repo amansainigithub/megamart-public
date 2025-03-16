@@ -1,6 +1,6 @@
 
 
-<div>
+<!-- <div>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
         <ul class="navbar-nav">
@@ -27,12 +27,12 @@
         </ul>
     </div>
   </nav>
-</div>
+</div> -->
 
 
 
 <!-- Bootstrap Carousel Starting -->
-<!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+ <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button *ngFor="let sliderIndex of homeSliderData; let i = index" 
             type="button" 
@@ -60,13 +60,11 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div> -->
+</div> 
 <!-- Bootstrap Carousel Ending -->
 
-
-
 <!-- OWL CAROUSEL SATRTING -->
-<owl-carousel-o [options]="customOptions">
+<!-- <owl-carousel-o [options]="customOptions">
 
   <ng-container *ngFor="let slide of homeSliderData">
     <ng-template carouselSlide [id]="slide.id">
@@ -74,14 +72,14 @@
     </ng-template>
   </ng-container>
 
-</owl-carousel-o>
+</owl-carousel-o> -->
   <!-- OWL CAROUSEL ENDING -->
 
 
 
 
   <!-- POPULAR CATEGORIES STARTING -->
-  <div class="container-fluid">
+  <div class="container-fluid mt-5">
     <div class="categoryDesign" >Shop our most popular categories</div>
     <!-- <div class="line"></div> -->
   </div>
@@ -301,3 +299,37 @@
   </div>
 </div> -->
 <!-- HotDeal Container Second -->
+
+
+
+
+
+
+
+
+
+<div class="container my-5">
+  <div class="row g-4">
+      <div class="col-md-4">
+          <div class="feature-box">
+              <i class="bi bi-gem blue icon"></i>
+              <h5><strong>Premium Craftsmanship</strong></h5>
+              <p>Designed with precision, built to last.</p>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="feature-box">
+              <i class="bi bi-truck green icon"></i>
+              <h5><strong>Fast & Reliable Shipping</strong></h5>
+              <p>We deliver worldwide with speed & care.</p>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="feature-box">
+              <i class="bi bi-people red icon"></i>
+              <h5><strong>Millions of Happy Customers</strong></h5>
+              <p>Join our 5M+ satisfied users globally.</p>
+          </div>
+      </div>
+  </div>
+</div>
