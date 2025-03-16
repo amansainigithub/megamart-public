@@ -27,7 +27,7 @@
     <div class="navbar-menu">
 
           <!-- Cart Button with Count -->
-          <div class="cart-container">
+          <div class="cart-container mx-3">
             <a href="#" routerLink="/cart" class="cart-link">
               <i class="bi bi-cart3"></i>
               <span class="cart-count" >
@@ -40,11 +40,7 @@
         <!-- Cart ENDING with Count -->
 
         <a href="/login" class="nav-link" routerLink="login" mat-raised-button color="primary">
-            <i class="bi bi-box-arrow-in-right"></i> Login
-        </a>
-
-        <a href="/register" class="nav-link" routerLink="register" mat-raised-button color="primary">
-            <i class="bi bi-person-plus px-2"></i> Create Account
+          <i class="bi bi-person"></i> Login
         </a>
         
     </div>
@@ -52,45 +48,195 @@
 
 
   <div class="container-fluid">
-
     <router-outlet></router-outlet>
   </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ==== -->
 <div id="app" *ngIf="isLoggedIn">
 
   <nav class="navbar">
     <div class="navbar-logo">
-        <a href="#">
-            <span class="logo-text">Flipkart</span>
-            <small style="color: black;">Explore <span class="plus">Plus</span> ✨</small>
-        </a>
+      <a href="#">
+        <span class="logo-text">Flipkart</span>
+        <small style="color: black;">Explore <span class="plus">Plus</span> ✨</small>
+      </a>
     </div>
     <div class="navbar-search">
-        <input type="text" placeholder="Search for Products, Brands and More">
+      <input type="text" placeholder="Search for Products, Brands and More">
     </div>
     <div class="navbar-menu">
 
-       <!-- Cart Button with Count -->
-       <div class="cart-container">
+      <!-- Cart Button with Count -->
+      <div class="cart-container mx-3">
         <a href="#" routerLink="/cart" class="cart-link">
           <i class="bi bi-cart3"></i>
-          <span class="cart-count" >
+          <span class="cart-count">
             {{ cartService.getCartLength() }}
           </span>
           Cart
         </a>
       </div>
-    <!-- Cart ENDING with Count -->
+      <!-- Cart ENDING with Count -->
 
-      <button mat-raised-button color="primary"  (click)="logout()">
-        <i class="bi bi-cart4"></i>
-        logout
+
+      <!-- Profile Button -->
+      <button mat-button [matMenuTriggerFor]="userProfile"
+        class="d-flex align-items-center btn btn-light rounded-pill px-1">
+        <span class="me-2">Aman Saini</span>
+        <img src="../assets/Avitar Images/male avitar1.jpg" alt="User Avatar" class="rounded-circle" width="32"
+          height="32">
+        <mat-icon>arrow_drop_down</mat-icon>
       </button>
+
+      <!-- Dropdown Menu -->
+      <mat-menu #userProfile="matMenu">
+        <button 
+          mat-menu-item 
+          [routerLink]="'/customer/dashboard'" 
+          (click)="setActiveTab('/customer/dashboard')" 
+          routerLinkActive="active-menu">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        
+        <button 
+          mat-menu-item 
+          [routerLink]="'/customer/ordersCustomer'" 
+          (click)="setActiveTab('/customer/ordersCustomer')" 
+          routerLinkActive="active-menu">
+          <mat-icon>history</mat-icon>
+          <span>Order History</span>
+        </button>
+        
+        <button 
+          mat-menu-item 
+          [routerLink]="'/profile'" 
+          (click)="setActiveTab('/customer/ordeer')" 
+          routerLinkActive="active-menu">
+          <mat-icon>person</mat-icon>
+          <span>My Profile</span>
+        </button>
+        
+        <button 
+          mat-menu-item 
+          [routerLink]="'/change-password'" 
+          (click)="setActiveTab('/customer/change-password')" 
+          routerLinkActive="active-menu">
+          <mat-icon>vpn_key</mat-icon>
+          <span>Change Password</span>
+        </button>
+        
+        <button 
+          mat-menu-item 
+          class="text-danger" 
+          (click)="logout()">
+          <mat-icon class="text-danger">logout</mat-icon>
+          <span>Log Out</span>
+        </button>
+      </mat-menu>
+      
+      
+
     </div>
-</nav>
-  <div class="container-fluid">
+  </nav>
+  <div class="container-fluid" *ngIf="isHomePage()">
+    <div class="row">
+    
+      <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <div class="position-sticky">
+          <div class="text-center py-4">
+            <img src="../assets/Avitar Images/male avitar12.jpg" alt="User Avatar" class="rounded-circle" width="80">
+            <h5 class="mt-2">Demo Customer</h5>
+            <p class="text-muted">01000000405</p>
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/dashboard" 
+                [class.active]="activeTab === '/customer/dashboard'"
+                (click)="setActiveTab('/customer/dashboard')">
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/ordersCustomer" 
+                [class.active]="activeTab === '/customer/ordersCustomer'"
+                (click)="setActiveTab('/customer/ordersCustomer')">
+                Order History
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/wishlist" 
+                [class.active]="activeTab === '/customer/wishlist'"
+                (click)="setActiveTab('/customer/wishlist')">
+                Wishlist
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/profile" 
+                [class.active]="activeTab === '/customer/profile'"
+                (click)="setActiveTab('/customer/profile')">
+                My Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/address" 
+                [class.active]="activeTab === '/customer/address'"
+                (click)="setActiveTab('/customer/address')">
+                Manage Address
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/support" 
+                [class.active]="activeTab === '/customer/support'"
+                (click)="setActiveTab('/customer/support')">
+                Support Ticket
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                routerLink="/customer/change-password" 
+                [class.active]="activeTab === '/customer/change-password'"
+                (click)="setActiveTab('/customer/change-password')">
+                Change Password
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="!isHomePage()">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -106,10 +106,10 @@ customOptionsHotDeals: OwlOptions = {
         this.babyDataFilter = res.data.babyDataFilter;
 
          //Hot Deals Data
-         this.hotDeals = res.data.hotDeals;
+         //this.hotDeals = res.data.hotDeals;
 
          //Hot Deals Data
-         this.hotDealEngine = res.data.hotDealEngine;
+         //this.hotDealEngine = res.data.hotDealEngine;
 
          //Hot Deals Data
          this.mensList = res.data.mensList;
@@ -118,7 +118,7 @@ customOptionsHotDeals: OwlOptions = {
          this.productsList = res.data.productsList;
 
          //Hot Deals Data
-         this.womenList = res.data.womenList;
+         //this.womenList = res.data.womenList;
 
         this.spinner.hide();
       },

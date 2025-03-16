@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.spinner.hide();
-        window.location.href = '/customer/shopper';
+        window.location.href = '/';
+        // window.location.href = '/customer/shopper';
         //this.reloadPage();
       },
       err => {

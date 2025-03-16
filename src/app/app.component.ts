@@ -3,15 +3,17 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddToCartService } from './_services/addToCartService/add-to-cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   showFiller = false;
   title = 'JET-ANGULAR-2';
+  activeTab: string = '';
 
   private roles: string[] = [];
   isLoggedIn = false;
@@ -20,12 +22,17 @@ export class AppComponent {
   username?: string;
 
   constructor(
-    private tokenStorageService: TokenStorageService, 
-    private toast:NgToastService,
+    private tokenStorageService: TokenStorageService,
+    private toast: NgToastService,
     private spinner: NgxSpinnerService,
-    public cartService:AddToCartService) { }
+    private router: Router,
+    public cartService: AddToCartService
+  ) {}
 
   ngOnInit(): void {
+    this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
+
+    
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
@@ -44,12 +51,16 @@ export class AppComponent {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.href = '/'; 
-
+    window.location.href = '/';
   }
 
-  genToast(){
-    this.toast.success({detail:"Success",summary:"This is Success", position:"topRight",duration:3000})
+  genToast() {
+    this.toast.success({
+      detail: 'Success',
+      summary: 'This is Success',
+      position: 'topRight',
+      duration: 3000,
+    });
     // this.toast.warning({detail:"Warning",summary:"This is Success", position:"botomCenter",duration:3000})
     // setTimeout(() => {
     //   /** spinner ends after 5 seconds */
@@ -57,5 +68,16 @@ export class AppComponent {
     // }, 5000);
   }
 
+  isHomePage(): boolean {
+  const currentUrl = this.router.url;
+  console.log(currentUrl);
+  return currentUrl.startsWith('/customer');
+}
+
+
+setActiveTab(tab: string) {
+  this.activeTab = tab;
+  localStorage.setItem('activeTab', tab);
+}
 
 }

@@ -29,6 +29,8 @@ import { ProductSComponent } from './components/products/product-s/product-s.com
 import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     ProductSComponent,
     ProductWatchingComponent,
     AddToCartComponent,
+    DashboardComponent,
+    CustomerOrdersComponent,
   ],
   imports: [
     BrowserModule,

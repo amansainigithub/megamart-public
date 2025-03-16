@@ -10,6 +10,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ProductSComponent } from './components/products/product-s/product-s.component';
 import { ProductWatchingComponent } from './components/products/product-watching/product-watching.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
       children: [
                   // Customer Panel
                   { path: 'shopper', component: HomeComponent},
+                  { path: 'dashboard', component: DashboardComponent},
+                  { path: 'ordersCustomer', component: CustomerOrdersComponent},
                 ],
 }
 ];
