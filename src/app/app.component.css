@@ -116,13 +116,7 @@ body {
 }
 
 
-
-
-
-
 /* ================================= */
-
-
 .cart-container {
     position: relative;
     display: inline-block;
@@ -158,8 +152,6 @@ body {
     color: #dfab00;
 }
 
-
-
 /* ==============================================================16-03-2024 */
 
 .sidebar {
@@ -173,10 +165,8 @@ body {
   }
   
   .nav-link.active {
-    background-color: #f8d7da;
-    color: #d9534f;
-    font-weight: bold;
+    background-color: #b2babb;
+    color: #000080;
+    border-radius: 8px;
   }
-  
-
   

@@ -61,11 +61,6 @@ export class AppComponent {
       position: 'topRight',
       duration: 3000,
     });
-    // this.toast.warning({detail:"Warning",summary:"This is Success", position:"botomCenter",duration:3000})
-    // setTimeout(() => {
-    //   /** spinner ends after 5 seconds */
-    //   this.spinner.show();
-    // }, 5000);
   }
 
   isHomePage(): boolean {
@@ -79,5 +74,6 @@ setActiveTab(tab: string) {
   this.activeTab = tab;
   localStorage.setItem('activeTab', tab);
 }
+
 
 }
