@@ -31,6 +31,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
 import {MatBadgeModule} from '@angular/material/badge';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
+import { ManageAddressComponent } from './components/manage-address/manage-address.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CustomerOrdersComponent } from './components/customer-orders/customer-o
     AddToCartComponent,
     DashboardComponent,
     CustomerOrdersComponent,
+    ManageAddressComponent,
   ],
   imports: [
     BrowserModule,

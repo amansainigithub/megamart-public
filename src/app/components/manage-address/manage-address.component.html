@@ -1,0 +1,257 @@
+<div  class="container mt-3 p-4">
+
+    <p class="fs25">Add Address</p>
+
+
+    <div *ngIf="addresses?.length <= 0;" class="container d-flex justify-content-center align-items-center p-4">
+        <div class="card shadow-lg p-4 rounded-4" style="width: 70rem;border-radius: 14px;">
+          <h5>Address Form</h5>
+
+
+
+          <form  *ngIf="!isSuccessful"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm" >
+
+
+                <div class="row g-3 mt-2">
+                    <div class="col-md-12">
+                        <label for="inputState" class="form-label">State</label>
+                        <select id="inputState" class="form-select bg-light text-dark">
+                          <option selected >INDIA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-2">
+
+                    <!-- NAME -->
+                    <div class="col">
+                    <label for="Name" class="form-label">Full Name (First and Last Name)</label>
+                    <input 
+                    type="text"
+                    class="form-control"
+                    name="customerName"
+                    required="required"
+                    [(ngModel)]="addressForm.customerName"
+                    #customerName="ngModel"
+                    pattern="^[a-zA-Z ]{3,}$"
+                    placeholder="Enter Full Name"
+                    [class.dirty]="customerName.dirty" 
+                    [class.touched]="customerName.touched"
+                    [ngClass]="{ 'is-invalid': customerName.errors && (customerName.touched || customerName.dirty ) }">
+
+                        <div *ngIf="customerName.errors && (customerName.touched || customerName.dirty )" class="invalid-feedback">
+                        
+                            <div *ngIf="customerName.errors['required']">
+                                Full Name is required.
+                            </div>
+                            <div *ngIf="customerName.errors['pattern']">
+                                Full Name is must be a 3 Character.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MOBILE -->
+                    <div class="col">
+                        <label for="Name" class="form-label">Mobile Number</label>
+                        <input 
+                        type="tel"
+                        class="form-control"
+                        name="mobileNumber"
+                        required="required"
+                        [(ngModel)]="addressForm.mobileNumber"
+                        #mobileNumber="ngModel"
+                        pattern="^\d{10}$"
+                        placeholder="Enter Mobile Number"
+                        [class.dirty]="mobileNumber.dirty" 
+                        [class.touched]="mobileNumber.touched"
+                        [ngClass]="{ 'is-invalid': mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty ) }">
+    
+                            <div *ngIf="mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty )" class="invalid-feedback">
+                            
+                                <div *ngIf="mobileNumber.errors['required']">
+                                    mobile Number is required.
+                                </div>
+                                <div *ngIf="mobileNumber.errors['pattern']">
+                                    mobile Number is must be a 10 Character.
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+
+                <div class="row g-3 mt-2">
+                    <!-- FLAT HOUSE NO BUILDING -->
+                    <div class="col">
+                        <label for="Name" class="form-label">Flat ,Area House No</label>
+                        <input 
+                        type="text"
+                        class="form-control"
+                        name="area"
+                        required="required"
+                        [(ngModel)]="addressForm.area"
+                        #area="ngModel"
+                        placeholder="Enter Flat , Area"
+                        [class.dirty]="area.dirty" 
+                        [class.touched]="area.touched"
+                        [ngClass]="{ 'is-invalid': area.errors && (area.touched || area.dirty ) }">
+    
+                            <div *ngIf="area.errors && (area.touched || area.dirty )" class="invalid-feedback">
+                            
+                                <div *ngIf="area.errors['required']">
+                                    Flat,House No ,Appartment is required.
+                                </div>
+                            </div>
+                    </div>
+
+
+                    <!-- POSTALCODE -->
+                    <div class="col">
+                        <label for="Name" class="form-label">PostalCode</label>
+                        <input 
+                        type="tel"
+                        class="form-control"
+                        name="postalCode"
+                        required="required"
+                        [(ngModel)]="addressForm.postalCode"
+                        #postalCode="ngModel"
+                        pattern="^\d{6}$"
+                        placeholder="Enter PostalCode"
+                        [class.dirty]="postalCode.dirty" 
+                        [class.touched]="postalCode.touched"
+                        [ngClass]="{ 'is-invalid': postalCode.errors && (postalCode.touched || postalCode.dirty ) }">
+    
+                            <div *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty )" class="invalid-feedback">
+                            
+                                <div *ngIf="postalCode.errors['required']">
+                                    postalCode is required.
+                                </div>
+                                <div *ngIf="postalCode.errors['pattern']">
+                                    postalCode is must be a 6 Digit.
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <!-- Address Line 1 -->
+                <div class="col mt-2">
+                    <label for="Name" class="form-label">Address Line 1</label>
+                    <input 
+                    type="text"
+                    class="form-control"
+                    name="addressLine1"
+                    required="required"
+                    [(ngModel)]="addressForm.addressLine1"
+                    #addressLine1="ngModel"
+                    placeholder="Address Line 1"
+                    [class.dirty]="addressLine1.dirty" 
+                    [class.touched]="addressLine1.touched"
+                    [ngClass]="{ 'is-invalid': addressLine1.errors && (addressLine1.touched || addressLine1.dirty ) }">
+
+                        <div *ngIf="addressLine1.errors && (addressLine1.touched || addressLine1.dirty )" class="invalid-feedback">
+                        
+                            <div *ngIf="addressLine1.errors['required']">
+                                addressLine1 is required.
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Address Line 2 -->
+                <div class="col mt-2">
+                    <label for="Name" class="form-label">Address Line 2</label>
+                    <input 
+                    type="text"
+                    class="form-control"
+                    name="addressLine2"
+                    required="required"
+                    [(ngModel)]="addressForm.addressLine2"
+                    #addressLine2="ngModel"
+                    placeholder="Address Line 2"
+                    [class.dirty]="addressLine2.dirty" 
+                    [class.touched]="addressLine2.touched"
+                    [ngClass]="{ 'is-invalid': addressLine2.errors && (addressLine2.touched || addressLine2.dirty ) }">
+
+                        <div *ngIf="addressLine2.errors && (addressLine2.touched || addressLine2.dirty )" class="invalid-feedback">
+                        
+                            <div *ngIf="addressLine2.errors['required']">
+                                addressLine2 is required.
+                            </div>
+                        </div>
+                </div>
+
+
+                <div class="col mb-3 mt-2">
+                      <div class="form-check">
+                        <input class="form-check-input" 
+                        name="defaultAddress"
+                        [(ngModel)]="addressForm.defaultAddress"
+                        type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Make it default address
+                        </label>
+                    </div>
+                  </div>
+
+
+                <div class="mt-3">
+                    <button mat-raised-button color="primary" class="p-3" [disabled]="f.invalid">
+                        save Address
+                    </button>
+                </div>
+
+          </form>
+
+
+        </div>
+     </div>
+      
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-3 custom-container" *ngIf="addresses?.length > 0;" >
+    <div class="row">
+      <div class="col-12" *ngFor="let add of addresses">
+        <div class="card p-3 mb-3 addressCard">
+          <div class="d-flex align-items-start">
+            <div class="me-3 d-flex align-items-center justify-content-center rounded-circle locationIcon">
+              <mat-icon color="primary">place</mat-icon>
+            </div>
+  
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <h5 class="mb-0">{{ add.customerName }}</h5>
+                <div class="btn-group">
+                  <button mat-stroked-button color="primary" class="me-1">
+                    <mat-icon>edit</mat-icon> Edit
+                  </button>
+                  <button mat-stroked-button color="warn" class="me-1">
+                    <mat-icon>delete</mat-icon> Delete
+                  </button>
+                  <button mat-stroked-button *ngIf="!add.defaultAddress"> Set Default </button>
+                </div>
+              </div>
+  
+              <p class="text-muted small mb-1">{{ add.mobileNumber }}</p>
+              <p class="small mb-1">{{ add.area }}, {{ add.addressLine1 }}, {{ add.addressLine2 }}, {{ add.postalCode }}</p>
+  
+              <span *ngIf="add.defaultAddress" class="badge bg-primary small">
+                 Default Address 
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
