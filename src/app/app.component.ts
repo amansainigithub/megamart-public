@@ -11,15 +11,12 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  showFiller = false;
   title = 'JET-ANGULAR-2';
   activeTab: string = '';
-
   private roles: string[] = [];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
   username?: string;
+  homePageFlag:any;
 
   constructor(
     private tokenStorageService: TokenStorageService,
@@ -30,17 +27,24 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
+    const currentUrl = this.router.url;
+    if(currentUrl.startsWith('/customer')){
+      this.homePageFlag =true;
+    }else{
+      this.homePageFlag =false;
+    }
 
+
+
+    console.log("App Component Ngint Calling");
+    
+    this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
     
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }
@@ -63,14 +67,10 @@ export class AppComponent {
     });
   }
 
-  isHomePage(): boolean {
-  const currentUrl = this.router.url;
-  console.log(currentUrl);
-  return currentUrl.startsWith('/customer');
-}
-
 
 setActiveTab(tab: string) {
+  this.homePageFlag =true;
+  
   this.activeTab = tab;
   localStorage.setItem('activeTab', tab);
 }
