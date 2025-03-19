@@ -22,4 +22,20 @@ export class AddressService {
    getAddressList(): Observable<any> {
         return this.http.get(PUBLIC_API_URL + "addressController/" + 'getAddress', httpOptions);
    }
+
+   deleteAddress(id:any): Observable<any> {
+    return this.http.get(PUBLIC_API_URL + "addressController/" + 'deleteAddress/'+id , httpOptions);
+    }
+
+    setDefaultAddress(id:any): Observable<any> {
+      return this.http.get(PUBLIC_API_URL + "addressController/" + 'setDefaultAddress/'+id , httpOptions);
+      }
+
+      getAddressById(id:any): Observable<any> {
+        return this.http.get(PUBLIC_API_URL + "addressController/" + 'getAddressById/'+id, httpOptions);
+   }
+
+   updateAddress(updateAddress:any): Observable<any> {
+    return this.http.post(PUBLIC_API_URL + "addressController/" + 'updateAddress', updateAddress, httpOptions);
+  }
 }
