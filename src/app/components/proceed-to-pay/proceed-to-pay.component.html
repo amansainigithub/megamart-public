@@ -7,6 +7,12 @@
                 <div class="row">
                   <!-- Left Section: Address Selection -->
                   <div class="col-md-7">
+
+                   <div *ngIf="selectedAddressIndex === null || selectedAddressIndex === undefined"
+                        class="alert alert-warning py-1" role="alert">
+                        Please select a delivery address before proceeding.
+                    </div>
+
                     <h5>Select Delivery Address</h5>
                     <div *ngFor="let add of addresses; let i = index" class="mb-3">
                       <div class="card p-3 addressCard" [ngClass]="{ 'selected-card': selectedAddressIndex === i }">
@@ -77,6 +83,8 @@
             <!-- ENDING 1 STEPPER ENDING -->
             <!-- <button mat-button (click)="nextStep(stepper)">Next</button> -->
         </mat-step>
+
+
     
         <mat-step label="Step 2">
             <!-- STARTING 2 STEPPER DATA -->
@@ -85,25 +93,26 @@
                   <!-- Payment Selection -->
                   <div class="col-md-7">
                     <h5>Select Payment Method</h5>
+
+                    
+                    <!-- Pay Online -->
+                    <div class="payment-method d-flex justify-content-between align-items-center p-3" 
+                         [class.active]="selectedPayment === 'ONLINE'" 
+                         (click)="selectPayment('ONLINE')">
+                      <label class="w-100 d-flex align-items-center">
+                        <input type="radio" name="payment" value="ONLINE" [(ngModel)]="selectedPayment" class="form-check-input me-2">
+                        <span class=" ms-2 payonline"> Pay Online</span>
+                      </label>
+                    </div>
+
               
                     <!-- Cash on Delivery (COD) -->
-                    <div class="payment-method d-flex justify-content-between align-items-center p-3" 
+                    <div class="payment-method d-flex justify-content-between align-items-center p-3  mt-3" 
                         [class.active]="selectedPayment === 'COD'" 
                         (click)="selectPayment('COD')">
                       <label class="w-100 d-flex ">
                         <input type="radio" name="payment" value="COD" [(ngModel)]="selectedPayment" class="form-check-input me-2">
                         <span class="ms-2">Cash on Delivery</span>
-                      </label>
-                    </div>
-
-              
-                    <!-- Pay Online -->
-                    <div class="payment-method d-flex justify-content-between align-items-center p-3 mt-3" 
-                         [class.active]="selectedPayment === 'Online'" 
-                         (click)="selectPayment('Online')">
-                      <label class="w-100 d-flex align-items-center">
-                        <input type="radio" name="payment" value="Online" [(ngModel)]="selectedPayment" class="form-check-input me-2">
-                        <span class=" ms-2 payonline"> Pay Online</span>
                       </label>
                     </div>
 
@@ -113,7 +122,9 @@
                           <i class="bi bi-lock-fill text-success"></i> Secure Payment
                       </h6>
                       <p class="text-muted mb-0">
-                          Your payment is 100% safe with our encrypted payment gateway, ensuring complete security for online transactions.
+                          Your payment is 100% safe with our encrypted payment gateway, 
+                          ensuring complete security for online transactions. 
+                          <i class="bi bi-check-all text-success"></i>
                       </p>
                   </div>
 
@@ -127,9 +138,16 @@
                     <hr>
                     <h5>Order Total: ₹{{cartService.getCartTotalPrice()}}</h5>
 
-                     <button class="btn btn-warning w-100"  
-                    (click)="amountPaying(cartService.getCartTotalPrice())">
-                    Proceed to Buy
+                    <!-- ONLINE BUTTON -->
+                     <button class="btn btn-warning w-100" *ngIf="showOnlineButton" 
+                      (click)="amountPaying_Online(cartService.getCartTotalPrice())">
+                      Proceed to Buy
+                    </button>
+                    
+                    <!-- COD BUTTON -->
+                    <button class="btn btn-warning w-100"  *ngIf="showCodButton" 
+                      (click)="amountPaying_Cod(cartService.getCartTotalPrice())">
+                      Proceed to Buy
                     </button>
 
                     <div class="alert alert-success mt-2" role="alert">

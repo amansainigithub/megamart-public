@@ -14,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 import { ManageAddressComponent } from './components/manage-address/manage-address.component';
 import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
+import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
                   { path: 'ordersCustomer', component: CustomerOrdersComponent},
                   { path: 'manageAddress', component: ManageAddressComponent},
                   { path: 'proceedToPay', component: ProceedToPayComponent},
+                  { path: 'orderPlacedSuccess', component: OrderPlacedSuccessComponent},
                 ],
 }
 ];

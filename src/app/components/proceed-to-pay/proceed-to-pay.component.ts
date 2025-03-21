@@ -20,8 +20,12 @@ declare var Razorpay: any;
 })
 export class ProceedToPayComponent {
     addresses: any = [];
-    selectedPayment: string = 'COD'; // Default selected payment method
+    selectedPayment: string = 'ONLINE'; // Default selected payment method
     resell: boolean = false;
+
+    showOnlineButton:any = 'ONLINE'; //Default Selecter ONLINE
+    showCodButton:any;
+    
 
     
     updateAddressForm: any = {
@@ -172,16 +176,21 @@ export class ProceedToPayComponent {
 
 //SELECTED ADDRESS==========================================
 selectedAddressIndex: number | null = null;
+addressHolder:any = ""
 onAddressSelect(address: any) {
-  console.log('Selected Address:', address);
-  alert(address);
+  this.addressHolder  = address;
+  console.log(this.addressHolder);
+  
 }
 
-selectPayment(method: string) {
-  this.selectedPayment = method;
-}
   nextStep(stepper: MatStepper) {
-    stepper.next();
+    if (this.selectedAddressIndex !== null && this.selectedAddressIndex !== undefined) {
+      stepper.next();
+    } else {
+       this.toast.success({detail:"Success",summary:"Please select a delivery address before proceeding.",
+                         position:"bottomRight",duration:3000});
+
+    }
   }
   
   prevStep(stepper: MatStepper) {
@@ -192,15 +201,29 @@ selectPayment(method: string) {
     alert('Stepper completed!');
   }
 
+
+ //Selected Paymenod Mode 
+selectPayment(method: string) {
+  this.selectedPayment = method;
+  if(this.selectedPayment  === 'COD'){
+    this.showCodButton = true;
+    this.showOnlineButton = false;
+  }else if(this.selectedPayment === 'ONLINE'){
+    this.showOnlineButton = true;
+    this.showCodButton = false;
+  }
+}
+
+
 // ---------------------------------------------------------------------
   // ===================PAYMENT STARTING====================
 
-
-  quantityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
-  
+     //Amount PAying ONLINE----
     //Razorpay Integration Working Starting
+
+
     razorpayKey = 'rzp_test_cFBctGmM8MII0E';
-    amountPaying(amount: any) {
+    amountPaying_Online(amount: any) {
   
       const user = this.tokenStorageService.getUser();
       if (!user || Object.keys(user).length === 0) {
@@ -218,7 +241,6 @@ selectPayment(method: string) {
         next: (res: any) => {
           console.log(res);
           const parsedResponse = JSON.parse(res.data);
-          
         
           const options = {
             key: this.razorpayKey,
@@ -276,11 +298,10 @@ selectPayment(method: string) {
   
       this.razorpayService.paymentTransaction(paymentTransaction).subscribe(
         (data) => {
-          Swal.fire({
-            title: 'Congratulations',
-            text: 'Payment Complete Success',
-            icon: 'success',
-          });
+
+          //Redirect to success page
+          this.router.navigateByUrl('/customer/orderPlacedSuccess');
+
         },
         (err) => {
           alert('Registeration Failed');
@@ -290,8 +311,20 @@ selectPayment(method: string) {
       );
     }
 
-  //====================PAYMENT ENDING=======================
 
+
+
+  // PAYMENT COD STARTING =====================================================
+  amountPaying_Cod(amount: any){
+
+    alert("AMOUNT ::::  " + amount)
+  }
+
+  // PAYMENT COD ENDING========================================================
+
+
+
+//====================PAYMENT ENDING=======================
 
 
 

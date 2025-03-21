@@ -34,6 +34,7 @@ import { CustomerOrdersComponent } from './components/customer-orders/customer-o
 import { ManageAddressComponent } from './components/manage-address/manage-address.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
+import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pa
     CustomerOrdersComponent,
     ManageAddressComponent,
     ProceedToPayComponent,
+    OrderPlacedSuccessComponent,
   ],
   imports: [
     BrowserModule,
