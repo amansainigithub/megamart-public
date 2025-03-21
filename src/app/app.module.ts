@@ -32,6 +32,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 import { ManageAddressComponent } from './components/manage-address/manage-address.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { ManageAddressComponent } from './components/manage-address/manage-addre
     DashboardComponent,
     CustomerOrdersComponent,
     ManageAddressComponent,
+    ProceedToPayComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ import { ManageAddressComponent } from './components/manage-address/manage-addre
     MatIconModule,
     CarouselModule,
     RouterModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatStepperModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

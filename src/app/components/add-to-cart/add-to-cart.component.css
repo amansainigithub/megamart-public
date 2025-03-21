@@ -76,12 +76,11 @@
     border-radius: 5px;
 }
 .order-btn {
-    background: #000;
-    color: #fff;
+    background: #fed90c;
+    color: #0f0f0e;
     width: 100%;
     padding: 12px;
     border-radius: 5px;
-    font-weight: bold;
 }
 .savings {
     background: #ecf9ec;

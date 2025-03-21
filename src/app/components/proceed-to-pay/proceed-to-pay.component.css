@@ -1,0 +1,81 @@
+/* Container Width */
+.custom-container{
+  max-width: 1200px;
+}
+
+.selected-card {
+    background-color: #e3f2fd; /* Light blue background */
+    border: 2px solid #1976d2; /* Highlight border */
+  }
+  
+  input[type="radio"] {
+    transform: scale(1.5); /* Increase radio button size */
+    margin-right: 5px; /* Add spacing */
+  }
+
+ .order-btn {
+      background: #fed90c;
+      color: #1c2833;
+      width: 100%;
+  }
+
+
+.savings {
+  background: #ecf9ec;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  color: #28a745;
+}
+
+/* ================MODEL =============== */
+/* Model Width */
+.custom-modal-width {
+  max-width: 900px; /* Adjust the width as needed */
+  width: 90%;
+}
+
+/*==PAYMENT MODE CSS [---STEPPER 2---]==== */
+
+.payment-method {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.payment-method.active {
+  border-color: #34495e;
+  background-color: #e3d0ff;
+}
+.discount-badge {
+  font-size: 14px;
+  color: #34495e;
+  font-weight: bold;
+}
+.continue-btn {
+  background-color: #cbf1fd;
+  color: white;
+  font-weight: bold;
+}
+.resell-option .btn {
+  width: 60px;
+}
+.order-summary {
+  border-left: 2px solid #ddd;
+  padding-left: 20px;
+}
+
+
+
+
+/* //PAYMENT SCROLL DESIGN  */
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.payment-icons img {
+  width: 80px; /* Adjust size */
+  height: auto;
+}

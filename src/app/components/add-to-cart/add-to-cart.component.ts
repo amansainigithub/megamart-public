@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AddToCartService } from '../../_services/addToCartService/add-to-cart.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -6,6 +6,7 @@ import { RazorpayService } from '../../_services/payments/razorpayService/razorp
 import Swal from 'sweetalert2';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
+
 
 declare var Razorpay: any;
 
@@ -21,7 +22,7 @@ export class AddToCartComponent {
     public cartService: AddToCartService,
     private razorpayService: RazorpayService,
     private tokenStorageService:TokenStorageService,
-    private router:Router
+    private router:Router,
   ) {}
 
   quantityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -117,13 +118,6 @@ export class AddToCartComponent {
       }
     );
   }
-
-
-
-
-
-
-
 
 
 

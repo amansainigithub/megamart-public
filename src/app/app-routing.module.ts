@@ -13,6 +13,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 import { ManageAddressComponent } from './components/manage-address/manage-address.component';
+import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
                   { path: 'dashboard', component: DashboardComponent},
                   { path: 'ordersCustomer', component: CustomerOrdersComponent},
                   { path: 'manageAddress', component: ManageAddressComponent},
+                  { path: 'proceedToPay', component: ProceedToPayComponent},
                 ],
 }
 ];

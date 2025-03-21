@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AddressService } from '../../_services/addressService/address.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpClient } from '@angular/common/http';
 
 declare var bootstrap: any; // Import Bootstrap JavaScript
 
@@ -18,7 +19,8 @@ export class ManageAddressComponent {
 
   constructor(private addressService: AddressService,
               private toast: NgToastService,
-              private spinner: NgxSpinnerService) {}
+              private spinner: NgxSpinnerService,
+              private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getAddress();
@@ -201,6 +203,28 @@ export class ManageAddressComponent {
         this.spinner.hide();
       }
     });
+  }
+
+// =]==========================================
+
+
+qrCodeUrl: string | null = null;
+  amount: number | null = null;
+
+  generateQRCode() {
+    const vpa = 'amansaini1407-1@okaxis';
+    const name = 'YourBusiness';
+    const amount = 1;
+    const transactionNote = 'Order123';
+
+    this.http.get<any>(`http://localhost:8080/customer/api/v1/addressController/generate-qr?vpa=${vpa}&name=${name}&amount=${amount}&transactionNote=${transactionNote}`)
+      .subscribe(response => {
+
+        console.log(response);
+        
+        this.qrCodeUrl = response.qrCode;
+        this.amount = response.amount;
+      });
   }
 
 

@@ -67,10 +67,6 @@
                 <p class="h5">Subtotal ({{cartService.getCartLength()}} items):
                     <span class="text-danger">₹{{cartService.getCartTotalPrice()}}</span>
                 </p>
-                <button class="btn btn-warning w-100"  
-                 (click)="amountPaying(cartService.getCartTotalPrice())">
-                 Proceed to Buy
-                </button>
             </div>
 
 
@@ -110,10 +106,29 @@
                     Yay! Your total discount is ₹{{cartService.getDiscountPrice()}}
                 </div>
                   
-                <button class="order-btn mt-3" (click)="amountPaying(cartService.getCartTotalPrice())">Procced to Buy</button>
-            </div>
+                <button class="order-btn mt-3 d-block text-center border-0" [routerLink]="['/customer/proceedToPay']">
+                    Continue
+                  </button>
+                  
+                  
+              </div>
 
 
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
