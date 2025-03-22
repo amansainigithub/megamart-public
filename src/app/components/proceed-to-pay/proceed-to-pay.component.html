@@ -13,7 +13,7 @@
                         Please select a delivery address before proceeding.
                     </div>
 
-                    <h5>Select Delivery Address</h5>
+                    <h4 class="deliveryAddress">Select Delivery Address</h4>
                     <div *ngFor="let add of addresses; let i = index" class="mb-3">
                       <div class="card p-3 addressCard" [ngClass]="{ 'selected-card': selectedAddressIndex === i }">
                         <div class="d-flex align-items-start">
@@ -60,14 +60,21 @@
                   <!-- Right Section: Price Details -->
                   <div class="col-md-5">
                     <div class="card p-3">
-                      <h5>Price Details ({{ cartService.getCartLength() }} Items)</h5>
+                      <h6>Price Details ({{ cartService.getCartLength() }} Items)</h6>
                       <hr />
-                      <p>Total Product Price: <span class="float-end">₹{{ cartService.getTotalMrpPrice() }}</span></p>
-                      <p class="text-success">Total Discounts: <span class="float-end">- ₹{{ cartService.getDiscountPrice() }}</span></p>
+                      <p class="py-0 my-0">Total Product Price: <span class="float-end">₹{{ cartService.getTotalMrpPrice() }}</span></p>
+                      <p class="text-success py-0 my-0">Total Discounts: <span class="float-end">- ₹{{ cartService.getDiscountPrice() }}</span></p>
+                      <p class="text-success py-0 my-1">
+                        <span class="fs15">Shipping Charges</span>
+                       <span class="float-end">
+                        FREE
+                       </span>
+                      </p>
                       <hr />
-                      <h5>Order Total: <span class="float-end">₹{{ cartService.getCartTotalPrice() }}</span></h5>
+
+                      <h6>Order Total: <span class="float-end fs20">₹{{ cartService.getCartTotalPrice() }}</span></h6>
                       
-                      <button mat-raised-button  class="order-btn mt-3" (click)="nextStep(stepper)">
+                      <button mat-raised-button  class="order-btn btn-warning mt-3" (click)="nextStep(stepper)">
                         Continue to Payment
                       </button>
                       
@@ -101,7 +108,10 @@
                          (click)="selectPayment('ONLINE')">
                       <label class="w-100 d-flex align-items-center">
                         <input type="radio" name="payment" value="ONLINE" [(ngModel)]="selectedPayment" class="form-check-input me-2">
-                        <span class=" ms-2 payonline"> Pay Online</span>
+                        <span class=" ms-2 payonline">
+                           Pay Online 
+                           <i class="bi bi-credit-card-2-back-fill"></i>
+                        </span>
                       </label>
                     </div>
 
@@ -112,7 +122,10 @@
                         (click)="selectPayment('COD')">
                       <label class="w-100 d-flex ">
                         <input type="radio" name="payment" value="COD" [(ngModel)]="selectedPayment" class="form-check-input me-2">
-                        <span class="ms-2">Cash on Delivery</span>
+                        <span class="ms-2">
+                          Cash on Delivery 
+                          <i class="bi bi-cash"></i>
+                        </span>
                       </label>
                     </div>
 
@@ -128,35 +141,103 @@
                       </p>
                   </div>
 
+                  <div class="container text-center mt-2">
+                    <div class="d-flex justify-content-center upi-icons mt-3">
+                        <img src="../../../assets/Payment Images/Gpay.png" alt="Google Pay">
+                        <img src="../../../assets/Payment Images/phonepay.png" alt="PhonePe">
+                        <img src="../../../assets/Payment Images/cred.png" alt="CRED">
+                        <img src="../../../assets/Payment Images/amazonPay.png" alt="Amazon Pay">
+                        <img src="../../../assets/Payment Images/Upi.png" alt="UPI">
+                        <img src="../../../assets/Payment Images/Rupay.png" alt="RUPAY">
+                        <img src="../../../assets/Payment Images/Card.png" alt="CARD">
+                        <img src="../../../assets/Payment Images/Visa.png" alt="VISA">
+                    </div>
+                </div>
+
                   </div>
               
                   <!-- Order Summary -->
                   <div class="col-md-5 order-summary">
-                    <h5>Price Details ({{ cartService.getCartLength() }}Items)</h5>
-                    <p><strong>Total Product Price:</strong> ₹{{cartService.getTotalMrpPrice()}}</p>
-                    <p class="text-success"><strong>Total Discounts:</strong> -₹{{cartService.getDiscountPrice()}}</p>
-                    <hr>
-                    <h5>Order Total: ₹{{cartService.getCartTotalPrice()}}</h5>
 
-                    <!-- ONLINE BUTTON -->
-                     <button class="btn btn-warning w-100" *ngIf="showOnlineButton" 
-                      (click)="amountPaying_Online(cartService.getCartTotalPrice())">
-                      Proceed to Buy
-                    </button>
-                    
-                    <!-- COD BUTTON -->
-                    <button class="btn btn-warning w-100"  *ngIf="showCodButton" 
-                      (click)="amountPaying_Cod(cartService.getCartTotalPrice())">
-                      Proceed to Buy
-                    </button>
+                    <div>
+                      <h5 class="productDetails">
+                        Price Details ({{ cartService.getCartLength() }}Items)
+                      </h5>
+  
+                      <p class="py-0 my-0">
+                        <span class="fs15">Total Product Price:</span>
+                        <span class="float-end">₹{{cartService.getTotalMrpPrice()}}</span>
+                      </p>
+  
+                      <p class="text-success py-0 my-0">
+                        <span class="fs15">Total Discounts:</span>
+                       <span class="float-end">
+                        -₹{{cartService.getDiscountPrice()}}
+                       </span>
+                      </p>
 
-                    <div class="alert alert-success mt-2" role="alert">
-                        🎉 Yay! Your total discount is ₹{{cartService.getDiscountPrice()}}
+                      <p class="text-success py-0 my-0">
+                        <span class="fs15">Shipping Charges</span>
+                       <span class="float-end">
+                        FREE
+                       </span>
+                      </p>
+  
+  
+                      <hr>
+  
+                      <h6>
+                        Order Total:
+                      <span class="float-end fs20 text-success" >₹{{cartService.getCartTotalPrice()}}</span>
+                      </h6>
+  
+                      <!-- ONLINE BUTTON -->
+                       <button class="btn btn-warning w-100 mt-2 py-3" *ngIf="showOnlineButton" 
+                        (click)="amountPaying_Online(cartService.getCartTotalPrice())">
+                        Proceed to Buy
+                      </button>
+                      
+                      <!-- COD BUTTON -->
+                      <button class="btn btn-warning w-100 mt-2 py-3"  *ngIf="showCodButton" 
+                        (click)="amountPaying_Cod(cartService.getCartTotalPrice())">
+                        Proceed to Buy
+                      </button>
+  
+                      <div class="alert alert-success mt-2" role="alert">
+                          🎉 Yay! Your total discount is ₹{{cartService.getDiscountPrice()}}
+                      </div>
+                      <p> <span class="font-weight-bolder">Payment Method:</span> {{ selectedPayment }}</p>
+  
+
                     </div>
-                    <p> <span class="font-weight-bolder">Payment Method:</span> {{ selectedPayment }}</p>
                     
-
+                    <!-- <div class="price-box">
+                      <div>
+                       <h6>PRICE DETAILS ({{cartService.getCartLength()}} items)</h6>
+                      </div>
+                       <hr>
+                       <div class="d-flex justify-content-between">
+                           <span class="pdKeys">Total MRP (Inc. of Taxes)</span>
+                           <span class="pdKeys">₹{{cartService.getTotalMrpPrice()}}</span>
+                       </div>
+                       <div class="d-flex justify-content-between">
+                           <span class="pdKeys">Shoppers Discount</span>
+                           <span class="text-success pdKeys">- ₹{{cartService.getDiscountPrice()}}</span>
+                       </div>
+                       <div class="d-flex justify-content-between">
+                           <span class="pdKeys">Shipping Charges</span>
+                           <span class="text-success pdKeys">Free</span>
+                       </div>
+                       <hr>
+                       <div class="d-flex justify-content-between">
+                           <span>Cart Total</span>
+                           <span class="text-success pdKeys">₹{{cartService.getCartTotalPrice()}}</span>
+                       </div>
+                   </div> -->
                   </div>
+
+
+                  
                 </div>
             </div>
             <!-- STARTING 2 STEPPER DATA -->

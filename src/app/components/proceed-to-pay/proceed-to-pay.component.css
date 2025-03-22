@@ -14,7 +14,7 @@
   }
 
  .order-btn {
-      background: #fed90c;
+      background: #FFCA2C;
       color: #1c2833;
       width: 100%;
   }
@@ -35,8 +35,14 @@
   width: 90%;
 }
 
-/*==PAYMENT MODE CSS [---STEPPER 2---]==== */
+/* UPI ICONS IMAGE  */
+.upi-icons img {
+  width: 30px;
+  margin: 10px;
+  height: 25px;
+}
 
+/*==PAYMENT MODE CSS [---STEPPER 2---]==== */
 .payment-method {
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -79,3 +85,19 @@
   width: 80px; /* Adjust size */
   height: auto;
 }
+
+
+/* //Address Heading */
+
+.deliveryAddress,.productDetails {
+  font-size: 1.1rem; /* Medium-large size */
+  font-weight: 500; /* Semi-bold */
+  color: #007bff; /* Attractive blue color */
+  text-align: center; /* Centered text */
+  padding: 10px;
+  border-bottom: 2px solid #007bff; /* Underline effect */
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+

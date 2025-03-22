@@ -63,9 +63,9 @@
 
         <div class="col-md-4">
 
-            <div class="border p-3">
-                <p class="h5">Subtotal ({{cartService.getCartLength()}} items):
-                    <span class="text-danger">₹{{cartService.getCartTotalPrice()}}</span>
+            <div class="border text-center p-2  " style="border-radius: 10px;">
+                <p class="mt-3" >Subtotal ({{cartService.getCartLength()}} items):
+                    <span class="text-success fs18">₹{{cartService.getCartTotalPrice()}}</span>
                 </p>
             </div>
 
@@ -90,7 +90,7 @@
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
-                    <span><strong>Cart total</strong></span>
+                    <span>Cart Total</span>
                     <span class="text-success pdKeys">₹{{cartService.getCartTotalPrice()}}</span>
                 </div>
             </div>
@@ -98,8 +98,8 @@
             <!-- Total Amount Section -->
             <div class="price-box mt-3">
                 <div class="d-flex justify-content-between">
-                    <h6><strong>Total Amount</strong></h6>
-                    <h6><strong>₹{{cartService.getCartTotalPrice()}}</strong></h6>
+                    <h6>Total Amount</h6>
+                    <h6 class="fs20">₹{{cartService.getCartTotalPrice()}}</h6>
                 </div>
                
                 <div class="savings"><i class="bi bi-emoji-heart-eyes text-success"></i>
