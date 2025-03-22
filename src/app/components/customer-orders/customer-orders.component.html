@@ -1,1 +1,85 @@
-<p>customer-orders works!</p>
+<!-- <div class="container mt-4">
+    <div *ngFor="let order of orders" class="order-container">
+        <div class="order-header">
+            <span class="order-id">Order ID: #{{ order.id }}</span>
+        </div>
+
+        <a *ngFor="let item of order.items" [routerLink]="['/order-details', order.id]" class="order-card">
+            <img [src]="item.image" class="order-image" alt="Product">
+            <div class="order-content">
+                <span class="no-margin">No Margin</span>
+                <p class="order-title">{{ item.title }}</p>
+                <p class="delivery-info">
+                    <span class="dot"></span> Delivery by {{ item.deliveryDate }}
+                </p>
+                <p class="order-details">
+                    <strong>Quantity:</strong> {{ item.quantity }}  
+                    &nbsp; | &nbsp;  
+                    <strong>Price:</strong> ₹{{ item.price }}
+                </p>
+            </div>
+            <i class="bi bi-chevron-right order-arrow"></i>
+        </a>
+    </div>
+</div> -->
+
+<div class="container mt-5">
+    <h4 class="order-heading">Order Details</h4>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let order of orders; let i = index" [expanded]="i === 0" class="mb-3">
+            <mat-expansion-panel-header class="p-5">
+                <mat-panel-title class="order-info">
+                    <span class="changeDesign">
+                        <span class="headerH ">ORDER ID:</span>
+                        {{ order.orderId }}
+                    </span>
+                    <span class="changeDesign">
+                        <span class="headerH">QTY:</span>
+                        {{order.quantity}}
+                    </span>
+                    <span class="changeDesign">
+                        <span class="headerH">AMOUNT:</span> 
+                        ₹ {{order.totalPrice}}
+                    </span>
+                    <span><span class="headerH">
+                            DELIVERY :
+                            <i class="bi bi-truck running-truck me-2"></i>
+                        </span>
+                        {{order.deliveryStatus}}
+                    </span>
+                    <span class="changeDesign">
+                        <span class="headerH">Placed By - </span> 
+                        ₹ {{order.orderDateTime}}
+                    </span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <!-- Iterate over items inside an order -->
+            <a *ngFor="let item of order.customerOrderItems
+            " [routerLink]="['/order-details', order.id]" class="order-card">
+                <img [src]="item.fileUrl" class="order-image" alt="Product Image">
+                <div class="order-content">
+                    <span class="no-margin text-success">
+                        {{order.paymentStatus}}
+                        <i class="bi bi-check text-success"></i>
+                    </span>
+                    <p class="order-title">{{ item.productName }}</p>
+                    <p class="delivery-info">
+                        <span class="dot"></span> Delivery by {{ '22 Mar, 2025 01:05 pm'}}
+                    </p>
+                    <p class="order-details">
+                        <strong>Quantity : </strong> {{ item.quantity }}
+                        &nbsp; | &nbsp;
+                        <strong>Price : </strong> ₹{{ item.productPrice }}
+                        &nbsp; | &nbsp;
+                        <strong>BRAND : </strong> {{ item.productBrand }}
+                        &nbsp; | &nbsp;
+                        <strong>SIZE : </strong> {{ item.productSize }}
+                    </p>
+                </div>
+                <i class="bi bi-chevron-right order-arrow"></i>
+            </a>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

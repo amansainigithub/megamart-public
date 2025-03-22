@@ -35,6 +35,8 @@ import { ManageAddressComponent } from './components/manage-address/manage-addre
 import {MatStepperModule} from '@angular/material/stepper';
 import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
 import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 @NgModule({
@@ -74,7 +76,8 @@ import { OrderPlacedSuccessComponent } from './components/order-placed-success/o
     CarouselModule,
     RouterModule,
     MatBadgeModule,
-    MatStepperModule
+    MatStepperModule,
+    MatExpansionModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

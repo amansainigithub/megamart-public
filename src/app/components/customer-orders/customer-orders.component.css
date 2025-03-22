@@ -1,0 +1,142 @@
+.order-card {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .order-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .order-content {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  
+  .order-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .delivery-info, .order-details {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+  }
+  
+  .delivery-info .dot {
+    width: 8px;
+    height: 8px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .no-margin {
+    font-size: 12px;
+    font-weight: bold;
+    background: #f2f2f2;
+    padding: 3px 8px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  /* Right-side Arrow (Centered on Y-axis) */
+  .order-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #666;
+  }
+
+  
+  .order-heading {
+    font-size: 1.1rem; /* Medium-large size */
+    font-weight: 500; /* Semi-bold */
+    color: #007bff; /* Attractive blue color */
+    text-align: center; /* Centered text */
+    padding: 10px;
+    border-bottom: 2px solid #007bff; /* Underline effect */
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* //Mat Header Text Spacing */
+
+.order-info {
+    display: flex;
+    gap: 30px; 
+  }
+
+.headerH{
+    color: #7f8c8d;
+}
+
+.changeDesign{
+  color: #34495e;
+  font-size: 14px;
+}
+
+.running-truck {
+  display: inline-block;
+  animation: moveTruck 1s infinite ease-in-out, colorChange 1s infinite;
+  font-size: 13px;
+}
+
+@keyframes moveTruck {
+  0% {
+      transform: translateX(0);
+  }
+
+  50% {
+      transform: translateX(10px);
+  }
+
+  100% {
+      transform: translateX(0);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+      color: #d35400;
+  }
+
+  /* Orange */
+  33% {
+      color: #27ae60;
+  }
+
+  /* Green */
+  66% {
+      color: #2980b9;
+  }
+
+  /* Blue */
+  100% {
+      color: #d35400;
+  }
+
+  /* Back to Orange */
+}

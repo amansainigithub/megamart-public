@@ -3,7 +3,7 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddToCartService } from './_services/addToCartService/add-to-cart.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -27,30 +27,32 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    const currentUrl = this.router.url;
-    if(currentUrl.startsWith('/customer')){
-      this.homePageFlag =true;
-    }else{
-      this.homePageFlag =false;
-    }
-
-
-
-    console.log("App Component Ngint Calling");
-    
-    this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
-    
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.username = user.username;
-    }
-
-    //Load the Cart Items
-    this.cartService.loadCart();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const currentUrl = event.urlAfterRedirects || this.router.url;
+        if (currentUrl === '/customer/dashboard' 
+          || currentUrl === '/customer/ordersCustomer' 
+          || currentUrl === '/customer/manageAddress'
+        ) {
+          this.homePageFlag = true;
+        } else {
+          this.homePageFlag = false;
+        }
+          } });
+  
+        this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
+  
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+  
+        if (this.isLoggedIn) {
+          const user = this.tokenStorageService.getUser();
+          this.roles = user.roles;
+          this.username = user.username;
+        }
+  
+        // Load the Cart Items
+        this.cartService.loadCart();
+      
   }
 
   logout(): void {
