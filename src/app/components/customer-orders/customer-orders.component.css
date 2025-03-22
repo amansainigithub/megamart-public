@@ -104,6 +104,25 @@
   font-size: 13px;
 }
 
+
+
+/* Track BUtton */
+.trackButton{
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+}
+
+/* More Details Button */
+.moreDetails{
+  background-color: #f3e912;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: black;
+}
+
+
 @keyframes moveTruck {
   0% {
       transform: translateX(0);
@@ -140,3 +159,82 @@
 
   /* Back to Orange */
 }
+
+
+
+
+
+
+
+/* =============TRACKING STEPPER ORDER+============================ */
+.trackerContainer {
+  max-width: 400px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-grow: 1;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.circle.active,
+.circle.completed {
+  background-color: green;
+}
+
+.circle i {
+  color: white;
+}
+
+.status-text {
+  margin-top: 5px; /* Space between the circle and text */
+  font-size: 11px;
+  color: #5d6d7e;
+  text-align: center;
+}
+
+.line {
+  position: absolute;
+  top: 15px; /* Align with the center of the circle */
+  left: 100%;
+  width: 100%;
+  height: 5px;
+  background-color: lightgray;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.line.completed {
+  background-color: green;
+}
+

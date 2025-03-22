@@ -41,22 +41,22 @@
                         <span class="headerH">AMOUNT:</span> 
                         ₹ {{order.totalPrice}}
                     </span>
-                    <span><span class="headerH">
+                    <!-- <span><span class="headerH">
                             DELIVERY :
                             <i class="bi bi-truck running-truck me-2"></i>
                         </span>
                         {{order.deliveryStatus}}
-                    </span>
+                    </span> -->
                     <span class="changeDesign">
                         <span class="headerH">Placed By - </span> 
-                        ₹ {{order.orderDateTime}}
+                        {{order.orderDateTime}}
                     </span>
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
 
             <!-- Iterate over items inside an order -->
-            <a *ngFor="let item of order.customerOrderItems
+            <div *ngFor="let item of order.customerOrderItems
             " [routerLink]="['/order-details', order.id]" class="order-card">
                 <img [src]="item.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
@@ -72,14 +72,85 @@
                         <strong>Quantity : </strong> {{ item.quantity }}
                         &nbsp; | &nbsp;
                         <strong>Price : </strong> ₹{{ item.productPrice }}
-                        &nbsp; | &nbsp;
-                        <strong>BRAND : </strong> {{ item.productBrand }}
+                        <!-- &nbsp; | &nbsp;
+                        <strong>BRAND : </strong> {{ item.productBrand }} -->
                         &nbsp; | &nbsp;
                         <strong>SIZE : </strong> {{ item.productSize }}
+                        &nbsp; | &nbsp;
+                        <span><strong>DELIVERY : </strong><span class="headerH">
+                                <i class="bi bi-truck running-truck me-2"></i>
+                            </span>
+                            {{item.deliveryStatus}}
+                        </span>
                     </p>
+                    <p class="tracker-id fs13 ">
+                        <strong >TRACKER ID:</strong> {{ 356478889914512598 }}
+                        <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(356478889914512598)"></i>
+
+                        <button mat-raised-button color="primary" class="mx-3  py-1 trackButton">
+                            Track Order
+                        </button>
+
+                        
+                        <button mat-raised-button color="warn" class="mx-2 py-1 moreDetails">
+                            More Details
+                        </button>
+                        
+                    </p>
+                    
                 </div>
+
+                <div class="container trackerContainer">
+                    <div class="stepper">
+                      <div *ngFor="let step of statuses; let i = index" class="step">
+                        <div class="step-content">
+                          <div class="circle" [ngClass]="{'active': i <= getStatusIndex(item.deliveryStatus), 'completed': i < getStatusIndex(item.deliveryStatus)}">
+                            <i *ngIf="i <= getStatusIndex(item.deliveryStatus)" class="bi bi-check2"></i> 
+                            <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
+                          </div>
+                          <span class="status-text">{{ step }}</span>
+                        </div>
+                        <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex(item.deliveryStatus)}"></div>
+                      </div>
+                    </div>
+                  </div> 
+                
                 <i class="bi bi-chevron-right order-arrow"></i>
-            </a>
+                </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+
+
+<!-- ==============TRACKING STEPPER STARTING================== -->
+
+
+<!-- <div class="container trackerConttainer">
+  <div class="stepper">
+    <div *ngFor="let step of statuses; let i = index" class="step">
+      <div class="step-content">
+        <div class="circle" [ngClass]="{'active': i <= getStatusIndex(), 'completed': i < getStatusIndex()}">
+          <i *ngIf="i <= getStatusIndex()" class="bi bi-check2"></i> 
+           <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> 
+        </div>
+        <span class="status-text">{{ step }}</span>
+      </div>
+      <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex()}"></div>
+    </div>
+  </div>
+</div>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

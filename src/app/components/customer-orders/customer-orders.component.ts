@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { OrderService } from '../../_services/orderService/order.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -86,4 +86,25 @@ export class CustomerOrdersComponent {
       },
     });
   }
+
+
+
+  //TRACKING SATEPPER STARTING
+  statuses = ['PENDING', 'SHIPPED', 'IN_TRANSIT', 'DELIVERED'];
+
+  getStatusIndex(status: string): number {
+    return this.statuses.indexOf(status);
+  }
+
+  copyTrackerId(trackerId: number) {
+    navigator.clipboard.writeText(trackerId.toString()).then(() => {
+      this.toast.success({detail: "Success", summary: "Tracker ID copied !", position: "bottomRight", duration: 2000});
+    }).catch(err => {
+      console.error('Failed to copy tracker ID:', err);
+    });
+  }
+  //TRACKING STEPPER ENDING
+
+
+  
 }
