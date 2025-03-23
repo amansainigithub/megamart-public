@@ -222,13 +222,11 @@ selectPayment(method: string) {
 }
 
 
-// ---------------------------------------------------------------------
-  // ===================PAYMENT STARTING====================
+//==========================================================
+// ===================PAYMENT STARTING======================
 
      //Amount PAying ONLINE----
     //Razorpay Integration Working Starting
-
-
     razorpayKey = 'rzp_test_cFBctGmM8MII0E';
     amountPaying_Online(amount: any) {
 
@@ -354,7 +352,7 @@ selectPayment(method: string) {
     this.razorpayService.codOrderPaymentService(amount ,addressId, cart ).subscribe({
       next: (res: any) => {
         console.log("==================COD===================");
-        console.log(res);
+        // console.log(res);
         alert("success");
       },error: (err: any) => {
         console.error('Error Creating COD Order:', err);
@@ -368,6 +366,8 @@ selectPayment(method: string) {
 
 
 
+
+  
 //====================PAYMENT ENDING=======================
 
 

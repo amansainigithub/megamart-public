@@ -45,6 +45,16 @@
                         <span class="headerH">Placed By - </span> 
                         {{order.orderDateTime}}
                     </span>
+
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
+                        <span class="headerH fs13">PAY MODE - </span> 
+                        <span class="p-1 rounded fs13" style="background-color: #F3EA1B;color: black;">{{order.paymentMode}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
+                        <span class="headerH fs13">PAY MODE - </span> 
+                        <span class="p-1 rounded fs13" style="background-color: #74fd19;color: black;">{{order.paymentMode}}</span>
+                    </span>
                     
                     <button [routerLink]="['/customer/orders-details/', order.id]" 
                             mat-raised-button color="warn" 
@@ -61,9 +71,13 @@
             " [routerLink]="['/order-details', order.id]" class="order-card">
                 <img [src]="item.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
-                    <span class="no-margin text-success">
+                    <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
                         {{order.paymentStatus}}
                         <i class="bi bi-check text-success"></i>
+                    </span>
+                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
+                        {{order.paymentStatus}}
+                        <i class="bi bi-check text-dark"></i>
                     </span>
                     <p class="order-title">{{ item.productName }}</p>
                     <p class="delivery-info">
