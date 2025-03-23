@@ -19,7 +19,7 @@ declare var Razorpay: any;
 })
 export class ProceedToPayComponent {
     addresses: any = [];
-    selectedPayment: string = 'ONLINE'; // Default selected payment method
+    paymentMode: string = 'ONLINE'; // Default selected payment method
     resell: boolean = false;
 
     showOnlineButton:any = 'ONLINE'; //Default Selecter ONLINE
@@ -211,11 +211,11 @@ onAddressSelect(address: any) {
 
  //Selected Paymenod Mode 
 selectPayment(method: string) {
-  this.selectedPayment = method;
-  if(this.selectedPayment  === 'COD'){
+  this.paymentMode = method;
+  if(this.paymentMode  === 'COD'){
     this.showCodButton = true;
     this.showOnlineButton = false;
-  }else if(this.selectedPayment === 'ONLINE'){
+  }else if(this.paymentMode === 'ONLINE'){
     this.showOnlineButton = true;
     this.showCodButton = false;
   }
@@ -261,8 +261,8 @@ selectPayment(method: string) {
             key: this.razorpayKey,
             amount: parsedResponse.amount,
             currency: 'INR',
-            name: 'Your Company',
-            description: 'Test Transaction',
+            name: 'Shoppers',
+            description: 'Ecommerce Platform',
             order_id: parsedResponse.id,
             handler: (response: any) => {
               console.log('Payment Success:', response);
@@ -329,13 +329,42 @@ selectPayment(method: string) {
 
 
 
-  // PAYMENT COD STARTING =====================================================
+  // ==========================PAYMENT COD STARTING =========================
   amountPaying_Cod(amount: any){
 
-    alert("AMOUNT ::::  " + amount)
+    if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
+      this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
+      position: "bottomRight", duration: 3000});
+      return;
+    }
+
+    const user = this.tokenStorageService.getUser();
+    if (!user || Object.keys(user).length === 0) {
+      console.log("User is null, undefined, or an empty object");
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    //Check isValid Cart items
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    // console.log(cart); // Check if cart is correctly retrieved
+    const addressId = this.addressHolder.id;
+    console.log(addressId);
+
+    this.razorpayService.codOrderPaymentService(amount ,addressId, cart ).subscribe({
+      next: (res: any) => {
+        console.log("==================COD===================");
+        console.log(res);
+        alert("success");
+      },error: (err: any) => {
+        console.error('Error Creating COD Order:', err);
+        this.toast.error({detail: "Error", summary: "Error Creating COD Order:", position: "bottomRight", duration: 2000});
+        this.spinner.hide();
+      }
+      });
   }
 
-  // PAYMENT COD ENDING========================================================
+  // ==============PAYMENT COD ENDING======================
 
 
 
