@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -12,7 +13,8 @@ export class AddToCartService {
 
   constructor(
         private spinner: NgxSpinnerService,
-        private toast:NgToastService
+        private toast:NgToastService,
+        private router:Router
       ) {}
 
   
@@ -74,6 +76,54 @@ addToCart(productId: string,
 
   this.saveCart();
   this.toast.success({detail:"Success",summary:"Item Added to Cart", position:"bottomRight",duration:2000});
+}
+
+
+
+buyNow( productId: string, 
+        productName: string, 
+        productPrice: number, 
+        brandField: string , 
+        fileUrl:any , 
+        colorVariant:any,
+        productMrp:any,
+        calculatedDiscount:any): void {
+if(this.selectedSize === null || this.selectedSize === undefined || this.selectedSize === ''){
+alert("Please Select Size.");
+return;
+}
+
+//using for ProductSize
+const productSize = this.selectedSize;
+
+console.log(productId, productName, productPrice, brandField, productSize);
+
+const existingItem = this.cartItems.find(item => item.pId === productId && item.pSize === productSize);
+
+if (existingItem) {
+existingItem.quantity = Number(existingItem.quantity) + 1;
+existingItem.totalPrice = existingItem.pPrice * existingItem.quantity; // Update total price
+}
+else {
+const cartItem = {
+  pId: productId,
+  pName: productName,
+  pPrice: productPrice,
+  pBrand: brandField,
+  pSize: productSize,
+  quantity: 1,
+  totalPrice: productPrice,
+  pFileUrl:fileUrl,
+  pColor:colorVariant,
+  pMrp:productMrp,
+  pCalculatedDiscount:calculatedDiscount
+};
+this.cartItems.push(cartItem);
+}
+
+this.saveCart();
+this.toast.success({detail:"Success",summary:"Item Added to Cart", position:"bottomRight",duration:2000});
+this.router.navigateByUrl("/cart");
 }
 
 

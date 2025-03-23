@@ -4,6 +4,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../../_services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-orders',
@@ -20,48 +21,13 @@ export class CustomerOrdersComponent {
     private toast: NgToastService,
     private spinner: NgxSpinnerService,
     private http: HttpClient,
+    private router: Router,
     private tokenStorageService:TokenStorageService
   ) {}
 
   ngOnInit(): void {
     this.getOrderData();
   }
-
-
-
-  // orders = [
-  //   {
-  //     id: 'ORD12345',
-  //     items: [
-  //       {
-  //         image: '../../../assets/images/wear2.jpg',
-  //         title: 'COMBO OF The Art of Not Overthinking...',
-  //         deliveryDate: '29 March, 2025',
-  //         quantity: 1,
-  //         price: 499,
-  //       },
-  //       {
-  //         image: '../../../assets/images/wear.jpg',
-  //         title: 'THANK YOU FOR LEAVING BY RITHVIK SINGH',
-  //         deliveryDate: '29 March, 2025',
-  //         quantity: 2,
-  //         price: 799,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 'ORD12345',
-  //     items: [
-  //       {
-  //         image: '../../../assets/images/wear.jpg',
-  //         title: 'FIRE SHIRTS & TSHIRTS Not Overthinking...',
-  //         deliveryDate: '29 March, 2025',
-  //         quantity: 1,
-  //         price: 499,
-  //       },
-  //     ],
-  //   },
-  // ];
 
   async getOrderData() {
     this.spinner.show();
@@ -91,7 +57,6 @@ export class CustomerOrdersComponent {
 
   //TRACKING SATEPPER STARTING
   statuses = ['PENDING', 'SHIPPED', 'IN_TRANSIT', 'DELIVERED'];
-
   getStatusIndex(status: string): number {
     return this.statuses.indexOf(status);
   }

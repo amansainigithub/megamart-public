@@ -18,4 +18,8 @@ export class OrderService {
   getCustomerOrders(): Observable<any> {
         return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrders/1', httpOptions);
    }
+
+   getCustomerOrdersById(orderId:any): Observable<any> {
+    return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrdersById/'+orderId, httpOptions);
+}
 }

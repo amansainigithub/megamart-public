@@ -1,0 +1,102 @@
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* CARD BORDER _RADIUS */
+.orderDetailsCard{
+    border-radius: 10px;
+}
+
+/* PENDING BTN */
+.pendingBtn{
+    background-color: #f3e912;
+}
+
+
+/* CARD DESIGN COL_MD_8 SATRTING*/
+.product-card {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+.product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.product-info {
+    flex: 1;
+}
+.product-title {
+    color: #34495e;
+}
+.product-tags span {
+    background-color: #eee;
+    padding: 3px 8px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.product-price {
+    white-space: nowrap;
+}
+/* CARD DESIGN COL_MD_8  ENDING----*/
+
+
+/* PRICE BOX SATRTING  */
+.price-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background: #fff;
+    margin-top: 15px;
+}
+/* PRICE BOX ENDING */
+
+.pdKeys{
+    font-size: 14px;
+    color: #272727;
+    font-family: sans-serif;
+}
+
+
+/* Track BUtton */
+.trackButton{
+    font-size: 12px;
+    height: 30px; 
+    min-width: 80px;
+  }
+
+
+
+/* DOT ICONS DESIGN AND ANIMATION SATRTING */
+  .bi-dot {
+    animation: blink 1.5s infinite alternate;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+/* DOT ICONS DESIGN AND ANIMATION SATRTING */
+
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  

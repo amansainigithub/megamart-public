@@ -1,4 +1,4 @@
-<div class="container  bg-light p-5 rounded-3">
+<div class="container  bg-light p-5 rounded-3" *ngIf="cartService.getCartLength() > 0" >
     <h4>Shopping Cart</h4>
     <div class="row">
         <div class="col-md-8">
@@ -109,10 +109,7 @@
                 <button class="order-btn mt-3 d-block text-center border-0" [routerLink]="['/customer/proceedToPay']">
                     Continue
                   </button>
-                  
-                  
               </div>
-
 
         </div>
     </div>
@@ -120,6 +117,22 @@
 
 
 
+<div class="container-fluid  mt-100 mt-4" *ngIf="cartService.getCartLength() === 0">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0">
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center">
+                        <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                        <h3><strong>Your Cart is Empty</strong></h3>
+                        <h4>Add something to make me happy :)</h4>
+                        <a href="#" mat-raised-button  color="primary">continue shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

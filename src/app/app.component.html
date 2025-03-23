@@ -96,7 +96,7 @@
         <!-- Profile Button -->
         <button mat-button [matMenuTriggerFor]="userProfile"
           class="d-flex align-items-center btn btn-light rounded-pill px-1">
-          <span class="me-2">Aman Saini</span>
+          <span class="me-2">{{username}}</span>
           <img src="../assets/Avitar Images/male avitar12.jpg"alt="User Avatar" class="rounded-circle" width="32"
             height="32">
           <mat-icon>arrow_drop_down</mat-icon>
@@ -110,8 +110,8 @@
             <span>Dashboard</span>
           </button>
 
-          <button mat-menu-item [routerLink]="'/customer/ordersCustomer'"
-            (click)="setActiveTab('/customer/ordersCustomer')" routerLinkActive="active-menu">
+          <button mat-menu-item [routerLink]="'/customer/orders-history'"
+            (click)="setActiveTab('/customer/orders-history')" routerLinkActive="active-menu">
             <mat-icon>history</mat-icon>
             <span>Order History</span>
           </button>
@@ -145,7 +145,7 @@
           <div class="position-sticky">
             <div class="text-center ">
               <img src="../assets/Avitar Images/male avitar12.jpg" alt="User Avatar" class="rounded-circle" width="80">
-              <h5 class="mt-2 fs15">Aman Saini</h5>
+              <h5 class="mt-2 fs15">{{username}}</h5>
             </div>
     
             <ul class="nav flex-column mt-3">
@@ -156,9 +156,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/ordersCustomer"
-                  [class.active]="activeTab === '/customer/ordersCustomer'"
-                  (click)="setActiveTab('/customer/ordersCustomer')">
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/orders-history"
+                  [class.active]="activeTab === '/customer/orders-history'"
+                  (click)="setActiveTab('/customer/orders-history')">
                   <i class="bi bi-card-list me-2"></i> Order History
                 </a>
               </li>

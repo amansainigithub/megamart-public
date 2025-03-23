@@ -30,9 +30,11 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const currentUrl = event.urlAfterRedirects || this.router.url;
-        if (currentUrl === '/customer/dashboard' 
-          || currentUrl === '/customer/ordersCustomer' 
+        if (currentUrl.includes('customer') 
+          || currentUrl === '/customer/dashboard' 
+          || currentUrl === '/customer/orders-history' 
           || currentUrl === '/customer/manageAddress'
+          || currentUrl === '/customer/orders-details'
         ) {
           this.homePageFlag = true;
         } else {

@@ -36,6 +36,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
 import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 
 
@@ -56,6 +57,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ManageAddressComponent,
     ProceedToPayComponent,
     OrderPlacedSuccessComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

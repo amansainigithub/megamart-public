@@ -84,8 +84,17 @@
                   
                   <!-- Conditionally show buttons based on stock availability -->
                   <ng-container *ngIf="!isOutOfStock">
-                    <button class="btn buyNow btn-lg flex-fill">
-                      <i class="bi bi-bag-heart"></i>
+                    <button type="button" class="btn buyNow btn-lg  flex-fill" (click)="cartService.buyNow(
+                        productData.id,
+                        productData.productName,
+                        productData.productPrice,
+                        productData.brandField,
+                        productData.productFilesResponses[0]?.fileUrl,
+                        productData.colorVariant,
+                        productData.productMrp,
+                        productData.calculatedDiscount
+                      )">
+                      <i class="bi bi-bag-heart" ></i>
                       BUY NOW
                     </button>
               
