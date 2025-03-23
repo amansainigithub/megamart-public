@@ -98,11 +98,7 @@
   font-size: 14px;
 }
 
-.running-truck {
-  display: inline-block;
-  animation: moveTruck 1s infinite ease-in-out, colorChange 1s infinite;
-  font-size: 13px;
-}
+
 
 
 
@@ -123,6 +119,12 @@
 }
 
 
+/* Running TRUCK */
+.running-truck {
+  display: inline-block;
+  animation: moveTruck 1s infinite ease-in-out, colorChange 1s infinite;
+  font-size: 13px;
+}
 @keyframes moveTruck {
   0% {
       transform: translateX(0);

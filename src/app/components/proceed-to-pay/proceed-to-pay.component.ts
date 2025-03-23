@@ -8,7 +8,6 @@ import { AddToCartService } from '../../_services/addToCartService/add-to-cart.s
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { RazorpayService } from '../../_services/payments/razorpayService/razorpay.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 declare var bootstrap: any; // Import Bootstrap JavaScript
 declare var Razorpay: any;
@@ -77,7 +76,6 @@ export class ProceedToPayComponent {
     this.spinner.show();
     this.addressService.getAddressList().subscribe({
       next: (res: any) => {
-
         this.addresses = res.data;
 
         //Sort Address
@@ -179,11 +177,20 @@ selectedAddressIndex: number | null = null;
 addressHolder:any = ""
 onAddressSelect(address: any) {
   this.addressHolder  = address;
+  console.log("AddressHolder");
+  
   console.log(this.addressHolder);
   
 }
 
   nextStep(stepper: MatStepper) {
+
+    if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
+      this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
+      position: "bottomRight", duration: 3000});
+      return;
+    }
+
     if (this.selectedAddressIndex !== null && this.selectedAddressIndex !== undefined) {
       stepper.next();
     } else {
@@ -224,6 +231,12 @@ selectPayment(method: string) {
 
     razorpayKey = 'rzp_test_cFBctGmM8MII0E';
     amountPaying_Online(amount: any) {
+
+      if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
+        this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
+        position: "bottomRight", duration: 3000});
+        return;
+      }
   
       const user = this.tokenStorageService.getUser();
       if (!user || Object.keys(user).length === 0) {
@@ -234,10 +247,12 @@ selectPayment(method: string) {
   
       //Check isValid Cart items
       const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      console.log(cart); // Check if cart is correctly retrieved
+      // console.log(cart); // Check if cart is correctly retrieved
+      const addressId = this.addressHolder.id;
+      console.log(addressId);
+      
   
-  
-      this.razorpayService.createOrderPaymentService(amount , cart ).subscribe({
+      this.razorpayService.createOrderPaymentService(amount ,addressId, cart ).subscribe({
         next: (res: any) => {
           console.log(res);
           const parsedResponse = JSON.parse(res.data);

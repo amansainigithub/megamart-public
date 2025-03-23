@@ -3,9 +3,17 @@
   max-width: 1200px;
 }
 
+
+/* Address Card  and Payment Card BOTH Using */
+.addressCard{
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
 .selected-card {
     background-color: #e3f2fd; /* Light blue background */
-    border: 2px solid #1976d2; /* Highlight border */
+    border: 2px solid #712CF9; /* Highlight border */
   }
   
   input[type="radio"] {
@@ -101,3 +109,28 @@
 }
 
 
+
+/* //EDIT AND SET DEFAULT ADDRESS BUTTON SATRTING*/
+.addressDefault{
+  background-color: #f3e912;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: black;
+}
+
+.editBtn{
+  background-color: #712CF9;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: white;
+}
+/* //EDIT AND SET DEFAULT ADDRESS BUTTON ENDING*/
+
+
+/* PAYMENT BOX FINAL */
+.paymentBoxF{
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

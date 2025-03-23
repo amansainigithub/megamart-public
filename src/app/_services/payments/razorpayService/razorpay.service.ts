@@ -13,8 +13,8 @@ export class RazorpayService {
 
  constructor(private http:HttpClient) { }
 
-    createOrderPaymentService(amount:any,cart:any): Observable<any> {
-          return this.http.post(PUBLIC_API_URL + "paymentController/" + 'createOrder?amount='+amount, cart, httpOptions);
+    createOrderPaymentService(amount:any,addressId:any ,cart:any): Observable<any> {
+          return this.http.post(PUBLIC_API_URL + "paymentController/" + 'createOrder?amount='+amount +"&addressId="+addressId, cart, httpOptions);
         }
 
 

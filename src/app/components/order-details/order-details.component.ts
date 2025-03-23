@@ -41,15 +41,15 @@ export class OrderDetailsComponent {
   async getCustomerOrdersById(orderId:any) {
     this.spinner.show();
     this.orderService.getCustomerOrdersById(orderId).subscribe({
-          next: (res: any) => {
-            this.orders = res.data;
-            res.data.customerOrderItems.forEach((item: any) => {
-              const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;
-              const mrp = !isNaN(Number(item.productMrp)) ? Number(item.productMrp) : 0;
-              
-              this.totalMrp += Number(mrp * quantity);
-          });
-          
+            next: (res: any) => {
+              this.orders = res.data;
+              res.data.customerOrderItems.forEach((item: any) => {
+                const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;
+                const mrp = !isNaN(Number(item.productMrp)) ? Number(item.productMrp) : 0;
+                
+                this.totalMrp += Number(mrp * quantity);
+            });
+            console.log(this.orders);
             this.spinner.hide();
           },
       error: (err: any) => {

@@ -2,7 +2,7 @@
     <h4>Shopping Cart</h4>
     <div class="row">
         <div class="col-md-8">
-            <div class="row border mb-3 p-2 cart-item bg-white" *ngFor="let data of cartService.getCartItems()">
+            <div class="row border mb-3 p-2 cart-item bg-white useShadows" *ngFor="let data of cartService.getCartItems()">
 
                 <div class="col-md-2">
                     <img [src]="data.pFileUrl" alt="Product Image" class="img-fluid">
@@ -68,10 +68,8 @@
                     <span class="text-success fs18">₹{{cartService.getCartTotalPrice()}}</span>
                 </p>
             </div>
-
-
             
-            <div class="price-box">
+            <div class=" card price-box">
                <div>
                 <h6>PRICE DETAILS ({{cartService.getCartLength()}} items)</h6>
                </div>

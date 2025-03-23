@@ -37,6 +37,7 @@ import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pa
 import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -79,7 +80,8 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     RouterModule,
     MatBadgeModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

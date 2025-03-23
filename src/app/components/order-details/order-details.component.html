@@ -20,20 +20,25 @@
         <hr>
 
         <!-- ORDER DETAILS STARTING -->
-        <div class="container mt-4">
+        <div class="container mt-3">
             <div class="row ">
                 <div class="col-md-8">
                     <h6>Products ({{orders.customerOrderItems.length}})</h6>
+                     <hr>
+                        
+                    <div *ngFor="let item of orders.customerOrderItems"
 
-                    <div *ngFor="let item of orders.customerOrderItems" class="product-card mb-3 d-flex align-items-center border-bottom py-2">
+                        class="product-card mb-3 d-flex align-items-center border-bottom py-2">
+
                         <img [src]="item.fileUrl" class="product-img rounded" alt="Sweet Bell Pepper">
+
                         <div class="product-info flex-grow-1">
                             <div class="product-title fs14 mx-2">{{item.productName}}</div>
                             <div class="product-title fs13 mx-2 mt-1">
-                                <strong>₹ {{item.productPrice}}</strong> &nbsp; 
-                                <span class="text-decoration-line-through" >MRP:  ₹{{item.productMrp}} </span>
+                                <strong>₹ {{item.productPrice}}</strong> &nbsp;
+                                <span class="text-decoration-line-through">MRP: ₹{{item.productMrp}} </span>
                             </div>
-                            
+
                             <div class="product-tags">
 
                                 <span class="badge bg-light text-dark">
@@ -55,14 +60,59 @@
 
                             <div class="product-tags">
                                 <span class="bg-light text-dark">
+                                    <i class="bi bi-truck running-truck mx-1"></i>
                                     DELIVERY :
                                     <span> <i class="bi bi-dot text-warning"></i> {{ item.deliveryStatus }} </span>
                                 </span>
                             </div>
 
+                              <!-- CUSTOMER ADDRESS  STARTING -->
+                                <div class="card p-2 my-1">
+                                    <div class="product-tags">
+                                        <span style="background-color: #f2f829;color: #212f3c;">
+                                           DELIVERED TO
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="product-tags">
+                                        <span class="bg-light text-dark">
+                                            NAME :
+                                            <span> 
+                                                {{ orders.customerAddress.customerName }}
+                                             </span>
+                                        </span>
+                                    </div>
+        
+                                    <div class="product-tags">
+                                        <span class="bg-light text-dark">
+                                            <i class="bi bi-geo-alt-fill text-primary"></i>
+                                            LOCATION :
+                                            <span [matTooltip]="orders.customerAddress.area
+                                                                + ', ' + orders.customerAddress.addressLine1 
+                                                                + ', ' + orders.customerAddress.addressLine2 
+                                                                + ', ' + orders.customerAddress.country"
+                                                  matTooltipClass="example-tooltip-uppercase">
+                                                 {{ orders.customerAddress.addressLine1  }}
+                                                 {{ orders.customerAddress.addressLine2 }}
+                                            </span>
+                                        </span>
+                                    </div>
+        
+                                    <div class="product-tags">
+                                        <span class="bg-light text-dark">
+                                            <i class="bi bi-phone-fill"></i>
+                                            MOBILE :
+                                            <span>
+                                                 {{ orders.customerAddress.mobileNumber  }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                             <!-- CUSTOMER ADDRESS  ENDING -->
 
-                            <div class="product-tags" *ngIf="item.orderTrackingId">
 
+                            <!-- TRACCKING ID STARTING-->
+                            <div class="product-tags mt-1" *ngIf="item.orderTrackingId">
                                 <span class="bg-light text-dark">
                                     Tracker ID :
                                     <span> {{ item.orderTrackingId }} </span>
@@ -70,18 +120,23 @@
                                         (click)="copyTrackerId(item.orderTrackingId)"></i>
                                 </span>
 
-                                <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
+                                <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                    color="primary" class="mx-3 py-1 trackButton">
                                     Track Order
                                 </a>
                             </div>
-
-
+                            <!-- TRACCKING ID ENDING-->
                         </div>
-                        <div class="product-price float-end fs14">{{item.quantity}} X ₹ {{item.productPrice}}</div>
+
+                        <div class="product-price float-end fs14 " style="margin-bottom: 33%;;" >
+                            {{item.quantity}} X ₹ {{item.productPrice}}
+                        </div>
                     </div>
 
                 </div>
 
+
+                <!-- PRICE CARD BOX STARTING -->
                 <div class="col-md-4">
                     <div class="price-box">
                         <div>
@@ -107,6 +162,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- PRICE CARD BOX ENDING -->
+
             </div>
         </div>
         <!-- ORDER DETAILS ENDING -->

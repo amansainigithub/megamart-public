@@ -1,5 +1,5 @@
 .container {
-    max-width: 1050px;
+    max-width: 1150px;
     margin: 0 auto;
 }
 
@@ -100,3 +100,48 @@
     margin-right: 5px;
   }
   
+
+
+  
+/* Running TRUCK */
+.running-truck {
+    display: inline-block;
+    animation: moveTruck 1s infinite ease-in-out, colorChange 1s infinite;
+    font-size: 13px;
+  }
+  @keyframes moveTruck {
+    0% {
+        transform: translateX(0);
+    }
+  
+    50% {
+        transform: translateX(10px);
+    }
+  
+    100% {
+        transform: translateX(0);
+    }
+  }
+  
+  @keyframes colorChange {
+    0% {
+        color: #d35400;
+    }
+  
+    /* Orange */
+    33% {
+        color: #27ae60;
+    }
+  
+    /* Green */
+    66% {
+        color: #2980b9;
+    }
+  
+    /* Blue */
+    100% {
+        color: #d35400;
+    }
+  
+    /* Back to Orange */
+  }

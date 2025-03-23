@@ -35,6 +35,9 @@ export class CustomerOrdersComponent {
       next: (res: any) => {
         this.orders = res.data;
 
+        console.log(this.orders);
+        
+
         const user  = this.tokenStorageService.getUser();
 
         const isLoggedIn= !!this.tokenStorageService.getToken();
@@ -43,7 +46,6 @@ export class CustomerOrdersComponent {
           const user = this.tokenStorageService.getUser();
           const id = user.id;
         }
-        console.log(this.orders);
         this.spinner.hide();
       },
       error: (err: any) => {
