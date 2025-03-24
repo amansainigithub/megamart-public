@@ -39,6 +39,12 @@ const routes: Routes = [
                   { path: 'orders-history', component: CustomerOrdersComponent},
                   { path: 'orders-details/:id', component: OrderDetailsComponent },
                   { path: 'manageAddress', component: ManageAddressComponent},
+                ],
+},
+
+{
+  path: 'pay',canActivate:[CustomerGuardService] ,
+      children: [
                   { path: 'proceedToPay', component: ProceedToPayComponent},
                   { path: 'orderPlacedSuccess', component: OrderPlacedSuccessComponent},
                 ],

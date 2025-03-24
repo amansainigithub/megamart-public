@@ -320,7 +320,7 @@ selectPayment(method: string) {
         (data) => {
 
           //Redirect to success page
-          this.router.navigateByUrl('/customer/orderPlacedSuccess');
+          this.router.navigateByUrl('/pay/orderPlacedSuccess');
 
         },
         (err) => {
