@@ -202,6 +202,13 @@
     background-color: #712CF9;
     color: white;
   }
+
+  .gtoBtn{
+    background-color: #f3e912;
+    color: black;
+  }
+
+
   @keyframes rotateAndMoveUp {
     0% {
       transform: translate(0, 0) rotate(0deg);
