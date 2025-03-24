@@ -48,12 +48,12 @@
 
                     <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
                         <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13" style="background-color: #F3EA1B;color: black;">{{order.paymentMode}}</span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
                     </span>
 
                     <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
                         <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13" style="background-color: #74fd19;color: black;">{{order.paymentMode}}</span>
+                        <span class="p-1 rounded fs13 ONLINE" >{{order.paymentMode}}</span>
                     </span>
                     
                     <button [routerLink]="['/customer/orders-details/', order.id]" 

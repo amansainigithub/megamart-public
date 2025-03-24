@@ -62,13 +62,18 @@ export class ProceedToPayComponent {
   
   
 
-  // ===========Model Open Close===========
+  // ===========Model Open Close [Update Data Model, COD Model to show Order Processed Success ]===========
   modal: any;
+  successModel:any;
   ngAfterViewInit() {
     this.modal = new bootstrap.Modal(document.getElementById('myModal'));
+    this.successModel = new bootstrap.Modal(document.getElementById('successModal'));
   }
   closeModal() {
     this.modal.hide();
+  }
+  closeSuccessModel(){
+    this.successModel.hide();
   }
 
   //GET ADDRESS=============================================================
@@ -172,7 +177,7 @@ export class ProceedToPayComponent {
     });
   }
 
-//SELECTED ADDRESS==========================================
+//============SELECTED ADDRESS===============
 selectedAddressIndex: number | null = null;
 addressHolder:any = ""
 onAddressSelect(address: any) {
@@ -268,9 +273,11 @@ selectPayment(method: string) {
   
               //update Pament to Database
               this.paymentUpdate(response , cart);
+
+               //Clear Cart Items
+              this.cartService.clearCart();
   
               //Clear Cart Items
-              localStorage.removeItem('cart');
               this.router.navigateByUrl('/home');
               
             },
@@ -330,6 +337,7 @@ selectPayment(method: string) {
   // ==========================PAYMENT COD STARTING =========================
   amountPaying_Cod(amount: any){
 
+
     if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
       this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
       position: "bottomRight", duration: 3000});
@@ -351,9 +359,19 @@ selectPayment(method: string) {
 
     this.razorpayService.codOrderPaymentService(amount ,addressId, cart ).subscribe({
       next: (res: any) => {
-        console.log("==================COD===================");
-        // console.log(res);
-        alert("success");
+
+        //Show COD MODEL
+        this.successModel.show();
+
+        this.showSuccess = false; 
+        // Wait for 6s, then show success message
+        setTimeout(() => {
+          this.showSuccess = true;
+        }, 5000);
+
+        //Clear Cart Items
+        this.cartService.clearCart();
+
       },error: (err: any) => {
         console.error('Error Creating COD Order:', err);
         this.toast.error({detail: "Error", summary: "Error Creating COD Order:", position: "bottomRight", duration: 2000});
@@ -364,12 +382,23 @@ selectPayment(method: string) {
 
   // ==============PAYMENT COD ENDING======================
 
-
-
-
-  
 //====================PAYMENT ENDING=======================
 
+
+
+
+    //COD MODEL SHOW TO SHOW SUCCESS ORDER CREATION SATRTING
+    showSuccess = false; // Initially, success message is hidden
+
+    startAnimation() {
+      this.showSuccess = false; // Reset success message
+  
+      // Wait for 6s, then show success message
+      setTimeout(() => {
+        this.showSuccess = true;
+      }, 4000);
+    }
+     //COD MODEL SHOW TO SHOW SUCCESS ORDER CREATION SATRTING
 
 
 }

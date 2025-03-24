@@ -134,3 +134,86 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+
+
+
+  /* CODE MODEL DESIGN TO CREATED ORDERE SUCCESS  STARTING*/
+  .modal-dialog {
+    max-width: 370px; /* Adjust width */
+  }
+  
+  .modal-content {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 25px;
+    text-align: center;
+    width: 100%; 
+    height: 450px; /* Adjust height */
+  }
+  
+  .modal-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    margin-top: 40px;
+    align-items: center;
+  }
+  .modal-body h4 {
+    font-weight: bold;
+    color: #712CF9;
+  }
+  
+  .modal-body .s101 {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .btn-success {
+    background-color: #00C851;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .processArea{
+    margin-top: 50px;
+  }
+  
+  .successArea{
+    margin-top: -25px;
+  }
+  
+  .modal-body .rocketIcon {
+    width: 90px;
+    margin-bottom: 15px;
+    animation: rotateAndMoveUp 6s ease-in-out forwards;
+  }
+  
+  .csBtn{
+    background-color: #712CF9;
+    color: white;
+  }
+  @keyframes rotateAndMoveUp {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(50px, -50px) rotate(1200deg); /* Rotate Faster */
+    }
+    100% {
+      transform: translate(150px, -120px) rotate(1080deg); /* Double Speed Rotation */
+      opacity: 0;
+    }
+  }
+  /* CODE MODEL DESIGN TO CREATED ORDERE SUCCESS ENDING */
+
+

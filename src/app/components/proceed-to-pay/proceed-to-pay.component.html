@@ -120,8 +120,7 @@
             <div class="payment-method d-flex justify-content-between align-items-center p-3  mt-3"
               [class.active]="paymentMode === 'COD'" (click)="selectPayment('COD')">
               <label class="w-100 d-flex ">
-                <input type="radio" name="payment" value="COD" [(ngModel)]="paymentMode"
-                  class="form-check-input me-2">
+                <input type="radio" name="payment" value="COD" [(ngModel)]="paymentMode" class="form-check-input me-2">
                 <span class="ms-2">
                   Cash on Delivery
                   <i class="bi bi-cash"></i>
@@ -361,3 +360,51 @@
   </div>
 </div>
 <!-- Update Address Form Ending -->
+
+
+
+
+<!-- ================================================================================================================== -->
+<!-- PAYMENT ===COD=== MODEL-2-->
+
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <!-- Animated Rocket Image -->
+        <img *ngIf="!showSuccess" src="../../../assets/space Images/rocket.png" alt="Rocket Image"
+          class="animated-img rocketIcon">
+
+        <!-- Success Message (Show After Animation) -->
+        <div *ngIf="showSuccess" class="success-message successArea ">
+          <!-- <i class="bi bi-check-circle-fill"></i> -->
+          <img src="../../../assets/Success-Gifs/icons8-check.gif" alt="" class="mb-5 mt-0">
+          <h4>Order Placed Successfully!</h4>
+          <p class="s101">You have successfully created your order.</p>
+          <p class="fs13 mt-1">
+            You will receive an email with the confirmation and details of your order.
+            <i class="bi bi-check-all text-success"></i>
+          </p>
+
+          <a href="/home" mat-raised-button class="csBtn mt-2">
+            continue Shopping
+          </a>
+        </div>
+
+        <!-- Continue Button -->
+        <div *ngIf="!showSuccess" class="processArea">
+          <p class="text-center fs16">Please wait...</p>
+          <p>
+            <i class="bi bi-rocket-takeoff text-primary fs20"></i>
+            Hand on we Proceed to Prepare Order
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAYMENT ===COD=== MODEL-2-->
