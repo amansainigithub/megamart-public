@@ -12,7 +12,10 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class ForgotPasswordComponent {
 
-  constructor(private _SSH:SnackBarHelperService , private authService:AuthService , private router:Router , private toast:NgToastService){
+  constructor(private _SSH:SnackBarHelperService ,
+     private authService:AuthService , 
+     private router:Router ,
+      private toast:NgToastService){
 
   }
   response:any;

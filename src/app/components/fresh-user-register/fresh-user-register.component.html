@@ -1,12 +1,124 @@
 <div class="card card-container" >
     <div class="card-body">
 
-        <h5 class="text-center">Create Password</h5>
+        <h3 class="text-center text-warning">Create Account</h3>
   
       <form 
+      name="regForm"
       #userlogin = "ngForm"
        (ngSubmit)="userlogin.form.valid && createAccount()" 
        novalidate>
+
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label class="fs12">First Name</label>
+              <input 
+              type="text" 
+              class="form-control" 
+              name="firstName" 
+              [(ngModel)]="regForm.firstName" 
+              required
+              #firstName="ngModel" 
+              minlength="3" 
+              maxlength="50" 
+              [class.dirty]="firstName.dirty" 
+              [class.touched]="firstName.touched"
+              [ngClass]="{ 'is-invalid': firstName.errors && (firstName.touched || firstName.dirty ) }" />
+
+              <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty )" class="invalid-feedback">
+
+                <div *ngIf="firstName.errors['required'] ">
+                  name is required
+                </div>
+
+                <div *ngIf="firstName.errors['minlength']">
+                  name must be at least 3 characters
+                </div>
+
+                <div *ngIf="firstName.errors['maxlength']">
+                  name must be at most 50 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div class="col">
+              <div class="form-group">
+                <label class="fs12">Last Name</label>
+                <input 
+                type="text" 
+                class="form-control" 
+                name="lastName" 
+                [(ngModel)]="regForm.lastName" 
+                required
+                #lastName="ngModel" 
+                minlength="3" 
+                maxlength="50" 
+                [class.dirty]="lastName.dirty" 
+                [class.touched]="lastName.touched"
+                [ngClass]="{ 'is-invalid': lastName.errors && (lastName.touched || lastName.dirty ) }" />
+  
+                <div *ngIf="lastName.errors && (lastName.touched || lastName.dirty )" class="invalid-feedback">
+  
+                  <div *ngIf="lastName.errors['required'] ">
+                    LastName is required
+                  </div>
+  
+                  <div *ngIf="lastName.errors['minlength']">
+                    LastName must be at least 3 characters
+                  </div>
+  
+                  <div *ngIf="lastName.errors['maxlength']">
+                    LastName must be at most 50 characters
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div>
+          <div class="form-group">
+            <label class="fs12">Email</label>
+            <input 
+              type="email" 
+              class="form-control " 
+              name="email" 
+              [(ngModel)]="regForm.email" 
+              required
+              #email="ngModel" 
+              minlength="3" 
+              maxlength="50" 
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+              [class.dirty]="email.dirty" 
+              [class.touched]="email.touched"
+              [ngClass]="{ 'is-invalid': email.errors && (email.touched || email.dirty ) }" />
+        
+            <div *ngIf="email.errors && (email.touched || email.dirty )" class="invalid-feedback">
+        
+              <div *ngIf="email.errors['required']">
+                Email is required
+              </div>
+        
+              <div *ngIf="email.errors['minlength']">
+                Email must be at least 3 characters
+              </div>
+        
+              <div *ngIf="email.errors['maxlength']">
+                Email must be at most 50 characters
+              </div>
+        
+              <div *ngIf="email.errors['pattern']">
+                Please enter a valid email address
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        
+
+
 
       <label for="inputPassword5" class="form-label">password</label>
   
@@ -18,7 +130,7 @@
           aria-describedby="Mobile OTP" 
           name="password"
           required="required"
-          [(ngModel)]="setupPassForm.password"
+          [(ngModel)]="regForm.password"
           #password="ngModel"
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           [class.dirty]="password.dirty" 
@@ -30,7 +142,8 @@
                 Password is required.
               </div>
               <div *ngIf="password.errors?.['pattern']">
-                Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.
+                Password must be at least 8 characters long, include an uppercase letter
+                , a lowercase letter, a number, and a special character.
               </div>
             </div>
           </div>
@@ -44,7 +157,7 @@
             aria-describedby="Mobile OTP" 
             name="conformPassword"
             required="required"
-            [(ngModel)]="setupPassForm.conformPassword"
+            [(ngModel)]="regForm.conformPassword"
             #conformpassword="ngModel"
             pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
             [class.dirty]="conformpassword.dirty" 
@@ -70,7 +183,10 @@
       </div> -->
   
       <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
-        <button  class="btn btn-success btn-sm btn-block"  [disabled]="userlogin.invalid">Create Account</button>
+        <button mat-raised-button  class="btn-sm btn-block p-3"  
+          [disabled]="userlogin.invalid" color="primary">
+          Create Account
+        </button>
         
       </div>
     </form>

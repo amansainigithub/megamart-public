@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { CustomerGuardService } from './customerGuard/customer-guard.service';
 import { FreshUserRegisterComponent } from './components/fresh-user-register/fresh-user-register.component';
@@ -39,6 +39,7 @@ const routes: Routes = [
                   { path: 'orders-history', component: CustomerOrdersComponent},
                   { path: 'orders-details/:id', component: OrderDetailsComponent },
                   { path: 'manageAddress', component: ManageAddressComponent},
+                  { path: 'profile', component: ProfileComponent},
                 ],
 },
 
@@ -47,6 +48,7 @@ const routes: Routes = [
       children: [
                   { path: 'proceedToPay', component: ProceedToPayComponent},
                   { path: 'orderPlacedSuccess', component: OrderPlacedSuccessComponent},
+                 
                 ],
 }
 ];

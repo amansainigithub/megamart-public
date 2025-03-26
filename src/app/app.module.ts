@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -38,7 +38,7 @@ import { OrderPlacedSuccessComponent } from './components/order-placed-success/o
 import {MatExpansionModule} from '@angular/material/expansion';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -81,7 +81,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatBadgeModule,
     MatStepperModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],

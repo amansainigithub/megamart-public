@@ -71,7 +71,7 @@
     <nav class="navbar">
       <div class="navbar-logo">
         <a href="#">
-          <span class="logo-text">Flipkart</span>
+          <span class="logo-text">Shoppers</span>
           <small style="color: black;">Explore <span class="plus">Plus</span> ✨</small>
         </a>
       </div>
@@ -116,17 +116,11 @@
             <span>Order History</span>
           </button>
 
-          <button mat-menu-item [routerLink]="'/profile'" (click)="setActiveTab('/customer/ordeer')"
-            routerLinkActive="active-menu">
-            <mat-icon>person</mat-icon>
-            <span>My Profile</span>
-          </button>
-
-          <button mat-menu-item [routerLink]="'/change-password'" (click)="setActiveTab('/customer/change-password')"
-            routerLinkActive="active-menu">
-            <mat-icon>vpn_key</mat-icon>
-            <span>Change Password</span>
-          </button>
+          <button mat-menu-item [routerLink]="'/customer/profile'"
+          (click)="setActiveTab('/customer/profile')" routerLinkActive="active-menu">
+          <mat-icon>history</mat-icon>
+          <span>profile</span>
+        </button>
 
           <button mat-menu-item class="text-danger" (click)="logout()">
             <mat-icon class="text-danger">logout</mat-icon>
@@ -168,6 +162,14 @@
                   [class.active]="activeTab === '/customer/manageAddress'"
                   (click)="setActiveTab('/customer/manageAddress')">
                   <i class="bi bi-card-list me-2"></i> Address
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/profile"
+                  [class.active]="activeTab === '/customer/profile'"
+                  (click)="setActiveTab('/customer/profile')">
+                  <i class="bi bi-card-list me-2"></i> Profile
                 </a>
               </li>
             </ul>

@@ -1,0 +1,134 @@
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <img src="../../../assets/Avitar Images/male avitar12.jpg" 
+      height="300" width="300" alt="Profile Image" class="img-fluid rounded-circle" />
+    </div>
+
+    <!-- Vertical line -->
+    <div class="col-md-1 d-flex align-items-center ">
+      <div class="vr" style="height: 100%; width: 1px; background-color: rgb(231, 220, 220);"></div>
+  </div>
+
+
+    <div class="col-md-7">
+      <div class="card card-container mt-3 border-0">
+        <div class="card-body">
+          <h3 class="text-primary">Profile</h3>
+
+          <form 
+            name="profileForm"
+            #userlogin="ngForm"
+            (ngSubmit)="userlogin.form.valid && updateProfile()" 
+            novalidate
+          >
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class="fs12">First Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    name="firstName" 
+                    [(ngModel)]="profileForm.firstName" 
+                    required
+                    #firstName="ngModel" 
+                    minlength="3" 
+                    maxlength="50"
+                    [ngClass]="{ 'is-invalid': firstName.errors && (firstName.touched || firstName.dirty) }" 
+                  />
+                  <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty)" class="invalid-feedback">
+                    <div *ngIf="firstName.errors['required']">Name is required</div>
+                    <div *ngIf="firstName.errors['minlength']">Name must be at least 3 characters</div>
+                    <div *ngIf="firstName.errors['maxlength']">Name must be at most 50 characters</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <label class="fs12">Last Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    name="lastName" 
+                    [(ngModel)]="profileForm.lastName" 
+                    required
+                    #lastName="ngModel" 
+                    minlength="3" 
+                    maxlength="50"
+                    [ngClass]="{ 'is-invalid': lastName.errors && (lastName.touched || lastName.dirty) }" 
+                  />
+                  <div *ngIf="lastName.errors && (lastName.touched || lastName.dirty)" class="invalid-feedback">
+                    <div *ngIf="lastName.errors['required']">Last Name is required</div>
+                    <div *ngIf="lastName.errors['minlength']">Last Name must be at least 3 characters</div>
+                    <div *ngIf="lastName.errors['maxlength']">Last Name must be at most 50 characters</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-group my-2 mb-1">
+                <label class="fs12">
+                  Email
+                  <span *ngIf="profileForm.emailVerify === 'Y'" class="badge bg-success p-2">
+                    Verified
+                  </span>
+                  <span *ngIf="profileForm.emailVerify === 'N'" class="badge bg-danger p-2">
+                    Not Verified
+                  </span>
+                </label>
+                
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  name="email" 
+                  [(ngModel)]="profileForm.email" 
+                  required
+                  #email="ngModel" 
+                  minlength="3" 
+                  maxlength="50" 
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                  [ngClass]="{ 'is-invalid': email.errors && (email.touched || email.dirty) }" 
+                />
+                <div *ngIf="email.errors && (email.touched || email.dirty)" class="invalid-feedback">
+                  <div *ngIf="email.errors['required']">Email is required</div>
+                  <div *ngIf="email.errors['minlength']">Email must be at least 3 characters</div>
+                  <div *ngIf="email.errors['maxlength']">Email must be at most 50 characters</div>
+                  <div *ngIf="email.errors['pattern']">Please enter a valid email address</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="fs12">Mobile</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="mobile" 
+                  [(ngModel)]="profileForm.mobile" 
+                  #mobile="ngModel" 
+                  disabled="disabled"
+                />
+              </div>
+            </div>
+
+            <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
+              <button 
+                mat-raised-button  
+                class="btn-sm btn-block p-3"  
+                [disabled]="userlogin.invalid" 
+                color="primary"
+              >
+                Create Account
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
