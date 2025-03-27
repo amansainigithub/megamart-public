@@ -104,4 +104,27 @@ export class ProfileComponent implements OnInit {
     }
 
 
+
+    resendLink(){
+
+      this.spinner.show();
+      this.profileService.resendEmailLink(this.currentUser.id).subscribe({
+              next: (res: any) => {
+                this.profileForm = res.data;
+                console.log(this.profileForm);
+                this.toast.success({detail: "Email Link Sent", summary: "Profile Update Success", position: "bottomRight", duration: 2000});
+
+
+                this.getProfile(this.currentUser.id);
+                this.spinner.hide();
+            },
+        error: (err: any) => {
+          console.error('Link Not Sent', err);
+          this.spinner.hide();
+        },
+      });
+
+    }
+
+
 }

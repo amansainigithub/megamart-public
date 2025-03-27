@@ -23,4 +23,9 @@ export class ProfileService {
      updateCustomerProfile(updateProfile: any): Observable<any> {
       return this.http.post(PUBLIC_API_URL +  "profileController/" + 'updateCustomerProfile', updateProfile);
     }
+
+    resendEmailLink(id:any): Observable<any> {
+      return this.http.get(PUBLIC_API_URL + "profileController/" + 'resendEmailLink/'+id, httpOptions);
+ }
+
 }
