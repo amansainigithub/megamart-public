@@ -69,6 +69,42 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class="fs12">Gender</label>
+                  <select
+                    class="form-control"
+                    name="customerGender"
+                    [(ngModel)]="profileForm.customerGender"
+                    #customerGender="ngModel"
+                    [ngClass]="{ 'is-invalid': customerGender.errors && (customerGender.touched || customerGender.dirty) }"
+                  >
+                    <option value="null" selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+  
+  
+              <div class="col">
+                <!-- DOB Field -->
+                <div class="form-group">
+                  <label class="fs12">Date of Birth</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="dob"
+                    [(ngModel)]="profileForm.dob"
+                    #dob="ngModel"
+                    [ngClass]="{ 'is-invalid': dob.errors && (dob.touched || dob.dirty) }"
+                  />
+                </div>
+              </div>
+            </div>
+
             <div>
               <div class="form-group my-2 mb-1">
                 <label class="fs12">
@@ -79,6 +115,12 @@
                   <span *ngIf="profileForm.emailVerify === 'N'" class="badge bg-danger p-2">
                     Not Verified
                   </span>
+                 <span class="mx-3" >
+                  <a href="#" style="text-decoration: none;">
+                    Click Here to Verify Email
+                    <i class="bi bi-envelope-check-fill text-success"></i>
+                  </a>
+                 </span>
                 </label>
                 
                 <input 
@@ -91,6 +133,7 @@
                   minlength="3" 
                   maxlength="50" 
                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                  disabled="disabled"
                   [ngClass]="{ 'is-invalid': email.errors && (email.touched || email.dirty) }" 
                 />
                 <div *ngIf="email.errors && (email.touched || email.dirty)" class="invalid-feedback">
@@ -116,14 +159,20 @@
               </div>
             </div>
 
+           
+            
+            
+
+            
+
             <div class="form-group d-grid gap-2 col-12 mx-auto mt-4">
               <button 
                 mat-raised-button  
-                class="btn-sm btn-block p-3"  
+                class="btn-block p-4 bg-dark"  
                 [disabled]="userlogin.invalid" 
                 color="primary"
               >
-                Create Account
+                Update Profile
               </button>
             </div>
           </form>

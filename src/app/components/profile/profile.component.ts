@@ -22,7 +22,8 @@ export class ProfileComponent implements OnInit {
     lastName:null,
     email:null,
     mobile:null,
-    emailVerify:null
+    emailVerify:null,
+    customerGender:null
   };
 
   profileUpdateForm: any = {
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit {
     lastName:null,
     email:null,
     emailVerify:null,
-    id:null
+    id:null,
+    customerGender:null
   };
 
    constructor(
