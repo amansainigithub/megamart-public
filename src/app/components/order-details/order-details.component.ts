@@ -42,6 +42,8 @@ export class OrderDetailsComponent {
     this.spinner.show();
     this.orderService.getCustomerOrdersById(orderId).subscribe({
             next: (res: any) => {
+              console.log(res);
+              
               this.orders = res.data;
               res.data.customerOrderItems.forEach((item: any) => {
                 const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;

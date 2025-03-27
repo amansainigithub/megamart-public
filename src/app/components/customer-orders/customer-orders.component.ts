@@ -34,7 +34,8 @@ export class CustomerOrdersComponent {
     this.orderService.getCustomerOrders().subscribe({
       next: (res: any) => {
         this.orders = res.data;
-
+        console.log("=====================");
+        
         console.log(this.orders);
         
 

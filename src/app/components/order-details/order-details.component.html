@@ -6,11 +6,13 @@
         <!-- ORDER ID SECTION STARTING -->
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-1 fs14">Order ID: {{orders.orderId}}</p>
-                <p class="mb-1 text-muted fs14 bg-light px-1 rounded">
-                    <span>Placed on -</span>
-                    {{orders.orderDateTime}}
+                <p *ngIf="orders?.orderId" class="mb-1 fs14">Order ID: {{ orders.orderId }}</p>
+
+                <p *ngIf="orders?.orderDateTime" class="mb-1 text-muted fs14 bg-light px-1 rounded">
+                    <span>Placed on -</span> 
+                    {{ orders.orderDateTime }}
                 </p>
+                
                 <!-- <p class="mb-1 text-muted">Esd. delivery <span>4 Days</span></p> -->
             </div>
             <!-- <button mat-raised-button class="fs14 pendingBtn">Pending</button> -->
@@ -23,7 +25,9 @@
         <div class="container mt-3">
             <div class="row ">
                 <div class="col-md-8">
-                    <h6>Products ({{orders.customerOrderItems.length}})</h6>
+                    <h6 *ngIf="orders?.customerOrderItems" >
+                        Products ({{orders.customerOrderItems.length}})
+                    </h6>
                      <hr>
                         
                     <div *ngFor="let item of orders.customerOrderItems"
@@ -78,7 +82,7 @@
                                         <span class="bg-light text-dark">
                                             NAME :
                                             <span> 
-                                                {{ orders.customerAddress.customerName }}
+                                                {{ item.customerName }}
                                              </span>
                                         </span>
                                     </div>
@@ -87,13 +91,13 @@
                                         <span class="bg-light text-dark">
                                             <i class="bi bi-geo-alt-fill text-primary"></i>
                                             LOCATION :
-                                            <span [matTooltip]="orders.customerAddress.area
-                                                                + ', ' + orders.customerAddress.addressLine1 
-                                                                + ', ' + orders.customerAddress.addressLine2 
-                                                                + ', ' + orders.customerAddress.country"
+                                            <span [matTooltip]="item.area
+                                                                + ', ' + item.addressLine1 
+                                                                + ', ' + item.addressLine2 
+                                                                + ', ' + item.country"
                                                   matTooltipClass="example-tooltip-uppercase">
-                                                 {{ orders.customerAddress.addressLine1  }}
-                                                 {{ orders.customerAddress.addressLine2 }}
+                                                 {{ item.addressLine1  }}
+                                                 {{ item.addressLine2 }}
                                             </span>
                                         </span>
                                     </div>
@@ -103,7 +107,7 @@
                                             <i class="bi bi-phone-fill"></i>
                                             MOBILE :
                                             <span>
-                                                 {{ orders.customerAddress.mobileNumber  }}
+                                                 {{ item.mobileNumber  }}
                                             </span>
                                         </span>
                                     </div>
