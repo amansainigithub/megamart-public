@@ -104,7 +104,7 @@
                     Yay! Your total discount is ₹{{cartService.getDiscountPrice()}}
                 </div>
                   
-                <button class="order-btn mt-3 d-block text-center border-0" [routerLink]="['/pay/proceedToPay']">
+                <button class="order-btn mt-3 d-block text-center border-0" (click)="proceedToPay()" >
                     Continue
                   </button>
               </div>

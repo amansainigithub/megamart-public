@@ -5,6 +5,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validator
 import Validation from '../utils/Validation';
 import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,12 +29,15 @@ export class LoginComponent implements OnInit {
     private authService: AuthService, 
     private tokenStorage: TokenStorageService ,
     private _SSH:SnackBarHelperService,
+    private tokenStorageService:TokenStorageService,
+    private router:Router,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
+        this.router.navigateByUrl('/home');
     }
   }
 
@@ -56,9 +60,11 @@ export class LoginComponent implements OnInit {
         //this.reloadPage();
       },
       err => {
-        this._SSH.normalSnackBar('Invalid Username and Password', 'cancle',3000);
-        this.errorMessage = err.error.message;
+        this._SSH.normalSnackBar('Invalid Username and Password', 'Cancle',3000);
+        console.log(err);
+        
         this.isLoginFailed = true;
+        this.progressBarShow =false;
         this.spinner.hide();
         
       }
