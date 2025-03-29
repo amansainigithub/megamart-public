@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import Validation from '../utils/Validation';
 import { SnackBarHelperService } from '../_helpers/snackBar_Service/snack-bar-helper.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
@@ -14,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
  
-  form: any = {
+  form: any = { 
     username: null,
     password: null,
     userrole: 'ROLE_CUSTOMER'
@@ -47,7 +45,7 @@ export class LoginComponent implements OnInit {
     const { username, password , userrole } = this.form;
     this.authService.login(username, password , userrole).subscribe(
       data => {
-        console.log("LOGIN:: "  + data) 
+        console.log("LOGIN:: "  , data) 
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
@@ -56,8 +54,6 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorage.getUser().roles;
         this.spinner.hide();
         window.location.href = '/';
-        // window.location.href = '/customer/shopper';
-        //this.reloadPage();
       },
       err => {
         this._SSH.normalSnackBar('Invalid Username and Password', 'Cancle',3000);

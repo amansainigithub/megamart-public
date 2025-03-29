@@ -21,9 +21,23 @@
             <small style="color: black;">Explore <span class="plus">Plus</span> ✨</small>
         </a>
     </div>
-    <div class="navbar-search">
-        <input type="text" placeholder="Search for Products, Brands and More">
+    <!-- <div class="navbar-search">
+        <input type="text" placeholder="Search for Products, Brands and More 1">
+    </div> -->
+
+    <div class="navbar-search" (click)="$event.stopPropagation()">
+      <div class="input-container">
+          <input type="text" [(ngModel)]="searchQuery" (input)="filterResults()" placeholder="Search for Products, Brands and More">
+          <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
+      </div>
+      <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
+          <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.name)">
+              {{ product.name }}
+          </div>
+      </div>
     </div>
+
+
     <div class="navbar-menu">
 
           <!-- Cart Button with Count -->
@@ -75,9 +89,22 @@
           <small style="color: black;">Explore <span class="plus">Plus</span> ✨</small>
         </a>
       </div>
-      <div class="navbar-search">
-        <input type="text" placeholder="Search for Products, Brands and More">
-      </div>
+
+
+
+      <div class="navbar-search" (click)="$event.stopPropagation()">
+        <div class="input-container">
+            <input type="text" [(ngModel)]="searchQuery" (input)="filterResults()" placeholder="Search for Products, Brands and More">
+            <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
+        </div>
+        <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
+            <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.name)">
+                {{ product.name }}
+            </div>
+        </div>
+    </div>
+
+
       <div class="navbar-menu">
 
         <!-- Cart Button with Count -->
@@ -91,7 +118,6 @@
           </a>
         </div>
         <!-- Cart ENDING with Count -->
-
 
         <!-- Profile Button -->
         <button mat-button [matMenuTriggerFor]="userProfile"

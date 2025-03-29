@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -79,5 +79,40 @@ setActiveTab(tab: string) {
   localStorage.setItem('activeTab', tab);
 }
 
+searchQuery: string = '';
+        isDropdownOpen: boolean = false;
+        products = [
+            { name: "Laptop" },
+            { name: "Smartphone" },
+            { name: "Headphones" },
+            { name: "Smartwatch" },
+            { name: "Camera" },
+            { name: "Tablet" },
+            { name: "Bluetooth Speaker" },
+            { name: "Gaming Console" }
+        ];
+        filteredResults:any = [];
 
+        filterResults() {
+            this.filteredResults = this.searchQuery.length > 0 ? this.products.filter(product =>
+                product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+            ) : [];
+            this.isDropdownOpen = this.filteredResults.length > 0;
+        }
+
+        selectProduct(name: string) {
+            this.searchQuery = name;
+            this.isDropdownOpen = false;
+        }
+
+        clearSearch() {
+            this.searchQuery = '';
+            this.filteredResults = [];
+            this.isDropdownOpen = false;
+        }
+
+        @HostListener('document:click', ['$event'])
+        onClickOutside(event: Event) {
+            this.isDropdownOpen = false;
+        }
 }

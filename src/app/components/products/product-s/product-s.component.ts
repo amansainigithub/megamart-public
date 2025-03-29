@@ -22,9 +22,6 @@ export class ProductSComponent {
       const cI = params['cI'];
       const cN = params['cN'];
       const sQNext = params['sQNext'];
-      console.log('categoryId:', cI); 
-      console.log('categoryName:', cN);
-      console.log('sQNext :', sQNext);
 
       if(sQNext !==null || sQNext !== "" || sQNext !== undefined){
         if(sQNext === 'NO'){
