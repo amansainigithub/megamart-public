@@ -100,14 +100,19 @@
                     </p>
 
                     
-                    <p *ngIf="item.orderTrackingId" class="tracker-id fs13 ">
-                        <strong>TRACKER ID:</strong> {{ item.orderTrackingId }}
-                        <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(item.orderTrackingId)"></i>
-                    
-                        <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
-                            Track Order
-                        </a>
-                    </p>
+                    <div *ngIf="item.orderTrackingId" class="tracker-id fs13 ">
+                        <p >
+                            <strong>TRACKER ID:</strong> {{ item.orderTrackingId }}
+                            <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(item.orderTrackingId)"></i>
+                        
+                            <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
+                                Track Order
+                            </a>
+                        </p>
+                        <p>
+                            <strong>Expected Delivery:</strong> {{ item.deliveryDate }}
+                        </p>
+                    </div>
                     
                     
                 </div>
