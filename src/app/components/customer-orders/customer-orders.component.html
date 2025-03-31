@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="orders && orders.length > 0">
     <h4 class="order-heading">Order Details</h4>
     <mat-accordion>
         <mat-expansion-panel *ngFor="let order of orders; let i = index" [expanded]="i === 0" class="mb-3">
@@ -119,6 +119,11 @@
     </mat-accordion>
 </div>
 
+
+<div class="container mt-5" *ngIf="orders && orders.length === 0">
+    No Orders Found
+  </div>
+  
 
 
 

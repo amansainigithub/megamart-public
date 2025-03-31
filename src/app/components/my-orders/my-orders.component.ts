@@ -25,7 +25,6 @@ export class MyOrdersComponent {
   ) {}
 
   ngOnInit(): void {
-
     
     const user = this.tokenStorageService.getUser();
     if (!user || Object.keys(user).length === 0) {
