@@ -42,6 +42,7 @@ export class CustomerOrdersComponent {
     this.spinner.show();
     this.orderService.getCustomerOrders(userId).subscribe({
       next: (res: any) => {
+        
         this.orders = res.data;
         console.log("=====================");
         

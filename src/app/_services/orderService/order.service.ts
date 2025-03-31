@@ -23,7 +23,7 @@ export class OrderService {
     return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrdersById/'+orderId, httpOptions);
 }
 
-getMyOrdersDelivered(userId:any): Observable<any> {
-  return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered/'+userId, httpOptions);
+  getMyOrdersDelivered(userId:any): Observable<any> {
+    return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered/'+userId, httpOptions);
 }
 }

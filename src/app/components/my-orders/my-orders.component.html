@@ -8,16 +8,16 @@
                 <mat-panel-title class="order-info d-flex w-100 align-items-center">
                     <span class="changeDesign">
                         <span class="headerH">ORDER ID:</span>
-                        {{ order.orderId }}
+                        {{ order.razorpayOrderId }}
                     </span>
-                    <span class="changeDesign">
+                    <!-- <span class="changeDesign">
                         <span class="headerH">ORDERS :</span>
                         {{order.totalOrders}}
-                    </span>
-                    <span class="changeDesign">
+                    </span> -->
+                    <!-- <span class="changeDesign">
                         <span class="headerH">AMOUNT:</span> 
                         ₹ {{order.totalPrice}}
-                    </span>
+                    </span> -->
                     <span class="changeDesign">
                         <span class="headerH">Placed By - </span> 
                         {{order.orderDateTime}}
@@ -44,9 +44,8 @@
 
 
             <!-- Iterate over items inside an order -->
-            <div *ngFor="let item of order.customerOrderItems
-            " [routerLink]="['/order-details', order.id]" class="order-card">
-                <img [src]="item.fileUrl" class="order-image" alt="Product Image">
+            <div [routerLink]="['/order-details', order.id]" class="order-card">
+                <img [src]="order.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
                     <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
                         {{order.paymentStatus}}
@@ -56,15 +55,15 @@
                         {{order.paymentStatus}}
                         <i class="bi bi-check text-dark"></i>
                     </span>
-                    <p class="order-title">{{ item.productName }}</p>
+                    <p class="order-title">{{ order.productName }}</p>
                     <p class="order-details">
-                        <strong>Quantity : </strong> {{ item.quantity }}
+                        <strong>Quantity : </strong> {{ order.quantity }}
                         &nbsp; | &nbsp;
-                        <strong>Price : </strong> ₹{{ item.productPrice }}
+                        <strong>Price : </strong> ₹{{ order.productPrice }}
                         <!-- &nbsp; | &nbsp;
                         <strong>BRAND : </strong> {{ item.productBrand }} -->
                         &nbsp; | &nbsp;
-                        <strong>SIZE : </strong> {{ item.productSize }}
+                        <strong>SIZE : </strong> {{ order.productSize }}
                         <!-- &nbsp; | &nbsp;
                         <span><strong>DELIVERY : </strong><span class="headerH">
                                 <i class="bi bi-truck running-truck me-2"></i>
@@ -74,10 +73,10 @@
                     </p>
 
                     
-                    <div *ngIf="item.orderTrackingId" class="tracker-id fs13 ">
+                    <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
                         <p >
-                            <strong>TRACKER ID:</strong> {{ item.orderTrackingId }}
-                            <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(item.orderTrackingId)"></i>
+                            <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
+                            <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(order.orderTrackingId)"></i>
                         
                             <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
                                 Track Order
@@ -85,7 +84,10 @@
                         </p>
                         <p>
                             <strong>Expected Delivery:</strong>
-                             {{ item.deliveryDate }}
+                             <span class="text-success mx-2" >DELIVERED                        
+                                 <i class="bi bi-check "></i>
+                                 {{order.deliveryDateTime}}
+                             </span>
                         </p>
                     </div>
                     
@@ -96,13 +98,13 @@
                     <div class="stepper">
                       <div *ngFor="let step of statuses; let i = index" class="step">
                         <div class="step-content">
-                          <div class="circle" [ngClass]="{'active': i <= getStatusIndex(item.deliveryStatus), 'completed': i < getStatusIndex(item.deliveryStatus)}">
-                            <i *ngIf="i <= getStatusIndex(item.deliveryStatus)" class="bi bi-check2"></i> 
+                          <div class="circle" [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
+                            <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i> 
                             <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
                           </div>
                           <span class="status-text">{{ step }}</span>
                         </div>
-                        <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex(item.deliveryStatus)}"></div>
+                        <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
                       </div>
                     </div>
                   </div> 
