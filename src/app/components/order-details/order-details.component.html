@@ -30,34 +30,32 @@
                     </h6>
                      <hr>
                         
-                    <div *ngFor="let item of orders.customerOrderItems"
+                    <div class="product-card mb-3 d-flex align-items-center border-bottom py-2">
 
-                        class="product-card mb-3 d-flex align-items-center border-bottom py-2">
-
-                        <img [src]="item.fileUrl" class="product-img rounded" alt="Sweet Bell Pepper">
+                        <img [src]="orders.fileUrl" class="product-img rounded" alt="Sweet Bell Pepper">
 
                         <div class="product-info flex-grow-1">
-                            <div class="product-title fs14 mx-2">{{item.productName}}</div>
+                            <div class="product-title fs14 mx-2">{{orders.productName}}</div>
                             <div class="product-title fs13 mx-2 mt-1">
-                                <strong>₹ {{item.productPrice}}</strong> &nbsp;
-                                <span class="text-decoration-line-through">MRP: ₹{{item.productMrp}} </span>
+                                <strong>₹ {{orders.productPrice}}</strong> &nbsp;
+                                <span class="text-decoration-line-through">MRP: ₹{{orders.productMrp}} </span>
                             </div>
 
                             <div class="product-tags">
 
                                 <span class="badge bg-light text-dark">
                                     SIZE :
-                                    <span>{{item.productSize}}</span>
+                                    <span>{{orders.productSize}}</span>
                                 </span>
 
                                 <span class="badge bg-light text-dark">
                                     BRAND :
-                                    <span>{{item.productBrand}}</span>
+                                    <span>{{orders.productBrand}}</span>
                                 </span>
 
                                 <span class="badge bg-light text-dark">
                                     QTY :
-                                    <span>{{item.quantity}}</span>
+                                    <span>{{orders.quantity}}</span>
                                 </span>
 
                             </div>
@@ -66,7 +64,7 @@
                                 <span class="bg-light text-dark">
                                     <i class="bi bi-truck running-truck mx-1"></i>
                                     DELIVERY :
-                                    <span> <i class="bi bi-dot text-warning"></i> {{ item.deliveryStatus }} </span>
+                                    <span> <i class="bi bi-dot text-warning"></i> {{ orders.deliveryStatus }} </span>
                                 </span>
                             </div>
 
@@ -82,7 +80,7 @@
                                         <span class="bg-light text-dark">
                                             NAME :
                                             <span> 
-                                                {{ item.customerName }}
+                                                {{ orders.customerName }}
                                              </span>
                                         </span>
                                     </div>
@@ -91,13 +89,13 @@
                                         <span class="bg-light text-dark">
                                             <i class="bi bi-geo-alt-fill text-primary"></i>
                                             LOCATION :
-                                            <span [matTooltip]="item.area
-                                                                + ', ' + item.addressLine1 
-                                                                + ', ' + item.addressLine2 
-                                                                + ', ' + item.country"
+                                            <span [matTooltip]="orders.area
+                                                                + ', ' + orders.addressLine1 
+                                                                + ', ' + orders.addressLine2 
+                                                                + ', ' + orders.country"
                                                   matTooltipClass="example-tooltip-uppercase">
-                                                 {{ item.addressLine1  }}
-                                                 {{ item.addressLine2 }}
+                                                 {{ orders.addressLine1  }}
+                                                 {{ orders.addressLine2 }}
                                             </span>
                                         </span>
                                     </div>
@@ -107,7 +105,7 @@
                                             <i class="bi bi-phone-fill"></i>
                                             MOBILE :
                                             <span>
-                                                 {{ item.mobileNumber  }}
+                                                 {{ orders.mobileNumber  }}
                                             </span>
                                         </span>
                                     </div>
@@ -116,12 +114,12 @@
 
 
                             <!-- TRACCKING ID STARTING-->
-                            <div class="product-tags mt-1" *ngIf="item.orderTrackingId">
+                            <div class="product-tags mt-1" *ngIf="orders.orderTrackingId">
                                 <span class="bg-light text-dark">
                                     Tracker ID :
-                                    <span> {{ item.orderTrackingId }} </span>
+                                    <span> {{ orders.orderTrackingId }} </span>
                                     <i style="cursor: pointer;" class="bi bi-copy"
-                                        (click)="copyTrackerId(item.orderTrackingId)"></i>
+                                        (click)="copyTrackerId(orders.orderTrackingId)"></i>
                                 </span>
 
                                 <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
@@ -133,7 +131,7 @@
                         </div>
 
                         <div class="product-price float-end fs14 " style="margin-bottom: 33%;;" >
-                            {{item.quantity}} X ₹ {{item.productPrice}}
+                            {{orders.quantity}} X ₹ {{orders.productPrice}}
                         </div>
                     </div>
 
@@ -144,16 +142,16 @@
                 <div class="col-md-4">
                     <div class="price-box">
                         <div>
-                            <h6>PRICE DETAILS ( {{orders.customerOrderItems.length}} ) items</h6>
+                            <h6>PRICE DETAILS ( 1 ) items</h6>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <span class="pdKeys">Total MRP (Inc. of Taxes)</span>
-                            <span class="pdKeys">₹{{totalMrp}}</span>
+                            <span class="pdKeys">₹{{orders.productMrp}}</span>
                         </div>
                         <div class="d-flex justify-content-between">
                             <span class="pdKeys">Shoppers Discount</span>
-                            <span class="text-success pdKeys">- ₹{{totalDiscount}}%</span>
+                            <span class="text-success pdKeys">- ₹{{orders.productDiscount}}%</span>
                         </div>
                         <div class="d-flex justify-content-between">
                             <span class="pdKeys">Shipping Charges</span>
@@ -162,7 +160,7 @@
                         <hr>
                         <div class="d-flex justify-content-between">
                             <span>Total</span>
-                            <span class="text-success pdKeys">₹{{orders.totalPrice}}</span>
+                            <span class="text-success pdKeys">₹{{orders.productPrice}}</span>
                         </div>
                     </div>
                 </div>

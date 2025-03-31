@@ -53,38 +53,45 @@
                         {{order.paymentStatus}}
                         <i class="bi bi-check text-dark"></i>
                     </span>
+
                     <p class="order-title">{{ order.productName }}</p>
+                    
                     <p class="order-details">
                         <strong>Quantity : </strong> {{ order.quantity }}
                         &nbsp; | &nbsp;
                         <strong>Price : </strong> ₹{{ order.productPrice }}
-                        <!-- &nbsp; | &nbsp;
-                        <strong>BRAND : </strong> {{ item.productBrand }} -->
                         &nbsp; | &nbsp;
                         <strong>SIZE : </strong> {{ order.productSize }}
-                        <!-- &nbsp; | &nbsp;
-                        <span><strong>DELIVERY : </strong><span class="headerH">
-                                <i class="bi bi-truck running-truck me-2"></i>
-                            </span>
-                            {{item.deliveryStatus}}
-                        </span> -->
                     </p>
 
                     
                     <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
+                        <p>
+                            <strong>Expected Delivery:</strong>
+                             {{ order.deliveryDateTime }} 
+                        </p>
+
+                        <p>
+                            <strong>Courier Partner: </strong>
+                             <span class="courierPartner">
+                                {{order.courierName}}
+                            </span>
+                            <i class="bi bi-truck running-truck"></i>
+                        </p>
+
                         <p >
-                            <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
+                            <span class="trackerId">TRACKER ID:</span>
+                            <span class="bg-light p-1 rounded-3 px-2" >
+                                {{ order.orderTrackingId }}
+                            </span>
+
                             <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(order.orderTrackingId)"></i>
                         
                             <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
                                 Track Order
                             </a>
                         </p>
-                        <p>
-                            <strong>Expected Delivery:</strong>
-                             {{ order.deliveryDateTime }} 
-                             <strong>{{order.courierName}}</strong>
-                        </p>
+                        
                     </div>
                     
                     

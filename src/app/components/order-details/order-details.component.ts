@@ -45,12 +45,12 @@ export class OrderDetailsComponent {
               console.log(res);
               
               this.orders = res.data;
-              res.data.customerOrderItems.forEach((item: any) => {
-                const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;
-                const mrp = !isNaN(Number(item.productMrp)) ? Number(item.productMrp) : 0;
+            //   res.data.customerOrderItems.forEach((item: any) => {
+            //     const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;
+            //     const mrp = !isNaN(Number(item.productMrp)) ? Number(item.productMrp) : 0;
                 
-                this.totalMrp += Number(mrp * quantity);
-            });
+            //     this.totalMrp += Number(mrp * quantity);
+            // });
             console.log(this.orders);
             this.spinner.hide();
           },

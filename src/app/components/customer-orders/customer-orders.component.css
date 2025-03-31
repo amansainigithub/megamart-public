@@ -30,9 +30,10 @@
   }
   
   .order-title {
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 450;
+    font-size: 15px;
     margin: 0;
+    color: #5d6d7e;
   }
   
   .delivery-info, .order-details {
@@ -50,6 +51,17 @@
     border-radius: 5px;
     display: inline-block;
     margin-bottom: 5px;
+  }
+
+  .trackerId{
+    color: #0000FF;
+  }
+
+  .courierPartner{
+    background-color: #F3EA1B;
+    color: black;
+    border-radius: 4px;
+    padding: 2px 3px; 
   }
   
   /* Right-side Arrow (Centered on Y-axis) */
