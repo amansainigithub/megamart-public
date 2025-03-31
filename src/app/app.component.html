@@ -136,10 +136,10 @@
             <span>Dashboard</span>
           </button>
 
-          <button mat-menu-item [routerLink]="'/customer/orders-history'"
-            (click)="setActiveTab('/customer/orders-history')" routerLinkActive="active-menu">
+          <button mat-menu-item [routerLink]="'/customer/orders'"
+            (click)="setActiveTab('/customer/orders')" routerLinkActive="active-menu">
             <mat-icon>history</mat-icon>
-            <span>Order History</span>
+            <span>Orders</span>
           </button>
 
           <button mat-menu-item [routerLink]="'/customer/profile'"
@@ -176,10 +176,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/orders-history"
-                  [class.active]="activeTab === '/customer/orders-history'"
-                  (click)="setActiveTab('/customer/orders-history')">
-                  <i class="bi bi-card-list me-2"></i> Order History
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/orders"
+                  [class.active]="activeTab === '/customer/orders'"
+                  (click)="setActiveTab('/customer/orders')">
+                  <i class="bi bi-card-list me-2"></i> Order
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/my-orders"
+                  [class.active]="activeTab === '/customer/my-orders'"
+                  (click)="setActiveTab('/customer/my-orders')">
+                  <i class="bi bi-card-list me-2"></i> my Order
                 </a>
               </li>
 

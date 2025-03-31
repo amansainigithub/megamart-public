@@ -35,6 +35,7 @@ export class AppComponent {
             || currentUrl === '/customer/orders-history' 
             || currentUrl === '/customer/manageAddress'
             || currentUrl === '/customer/orders-details'
+            || currentUrl === '/customer/my-orders'
         ) {
           this.homePageFlag = true;
         } else {

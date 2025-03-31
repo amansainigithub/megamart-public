@@ -16,6 +16,7 @@ import { ManageAddressComponent } from './components/manage-address/manage-addre
 import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pay.component';
 import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
                   // Customer Panel
                   { path: 'shopper', component: HomeComponent},
                   { path: 'dashboard', component: DashboardComponent},
-                  { path: 'orders-history', component: CustomerOrdersComponent},
+                  { path: 'orders', component: CustomerOrdersComponent},
+                  { path: 'my-orders', component: MyOrdersComponent},
                   { path: 'orders-details/:id', component: OrderDetailsComponent },
                   { path: 'manageAddress', component: ManageAddressComponent},
                   { path: 'profile', component: ProfileComponent},

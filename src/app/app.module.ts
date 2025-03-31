@@ -39,6 +39,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ProceedToPayComponent,
     OrderPlacedSuccessComponent,
     OrderDetailsComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

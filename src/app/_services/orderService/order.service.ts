@@ -15,11 +15,15 @@ export class OrderService {
 
   constructor(private http:HttpClient) { }
 
-  getCustomerOrders(): Observable<any> {
-        return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrders/1', httpOptions);
+  getCustomerOrders(userId:any): Observable<any> {
+        return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrders/'+userId, httpOptions);
    }
 
    getCustomerOrdersById(orderId:any): Observable<any> {
     return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrdersById/'+orderId, httpOptions);
+}
+
+getMyOrdersDelivered(userId:any): Observable<any> {
+  return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered/'+userId, httpOptions);
 }
 }
