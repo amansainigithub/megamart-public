@@ -13,9 +13,7 @@
                     {{ orders.orderDateTime }}
                 </p>
                 
-                <!-- <p class="mb-1 text-muted">Esd. delivery <span>4 Days</span></p> -->
             </div>
-            <!-- <button mat-raised-button class="fs14 pendingBtn">Pending</button> -->
         </div>
         <!-- ORDER ID SECTION ENDING -->
 
@@ -25,9 +23,7 @@
         <div class="container mt-3">
             <div class="row ">
                 <div class="col-md-8">
-                    <h6 *ngIf="orders?.customerOrderItems" >
-                        Products ({{orders.customerOrderItems.length}})
-                    </h6>
+                    <h6> Products (1) </h6>
                      <hr>
                         
                     <div class="product-card mb-3 d-flex align-items-center border-bottom py-2">
@@ -60,6 +56,16 @@
 
                             </div>
 
+                            <div class="product-tags mt-1 mb-1">
+                                <span class="bg-light text-dark">
+                                    PAYMENT MODE :
+                                    <span class="bg-primary text-dark rounded-3 p-1">
+                                        {{orders.paymentMode}}</span>
+                                </span>
+                            </div>
+
+                            
+
                             <div class="product-tags">
                                 <span class="bg-light text-dark">
                                     <i class="bi bi-truck running-truck mx-1"></i>
@@ -69,7 +75,7 @@
                             </div>
 
                               <!-- CUSTOMER ADDRESS  STARTING -->
-                                <div class="card p-2 my-1">
+                                <div class="card p-2 my-1 rounded-3">
                                     <div class="product-tags">
                                         <span style="background-color: #f2f829;color: #212f3c;">
                                            DELIVERED TO

@@ -6,7 +6,7 @@
                 <mat-panel-title class="order-info d-flex w-100 align-items-center">
                     <span class="changeDesign">
                         <span class="headerH">ORDER ID:</span>
-                        {{ order.razorpayOrderId }}
+                        {{ order.customOrderId }}
                     </span>
                     <!-- <span class="changeDesign">
                         <span class="headerH">ORDERS :</span>
@@ -16,9 +16,14 @@
                         <span class="headerH">AMOUNT:</span> 
                         ₹ {{order.productPrice}}
                     </span>
-                    <span class="changeDesign">
+                    <!-- <span class="changeDesign">
                         <span class="headerH">Placed By - </span> 
-                        31 Mar, 2025 10:31 am
+                        {{order.orderDateTime}}
+                    </span> -->
+
+                    <span class="changeDesign">
+                        <span class="headerH">Status:</span> 
+                        <span class="p-1 rounded fs13 deliveryStatus">{{order.deliveryStatus}}</span>
                     </span>
 
                     <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">

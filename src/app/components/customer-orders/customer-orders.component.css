@@ -257,4 +257,28 @@
 
 
 
+.deliveryStatus {
+  background: linear-gradient(141deg, #a5540e, #ff5d88, #4abdf9, #3a4e46, #79390d);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; /* Chrome, Safari */
+  -moz-background-clip: text; /* Firefox (Old versions) */
+  -ms-background-clip: text; /* Microsoft browsers (Not widely supported) */
+  -o-background-clip: text; /* Opera (Older versions) */
+  background-clip: text; /* Standard property */
+  
+  -webkit-text-fill-color: transparent; /* Chrome, Safari */
+  animation: text-animation 10s ease infinite;
+}
+
+@keyframes text-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
