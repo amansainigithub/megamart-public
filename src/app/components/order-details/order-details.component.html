@@ -166,7 +166,9 @@
                         <hr>
                         <div class="d-flex justify-content-between">
                             <span>Total</span>
-                            <span class="text-success pdKeys">₹{{orders.productPrice}}</span>
+                            <span class="text-success pdKeys">
+                                <span class="fs15 text-dark">₹</span>
+                                {{orders.quantity * orders.productPrice }}</span>
                         </div>
                     </div>
                 </div>

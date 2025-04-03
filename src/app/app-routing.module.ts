@@ -17,6 +17,7 @@ import { ProceedToPayComponent } from './components/proceed-to-pay/proceed-to-pa
 import { OrderPlacedSuccessComponent } from './components/order-placed-success/order-placed-success.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
                   { path: 'orders-details/:id', component: OrderDetailsComponent },
                   { path: 'manageAddress', component: ManageAddressComponent},
                   { path: 'profile', component: ProfileComponent},
+                  { path: 'reviews', component: ReviewsComponent},
                 ],
 },
 

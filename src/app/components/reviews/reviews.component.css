@@ -1,0 +1,46 @@
+.heading {
+    font-size: 1.1rem; /* Medium-large size */
+    font-weight: 500; /* Semi-bold */
+    color: #007bff; /* Attractive blue color */
+    text-align: center; /* Centered text */
+    padding: 10px;
+    border-bottom: 2px solid #007bff; /* Underline effect */
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.rating i {
+    font-size: 24px;
+    color: gold;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .rating .first-red {
+    color: red !important; /* 1st star turns red */
+  }
+  
+  .rating .first-orange {
+    color: orange !important; /* 1st and 2nd stars turn orange */
+  }
+  
+  .rating .first-dark-yellow {
+    color: yellow !important; /* 1st, 2nd, and 3rd stars turn dark yellow */
+  }
+  
+  .rating .first-light-green {
+    color: lightgreen !important; /* 1st, 2nd, 3rd, and 4th stars turn light green */
+  }
+  
+  .rating .first-dark-green {
+    color: rgb(11, 176, 11) !important; /* 1st, 2nd, 3rd, 4th, and 5th stars turn dark green */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  

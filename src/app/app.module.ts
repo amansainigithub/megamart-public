@@ -40,6 +40,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
     OrderPlacedSuccessComponent,
     OrderDetailsComponent,
     MyOrdersComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,

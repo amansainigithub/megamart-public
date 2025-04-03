@@ -36,6 +36,7 @@ export class AppComponent {
             || currentUrl === '/customer/manageAddress'
             || currentUrl === '/customer/orders-details'
             || currentUrl === '/customer/my-orders'
+            || currentUrl === '/customer/reviews'
         ) {
           this.homePageFlag = true;
         } else {

@@ -1,0 +1,27 @@
+<div class="container mt-4">
+
+    <h6 class="heading">Reviews</h6>
+
+    <div class="rating">
+        <i class="bi" *ngFor="let star of stars; let i = index"
+           [ngClass]="{
+             'bi-star-fill': i < rating, 
+             'bi-star': i >= rating,
+             'first-red': i === 0 && rating === 1, 
+             'first-orange': rating >= 2 && i < 2, 
+             'first-dark-yellow': rating >= 3 && i < 3, 
+             'first-light-green': rating >= 4 && i < 4,
+             'first-dark-green': rating >= 5 && i < 5
+           }" 
+           (click)="rate(i + 1)">
+        </i>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+
+</div>
