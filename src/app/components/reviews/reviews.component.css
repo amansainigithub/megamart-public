@@ -37,10 +37,70 @@
   }
   
   
+  .custom-card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+  }
+  
+  .custom-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 👇 This makes the card show a pointer on hover */
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+
+
+
+  /* MOdel Starting */
+.reviewModeDesign{
+  border-radius: 15px;
+}
+  /* Model CSS Ending */
+  
+
+  /* Sumit Review Button */
+  .submitReview{
+    background-color: #F3EA1B;
+  }
   
   
+
+
+  /* Thanks Feedback CSS */
+  .thank-card h2 {
+    font-weight: 700;
+    color: #1f2937; /* Tailwind-inspired dark gray */
+  }
   
+  .thank-card p {
+    color: #6b7280; /* Softer gray for readability */
+    margin: 20px 0;
+    font-size: 1rem;
+  }
   
+  .thank-card .btn-primary {
+    background-color: #6366f1;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
   
+  .thank-card .btn-primary:hover {
+    background-color: #4f46e5;
+    transform: translateY(-2px);
+  }
   
-  
+
+
+  /* //Button Resize */
+  .editReview{
+    height: 28px;
+    background-color: #6495ED;
+    color: white;
+  }

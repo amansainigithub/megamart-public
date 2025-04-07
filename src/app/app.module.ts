@@ -41,8 +41,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
-
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +62,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     OrderPlacedSuccessComponent,
     OrderDetailsComponent,
     MyOrdersComponent,
-    ReviewsComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +86,9 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     MatStepperModule,
     MatExpansionModule,
     MatTooltipModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonToggleModule,
+    MatPaginatorModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [authInterceptorProviders, provideAnimationsAsync()],
