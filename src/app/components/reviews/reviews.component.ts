@@ -20,19 +20,16 @@ export class ReviewsComponent {
 
   //Review Decision
   reviewDecison: any = true;
-
   currentUser: any;
-
   rating: number = 0;
   unReviewdProduct: any;
   id: any;
   reviewText: string = '';
+  pageRequest: any = { page: 0, size: 10 };
   ratingsMap: { [key: number]: number } = {}; // Stores rating for each product
-
   file: any;
   imageSrc: string = '';
-
-  pageRequest: any = { page: 0, size: 10 };
+  totalElements: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,6 +65,7 @@ export class ReviewsComponent {
     this.reviewsService.unratingDeliveredProduct(id).subscribe({
       next: (res: any) => {
         this.unReviewdProduct = res.data;
+        console.log(this.unReviewdProduct);
         this.spinner.hide();
       },
       error: (err: any) => {
@@ -81,6 +79,7 @@ export class ReviewsComponent {
   //Get Rate Value Starting
   rate(star: number) {
     this.rating = star;
+    console.log(this.rating);
   }
   //Get Rating Value Ending
 
@@ -112,11 +111,18 @@ export class ReviewsComponent {
   }
   //File Select Ending
 
+
+
   //Remove Image Starting
   removeImage() {
     this.file = null;
   }
   //Remove Image Ending
+
+  takeReview(id: any) {
+    this.id = id;
+    this.reviewModel.show();
+  }
 
   //Submit Review Starting
   submitReview() {
@@ -136,7 +142,7 @@ export class ReviewsComponent {
 
     this.reviewsService.submitProductReview(formData).subscribe({
       next: (res) => {
-        // console.log("Review submitted successfully!", res);
+        console.log('Review submitted successfully!', res);
 
         //Calling to unRevied elivered Product List
         this.unReviewDeliveredProduct('');
@@ -167,28 +173,31 @@ export class ReviewsComponent {
     //Hide Spinner
     this.spinner.hide();
   }
+
+
+
+
   //Submit Review Ending....
 
-  // ========================================================================================================================
-  // ========================================================================================================================
-
-
-
+  // ----------------------------------------------------------------------------------------------------------------------
 
   // REVIEWS AREA STARTING
+  // ====================================================================================================================
+  // ====================================================================================================================
   reviewsData: any;
-  totalElements: number = 0;
 
-  reviewId: any;
-  updateRating: any;
-  updateReviewText: string = '';
-  updateImageSrc: string = '';
+  reviewId:any;
+  updateReviewRating: any;
+  updateReviewText: any;
+  updateReviewImageSrc: any;
+  updateReviewfile: any;
 
   //Get Unreviewd List Starting
   getUserReviews(request: any) {
     this.spinner.show();
     this.reviewsService.getUserReviews(request).subscribe({
       next: (res: any) => {
+        console.log(res.data.content);
         this.reviewsData = res.data.content;
         this.totalElements = res.data['totalElements'];
         this.spinner.hide();
@@ -208,37 +217,36 @@ export class ReviewsComponent {
     this.getUserReviews(request);
   }
 
-  //Get Unreviewd List Ending
-  editReview(reviewId: any) {
-    this.spinner.show();
-    this.reviewsService.getEditReview(reviewId).subscribe({
-      next: (res: any) => {
-        console.log(res.data);
-
-        this.reviewId = res.data.id;
-        this.updateRating = res.data.rating;
-        this.updateReviewText = res.data.review;
-        this.updateImageSrc = res.data.reviewFileUrl;
-        this.updateReviewModel.show();
-
-        this.spinner.hide();
-      },
-      error: (err: any) => {
-        console.error('REVIEWS not Captured Error !!:', err);
-        this.spinner.hide();
-      },
-    });
+  getReviewToEdit(id: any) {
+    const reviewData = this.reviewsData.find((rv: any) => rv.id === id);
+    if (reviewData) {
+      console.log('Found review:', reviewData);
+      this.reviewId = reviewData.id;
+      this.updateReviewRating = reviewData.rating;
+      this.updateReviewText = reviewData.review;
+      this.updateReviewImageSrc = reviewData.reviewFileUrl;
+      
+      this.updateReviewModel.show();
+    } else {
+      console.warn('Review not found with id:', id);
+    }
   }
 
-  //Update File Select Starting
-  updatefile: any;
-  updateOnFileSelected(event: any) {
+  //Update Rate Value Starting
+  updateRate(star: number) {
+    this.updateReviewRating = star;
+  }
+
+
+
+  //Update Review File Select Starting
+  onUpdateReviewFileSelected(event: any) {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
-      const [updatefile] = event.target.files;
+      const [file] = event.target.files;
 
       //check File Size
-      if (!this.isFileSizeValid(updatefile)) {
+      if (!this.isFileSizeValid(file)) {
         this.toast.warning({
           detail: 'warning',
           summary: 'Please Select a Valid File Size',
@@ -249,78 +257,111 @@ export class ReviewsComponent {
         return;
       }
 
-      reader.readAsDataURL(updatefile);
+      reader.readAsDataURL(file);
       reader.onload = () => {
-        this.updateImageSrc = reader.result as string;
+        this.updateReviewImageSrc = reader.result as string;
       };
-      this.updatefile = event.target.files[0];
+      this.updateReviewfile = event.target.files[0];
     }
     event.target.Value = '';
   }
-  //Update File Select Ending
+  //Update Review Rating File Ending
 
-  //Remove Image Starting
-  updateRemoveImage() {
-    this.updateImageSrc = '';
+
+
+//Remove Image Starting
+  removeEditReviewImage() {
+      this.updateReviewImageSrc = null;
   }
-  //Remove Image Ending
+//Remove Image Ending
+  
 
-  updateReview() {
-    // this.spinner.show();
 
-    // if (!this.updateReviewText || this.updateRating === 0) {
-    //   return;
-    // }
-    console.log('==============AMAN SAINI===========');
-    console.log(this.updateReviewText);
-    console.log(this.reviewId);
+updateReview(){
 
-    const formData: FormData = new FormData();
-    if (this.file) {
-      // formData.append('rating',this.updateRating.toString());
-      formData.append('reviewText', this.updateReviewText);
-      formData.append('id', this.reviewId);
-      formData.append('file', this.updatefile);
+    if (!this.updateReviewText || this.updateReviewRating === 0) {
+      return;
     }
 
-    for (let pair of (formData as any).entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
+  const formData = new FormData();
+  formData.append('id', this.reviewId.toString());
+  formData.append('reviewText', this.updateReviewText);
+  formData.append('rating', this.updateReviewRating.toString());
 
-    console.log('=========================');
+  if (this.updateReviewfile) {
+    formData.append('file', this.updateReviewfile);
   }
+
+    console.log(formData);
+    for (const [key, value] of (formData as any).entries()) {
+      console.log(`${key}:`, value);
+    }
+    
+    
+
+    this.reviewsService.udapteReview(formData).subscribe({
+      next: (res) => {
+        console.log('Review submitted successfully!', res);
+      },
+      error: (err) => {
+        console.error('Error submitting review', err);
+
+        //Hide Spinner
+        this.spinner.hide();
+      },
+    });
+    
+    
+}
+
+
+
+
+
+
+  //REVIEWS AREA ENDING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // ===========Review Model Open Close Starting===========
-  modal: any;
+  reviewModel: any;
   updateReviewModel: any;
   thanksFeedbackModel: any;
   ngAfterViewInit() {
-    this.modal = new bootstrap.Modal(document.getElementById('reviewModel'));
+    this.reviewModel = new bootstrap.Modal(
+      document.getElementById('reviewModel')
+    );
     this.updateReviewModel = new bootstrap.Modal(
       document.getElementById('updateReviewModel')
     );
+
     this.thanksFeedbackModel = new bootstrap.Modal(
       document.getElementById('thanksFeedbackModel')
     );
   }
   closeReviewModal() {
-    this.modal.hide();
-  }
-
-  closeUpdateReviewModal() {
-    this.updateReviewModel.hide();
+    this.reviewModel.hide();
   }
 
   closeThanksFeedbackModal() {
     this.thanksFeedbackModel.hide();
   }
 
-  takeReview(id: any) {
-    this.id = id;
-    this.modal.show();
-  }
   // ===========Review Model Open Close Ending ===========
-
 
     //FileSize Check Starting (3MB) JUST NOW
     isFileSizeValid(file: File): boolean {
@@ -328,4 +369,7 @@ export class ReviewsComponent {
       return file.size <= maxSizeInBytes;
     }
     //FileSize Check Ending..
+
+
+
 }

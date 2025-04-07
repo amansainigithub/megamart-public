@@ -29,4 +29,8 @@ export class ReviewsService {
   getEditReview(reviewId: any): Observable<any> {
     return this.http.get( PUBLIC_API_URL +'productReviewsController/' + 'getEditReview/'+reviewId, httpOptions);
   }
+
+  udapteReview(formData: FormData) {
+    return this.http.post(PUBLIC_API_URL + 'productReviewsController/' + 'updateReviews', formData );
+  }
 }
