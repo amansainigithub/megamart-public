@@ -78,7 +78,7 @@
         <div class="row align-items-center">
 
           <div class="col-md-2">
-            <img [src]="rv.fileUrl" height="80" width="80" alt="">
+            <img [src]="rv.productFileUrl" height="80" width="80" alt="" class="rounded-3" style="object-fit: cover;">
           </div>
 
           <div class="col-md-6 fs13">
@@ -94,8 +94,8 @@
               <span>&nbsp; {{rv.review}}</span>
             </div>
 
-            <div class="mt-2">
-              <img *ngIf="rv.reviewFileUrl"  [src]="rv.reviewFileUrl" height="60" width="60" class="rounded-3" alt="">
+            <div class="mt-2" *ngFor="let prf of rv.productReviewFiles">
+              <img *ngIf="prf.reviewFileUrl"  [src]="prf.reviewFileUrl" height="60" width="60" class="rounded-3" alt="">
               <button mat-raised-button  class="editReview mx-3" >Edit Review</button>
             </div>
           </div>
@@ -174,7 +174,7 @@
           </div>
 
           <!-- Preview & Remove -->
-          <div *ngIf="file" class="mt-3 text-center">
+          <div class="mt-3 text-center">
             <img [src]="imageSrc" alt="Preview" class="img-fluid rounded shadow-sm mb-2" style="max-height: 100px;">
             <br>
             <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeImage()">Remove Image</button>
@@ -271,7 +271,7 @@
           </div>
         
           <!-- Image Preview -->
-          <div *ngIf="updateReviewImageSrc" class="mt-3 text-center">
+          <div  class="mt-3 text-center">
             <img [src]="updateReviewImageSrc" alt="Preview" class="img-fluid rounded shadow-sm mb-2" style="max-height: 100px;">
             <br>
             <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeEditReviewImage()">Remove Image</button>

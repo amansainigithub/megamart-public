@@ -133,12 +133,14 @@ export class ReviewsComponent {
     }
 
     const formData: FormData = new FormData();
-    if (this.file) {
       formData.append('rating', this.rating.toString());
       formData.append('reviewText', this.reviewText);
       formData.append('id', this.id);
-      formData.append('file', this.file);
-    }
+      
+      if (this.file) {
+        formData.append('file', this.file);
+      }
+    
 
     this.reviewsService.submitProductReview(formData).subscribe({
       next: (res) => {
@@ -224,8 +226,15 @@ export class ReviewsComponent {
       this.reviewId = reviewData.id;
       this.updateReviewRating = reviewData.rating;
       this.updateReviewText = reviewData.review;
-      this.updateReviewImageSrc = reviewData.reviewFileUrl;
-      
+
+      console.log(this.reviewsData);
+
+      // Iterate over productReviewFiles
+      for (let i = 0; i < reviewData.productReviewFiles.length; i++) {
+        this.updateReviewImageSrc = reviewData.productReviewFiles[i].reviewFileUrl;
+        break;
+      }
+
       this.updateReviewModel.show();
     } else {
       console.warn('Review not found with id:', id);
@@ -291,17 +300,22 @@ updateReview(){
   if (this.updateReviewfile) {
     formData.append('file', this.updateReviewfile);
   }
-
-    console.log(formData);
-    for (const [key, value] of (formData as any).entries()) {
-      console.log(`${key}:`, value);
-    }
     
-    
-
     this.reviewsService.udapteReview(formData).subscribe({
       next: (res) => {
         console.log('Review submitted successfully!', res);
+
+        //Hide update Review Model
+        this.updateReviewModel.hide();
+
+         //Open Feedback Model
+         this.thanksFeedbackModel.show();
+
+         //get User Review List
+         this.getUserReviews(this.pageRequest);
+
+         //Hide Spinner
+         this.spinner.hide();
       },
       error: (err) => {
         console.error('Error submitting review', err);
