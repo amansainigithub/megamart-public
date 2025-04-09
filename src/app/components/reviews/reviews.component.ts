@@ -18,6 +18,13 @@ declare var bootstrap: any; // Import Bootstrap JavaScript
 export class ReviewsComponent {
   stars: number[] = [1, 2, 3, 4, 5];
 
+  //For Pagination 
+  unReviewdPageRequest: any = { page: 0, size: 10 };
+  unReviewdTotalElements: number = 0;
+
+  reviewPageRequest: any = { page: 0, size: 10 };
+  reviewTotalElements: number = 0;
+
   //Review Decision
   reviewDecison: any = true;
   currentUser: any;
@@ -25,11 +32,11 @@ export class ReviewsComponent {
   unReviewdProduct: any;
   id: any;
   reviewText: string = '';
-  pageRequest: any = { page: 0, size: 10 };
+ 
   ratingsMap: { [key: number]: number } = {}; // Stores rating for each product
   file: any;
   imageSrc: string = '';
-  totalElements: number = 0;
+ 
 
   constructor(
     private route: ActivatedRoute,
@@ -44,28 +51,30 @@ export class ReviewsComponent {
   ngOnInit(): void {
     //Current User
     this.currentUser = this.token.getUser();
-    this.unReviewDeliveredProduct('');
+    this.unReviewDeliveredProduct(this.unReviewdPageRequest);
   }
 
   //Watch UN-Reviewd Product List
   watchUnReviewdProduct(decision: any) {
     if (decision === 'UNREVIEWS') {
       this.reviewDecison = true;
-      this.unReviewDeliveredProduct('');
+      this.unReviewDeliveredProduct(this.unReviewdPageRequest);
     } else if (decision === 'REVIWES') {
       this.reviewDecison = false;
-      this.getUserReviews(this.pageRequest);
+      this.getUserReviews(this.reviewPageRequest);
     }
   }
   //Watch UN-Reviewd Product List
 
   //Get Unreviewd List Starting
-  unReviewDeliveredProduct(id: any) {
+  unReviewDeliveredProduct(request: any) {
     this.spinner.show();
-    this.reviewsService.unratingDeliveredProduct(id).subscribe({
+    this.reviewsService.unratingDeliveredProduct(request).subscribe({
       next: (res: any) => {
-        this.unReviewdProduct = res.data;
-        console.log(this.unReviewdProduct);
+        console.log(res.data.content);
+        
+        this.unReviewdProduct = res.data.content;
+        this.unReviewdTotalElements = res.data['totalElements'];
         this.spinner.hide();
       },
       error: (err: any) => {
@@ -136,7 +145,7 @@ export class ReviewsComponent {
       formData.append('rating', this.rating.toString());
       formData.append('reviewText', this.reviewText);
       formData.append('id', this.id);
-      
+
       if (this.file) {
         formData.append('file', this.file);
       }
@@ -175,11 +184,19 @@ export class ReviewsComponent {
     //Hide Spinner
     this.spinner.hide();
   }
-
-
-
-
   //Submit Review Ending....
+
+  nextPageUnreviewd(event: PageEvent) {
+    console.log(event);
+    const request: any = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.unReviewDeliveredProduct(request);
+  }
+
+
+
+  
 
   // ----------------------------------------------------------------------------------------------------------------------
 
@@ -201,7 +218,7 @@ export class ReviewsComponent {
       next: (res: any) => {
         console.log(res.data.content);
         this.reviewsData = res.data.content;
-        this.totalElements = res.data['totalElements'];
+        this.reviewTotalElements = res.data['totalElements'];
         this.spinner.hide();
       },
       error: (err: any) => {
@@ -312,7 +329,7 @@ updateReview(){
          this.thanksFeedbackModel.show();
 
          //get User Review List
-         this.getUserReviews(this.pageRequest);
+         this.getUserReviews(this.reviewPageRequest);
 
          //Hide Spinner
          this.spinner.hide();

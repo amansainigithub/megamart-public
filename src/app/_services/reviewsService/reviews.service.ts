@@ -13,8 +13,9 @@ const httpOptions = {
 export class ReviewsService {
   constructor(private http: HttpClient) {}
 
-  unratingDeliveredProduct(id: any): Observable<any> {
-    return this.http.get( PUBLIC_API_URL +'productReviewsController/' + 'unReviewDeliveredProduct/12',httpOptions);
+  unratingDeliveredProduct(request: any): Observable<any> {
+    return this.http.get( PUBLIC_API_URL +'productReviewsController/' + 'unReviewDeliveredProduct?page='+request.page + 
+                        '&size=' +request.size ,httpOptions);
   }
 
   getUserReviews(request: any): Observable<any> {
