@@ -66,7 +66,7 @@ import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-po
     MyOrdersComponent,
     ReviewsComponent,
     TermsAndConditionComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,

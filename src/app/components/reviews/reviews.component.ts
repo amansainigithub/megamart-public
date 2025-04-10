@@ -325,8 +325,12 @@ updateReview(){
         //Hide update Review Model
         this.updateReviewModel.hide();
 
-         //Open Feedback Model
-         this.thanksFeedbackModel.show();
+        this.toast.success({
+          detail: 'success',
+          summary: 'Feedback Update Successfully',
+          position: 'bottomRight',
+          duration: 2000,
+        });
 
          //get User Review List
          this.getUserReviews(this.reviewPageRequest);
@@ -341,14 +345,7 @@ updateReview(){
         this.spinner.hide();
       },
     });
-    
-    
 }
-
-
-
-
-
 
   //REVIEWS AREA ENDING
 

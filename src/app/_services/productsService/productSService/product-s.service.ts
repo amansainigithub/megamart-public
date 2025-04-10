@@ -29,4 +29,9 @@ export class ProductSService {
                     + 'getProductListDeal99?cI='+ cI + '&cN='+cN + '&page='+request.page + '&size=' +request.size, httpOptions);
     }
 
+
+    productSearch(searchKey:any): Observable<any> {
+      return this.http.get(PUBLIC_API_URL + "categoryController/" + 'productSearching?searchKey='+searchKey, httpOptions);
+    }
+
 }

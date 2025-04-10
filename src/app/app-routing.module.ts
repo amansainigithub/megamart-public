@@ -48,6 +48,7 @@ const routes: Routes = [
                   { path: 'reviews', component: ReviewsComponent},
                   { path: 'terms-and-conditions', component: TermsAndConditionComponent},
                   { path: 'privacy-policy', component: PrivacyPolicyComponent},
+
                 ],
 },
 

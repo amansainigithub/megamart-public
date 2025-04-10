@@ -31,8 +31,8 @@
           <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
       </div>
       <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
-          <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.name)">
-              {{ product.name }}
+          <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.bornCategoryName)">
+              {{ product.bornCategoryName }}
           </div>
       </div>
     </div>
@@ -98,8 +98,8 @@
             <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
         </div>
         <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
-            <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.name)">
-                {{ product.name }}
+            <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.bornCategoryName)">
+                {{ product.bornCategoryName }}
             </div>
         </div>
     </div>
@@ -162,7 +162,7 @@
       <div class="row">
     
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar p-3 rounded-3">
-          <div class="position-sticky">
+          <div>
             <div class="text-center ">
               <img src="../assets/Avitar Images/male avitar12.jpg" alt="User Avatar" class="rounded-circle" width="80">
               <h5 class="mt-2 fs15">{{username}}</h5>
@@ -179,7 +179,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/orders"
                   [class.active]="activeTab === '/customer/orders'"
                   (click)="setActiveTab('/customer/orders')">
-                  <i class="bi bi-card-list me-2"></i> Order
+                  <i class="bi bi-box-seam me-2"></i> Order
                 </a>
               </li>
 
@@ -188,7 +188,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/my-orders"
                   [class.active]="activeTab === '/customer/my-orders'"
                   (click)="setActiveTab('/customer/my-orders')">
-                  <i class="bi bi-card-list me-2"></i> my Order
+                  <i class="bi bi-box-fill me-2"></i> my Order
                 </a>
               </li>
 
@@ -196,7 +196,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/manageAddress"
                   [class.active]="activeTab === '/customer/manageAddress'"
                   (click)="setActiveTab('/customer/manageAddress')">
-                  <i class="bi bi-card-list me-2"></i> Address
+                  <i class="bi bi-geo-alt-fill me-2"></i> Address
                 </a>
               </li>
 
@@ -204,7 +204,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/profile"
                   [class.active]="activeTab === '/customer/profile'"
                   (click)="setActiveTab('/customer/profile')">
-                  <i class="bi bi-card-list me-2"></i> Profile
+                  <i class="bi bi-person-lines-fill me-2"></i>Profile
                 </a>
               </li>
 
@@ -212,7 +212,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/reviews"
                   [class.active]="activeTab === '/customer/reviews'"
                   (click)="setActiveTab('/customer/reviews')">
-                  <i class="bi bi-card-list me-2"></i> Reviews
+                  <i class="bi bi-clipboard2-heart me-2"></i> Reviews
                 </a>
               </li>
 
@@ -220,7 +220,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/terms-and-conditions"
                   [class.active]="activeTab === '/customer/terms-and-conditions'"
                   (click)="setActiveTab('/customer/terms-and-conditions')">
-                  <i class="bi bi-card-list me-2"></i> Terms and Condition
+                  <i class="bi bi-file-check me-2"></i> Terms and Condition
                 </a>
               </li>
 
@@ -228,12 +228,19 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/privacy-policy"
                   [class.active]="activeTab === '/customer/privacy-policy'"
                   (click)="setActiveTab('/customer/privacy-policy')">
-                  <i class="bi bi-card-list me-2"></i> privacy policy
+                  <i class="bi bi-shield-check me-2"></i>privacy policy
+                </a>
+              </li>
+              <hr>
+              <li class="nav-item">
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink=""
+                  [class.active]="activeTab === ''" (click)="logout()">
+                  <i class="bi bi-lock me-2"></i>Logout
                 </a>
               </li>
             </ul>
           </div>
-        </nav>
+        </nav>      
     
         <div class="col-md-10">
           <router-outlet></router-outlet>

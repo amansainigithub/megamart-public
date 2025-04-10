@@ -4,6 +4,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddToCartService } from './_services/addToCartService/add-to-cart.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ProductSService } from './_services/productsService/productSService/product-s.service';
 
 @Component({
   selector: 'app-root',
@@ -16,49 +17,51 @@ export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
   username?: string;
-  homePageFlag:any;
+  homePageFlag: any;
 
   constructor(
     private tokenStorageService: TokenStorageService,
     private toast: NgToastService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    public cartService: AddToCartService
+    public cartService: AddToCartService,
+    public productSearch: ProductSService
   ) {}
 
   ngOnInit(): void {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentUrl = event.urlAfterRedirects || this.router.url;
-        if ( currentUrl.includes('customer') 
-            || currentUrl === '/customer/dashboard' 
-            || currentUrl === '/customer/orders-history' 
-            || currentUrl === '/customer/manageAddress'
-            || currentUrl === '/customer/orders-details'
-            || currentUrl === '/customer/my-orders'
-            || currentUrl === '/customer/reviews'
-            || currentUrl === '/customer/terms-and-conditions'
-            || currentUrl === '/customer/privacy-policy'
+        if (
+          currentUrl.includes('customer') ||
+          currentUrl === '/customer/dashboard' ||
+          currentUrl === '/customer/orders-history' ||
+          currentUrl === '/customer/manageAddress' ||
+          currentUrl === '/customer/orders-details' ||
+          currentUrl === '/customer/my-orders' ||
+          currentUrl === '/customer/reviews' ||
+          currentUrl === '/customer/terms-and-conditions' ||
+          currentUrl === '/customer/privacy-policy'
         ) {
           this.homePageFlag = true;
         } else {
           this.homePageFlag = false;
         }
-          } });
-  
-        this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
-  
-        this.isLoggedIn = !!this.tokenStorageService.getToken();
-  
-        if (this.isLoggedIn) {
-          const user = this.tokenStorageService.getUser();
-          this.roles = user.roles;
-          this.username = user.username;
-        }
-  
-        // Load the Cart Items
-        this.cartService.loadCart();
-      
+      }
+    });
+
+    this.activeTab = localStorage.getItem('activeTab') || '/customer/dashboard';
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+      this.username = user.username;
+    }
+
+    // Load the Cart Items
+    this.cartService.loadCart();
   }
 
   logout(): void {
@@ -75,48 +78,52 @@ export class AppComponent {
     });
   }
 
+  setActiveTab(tab: string) {
+    this.homePageFlag = true;
 
-setActiveTab(tab: string) {
-  this.homePageFlag =true;
-  
-  this.activeTab = tab;
-  localStorage.setItem('activeTab', tab);
-}
+    this.activeTab = tab;
+    localStorage.setItem('activeTab', tab);
+  }
 
-searchQuery: string = '';
-        isDropdownOpen: boolean = false;
-        products = [
-            { name: "Laptop" },
-            { name: "Smartphone" },
-            { name: "Headphones" },
-            { name: "Smartwatch" },
-            { name: "Camera" },
-            { name: "Tablet" },
-            { name: "Bluetooth Speaker" },
-            { name: "Gaming Console" }
-        ];
-        filteredResults:any = [];
 
-        filterResults() {
-            this.filteredResults = this.searchQuery.length > 0 ? this.products.filter(product =>
-                product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-            ) : [];
-            this.isDropdownOpen = this.filteredResults.length > 0;
-        }
 
-        selectProduct(name: string) {
-            this.searchQuery = name;
-            this.isDropdownOpen = false;
-        }
+//Searching Starting ==============================================================================
+  searchQuery: string = '';
+  isDropdownOpen: boolean = false;
+  filteredResults: any = [];
 
-        clearSearch() {
-            this.searchQuery = '';
-            this.filteredResults = [];
-            this.isDropdownOpen = false;
-        }
+  filterResults() {
+    if (this.searchQuery.length > 3) {
+      this.productSearch.productSearch(this.searchQuery).subscribe({
+        next: (res: any) => {
+          console.log(res.data);
+          this.filteredResults = this.searchQuery.length > 0 ? res.data : [];
+          this.isDropdownOpen = this.filteredResults.length > 0;
+          this.spinner.hide();
+        },
+        error: (err: any) => {
+          console.error('REVIEWS not Captured Error !!:', err);
+          this.spinner.hide();
+        },
+      });
+    }
+  }
 
-        @HostListener('document:click', ['$event'])
-        onClickOutside(event: Event) {
-            this.isDropdownOpen = false;
-        }
+  selectProduct(name: string) {
+    this.searchQuery = name;
+    this.isDropdownOpen = false;
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.filteredResults = [];
+    this.isDropdownOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    this.isDropdownOpen = false;
+  }
+//Searching ENDING !!! ==============================================================================
+
 }
