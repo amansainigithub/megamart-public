@@ -31,7 +31,8 @@
           <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
       </div>
       <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
-          <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.bornCategoryName)">
+          <div *ngFor="let product of filteredResults" class="search-result-item" 
+               (click)="selectProduct(product.id ,product.bornCategoryName)">
               {{ product.bornCategoryName }}
           </div>
       </div>
@@ -98,7 +99,8 @@
             <button *ngIf="searchQuery.length > 0" class="clear-btn" (click)="clearSearch()">&times;</button>
         </div>
         <div *ngIf="filteredResults.length > 0 && searchQuery.length > 0 && isDropdownOpen" class="search-results">
-            <div *ngFor="let product of filteredResults" class="search-result-item" (click)="selectProduct(product.bornCategoryName)">
+            <div *ngFor="let product of filteredResults" class="search-result-item" 
+            (click)="selectProduct(product.id ,product.bornCategoryName)">
                 {{ product.bornCategoryName }}
             </div>
         </div>

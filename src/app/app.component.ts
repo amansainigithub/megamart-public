@@ -109,9 +109,15 @@ export class AppComponent {
     }
   }
 
-  selectProduct(name: string) {
-    this.searchQuery = name;
+  selectProduct(cI: any , bornCategoryName:any) {
     this.isDropdownOpen = false;
+    this.router.navigate(['/Search'], {
+      queryParams: {
+        cI: cI,
+        cN: bornCategoryName,
+        sQNext: 'YES',
+      }
+    });
   }
 
   clearSearch() {
