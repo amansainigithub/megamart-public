@@ -18,6 +18,8 @@ import { OrderPlacedSuccessComponent } from './components/order-placed-success/o
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { TermsAndConditionComponent } from './components/legalAndPolicies/terms-and-condition/terms-and-condition.component';
+import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-policy/privacy-policy.component';
 
 
 const routes: Routes = [
@@ -44,6 +46,8 @@ const routes: Routes = [
                   { path: 'manageAddress', component: ManageAddressComponent},
                   { path: 'profile', component: ProfileComponent},
                   { path: 'reviews', component: ReviewsComponent},
+                  { path: 'terms-and-conditions', component: TermsAndConditionComponent},
+                  { path: 'privacy-policy', component: PrivacyPolicyComponent},
                 ],
 },
 

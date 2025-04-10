@@ -43,6 +43,8 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { TermsAndConditionComponent } from './components/legalAndPolicies/terms-and-condition/terms-and-condition.component';
+import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-policy/privacy-policy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     OrderPlacedSuccessComponent,
     OrderDetailsComponent,
     MyOrdersComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    TermsAndConditionComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

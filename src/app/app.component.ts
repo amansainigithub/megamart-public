@@ -37,6 +37,8 @@ export class AppComponent {
             || currentUrl === '/customer/orders-details'
             || currentUrl === '/customer/my-orders'
             || currentUrl === '/customer/reviews'
+            || currentUrl === '/customer/terms-and-conditions'
+            || currentUrl === '/customer/privacy-policy'
         ) {
           this.homePageFlag = true;
         } else {
