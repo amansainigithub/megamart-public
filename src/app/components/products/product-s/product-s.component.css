@@ -20,6 +20,7 @@
 }
 .product-image:hover {
     transform: scale(1.1);
+    
 }
 .product-title {
     font-weight: bold;
@@ -110,6 +111,13 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+}
+
+.product-card:hover {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px); /* Optional: slight lift on hover */
 }
 
 /* Ensure images are contained */
