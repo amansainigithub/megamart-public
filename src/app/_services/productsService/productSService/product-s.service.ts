@@ -29,4 +29,10 @@ export class ProductSService {
       return this.http.get(PUBLIC_API_URL + "categoryController/" + 'productSearching?searchKey='+searchKey, httpOptions);
     }
 
+    
+    productFilter(productFilterRequest:any,request:any): Observable<any> {
+      return this.http.post(PUBLIC_API_URL + "categoryController/" + 
+                          'productFilter?page='+request.page + '&size=' +request.size, productFilterRequest, httpOptions);
+    }
+
 }

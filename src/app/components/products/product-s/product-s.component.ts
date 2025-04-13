@@ -15,6 +15,15 @@ export class ProductSComponent {
   request:any = {page:"0",size:"100"};
   totalElements: number = 0;
 
+  categoryId:any;
+  categoryName:any;
+  sequenceQueryNext:any;
+
+  //Data to Fetch
+  productData:any;
+
+  //make Brand List
+  brandList:any =[];
 
   constructor(private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -22,9 +31,7 @@ export class ProductSComponent {
     private toast:NgToastService ,
   ) {}
 
-  categoryId:any;
-  categoryName:any;
-  sequenceQueryNext:any;
+  
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.categoryId =  params['cI'];
@@ -45,7 +52,7 @@ export class ProductSComponent {
     });
   }
 
-  productData:any;
+  
    //GET Product Search By Category Starting
    getProductS(cI:any , cN:any , request:any)
   {
@@ -56,15 +63,23 @@ export class ProductSComponent {
           next:(res:any)=> {
           this.productData = res.data['content']
           this.totalElements = res.data['totalElements'];
-
-          console.log("Product Search Data");
           console.log(this.productData);
+
+          this.productData.forEach((item:any)=>{
+           const exists =  this.brandList.some((existingItems:any)=> existingItems.brandName === item.brandField);
+            if(!exists)
+            {
+              this.brandList.push({"brandName": item.brandField,"checked":false});
+            }
+          })
+          console.log(this.brandList);
           
+
           // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
           this.spinner.hide();
         },
         error:(err:any)=>  {
-          console.log(err)
+          console.log(err);
           this.spinner.hide();
           // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
         }
@@ -80,31 +95,22 @@ export class ProductSComponent {
   {
     this.spinner.show();
     this.ps.getProductListByBornCategoryIdService(cI,cN ,request)
-    .subscribe(
-      {
-          next:(res:any)=> {
-          this.productData = res.data['content'];
-          this.totalElements = res.data['totalElements'];
-
-          console.log("Product Search Data Success By Born Category Id");
-          console.log(this.productData);
-          
-          // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
-          this.spinner.hide();
-        },
-        error:(err:any)=>  {
-          console.log(err)
-          this.spinner.hide();
-          // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
+    .subscribe({
+            next:(res:any)=> {
+            this.productData = res.data['content'];
+            this.totalElements = res.data['totalElements'];
+            // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
+            this.spinner.hide();
+          },
+          error:(err:any)=>  {
+            console.log(err);
+            this.spinner.hide();
+            // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
+          }
         }
-      }
-    );
+      );
   }
      //GET Product Search By Category ENDING
-
-
-
-
 
 
     nextPage(event: PageEvent) {
@@ -121,12 +127,82 @@ export class ProductSComponent {
      } 
 
 
+
+//  ==========================================================================================================
+    // Filter Items Starting
+    selectedBrand: string[] = [];
     readonly panelOpenState = signal(false);
-    brandChecked = false;
-    onBrandCheckboxChange(brand:any , event: any) {
-      console.log('Checkbox checked:', event.checked);
-      console.log('Brand selected:', this.brandChecked);
-      console.log(brand);
+
+    //Gender Filter
+    selectedGenders: string[] = [];
+    
+    onBrandCheckboxChange(brand: any, event: any) {
+      this.spinner.show();
+      if (event.checked === true) {
+        if (!this.selectedBrand.includes(brand.brandName)) {
+          this.selectedBrand.push(brand.brandName);
+        }
+      } else {
+        this.selectedBrand = this.selectedBrand.filter(
+          (existing: string) => existing !== brand.brandName
+        );
+      }
+    
+      //Check SelectedBrand Array is 0 then Normal Products Shows....
+      if(this.selectedBrand.length === 0 && this.selectedGenders.length === 0)
+      {
+        this.getProductS(this.categoryId,this.categoryName,this.request);
+        return;
+      }
+      
+      console.log(this.selectedBrand);
+      const productFilterRequest = {
+        brandKeys: this.selectedBrand,
+        genders:this.selectedGenders
+      };
+     
+
+      //Call Filter API's
+      this.productFilters(productFilterRequest);
     }
 
+   
+
+    //Gender Filter Starting 
+    genderSelected(){
+      const productFilterRequest = {
+        brandKeys: this.selectedBrand,
+        genders:this.selectedGenders
+      };
+
+      //Check SelectedBrand Array is 0 then Normal Products Shows....
+      if(this.selectedGenders.length === 0 && this.selectedBrand.length !== 0){
+        this.productFilters(productFilterRequest);
+      }else if(this.selectedGenders.length !== 0){
+        this.productFilters(productFilterRequest);
+      }else{
+        this.getProductS(this.categoryId,this.categoryName,this.request);
+        return;
+      }
+    }
+    //Gender Filter Ending--- 
+
+
+    // Filter Items Ending
+      productFilters(productFilterRequest:any){
+        this.ps.productFilter(productFilterRequest,this.request)
+        .subscribe({
+                next:(res:any)=> {
+                console.log(res);
+                this.productData = res.data['content'];
+                this.totalElements = res.data['totalElements'];
+                this.spinner.hide();
+              },
+              error:(err:any)=>{
+                console.log(err);
+                this.spinner.hide();
+              }
+            });
+      }
+ 
 }
