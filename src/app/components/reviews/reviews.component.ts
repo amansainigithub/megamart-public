@@ -229,12 +229,12 @@ export class ReviewsComponent {
   }
 
   nextPage(event: PageEvent) {
-    console.log(event);
+   console.log(event);
     const request: any = {};
     request['page'] = event.pageIndex.toString();
     request['size'] = event.pageSize.toString();
     this.getUserReviews(request);
-  }
+  } 
 
   getReviewToEdit(id: any) {
     const reviewData = this.reviewsData.find((rv: any) => rv.id === id);

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ProductSService } from '../../../_services/productsService/productSService/product-s.service';
 import { NgToastService } from 'ng-angular-popup';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-s',
@@ -11,25 +12,36 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class ProductSComponent {
 
+  request:any = {page:"0",size:"100"};
+  totalElements: number = 0;
+
+
   constructor(private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private ps:ProductSService,
     private toast:NgToastService ,
   ) {}
 
+  categoryId:any;
+  categoryName:any;
+  sequenceQueryNext:any;
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      this.categoryId =  params['cI'];
+      this.categoryName =  params['cN'];
+      this.sequenceQueryNext = params['sQNext'];
+
       const cI = params['cI'];
       const cN = params['cN'];
       const sQNext = params['sQNext'];
 
       if(sQNext !==null || sQNext !== "" || sQNext !== undefined){
         if(sQNext === 'NO'){
-            this.getProductS(cI , cN ,{page:"0",size:"50"});
+            this.getProductS(cI , cN ,this.request);
         }else if(sQNext === 'YES'){
-          this.getProductByBornCategoryId(cI , cN ,{page:"0",size:"50"});
+          this.getProductByBornCategoryId(cI , cN ,this.request);
         }else if(sQNext === 'DEAL'){
-          this.getProductListDeal99(cI , cN ,{page:"0",size:"50"});
+          this.getProductListDeal99(cI , cN ,this.request);
         }
       }
     });
@@ -45,6 +57,8 @@ export class ProductSComponent {
       {
           next:(res:any)=> {
           this.productData = res.data['content']
+          this.totalElements = res.data['totalElements'];
+
           console.log("Product Search Data");
           console.log(this.productData);
           
@@ -62,6 +76,7 @@ export class ProductSComponent {
      //GET Product Search By Category ENDING
 
 
+
    //GET Product Search By Born Category Starting
    getProductByBornCategoryId(cI:any , cN:any , request:any)
   {
@@ -70,7 +85,9 @@ export class ProductSComponent {
     .subscribe(
       {
           next:(res:any)=> {
-          this.productData = res.data['content']
+          this.productData = res.data['content'];
+          this.totalElements = res.data['totalElements'];
+
           console.log("Product Search Data Success By Born Category Id");
           console.log(this.productData);
           
@@ -115,5 +132,28 @@ getProductListDeal99(cI:any , cN:any , request:any)
    }
     //DEAL 99 ENDING
 
+
+
+    nextPage(event: PageEvent) {
+      console.log(event);
+       const request: any = {};
+       request['page'] = event.pageIndex.toString();
+       request['size'] = event.pageSize.toString();
+       if(this.sequenceQueryNext === 'NO'){
+        this.getProductS(this.categoryId ,this.categoryName , request);
+       }
+       else if(this.sequenceQueryNext === 'YES'){
+        this.getProductByBornCategoryId(this.categoryId ,this.categoryName , request);
+       }
+     } 
+
+
+    readonly panelOpenState = signal(false);
+    brandChecked = false;
+    onBrandCheckboxChange(brand:any , event: any) {
+      console.log('Checkbox checked:', event.checked);
+      console.log('Brand selected:', this.brandChecked);
+      console.log(brand);
+    }
 
 }
