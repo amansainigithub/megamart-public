@@ -116,35 +116,6 @@
 
 
 
-  <!-- Hot Deals @9999999 container First STARTING-->
-<!-- <div class="container-fluid  mt-2">
-
-  <div class="price-tag">
-    {{hotDealEngine.dealName}}
-  </div>
-
-  <owl-carousel-o [options]="customOptionsHotDeals">
-    <ng-container *ngFor="let data of hotDeals">
-      <ng-template carouselSlide>
-        <a [routerLink]="['/Search']" [queryParams]="{ cI: data.categoryId,cN:data.categoryName,sQNext:'DEAL' }"
-          href="#" class="card dealCard">
-          <div class="product-deal-image">
-            <img [src]="data.fileUrl" [alt]="data.name">
-            <div class="image-overlay">
-              <p>{{ data.name }}</p>
-            </div>
-          </div>
-          <div class="card-body dealCardBody">
-            <p class="card-title font-weight-bolder text-center offerName mt-1">
-              {{ data.offerName }}
-            </p>
-          </div>
-        </a>
-      </ng-template>
-    </ng-container>
-  </owl-carousel-o>
-</div> -->
-  <!-- Hot Deals container First ENFING-->
 
 
 
@@ -212,11 +183,6 @@
 <!-- PRODUCT LIST ENDING] -->
 
 
-
-
-
-
-
 <!-- Mens Category Card Starting -->
 <div class="container mt-4">
   <div class="price-tag">Mens Category</div>
@@ -245,91 +211,4 @@
 </div>
 
 
-</div>
-<!-- Mens Category Card Ending -->
-
-
-<!-- Women Category Card Starting -->
-<!-- <div class="container-fluid">
-  <div class="price-tag">Women Category</div>
-
-  <div class="row">
-    <div *ngFor="let data of womenList" class="col-lg-2 col-md-4 col-sm-6 col-12 mb-4">
-      <a 
-      [routerLink]="['/Search']" [queryParams]="{ cI: data.id,cN:data.categoryName,sQNext:'YES' }"
-      href="#" class="text-decoration-none">
-        <div class="card cardMenAndWomen">
-          <img class="card-img MW-Hover" [src]="data.categoryFile" alt="Card image">
-          <div class="card-title"> 
-            <p class="text-dark mt-3 cardTitleCategory">
-              {{data.categoryName}}
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</div> -->
-<!-- Women Category Card Ending -->
-
-
-
-
-
-
-<!-- ==================================================================================================================== -->
-
-<!-- HotDeal Container Second -->
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <a href="#" class="card-link dealAnchor" >
-        <div class="card text-white dealCard">
-          <div class="image-container">
-            <img src="../../assets/images/wear.jpg" class="zoom-image dealImg">
-          </div>
-          <div class="card-img-overlay text-center dealCardOverlay" 
-               style="top: 50%; transform: translateY(20%);">
-            <h5 class="card-title mt-4">Men Top Wear</h5>
-            <p class="card-text">Upto 60% OFF</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</div> -->
-<!-- HotDeal Container Second -->
-
-
-
-
-
-
-
-
-
-<div class="container my-5">
-  <div class="row g-4">
-      <div class="col-md-4">
-          <div class="feature-box">
-              <i class="bi bi-gem blue icon"></i>
-              <h5><strong>Premium Craftsmanship</strong></h5>
-              <p>Designed with precision, built to last.</p>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="feature-box">
-              <i class="bi bi-truck green icon"></i>
-              <h5><strong>Fast & Reliable Shipping</strong></h5>
-              <p>We deliver worldwide with speed & care.</p>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="feature-box">
-              <i class="bi bi-people red icon"></i>
-              <h5><strong>Millions of Happy Customers</strong></h5>
-              <p>Join our 5M+ satisfied users globally.</p>
-          </div>
-      </div>
-  </div>
 </div>

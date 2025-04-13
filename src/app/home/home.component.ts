@@ -10,6 +10,14 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
+  categories: any;
+  homeSliderData: any;
+  babyDataFilter: any;
+  mensList:any;
+  productsList:any;
+  womenList:any;
+  
   
   // Own Slider PROPERTIES
   customOptions: OwlOptions = {
@@ -41,45 +49,6 @@ export class HomeComponent implements OnInit {
 }
 
 
-customOptionsHotDeals: OwlOptions = {
-  loop: true,
-  mouseDrag: true,
-  touchDrag: true,
-  pullDrag: true,
-  dots: true,
-  navSpeed: 1000,
-  navText: ['', ''],
-  autoplay: true, // Enables autoplay
-  autoplayTimeout: 10000, // Duration in milliseconds (5 seconds)
-  autoplayHoverPause: true, // Pause on hover
-  responsive: {
-    0: {
-      items: 1
-    },
-    400: {
-      items: 2
-    },
-    740: {
-      items: 3
-    },
-    940: {
-      items: 5
-    }
-  },
-  nav: false
-}
-  // Own Slider PROPERTIES
-
-
-  categories: any;
-  homeSliderData: any;
-  babyDataFilter: any;
-  hotDeals:any;
-  hotDealEngine:any;
-  mensList:any;
-  productsList:any;
-  womenList:any;
-  
   constructor(
     private userService: UserService,
     private productCategory: ProductCategoryService,
@@ -105,20 +74,11 @@ customOptionsHotDeals: OwlOptions = {
         //Baby Category Data
         this.babyDataFilter = res.data.babyDataFilter;
 
-         //Hot Deals Data
-         //this.hotDeals = res.data.hotDeals;
-
-         //Hot Deals Data
-         //this.hotDealEngine = res.data.hotDealEngine;
-
-         //Hot Deals Data
+         //Mens List
          this.mensList = res.data.mensList;
 
          //ProductLists
          this.productsList = res.data.productsList;
-
-         //Hot Deals Data
-         //this.womenList = res.data.womenList;
 
         this.spinner.hide();
       },

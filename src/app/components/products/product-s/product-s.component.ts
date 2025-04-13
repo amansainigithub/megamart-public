@@ -40,8 +40,6 @@ export class ProductSComponent {
             this.getProductS(cI , cN ,this.request);
         }else if(sQNext === 'YES'){
           this.getProductByBornCategoryId(cI , cN ,this.request);
-        }else if(sQNext === 'DEAL'){
-          this.getProductListDeal99(cI , cN ,this.request);
         }
       }
     });
@@ -106,31 +104,6 @@ export class ProductSComponent {
 
 
 
-
-  //DEAL 99 STARTING
-getProductListDeal99(cI:any , cN:any , request:any)
-   {
-     this.spinner.show();
-     this.ps.getProductListDeal99Service(cI,cN ,request)
-     .subscribe(
-       {
-           next:(res:any)=> {
-           this.productData = res.data['content']
-           console.log("Product Search Data Success By Born Category Id");
-           console.log(this.productData);
-           
-           // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
-           this.spinner.hide();
-         },
-         error:(err:any)=>  {
-           console.log(err)
-           this.spinner.hide();
-           // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
-         }
-       }
-     );
-   }
-    //DEAL 99 ENDING
 
 
 
