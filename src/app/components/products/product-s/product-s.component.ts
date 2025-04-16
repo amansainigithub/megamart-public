@@ -130,20 +130,31 @@ export class ProductSComponent {
 
 //  ==========================================================================================================
     readonly panelOpenState = signal(false);
-    priceRange: string[] = ['0 to 199','199 to 299' ,'299 to 399','399 to 499','1000 to 6000'];
-
+    priceRange: any[] = [
+      { label: 'Above ₹99', value: { min: 99, max: 900000 } },
+      { label: '₹100 to ₹200', value: { min: 100, max: 200 } },
+      { label: '₹200 to ₹300', value: { min: 200, max: 300 } },
+      { label: '₹300 to ₹400', value: { min: 300, max: 400 } },
+      { label: '₹400 to ₹500', value: { min: 400, max: 500 } },
+      { label: '₹500 to ₹600', value: { min: 500, max: 600 } },
+      { label: '₹600 to ₹700', value: { min: 600, max: 700 } },
+      { label: '₹700 to ₹800', value: { min: 700, max: 800 } },
+      { label: '₹800 to ₹900', value: { min: 800, max: 900 } },
+      { label: '₹900 to ₹1000', value: { min: 900, max: 1000 } },
+      { label: 'Above ₹1000', value: { min: 1000, max: 900000 } },
+    ];
+    
+    selectedPrice: any = null;
+    
     // Filter Items Starting
     selectedBrands: string[] = [];
 
     //Gender Filter
     selectedGenders: string[] = [];
 
-    //Selected Price
-    selectedPrice:any;
-
     productFilterRequest:any = {
-      brandKeys: null,
-      genders: null,
+      brandKeys: [],
+      genders: [],
       price: null
     };
 
@@ -158,13 +169,12 @@ export class ProductSComponent {
       //Put Array in the ProductFilter
       this.productFilterRequest.brandKeys = this.selectedBrands;
 
-      console.log(this.selectedBrands);
-      
-
-      if(this.selectedBrands.length === 0 &&  this.selectedBrands.length === 0 ){
+      if(this.selectedBrands.length === 0 &&  this.selectedGenders.length === 0 && (this.selectedPrice === undefined 
+        || this.selectedPrice === null ) ){
         this.getProductS(this.categoryId,this.categoryName,this.request);
         return;
-      }else if(this.productFilterRequest.brandKeys.length > 0){
+      }else if(this.selectedBrands.length > 0 || this.selectedGenders.length > 0 || this.selectedPrice !== undefined 
+        || this.selectedPrice !== null){
         this.productFilters(this.productFilterRequest);
       }
     }
@@ -177,8 +187,7 @@ export class ProductSComponent {
       this.productFilterRequest.genders = this.selectedGenders;
       this.productFilterRequest.brandKeys = this.selectedBrands;
 
-      if(this.productFilterRequest.brandKeys.length === 0 && 
-         this.productFilterRequest.genders.length === 0)
+      if(this.selectedGenders.length === 0 && this.selectedBrands.length === 0)
       {
         this.getProductS(this.categoryId,this.categoryName,this.request);
         return;
@@ -192,11 +201,25 @@ export class ProductSComponent {
 
 
 //   // Product Filter By Price Starting
-//   priceSelected(){
-//     //Put Array in the ProductFilter
-//    this.productFilterRequest.price = this.selectedPrice;
-//   //  this.productFilters(this.productFilterRequest);
-//  }
+  priceSelected(){
+    //Calling Filter API's
+    if((this.selectedPrice === null || this.selectedPrice === undefined) 
+        && this.selectedBrands.length === 0 
+        && this.selectedGenders.length === 0)
+    {  
+      this.getProductS(this.categoryId,this.categoryName,this.request);     
+    }else{
+      if(this.selectedPrice !== null){
+          if(this.selectedPrice !== undefined){
+            this.productFilterRequest.price = this.selectedPrice.min + "to" + this.selectedPrice.max;
+          }
+          if(this.selectedPrice === undefined){
+            this.productFilterRequest.price = null;
+          }
+        this.productFilters(this.productFilterRequest);
+      }
+    }
+ }
 // // Product Filter By Price Ending..
 
 
@@ -223,11 +246,12 @@ export class ProductSComponent {
     clearAll() {
       // Clear selection arrays
       this.selectedBrands = [];
+      this.selectedGenders = []; 
     
       // Reset filter request object
       this.productFilterRequest = {
-        brandKeys: null,
-        genders: null,
+        brandKeys: [],
+        genders: [],
         price: null
       };
     
