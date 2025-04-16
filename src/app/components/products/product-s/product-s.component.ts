@@ -165,20 +165,30 @@ export class ProductSComponent {
       } else {
         this.selectedBrands = this.selectedBrands.filter(b => b !== brand.brandName);
       }
-
       //Put Array in the ProductFilter
       this.productFilterRequest.brandKeys = this.selectedBrands;
 
-      if(this.selectedBrands.length === 0 &&  this.selectedGenders.length === 0 && (this.selectedPrice === undefined 
-        || this.selectedPrice === null ) ){
-        this.getProductS(this.categoryId,this.categoryName,this.request);
-        return;
-      }else if(this.selectedBrands.length > 0 || this.selectedGenders.length > 0 || this.selectedPrice !== undefined 
-        || this.selectedPrice !== null){
-        this.productFilters(this.productFilterRequest);
-      }
+      this.productSearchFilterConditions();
     }
-  // Product Filter By Brands Ending
+
+  productSearchFilterConditions(){
+    if(this.selectedBrands.length === 0  &&  this.selectedGenders.length === 0 && (this.selectedPrice === undefined 
+      || this.selectedPrice === null ) ){
+      this.getProductS(this.categoryId,this.categoryName,this.request);
+    }
+  else{
+    if(this.selectedPrice !== null){
+        if(this.selectedPrice !== undefined){
+          this.productFilterRequest.price = this.selectedPrice.min + "to" + this.selectedPrice.max;
+        }
+        if(this.selectedPrice === undefined){
+          this.productFilterRequest.price = null;
+        }
+      }
+      this.productFilters(this.productFilterRequest);
+    }
+  }
+  
 
 
   // Product Filter By Gender Starting
@@ -187,40 +197,18 @@ export class ProductSComponent {
       this.productFilterRequest.genders = this.selectedGenders;
       this.productFilterRequest.brandKeys = this.selectedBrands;
 
-      if(this.selectedGenders.length === 0 && this.selectedBrands.length === 0)
-      {
-        this.getProductS(this.categoryId,this.categoryName,this.request);
-        return;
-      }else{
-        this.productFilters(this.productFilterRequest);
-      }
+      this.productSearchFilterConditions();
     }
   // Product Filter By Gender Ending..
 
 
 
 
-//   // Product Filter By Price Starting
+// Product Filter By Price Starting
   priceSelected(){
-    //Calling Filter API's
-    if((this.selectedPrice === null || this.selectedPrice === undefined) 
-        && this.selectedBrands.length === 0 
-        && this.selectedGenders.length === 0)
-    {  
-      this.getProductS(this.categoryId,this.categoryName,this.request);     
-    }else{
-      if(this.selectedPrice !== null){
-          if(this.selectedPrice !== undefined){
-            this.productFilterRequest.price = this.selectedPrice.min + "to" + this.selectedPrice.max;
-          }
-          if(this.selectedPrice === undefined){
-            this.productFilterRequest.price = null;
-          }
-        this.productFilters(this.productFilterRequest);
-      }
-    }
+   this.productSearchFilterConditions();
  }
-// // Product Filter By Price Ending..
+// Product Filter By Price Ending..
 
 
     // Filter Items API's Starting
@@ -228,7 +216,6 @@ export class ProductSComponent {
         this.ps.productFilter(productFilterRequest,this.request)
         .subscribe({
                 next:(res:any)=> {
-                // console.log(res);
                 this.productData = res.data['content'];
                 this.totalElements = res.data['totalElements'];
                 this.spinner.hide();
@@ -247,6 +234,8 @@ export class ProductSComponent {
       // Clear selection arrays
       this.selectedBrands = [];
       this.selectedGenders = []; 
+      this.selectedPrice = null;
+
     
       // Reset filter request object
       this.productFilterRequest = {

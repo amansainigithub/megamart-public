@@ -157,3 +157,28 @@
 .priceOff {
     color: rgb(64, 190, 14);
 }
+
+
+
+
+/* //Scroll */
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 6px; /* Narrow width like the image */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f5f4f8; /* Light background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3; /* Gray thumb like shown */
+    border-radius: 10px;
+  }
+  
+  /* Optional: On hover for better UX */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+  }
+  

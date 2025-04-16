@@ -1,13 +1,18 @@
-<div class="container-fluid mt-4">
+<div class="container mt-4">
   <div class="row">
 
-    <div class="col-md-2" style="background-color: transparent;">
+    <div class="col-md-3" style="background-color: transparent; overflow-y: auto; max-height: 80vh;margin-bottom: 70px; 
+                          position: sticky; top: 100px;">
 
-      <div class="d-flex justify-content-between align-items-center mt-3">
-        <h5 class="mb-0">FILTER</h5>
-        <button mat-raised-button color="primary" (click)="clearAll()">Clear All</button>
+
+      <div *ngIf="selectedPrice || selectedBrands.length > 0 || selectedGenders.length > 0">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <p class="mb-0 fs18">FILTER</p>
+          <button mat-raised-button color="primary" style="height: 30px;" (click)="clearAll()">Clear All</button>
+        </div>
+        <hr style="background: #b3b3b3 ;" />
       </div>
-      <hr>
+      
       
 
         <!-- Brand Starting -->
@@ -18,7 +23,7 @@
                 <mat-panel-title> Brand </mat-panel-title>
               </mat-expansion-panel-header>
                 <div *ngFor="let brand of brandList">
-                  <mat-checkbox [(ngModel)]="brand.checked" (change)="toggleBrandSelection(brand)">
+                  <mat-checkbox [(ngModel)]="brand.checked" color="primary" (change)="toggleBrandSelection(brand)">
                     {{ brand.brandName }}
                   </mat-checkbox>
                 </div>
@@ -55,7 +60,7 @@
           <!-- Gender Ending -->
 
         <!-- Price Starting  -->
-        <div class="mt-3">
+        <div class="mt-3 mb-4">
           <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
               <mat-expansion-panel-header>
@@ -82,7 +87,7 @@
     </div>
 
 
-    <div class="col-md-10">
+    <div class="col-md-9">
         <div class="row">
           <div *ngFor="let data of productData" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
             <a [routerLink]="['/pw']" [queryParams]="{ size:data.productFirstSize, pI:data.id,pN:data.productName }"
