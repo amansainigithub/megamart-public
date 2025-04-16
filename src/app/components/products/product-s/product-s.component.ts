@@ -63,7 +63,7 @@ export class ProductSComponent {
           next:(res:any)=> {
           this.productData = res.data['content']
           this.totalElements = res.data['totalElements'];
-          console.log(this.productData);
+          // console.log(this.productData);
 
           this.productData.forEach((item:any)=>{
            const exists =  this.brandList.some((existingItems:any)=> existingItems.brandName === item.brandField);
@@ -72,7 +72,7 @@ export class ProductSComponent {
               this.brandList.push({"brandName": item.brandField,"checked":false});
             }
           })
-          console.log(this.brandList);
+          // console.log(this.brandList);
           
 
           // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
@@ -129,71 +129,83 @@ export class ProductSComponent {
 
 
 //  ==========================================================================================================
-    // Filter Items Starting
-    selectedBrand: string[] = [];
     readonly panelOpenState = signal(false);
+    priceRange: string[] = ['0 to 199','199 to 299' ,'299 to 399','399 to 499','1000 to 6000'];
+
+    // Filter Items Starting
+    selectedBrands: string[] = [];
 
     //Gender Filter
     selectedGenders: string[] = [];
-    
-    onBrandCheckboxChange(brand: any, event: any) {
-      this.spinner.show();
-      if (event.checked === true) {
-        if (!this.selectedBrand.includes(brand.brandName)) {
-          this.selectedBrand.push(brand.brandName);
-        }
+
+    //Selected Price
+    selectedPrice:any;
+
+    productFilterRequest:any = {
+      brandKeys: null,
+      genders: null,
+      price: null
+    };
+
+    // Product Filter By Brands Starting
+    toggleBrandSelection(brand: any) {
+      if (brand.checked) {
+        this.selectedBrands.push(brand.brandName);
       } else {
-        this.selectedBrand = this.selectedBrand.filter(
-          (existing: string) => existing !== brand.brandName
-        );
+        this.selectedBrands = this.selectedBrands.filter(b => b !== brand.brandName);
       }
-    
-      //Check SelectedBrand Array is 0 then Normal Products Shows....
-      if(this.selectedBrand.length === 0 && this.selectedGenders.length === 0)
+
+      //Put Array in the ProductFilter
+      this.productFilterRequest.brandKeys = this.selectedBrands;
+
+      console.log(this.selectedBrands);
+      
+
+      if(this.selectedBrands.length === 0 &&  this.selectedBrands.length === 0 ){
+        this.getProductS(this.categoryId,this.categoryName,this.request);
+        return;
+      }else if(this.productFilterRequest.brandKeys.length > 0){
+        this.productFilters(this.productFilterRequest);
+      }
+    }
+  // Product Filter By Brands Ending
+
+
+  // Product Filter By Gender Starting
+    genderSelected(){
+      //Put Array in the ProductFilter
+      this.productFilterRequest.genders = this.selectedGenders;
+      this.productFilterRequest.brandKeys = this.selectedBrands;
+
+      if(this.productFilterRequest.brandKeys.length === 0 && 
+         this.productFilterRequest.genders.length === 0)
       {
         this.getProductS(this.categoryId,this.categoryName,this.request);
         return;
-      }
-      
-      console.log(this.selectedBrand);
-      const productFilterRequest = {
-        brandKeys: this.selectedBrand,
-        genders:this.selectedGenders
-      };
-     
-
-      //Call Filter API's
-      this.productFilters(productFilterRequest);
-    }
-
-   
-
-    //Gender Filter Starting 
-    genderSelected(){
-      const productFilterRequest = {
-        brandKeys: this.selectedBrand,
-        genders:this.selectedGenders
-      };
-
-      //Check SelectedBrand Array is 0 then Normal Products Shows....
-      if(this.selectedGenders.length === 0 && this.selectedBrand.length !== 0){
-        this.productFilters(productFilterRequest);
-      }else if(this.selectedGenders.length !== 0){
-        this.productFilters(productFilterRequest);
       }else{
-        this.getProductS(this.categoryId,this.categoryName,this.request);
-        return;
+        this.productFilters(this.productFilterRequest);
       }
     }
-    //Gender Filter Ending--- 
+  // Product Filter By Gender Ending..
 
 
-    // Filter Items Ending
-      productFilters(productFilterRequest:any){
+
+
+//   // Product Filter By Price Starting
+//   priceSelected(){
+//     //Put Array in the ProductFilter
+//    this.productFilterRequest.price = this.selectedPrice;
+//   //  this.productFilters(this.productFilterRequest);
+//  }
+// // Product Filter By Price Ending..
+
+
+    // Filter Items API's Starting
+  productFilters(productFilterRequest:any){
         this.ps.productFilter(productFilterRequest,this.request)
         .subscribe({
                 next:(res:any)=> {
-                console.log(res);
+                // console.log(res);
                 this.productData = res.data['content'];
                 this.totalElements = res.data['totalElements'];
                 this.spinner.hide();
@@ -204,5 +216,31 @@ export class ProductSComponent {
               }
             });
       }
+    // Filter Items API's Ending....    
+
+
+
+    clearAll() {
+      // Clear selection arrays
+      this.selectedBrands = [];
+    
+      // Reset filter request object
+      this.productFilterRequest = {
+        brandKeys: null,
+        genders: null,
+        price: null
+      };
+    
+      // Uncheck all brand checkboxes
+      this.brandList.forEach((brand:any) => brand.checked = false);
+    
+      // Optionally close filter panel
+      this.panelOpenState.set(false);
+    
+      // Fetch all products again
+      this.getProductS(this.categoryId, this.categoryName, this.request);
+    }
+    
+      
  
 }
