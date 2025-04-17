@@ -88,6 +88,9 @@
 
 
     <div class="col-md-9">
+
+      <p class="text-muted brandName custom-spacing cN">{{categoryName}}</p>
+
         <div class="row">
           <div *ngFor="let data of productData" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
             <a [routerLink]="['/pw']" [queryParams]="{ size:data.productFirstSize, pI:data.id,pN:data.productName }"
@@ -95,10 +98,12 @@
               class="card product-card h-100 ">
               <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
                 <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
-                <div class="rating-review">
-                  4.4 <i class="bi bi-star-fill"></i> | 1.3k
+
+                <div *ngIf="data.rating && data.reviewCount" class="rating-review">
+                  {{data.rating}} <i class="bi bi-star-fill"></i> | {{data.reviewCount}}
                 </div>
-                <div class="tag">OVERSIZED FIT</div>
+
+                <div class="tag">{{data.materialType}}</div>
               </div>
               <div *ngIf="data?.productFilesResponses?.length" class="card-body p-2">
                 <p class="product-title">{{ data.brandField }}</p>

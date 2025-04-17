@@ -29,7 +29,7 @@
 
         <!-- Product Details -->
         <div class="col-md-5">
-            <p class="text-muted brandName custom-spacing brandName">{{productData.brandField}}</p>
+            <p class="text-muted brandName custom-spacing">{{productData.brandField}}</p>
             <p class="custom-spacing productName">{{productData.productName}}</p>
 
            <div class="mt-3">
@@ -46,9 +46,9 @@
             </p>
            </div>
 
-            <div class="rating align-items-center">
-                <span class="badge" style="background-color: #26A541;">4.7 ★</span>
-                <p class="text-muted mt-1">15,039 ratings and 738 reviews</p>
+            <div *ngIf="productData.rating && productData.reviewCount" class="rating align-items-center">
+                <span class="badge" style="background-color: #26A541;">{{productData.rating}} ★</span>
+                <p class="text-muted mt-1">{{productData.reviewCount}} reviews</p>
             </div>
             
 
@@ -210,10 +210,12 @@
                     
                     <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
                         <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
-                        <div class="rating-review">
-                            4.4 <i class="bi bi-star-fill"></i> | 1.3k
+
+                        <div *ngIf="data.rating && data.reviewCount" class="rating-review">
+                            {{data.rating}} <i class="bi bi-star-fill"></i> | {{data.reviewCount}}
                         </div>
-                        <div class="tag">OVERSIZED FIT</div>
+
+                        <div class="tag">{{data.materialType}}</div>
                     </div>
 
                     <div *ngIf="data?.productFilesResponses?.length" class="card-body p-2">

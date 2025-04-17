@@ -107,8 +107,7 @@ export class ProductSComponent {
                {
                  this.brandList.push({"brandName": item.brandField,"checked":false});
                }
-             })
-             // console.log(this.brandList);
+             });
 
             this.spinner.hide();
           },

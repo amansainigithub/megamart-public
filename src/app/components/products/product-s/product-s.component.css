@@ -1,3 +1,22 @@
+.cN {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #5D6D7E;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cN:hover {
+    color: #2E86C1;
+    transform: translateX(10px);
+}
+
+
+
+
 .product-card {
     border: 1px solid #ddd;
     /* border-radius: 10px; */
@@ -99,6 +118,7 @@
 
 
 
+
 /* Make filters collapsible on small screens */
 @media (max-width: 767px) {
     .filter-sidebar {
@@ -106,64 +126,10 @@
     }
 }
 
-/* Adjust product card */
-.product-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.product-card:hover {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
-}
-
-/* Ensure images are contained */
-.product-image-container {
-    width: 100%;
-    overflow: hidden;
-}
-
-.product-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/* Improve text and spacing */
-.product-title {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.productName {
-    font-size: 12px;
-}
-
-.price-details {
-    font-size: 14px;
-}
-
-.actualPrice {
-    font-weight: bold;
-    color: #000;
-}
-
-.mrpPrice {
-    text-decoration: line-through;
-    color: gray;
-}
-
-.priceOff {
-    color: rgb(64, 190, 14);
-}
-
 
 
 
 /* //Scroll */
-
 /* WebKit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
     width: 6px; /* Narrow width like the image */
@@ -183,3 +149,4 @@
     background-color: #999;
   }
   
+/* //Scroll Ending*/

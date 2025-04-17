@@ -150,10 +150,12 @@
                   
                   <div *ngIf="data?.productFilesResponses?.length" class="product-image-container">
                       <img [src]="data.productFilesResponses[0].fileUrl" alt="Product Image" class="product-image img-fluid">
-                      <div class="rating-review">
-                          4.4 <i class="bi bi-star-fill"></i> | 1.3k
-                      </div>
-                      <div class="tag">OVERSIZED FIT</div>
+
+                      <div *ngIf="data.rating && data.reviewCount"  class="rating-review">
+                        {{data.rating}} <i class="bi bi-star-fill"></i> | {{data.reviewCount}}
+                    </div>
+
+                      <div class="tag">{{data.materialType}}</div>
                   </div>
 
                   <div *ngIf="data?.productFilesResponses?.length" class="px-2 p-2">
