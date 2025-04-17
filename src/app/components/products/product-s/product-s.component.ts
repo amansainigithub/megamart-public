@@ -99,13 +99,22 @@ export class ProductSComponent {
             next:(res:any)=> {
             this.productData = res.data['content'];
             this.totalElements = res.data['totalElements'];
-            // this.toast.success({detail:"Success",summary:"Data Fetch Success", position:"bottomRight",duration:3000});
+
+
+            this.productData.forEach((item:any)=>{
+              const exists =  this.brandList.some((existingItems:any)=> existingItems.brandName === item.brandField);
+               if(!exists)
+               {
+                 this.brandList.push({"brandName": item.brandField,"checked":false});
+               }
+             })
+             // console.log(this.brandList);
+
             this.spinner.hide();
           },
           error:(err:any)=>  {
             console.log(err);
             this.spinner.hide();
-            // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
           }
         }
       );
