@@ -187,6 +187,7 @@ body {
 
 
 
+
 /* ============= */
   .sticky-image {
     position: sticky;
@@ -331,3 +332,59 @@ body {
         display: none;
     }
 }
+
+
+.pdKey-custom{
+    font-size: 13px;
+    font-family: sans-serif;
+    font-weight: 540;
+    text-transform: uppercase;
+    color: #4e5d6a;
+}
+
+.pdValues-custom{
+    font-size: 13px;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333b42;
+}
+
+
+
+
+
+/* BUTTON DESIGN IF PRODUCT OUT OF STOCK */
+.outOfStockbutton {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    background-color: white;
+    color: #9d0000;
+    line-height: 50px; /* Align text vertically */
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+    border: none; /* Remove the border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Add shadow */
+  }
+  
+  .moving-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: moveText 10s infinite alternate; /* Create moving effect */
+  }
+  
+  @keyframes moveText {
+    0% {
+      transform: translateX(-100%); /* Start from left */
+    }
+    50% {
+      transform: translateX(100%); /* Move to right */
+    }
+    100% {
+      transform: translateX(-100%); /* Move back to left */
+    }
+  }
+  

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NgToastService } from 'ng-angular-popup';
 import { ProductWatchingService } from '../../../_services/productsService/productWatchigService/product-watching.service';
 import { AddToCartService } from '../../../_services/addToCartService/add-to-cart.service';
-import { RazorpayService } from '../../../_services/payments/razorpayService/razorpay.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-product-watching',
@@ -31,9 +30,15 @@ export class ProductWatchingComponent {
     private spinner: NgxSpinnerService,
     private pwService: ProductWatchingService,
     public cartService: AddToCartService,
+    private toast: NgToastService,
+    
   ) {}
 
   ngOnInit() {
+
+    //When is Page Loaded then selectedSize to make empty or null 
+    this.selectedSize = '';
+
     this.route.queryParams.subscribe((params) => {
       this.productId = params['pI'];
       this.productName = params['pN'];
@@ -51,6 +56,8 @@ export class ProductWatchingComponent {
     this.spinner.show();
     this.pwService.productWatchingService(pI, pN).subscribe({
       next: (res: any) => {
+        console.log("---------------------------------");
+        
         console.log(res);
 
         this.productData = res.data.pw;
@@ -94,9 +101,12 @@ export class ProductWatchingComponent {
   
         // Check if product is out of stock
         this.isOutOfStock = variant.productInventory <= 0;
+
+        console.log("OUT OF STOKE " , this.isOutOfStock);
+        
         this.spinner.hide();
       }
-    }, 0); // 2 seconds delay
+    }, 0); // 1 seconds delay
   }
   
 
@@ -108,6 +118,41 @@ export class ProductWatchingComponent {
     this.cartService.selectedSize ="";
   }
   
+
+
+  addToCartBuyNow(productData: any): void {
+
+    if(this.selectedSize === '')
+    {
+      this.toast.warning({
+        detail: 'Hey,',
+        summary: 'Please Select Size.',
+        position: 'topRight',
+        duration: 2000,
+      });
+      return;
+    }
+
+    this.cartService.buyNow(productData);
+
+  }
+
+
+  cartAddToCart(productData: any): void{
+
+    if(this.selectedSize === '')
+      {
+        this.toast.warning({
+          detail: 'Hey,',
+          summary: 'Please Select Size.',
+          position: 'topRight',
+          duration: 2000,
+        });
+        return;
+      }
+  
+      this.cartService.addToCart(productData);
+  }
 
 
 

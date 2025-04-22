@@ -3,7 +3,6 @@ import { AddToCartService } from '../../_services/addToCartService/add-to-cart.s
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RazorpayService } from '../../_services/payments/razorpayService/razorpay.service';
-import Swal from 'sweetalert2';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
 

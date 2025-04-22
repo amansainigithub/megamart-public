@@ -37,8 +37,9 @@
                             <option *ngFor="let qty of quantityOptions" [value]="qty">{{ qty }}</option>
                         </select>
 
-                        <a href="javascript:void(0);" class="text-danger mx-5 text-decoration-none"
+                        <a class="text-white mx-5" mat-raised-button color="warn"
                             (click)="cartService.removeFromCart(data.pId, data.pSize)">
+                            <i class="bi bi-x"></i>
                             Remove
                         </a>
                     </div>
@@ -49,7 +50,8 @@
 
                 <div class="col-md-2 text-center mt-3">
                     <span class="badge discount-badge">{{ data.pCalculatedDiscount }} off</span>
-                    <p class="price p-0 m-0">Price ₹{{ data.pPrice * data.quantity }}</p>
+                    <p class="price p-0 m-0">Price ₹{{ data.pPrice}}</p>
+                    <p class="fs14 p-0 m-0">Total Price ₹{{ data.pPrice * data.quantity}}</p>
                     <p class="pmrp">MRP ₹{{ data.pMrp * data.quantity }}</p>
                 </div>
                 

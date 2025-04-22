@@ -70,7 +70,7 @@
               
                 </ng-container>
               </div>
-              <p class="mt-1">Selected Size :<strong> ({{selectedSize}})</strong></p>
+              <p class="mt-1">Selected Size :<strong> {{(selectedSize)}}</strong></p>
               
               
               
@@ -79,55 +79,48 @@
               <!-- ======================================================================================= -->
 
             
-              <ng-container *ngIf="productData.sellerProductVarientResponses?.length > 0 else outOfStock">
+              <ng-container *ngIf="productData.sellerProductVarientResponses?.length > 0">
                 <div class="mt-4 d-flex gap-2">
                   
                   <!-- Conditionally show buttons based on stock availability -->
                   <ng-container *ngIf="!isOutOfStock">
-                    <button type="button" class="btn buyNow btn-lg  flex-fill" (click)="cartService.buyNow(
-                        productData.id,
-                        productData.productName,
-                        productData.productPrice,
-                        productData.brandField,
-                        productData.productFilesResponses[0]?.fileUrl,
-                        productData.colorVariant,
-                        productData.productMrp,
-                        productData.calculatedDiscount
-                      )">
-                      <i class="bi bi-bag-heart" ></i>
-                      BUY NOW
+
+                    <button type="button" class="btn buyNow btn-lg flex-fill" 
+                            (click)="addToCartBuyNow(productData)">
+                    <i class="bi bi-bag-heart"></i>
+                    BUY NOW
                     </button>
+
               
                     <button type="button" class="btn btn-warning btn-lg flex-fill" 
-                      (click)="cartService.addToCart(
-                        productData.id,
-                        productData.productName,
-                        productData.productPrice,
-                        productData.brandField,
-                        productData.productFilesResponses[0]?.fileUrl,
-                        productData.colorVariant,
-                        productData.productMrp,
-                        productData.calculatedDiscount
-                      )">
-                      <i class="bi bi-cart4"></i> ADD TO CART
+                            (click)="cartAddToCart(productData)">
+                    <i class="bi bi-cart4"></i> ADD TO CART
                     </button>
+                    
+
                   </ng-container>
               
                 </div>
               </ng-container>
               
-              
-              <ng-template #outOfStock>
-                <p class="text-danger mt-4" style="font-weight: 500;">Currently unavailable</p>
-              </ng-template>
-              
+
+              <ng-container *ngIf="isOutOfStock" class="mt-3" >
+                <button class="outOfStockbutton mt-1">
+                    <span class="moving-text">Product Size Unavailable
+                        <i class="bi bi-exclamation"></i>
+                    </span>
+                  </button>
+                  
+
+              </ng-container>
               
 
             <div class="mt-4">
-                <p class="productDetails custom-spacing">Product Details</p>
+                <p class="text-dark brandName custom-spacing mb-3">Product Details</p>
+                
                 <div class="row mb-3 mt-1" *ngFor="let pd of productData.productDetailsResponses">
-                    <div class="col-6 col-sm-4  pdh">{{pd.pdKey}}</div>
-                    <div class="col-6 col-sm-8 ">{{pd.pdValue}}</div>
+                    <div class="col-6 col-sm-4  pdh pdKey-custom">{{pd.pdKey}}</div>
+                    <div class="col-6 col-sm-8 pdValues-custom">{{pd.pdValue}}</div>
                 </div>
             </div>
             
@@ -163,17 +156,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- features-container STARTING -->
-            
-
-            <h6 class="mt-3">Available offers</h6>
-            <ul class="list-unstyled">
-                <li>✅ Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
-                <li>✅ Bank Offer 10% off up to ₹1,250 on PNB Credit Card Transactions</li>
-                <li>✅ Special Price Get at flat ₹579</li>
-                <li><a href="#" class="text-primary">+4 more offers</a></li>
-            </ul>
 
         </div>
     </div>
