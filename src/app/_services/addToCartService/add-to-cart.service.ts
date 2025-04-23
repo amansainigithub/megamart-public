@@ -117,18 +117,21 @@ export class AddToCartService {
       (item) => item.pId === productId && item.pSize === productSize
     );
 
-    if (existingItem.quantity >= 10) {
-      this.toast.warning({
-        detail: 'Cart Items',
-        summary: 'You cant add more than 10 quantities of the same product.',
-        position: 'topRight',
-        duration: 2000,
-      });
-      return;
-    }
+    
     
   
     if (existingItem) {
+      
+      if (existingItem.quantity >= 10) {
+        this.toast.warning({
+          detail: 'Cart Items',
+          summary: 'You cant add more than 10 quantities of the same product.',
+          position: 'topRight',
+          duration: 2000,
+        });
+        return;
+      }
+
       existingItem.quantity += 1;
       existingItem.totalPrice = existingItem.pPrice * existingItem.quantity;
     } else {

@@ -133,6 +133,14 @@
   color: black;
 }
 
+.cancleButton{
+  background-color: whitesmoke;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: black;
+}
+
 
 /* Running TRUCK */
 .running-truck {

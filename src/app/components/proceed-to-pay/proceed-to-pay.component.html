@@ -190,11 +190,19 @@
                 <span class="float-end fs20 text-success">₹{{cartService.getCartTotalPrice()}}</span>
               </h6>
 
-              <!-- ONLINE BUTTON -->
               <button class="btn btn-warning w-100 mt-2 py-3" *ngIf="showOnlineButton"
-                (click)="amountPaying_Online(cartService.getCartTotalPrice())">
-                Proceed to Buy
-              </button>
+                  (click)="amountPaying_Online(cartService.getCartTotalPrice())">
+                  
+                  <div *ngIf="payLoader; else showText" class="d-flex align-items-center justify-content-center">
+                    <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                    <span>Processing...</span>
+                  </div>
+                  
+                  <ng-template #showText>
+                    <div>Proceed to Buy</div>
+                  </ng-template>
+                </button>
+
 
               <!-- COD BUTTON -->
               <button class="btn btn-warning w-100 mt-2 py-3" *ngIf="showCodButton"

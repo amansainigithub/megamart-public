@@ -230,36 +230,43 @@ selectPayment(method: string) {
 //==========================================================
 // ===================PAYMENT STARTING======================
 
+    payLoader:any = false;
      //Amount PAying ONLINE----
     //Razorpay Integration Working Starting
     razorpayKey = 'rzp_test_cFBctGmM8MII0E';
     amountPaying_Online(amount: any) {
-
-      if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
-        this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
-        position: "bottomRight", duration: 3000});
+      // Pay Loader Starting...
+      this.payLoader = true;
+    
+      if (this.addressHolder === "" || this.addressHolder === null || this.addressHolder === undefined) {
+        this.toast.warning({
+          detail: "Warning",
+          summary: "Please select a delivery address before proceeding.",
+          position: "bottomRight",
+          duration: 3000
+        });
+        this.payLoader = false;
         return;
       }
-  
+    
       const user = this.tokenStorageService.getUser();
       if (!user || Object.keys(user).length === 0) {
         console.log("User is null, undefined, or an empty object");
         this.router.navigateByUrl('/login');
+        this.payLoader = false;
         return;
       }
-  
-      //Check isValid Cart items
+    
+      // Check isValid Cart items
       const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      // console.log(cart); // Check if cart is correctly retrieved
       const addressId = this.addressHolder.id;
-      console.log(addressId);
-      
-  
-      this.razorpayService.createOrderPaymentService(amount ,addressId, cart ).subscribe({
+      console.log("Selected address ID:", addressId);
+    
+      this.razorpayService.createOrderPaymentService(amount, addressId, cart).subscribe({
         next: (res: any) => {
-          console.log(res);
+          this.payLoader = false;
           const parsedResponse = JSON.parse(res.data);
-        
+    
           const options = {
             key: this.razorpayKey,
             amount: parsedResponse.amount,
@@ -269,17 +276,15 @@ selectPayment(method: string) {
             order_id: parsedResponse.id,
             handler: (response: any) => {
               console.log('Payment Success:', response);
-              //alert('Payment Successful!');
-  
-              //update Pament to Database
-              this.paymentUpdate(response , cart);
-
-               //Clear Cart Items
+    
+              // Update Payment to Database
+              this.paymentUpdate(response, cart);
+    
+              // Clear Cart Items
               this.cartService.clearCart();
-  
-              //Clear Cart Items
+    
+              // Redirect to home
               this.router.navigateByUrl('/home');
-              
             },
             prefill: {
               name: 'Aman Saini',
@@ -288,28 +293,40 @@ selectPayment(method: string) {
             },
             theme: {
               color: '#3399cc'
-            } ,
-            
-              modal: {
-                escape: false,
-                backdropclose: false,
-                ondismiss: () => {
-                  console.log('Payment popup closed by user');
-                  alert('Payment popup closed before completing the transaction.');
-                }
-              },
-              error: (error: any) => {
-                console.log('Payment Failed:', error);
-                alert(`Payment Failed! Reason: ${error.error.description}`);
+            },
+            modal: {
+              escape: false,
+              backdropclose: false,
+              ondismiss: () => {
+                // console.log('Payment popup closed by user');
+                // alert('Payment popup closed before completing the transaction.');
+
+                this.toast.error({
+                  detail: "Payment Error",
+                  summary: "Cancle to initiate payment. Please try again.",
+                  position: "topRight",
+                  duration: 2000
+                });
+
               }
-            };
-  
+            }
+          };
+    
           const rzp = new Razorpay(options);
           rzp.open();
-  
         },
+        error: (err: any) => {
+          this.payLoader = false;
+          this.toast.error({
+            detail: "Payment Error",
+            summary: "Please try again | Something Went Wrong",
+            position: "bottomRight",
+            duration: 2000
+          });
+        }
       });
     }
+    
   
     paymentUpdate(paymentTransaction:any ,cart:any) {
   
@@ -336,7 +353,8 @@ selectPayment(method: string) {
 
   // ==========================PAYMENT COD STARTING =========================
   amountPaying_Cod(amount: any){
-
+    // Pay Loader Starting...
+    this.payLoader = true;
 
     if(this.addressHolder ==="" || this.addressHolder === null || this.addressHolder === undefined){
       this.toast.warning({detail: "Success", summary: "Please select a delivery address before proceeding.",
@@ -372,10 +390,16 @@ selectPayment(method: string) {
         //Clear Cart Items
         this.cartService.clearCart();
 
+         // Pay Loader Starting...
+        this.payLoader = false;
+
       },error: (err: any) => {
         console.error('Error Creating COD Order:', err);
         this.toast.error({detail: "Error", summary: "Error Creating COD Order:", position: "bottomRight", duration: 2000});
         this.spinner.hide();
+        
+         // Pay Loader Starting...
+         this.payLoader = false;
       }
       });
   }
