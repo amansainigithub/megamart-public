@@ -264,8 +264,51 @@
 
                         <p class="fs13 mt-2" *ngIf="order.paymentMode === 'ONLINE' && order.deliveryStatus === 'CANCELLED'">
                             <i class="bi bi-wallet2"></i> 
-                            The amount will be refunded within 10 to 15 working days. We will keep you updated via email or SMS.
-                        </p>                  
+                            Amount will be credited to customer’s bank account within 5-7 working days after the refund has processed.
+                             We will keep you updated via email or SMS.
+                        </p>   
+
+                        <table class="custom-refund-table">
+                            <tbody>
+                              <tr>
+                                <td>Product Price</td>
+                                <td>₹{{ order.productPrice }}</td>
+                              </tr>
+                              <tr>
+                                <td>Fees</td>
+                                <td>₹{{ order.razorpayFees }}</td>
+                              </tr>
+                              <tr>
+                                <td>GST</td>
+                                <td>₹{{ order.razorpayGst }}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Fees</td>
+                                <td>₹{{ order.razorpayTotalFees }}</td>
+                              </tr>
+                              <tr>
+                                <td>Return Amount</td>
+                                <td>₹{{ order.razorpayFinalAmt }}</td>
+                              </tr>
+                              <tr>
+                                <td>Date & Time</td>
+                                <td>{{ order.refundProcessedDateTime }}</td>
+                              </tr>
+                              <tr>
+                                <td>Status</td>
+                                <td>
+                                  <span class="text-success" *ngIf="order.refundStatus === 'SUCCESS'">
+                                    {{ order.refundStatus }}
+                                  </span>
+                                  <span class="text-warning" *ngIf="order.refundStatus === 'PENDING'">
+                                    {{ order.refundStatus }}
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          
+                          
     
                     </div>
                     <!-- ==============TRACKING STEPPER STARTING================== -->
