@@ -69,7 +69,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MyOrdersComponent,
     ReviewsComponent,
     TermsAndConditionComponent,
-    PrivacyPolicyComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

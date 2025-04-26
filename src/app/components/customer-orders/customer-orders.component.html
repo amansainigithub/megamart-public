@@ -2,132 +2,294 @@
     <h4 class="order-heading">Order Details</h4>
     <mat-accordion>
         <mat-expansion-panel *ngFor="let order of orders; let i = index" [expanded]="i === 0" class="mb-3">
-            <mat-expansion-panel-header class="p-5 d-flex justify-content-between align-items-center">
-                <mat-panel-title class="order-info d-flex w-100 align-items-center mb-2">
-                    <span class="changeDesign">
-                        <span class="headerH">ORDER NO:</span>
-                        {{ order.customOrderNumber }}
-                    </span>
-                    <!-- <span class="changeDesign">
-                        <span class="headerH">ORDERS :</span>
-                        {{order.totalOrders}}
-                    </span> -->
-                    <span class="changeDesign">
-                        <span class="headerH">AMOUNT:</span> 
-                        ₹ {{order.productPrice}}
-                    </span>
-                    <!-- <span class="changeDesign">
-                        <span class="headerH">Placed By - </span> 
-                        {{order.orderDateTime}}
-                    </span> -->
 
-                    <span class="changeDesign">
-                        <span class="headerH">Status:</span> 
-                        <span class="p-1 rounded fs13 deliveryStatus">{{order.deliveryStatus}}</span>
-                    </span>
 
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
-                        <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
-                        <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13 ONLINE" >{{order.paymentMode}}</span>
-                    </span>
-
-                    <button (click)="cancelOrder(order); $event.stopPropagation()" 
-                            mat-raised-button  
-                            class="cancleButton ">
-                            cancle
-                    </button>
-                    
-                    <button [routerLink]="['/customer/orders-details/', order.id]" 
-                            mat-raised-button color="warn" 
+                <mat-expansion-panel-header
+                    *ngIf="order.deliveryStatus === 'PENDING' || 
+                    order.deliveryStatus === 'SHIPPED' || 
+                    order.deliveryStatus === 'OUT_OF_DELIVERY'"
+                 class="p-5 d-flex justify-content-between align-items-center">
+                    <mat-panel-title class="order-info d-flex w-100 align-items-center mb-2">
+                        <span class="changeDesign">
+                            <span class="headerH">ORDER NO:</span>
+                            {{ order.customOrderNumber }}
+                        </span>
+                        <!-- <span class="changeDesign">
+                            <span class="headerH">ORDERS :</span>
+                            {{order.totalOrders}}
+                        </span> -->
+                        <span class="changeDesign">
+                            <span class="headerH">AMOUNT:</span>
+                            ₹ {{order.productPrice}}
+                        </span>
+                        <!-- <span class="changeDesign">
+                            <span class="headerH">Placed By - </span> 
+                            {{order.orderDateTime}}
+                        </span> -->
+    
+                        <span class="changeDesign" >
+                            <span class="headerH">Status:</span>
+                            <span class="p-1 rounded fs13 deliveryStatus">{{order.deliveryStatus}}</span>
+                        </span>
+    
+                        <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
+                            <span class="headerH fs13">PAY MODE - </span>
+                            <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                        </span>
+    
+                        <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
+                            <span class="headerH fs13">PAY MODE - </span>
+                            <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                        </span>
+    
+                        <button
+                                [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
                             class="mx-2 py-1 moreDetails ms-auto">
                             Order Details
-                    </button>
-
-                    
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            
-
-
-            <!-- Iterate over items inside an order -->
-            <div [routerLink]="['/order-details', order.id]" class="order-card">
-                <img [src]="order.fileUrl" class="order-image" alt="Product Image">
-                <div class="order-content">
-                    <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
-                        {{order.paymentStatus}}
-                        <i class="bi bi-check text-success"></i>
-                    </span>
-                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
-                        {{order.paymentStatus}}
-                        <i class="bi bi-check text-dark"></i>
-                    </span>
-
-                    <p class="order-title">{{ order.productName }}</p>
-                    
-                    <p class="order-details">
-                        <strong>Quantity : </strong> {{ order.quantity }}
-                        &nbsp; | &nbsp;
-                        <strong>Price : </strong> ₹{{ order.productPrice }}
-                        &nbsp; | &nbsp;
-                        <strong>SIZE : </strong> {{ order.productSize }}
-                    </p>
-
-                    
-                    <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
-                        <p>
-                            <strong>Expected Delivery:</strong>
-                             {{ order.deliveryDateTime }} 
-                        </p>
-
-                        <p>
-                            <strong>Courier Partner: </strong>
-                             <span class="courierPartner">
-                                {{order.courierName}}
-                            </span>
-                            <i class="bi bi-truck running-truck"></i>
-                        </p>
-
-                        <p >
-                            <span class="trackerId">TRACKER ID:</span>
-                            <span class="bg-light p-1 rounded-3 px-2" >
-                                {{ order.orderTrackingId }}
-                            </span>
-
-                            <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(order.orderTrackingId)"></i>
+                        </button>
+    
                         
-                            <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
-                                Track Order
-                            </a>
+    
+    
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+    
+                <!-- Iterate over items inside an order -->
+                <div
+                    *ngIf="order.deliveryStatus === 'PENDING' || 
+                    order.deliveryStatus === 'SHIPPED' || 
+                    order.deliveryStatus === 'OUT_OF_DELIVERY'"
+                [routerLink]="['/order-details', order.id]" class="order-card">
+                    <img [src]="order.fileUrl" class="order-image" alt="Product Image">
+                    <div class="order-content">
+                        <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
+                            {{order.paymentStatus}}
+                            <i class="bi bi-check text-success"></i>
+                        </span>
+                        <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
+                            {{order.paymentStatus}}
+                            <i class="bi bi-check text-dark"></i>
+                        </span>
+    
+                        <p class="order-title">{{ order.productName }}</p>
+    
+                        <p class="order-details">
+                            <strong>Quantity : </strong> {{ order.quantity }}
+                            &nbsp; | &nbsp;
+                            <strong>Price : </strong> ₹{{ order.productPrice }}
+                            &nbsp; | &nbsp;
+                            <strong>SIZE : </strong> {{ order.productSize }}
                         </p>
-                        
-                    </div>
-                    
-                    
-                </div>
-                <!-- ==============TRACKING STEPPER STARTING================== -->
-                <div class="container trackerContainer">
-                    <div class="stepper">
-                      <div *ngFor="let step of statuses; let i = index" class="step">
-                        <div class="step-content">
-                          <div class="circle" [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
-                            <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i> 
-                            <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
-                          </div>
-                          <span class="status-text">{{ step }}</span>
+    
+                        <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
+                            <p>
+                                <strong>Expected Delivery:</strong>
+                                {{ order.deliveryDateTime }}
+                            </p>
+    
+                            <p>
+                                <strong>Courier Partner: </strong>
+                                <span class="courierPartner">
+                                    {{order.courierName}}
+                                </span>
+                                <i class="bi bi-truck running-truck"></i>
+                            </p>
+    
+                            <p>
+                                <span class="trackerId">TRACKER ID:</span>
+                                <span class="bg-light p-1 rounded-3 px-2">
+                                    {{ order.orderTrackingId }}
+                                </span>
+    
+                                <i style="cursor: pointer;" class="bi bi-copy"
+                                    (click)="copyTrackerId(order.orderTrackingId)"></i>
+    
+                                <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                    color="primary" class="mx-3 py-1 trackButton">
+                                    Track Order
+                                </a>
+                            </p>
+    
                         </div>
-                        <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
-                      </div>
+
+                        <button (click)="cancelOrder(order); $event.stopPropagation()" mat-raised-button class="cancelBtn">
+                                <i class="bi bi-x "></i>
+                                Order Cancel
+                        </button>
+                          
+						  
+    
                     </div>
-                  </div> 
-                  <!-- ==============TRACKING STEPPER ENDING================== -->
-                
-                <i class="bi bi-chevron-right order-arrow"></i>
+                    <!-- ==============TRACKING STEPPER STARTING================== -->
+                    <div class="container trackerContainer"   >
+                        <div class="stepper">
+                            <div *ngFor="let step of statuses; let i = index" class="step">
+                                <div class="step-content">
+                                    <div class="circle"
+                                        [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
+                                        <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i>
+                                        <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
+                                    </div>
+                                    <span class="status-text">{{ step }}</span>
+                                </div>
+                                <div *ngIf="i < statuses.length - 1" class="line"
+                                    [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ==============TRACKING STEPPER ENDING================== -->
+    
+                    <i class="bi bi-chevron-right order-arrow"   ></i>
                 </div>
+
+
+
+<!-- =====================================================================================================================
+========================================================================================================================== -->
+
+
+
+                <!-- CANCELLED PANEL STARTING  -->
+                <mat-expansion-panel-header *ngIf="order.deliveryStatus === 'CANCELLED'" class="p-5 d-flex justify-content-between align-items-center">
+                    <mat-panel-title class="order-info d-flex w-100 align-items-center mb-2">
+                        <span class="changeDesign">
+                            <span class="headerH">ORDER NO:</span>
+                            {{ order.customOrderNumber }}
+                        </span>
+                        <!-- <span class="changeDesign">
+                            <span class="headerH">ORDERS :</span>
+                            {{order.totalOrders}}
+                        </span> -->
+                        <span class="changeDesign">
+                            <span class="headerH">AMOUNT:</span>
+                            ₹ {{order.productPrice}}
+                        </span>
+                        <!-- <span class="changeDesign">
+                            <span class="headerH">Placed By - </span> 
+                            {{order.orderDateTime}}
+                        </span> -->
+    
+                        <span class="changeDesign" *ngIf="order.deliveryStatus === 'PENDING'">
+                            <span class="headerH">Status:</span>
+                            <span class="p-1 rounded fs13 deliveryStatus">{{order.deliveryStatus}}</span>
+                        </span>
+                        <span class="changeDesign"  *ngIf="order.deliveryStatus === 'CANCELLED'">
+                            <span class="headerH">Status:</span>
+                            <span class="p-1 text-danger rounded fs13">{{order.deliveryStatus}}</span>
+                        </span>
+    
+                        <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
+                            <span class="headerH fs13">PAY MODE - </span>
+                            <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                        </span>
+    
+                        <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
+                            <span class="headerH fs13">PAY MODE - </span>
+                            <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                        </span>
+    
+                        <button *ngIf="order.deliveryStatus === 'PENDING'" 
+                                [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
+                            class="mx-2 py-1 moreDetails ms-auto">
+                            Order Details
+                        </button>
+    
+                        
+    
+    
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <!-- Iterate over items inside an order -->
+                <div *ngIf="order.deliveryStatus === 'CANCELLED'" [routerLink]="['/order-details', order.id]" class="order-card">
+                    <img [src]="order.fileUrl" class="order-image" alt="Product Image">
+                    <div class="order-content">
+                        <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
+                            {{order.paymentStatus}}
+                            <i class="bi bi-check text-success"></i>
+                        </span>
+                        <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
+                            {{order.paymentStatus}}
+                            <i class="bi bi-check text-dark"></i>
+                        </span>
+    
+                        <p class="order-title">{{ order.productName }}</p>
+    
+                        <p class="order-details">
+                            <strong>Quantity : </strong> {{ order.quantity }}
+                            &nbsp; | &nbsp;
+                            <strong>Price : </strong> ₹{{ order.productPrice }}
+                            &nbsp; | &nbsp;
+                            <strong>SIZE : </strong> {{ order.productSize }}
+                        </p>
+    
+                        <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
+                            <p>
+                                <strong>Expected Delivery:</strong>
+                                {{ order.deliveryDateTime }}
+                            </p>
+    
+                            <p>
+                                <strong>Courier Partner: </strong>
+                                <span class="courierPartner">
+                                    {{order.courierName}}
+                                </span>
+                                <i class="bi bi-truck running-truck"></i>
+                            </p>
+    
+                            <p>
+                                <span class="trackerId">TRACKER ID:</span>
+                                <span class="bg-light p-1 rounded-3 px-2">
+                                    {{ order.orderTrackingId }}
+                                </span>
+    
+                                <i style="cursor: pointer;" class="bi bi-copy"
+                                    (click)="copyTrackerId(order.orderTrackingId)"></i>
+    
+                                <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                    color="primary" class="mx-3 py-1 trackButton">
+                                    Track Order
+                                </a>
+                            </p>
+    
+                        </div>
+    
+                        
+                        <button *ngIf="order.deliveryStatus === 'CANCELLED'" (click)="cancelOrder(order); $event.stopPropagation()" mat-raised-button class="cancelButton">
+                            <span class="dot-line">
+                              <span class="dot"></span>
+                              <span class="cancelLine"></span>
+                            </span>
+                            Order Cancelled
+                          </button>
+
+                        <p class="fs13 mt-2" *ngIf="order.paymentMode === 'ONLINE' && order.deliveryStatus === 'CANCELLED'">
+                            <i class="bi bi-wallet2"></i> 
+                            The amount will be refunded within 10 to 15 working days. We will keep you updated via email or SMS.
+                        </p>                  
+    
+                    </div>
+                    <!-- ==============TRACKING STEPPER STARTING================== -->
+                    <div class="container trackerContainer"  *ngIf="order.deliveryStatus === 'PENDING'" >
+                        <div class="stepper">
+                            <div *ngFor="let step of statuses; let i = index" class="step">
+                                <div class="step-content">
+                                    <div class="circle"
+                                        [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
+                                        <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i>
+                                        <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
+                                    </div>
+                                    <span class="status-text">{{ step }}</span>
+                                </div>
+                                <div *ngIf="i < statuses.length - 1" class="line"
+                                    [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ==============TRACKING STEPPER ENDING================== -->
+    
+                    <i class="bi bi-chevron-right order-arrow"  *ngIf="order.deliveryStatus === 'PENDING'" ></i>
+                </div>
+                 <!-- CANCELLED PANEL ENDING....  -->
         </mat-expansion-panel>
     </mat-accordion>
 </div>
@@ -135,8 +297,7 @@
 
 <div class="container mt-5" *ngIf="orders && orders.length === 0">
     No Orders Found
-  </div>
-  
+</div>
 
 
 
@@ -147,3 +308,86 @@
 
 
 
+<!-- Modal for Order Update Delivery Status -->
+<div class="modal fade" id="orderCancelModel" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body" *ngIf="cancelModel">
+
+                <p> <i class="bi bi-x-octagon-fill text-danger me-2"></i>Order Cancel</p>
+                <hr>
+
+                <p class=" mt-2 text-center fs16">Are you sure you want to cancel this order?</p>
+
+                <form name="form" (ngSubmit)="fD.form.valid && finalJudgementCancelOrder()" #fD="ngForm">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="fs12">Cancelation Reason</label>
+                            <select class="form-control form-select-sm" name="deliveryOrderNew"
+                                [(ngModel)]="refundForm.cancelReason" #cancelReason="ngModel" required
+                                [ngClass]="{ 'is-invalid': cancelReason.errors && (cancelReason.touched || cancelReason.dirty) }">
+                                <option value="" selected>Select Delivery Status</option>
+                                <option value="Found Better Deal">Found Better Deal</option>
+                                <option value="Changed Mind">Changed Mind</option>
+                                <option value="Delayed Delivery">Delayed Delivery</option>
+                                <option value="Ordered by Mistake">Ordered by Mistake</option>
+                                <option value="Product No Longer Needed">Product No Longer Needed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="fs12 mt-3">
+                        <strong>Note: </strong> If you cancel your order, certain charges such as GST, transaction fees, and delivery charges will be deducted. 
+                        The remaining amount will be credited to your account. 
+                        For more details, please visit our 
+                        <a href="YOUR_TERMS_AND_CONDITIONS_LINK" style="color: blue; text-decoration: underline;">Terms and Conditions</a> page.
+                      </p>
+                      
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="cancelModelClose()"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-danger" type="submit"
+                            [disabled]="fD.invalid">Conform</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+            <!-- Ony Message Show Payment initiated in 5 to 7 working days Starting -->
+            <div class="modal-body text-center" *ngIf="!cancelModel">
+                <div class="mb-3">
+                    <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                </div>
+                <p class="fs12 fw-semibold">
+                    Your order has been <span class="text-success">successfully cancelled</span>.
+                </p>
+                <p  class="fs13" *ngIf="paymentMode == 'ONLINE'" >
+                    The refund will be processed within 10–15 business days
+                    To check the status, please go to the ‘Cancelled Orders’ Tab.
+                </p>
+                
+                <p *ngIf="paymentMode == 'COD'" >
+                    To check the status, please go to the ‘Cancelled Orders’ Tab.
+                </p>
+
+                <button type="button" class="btn btn-sm me-2" (click)="cancelModelClose()">
+                    <i class="bi bi-x text-danger"></i> 
+                    Close
+                </button>
+
+                <button (click)="redirectToHome()" mat-raised-button color="warn" class="moreDetails">
+                    continue shopping
+                </button>
+
+
+            </div>
+            <!-- Ony Message Show Payment initiated in 5 to 7 working days ENDING -->
+
+
+        </div>
+    </div>
+</div>
+<!-- Model Ending for Order Update Delivery Status -->

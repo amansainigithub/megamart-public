@@ -21,7 +21,6 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { TermsAndConditionComponent } from './components/legalAndPolicies/terms-and-condition/terms-and-condition.component';
 import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-policy/privacy-policy.component';
 
-
 const routes: Routes = [
 { path: 'home', component: HomeComponent },
 { path: 'register', component: RegisterComponent },
@@ -47,7 +46,7 @@ const routes: Routes = [
                   { path: 'profile', component: ProfileComponent},
                   { path: 'reviews', component: ReviewsComponent},
                   { path: 'terms-and-conditions', component: TermsAndConditionComponent},
-                  { path: 'privacy-policy', component: PrivacyPolicyComponent},
+                  { path: 'privacy-policy', component: PrivacyPolicyComponent}
 
                 ],
 },

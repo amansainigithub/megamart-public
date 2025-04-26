@@ -41,7 +41,8 @@ export class AppComponent {
           currentUrl === '/customer/my-orders' ||
           currentUrl === '/customer/reviews' ||
           currentUrl === '/customer/terms-and-conditions' ||
-          currentUrl === '/customer/privacy-policy'
+          currentUrl === '/customer/privacy-policy' ||
+          currentUrl === '/customer/orders-cancel'
         ) {
           this.homePageFlag = true;
         } else {

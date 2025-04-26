@@ -18,4 +18,9 @@ export class CancleOrderService {
     return this.http.post(PUBLIC_API_URL + 'orderCancelController/orderCancel', cancleOrderData ,httpOptions);
   }
   
+
+  getCustomerCancelOrders(userId:any): Observable<any> {
+          return this.http.get(PUBLIC_API_URL + "orderCancelController/" + 'getCancelOrders/'+userId, httpOptions);
+     }
+  
 }
