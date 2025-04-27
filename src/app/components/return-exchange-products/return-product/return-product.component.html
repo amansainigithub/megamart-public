@@ -1,0 +1,104 @@
+<div class="container mt-5">
+
+    <p>Return Orders</p>
+
+    <div class="card" style="max-width: 500px; border-radius: 15px;">
+
+
+        <div class="card-header"  *ngIf="orderData?.paymentMode === 'ONLINE' || orderData?.paymentMode === 'COD'"
+                style="border-top-right-radius: 15px;border-top-left-radius: 15px;background-color: #000080;color: white;">
+                Return Order [{{orderData?.paymentMode}}]
+        </div>
+
+        <div class="card-body">
+
+            <form name="form" (ngSubmit)="submitForm(fD)" #fD="ngForm" class="mt-3">
+
+                <!-- Dropdown for Return/Exchange Reason -->
+                <div class="form-group mt-3">
+                    <label class="fs14">Return/Exchange Reason</label>
+                    <select class="form-control form-select-sm" name="cancelReason"
+                        [(ngModel)]="returnExchangeForm.returnReason" required #returnReason="ngModel"
+                        [class.dirty]="returnReason.dirty" [class.touched]="returnReason.touched"
+                        [ngClass]="{ 'is-invalid': returnReason.errors && (returnReason.touched || returnReason.dirty) }">
+
+                        <option value="" selected>Select Delivery Status</option>
+                        <option value="Found Better Deal">Found Better Deal</option>
+                        <option value="Changed Mind">Changed Mind</option>
+                        <option value="Delayed Delivery">Delayed Delivery</option>
+                        <option value="Ordered by Mistake">Ordered by Mistake</option>
+                        <option value="Product No Longer Needed">Product No Longer Needed</option>
+                        <option value="Missing Product Size">Missing Product Size</option>
+                    </select>
+
+                    <div *ngIf="returnReason.errors && (returnReason.touched || returnReason.dirty)"
+                        class="invalid-feedback">
+                        <div *ngIf="returnReason.errors['required']">
+                            Please select a reason
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Show Bank Details ONLY if paymentMode == COD -->
+                <div *ngIf="orderData?.paymentMode === 'COD'" class="mt-4">
+
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <input type="text" class="form-control mt-1" name="accountNumber"
+                            [(ngModel)]="returnExchangeForm.accountNumber" required #accountNumber="ngModel"
+                            [ngClass]="{ 'is-invalid': accountNumber.errors && (accountNumber.touched || accountNumber.dirty) }">
+
+                        <div *ngIf="accountNumber.errors && (accountNumber.touched || accountNumber.dirty)"
+                            class="invalid-feedback">
+                            <div *ngIf="accountNumber.errors['required']">
+                                Account Number is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label>IFSC Code</label>
+                        <input type="text" class="form-control mt-1" name="ifscCode"
+                            [(ngModel)]="returnExchangeForm.ifscCode" required #ifscCode="ngModel"
+                            [ngClass]="{ 'is-invalid': ifscCode.errors && (ifscCode.touched || ifscCode.dirty) }">
+
+                        <div *ngIf="ifscCode.errors && (ifscCode.touched || ifscCode.dirty)" class="invalid-feedback">
+                            <div *ngIf="ifscCode.errors['required']">
+                                IFSC Code is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label>Bank Name</label>
+                        <input type="text" class="form-control mt-1" name="bankName"
+                            [(ngModel)]="returnExchangeForm.bankName" required #bankName="ngModel"
+                            [ngClass]="{ 'is-invalid': bankName.errors && (bankName.touched || bankName.dirty) }">
+
+                        <div *ngIf="bankName.errors && (bankName.touched || bankName.dirty)" class="invalid-feedback">
+                            <div *ngIf="bankName.errors['required']">
+                                Bank Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn btn-sm btn-primary returnExchangeBtn" type="submit">
+                        Request Initiate
+                    </button>
+                </div>
+
+                <!-- Error Message for Invalid Form -->
+                <div *ngIf="formSubmitted && fD.invalid" class="alert alert-danger mt-3">
+                    Please fill out all required fields correctly.
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
 
+declare var bootstrap: any; // Import Bootstrap JavaScript
+
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
@@ -71,4 +73,52 @@ export class MyOrdersComponent {
 
 
   
+
+
+
+  
+  // model Properties Starting
+
+  returnExchangeModel: any;
+  ngAfterViewInit() {
+    this.returnExchangeModel = new bootstrap.Modal(
+      document.getElementById('returnExchangeModel')
+    );
+  }
+
+  order:any;
+  returnExchangeModelOpen(order:any) {
+    this.order = order;
+    this.returnExchangeModel.show();
+  }
+
+  returnExchangeModelClose() {
+    this.returnExchangeModel.hide();
+  }
+  // model Properties Ending
+
+  refundForm = {
+    cancelReason: '',
+  };
+
+
+  
+  finalJudgementCancelOrder() {
+    this.returnExchangeModelClose();
+    this.router.navigate(['/customer/returnProduct'], { state: { orderData: this.order } });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

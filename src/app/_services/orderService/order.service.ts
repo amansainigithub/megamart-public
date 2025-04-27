@@ -26,4 +26,8 @@ export class OrderService {
   getMyOrdersDelivered(userId:any): Observable<any> {
     return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered/'+userId, httpOptions);
 }
+
+orderReturnRequestInitiate(returnRequestForm:any): Observable<any> {
+  return this.http.post(PUBLIC_API_URL + "orderController/" + 'orderReturnRequestInitiate',returnRequestForm , httpOptions);
+}
 }
