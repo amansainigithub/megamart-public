@@ -235,7 +235,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Product Price</td>
-                                                <td>₹{{ order.productPrice }}</td>
+                                                <td>₹{{ order.totalPrice }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Payment Status</td>
@@ -252,10 +252,10 @@
                                     </table>
 
                                     <table class="custom-refund-table" *ngIf="order.paymentMode==='ONLINE'">
-                                        <tbody>
+                                     <tbody>
                                             <tr>
                                                 <td>Product Price</td>
-                                                <td>₹{{ order.productPrice }}</td>
+                                                <td>₹{{ order.totalPrice }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Fees</td>
@@ -288,7 +288,7 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                    </tbody>
                                     </table>
                                 </div>
                             </div>
