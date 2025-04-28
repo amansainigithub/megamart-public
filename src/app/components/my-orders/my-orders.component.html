@@ -231,6 +231,8 @@
                                         Amount will be credited to customer’s bank account within 10-15 working days
                                         after the refund has processed. We will keep you updated via email or SMS.
                                     </p>
+
+
                                     <table class="custom-refund-table" *ngIf="order.paymentMode==='COD'">
                                         <tbody>
                                             <tr>
@@ -240,11 +242,11 @@
                                             <tr>
                                                 <td>Payment Status</td>
                                                 <td>
-                                                    <span class="text-success" *ngIf="order.refundStatus === 'SUCCESS'">
-                                                        {{ order.refundStatus }}
+                                                    <span class="text-success" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'SUCCESS'">
+                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
                                                     </span>
-                                                    <span class="text-warning" *ngIf="order.refundStatus === 'PENDING'">
-                                                        {{ order.refundStatus }}
+                                                    <span class="text-warning" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'PENDING'">
+                                                        {{ order.customerReturnOrderDto.returnRefundStatus}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -280,11 +282,11 @@
                                             <tr>
                                                 <td>Payment Status</td>
                                                 <td>
-                                                    <span class="text-success" *ngIf="order.refundStatus === 'SUCCESS'">
-                                                        {{ order.refundStatus }}
+                                                    <span class="text-success" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'SUCCESS'">
+                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
                                                     </span>
-                                                    <span class="text-warning" *ngIf="order.refundStatus === 'PENDING'">
-                                                        {{ order.refundStatus }}
+                                                    <span class="text-warning" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'PENDING'">
+                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
                                                     </span>
                                                 </td>
                                             </tr>
