@@ -30,4 +30,8 @@ export class OrderService {
 orderReturnRequestInitiate(returnRequestForm:any): Observable<any> {
   return this.http.post(PUBLIC_API_URL + "orderController/" + 'orderReturnRequestInitiate',returnRequestForm , httpOptions);
 }
+
+orderExchangeRequestInitiate(exchangeRequestForm:any): Observable<any> {
+  return this.http.post(PUBLIC_API_URL + "orderController/" + 'orderExchangeRequestInitiate',exchangeRequestForm , httpOptions);
+}
 }

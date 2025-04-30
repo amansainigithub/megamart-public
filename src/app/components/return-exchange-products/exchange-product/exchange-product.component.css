@@ -1,0 +1,17 @@
+.selected-btn {
+    background-color: #ffc107 !important; /* Custom yellow */
+    color: #000 !important;
+  }
+  
+  .default-btn {
+    background-color: #e0e0e0 !important; /* Light grey */
+    color: #333 !important;
+  }
+  /* More Details Button */
+.moreDetails{
+  background-color: #f3e912;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: black;
+}

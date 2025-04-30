@@ -6,7 +6,7 @@
 
 
         <div *ngIf="order.deliveryStatus === 'DELIVERED'">
-            <div class="card-header d-flex align-items-center flex-wrap">
+            <div class="card-header d-flex align-items-center flex-wrap p-2">
                 <div class="d-flex flex-wrap">
                     <span class="changeDesign me-3">
                         <span class="headerH">ORDER NO:</span>
@@ -102,9 +102,13 @@
                                     <span class="fs12">
                                         {{order.returnMessage}}
                                     </span>
-                                    <button (click)="returnExchangeModelOpen(order)" mat-raised-button color="warn"
+                                    <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
                                         class="mx-2 py-1 moreDetails ms-auto">
-                                        Return / Exchange
+                                        Return 
+                                    </button>
+                                    <button (click)="returnExchangeModelOpen(order,'E')" mat-raised-button color="warn"
+                                        class="mx-2 py-1 moreDetails ms-auto">
+                                         Exchange
                                     </button>
                                 </div>
                             </div>
@@ -242,11 +246,11 @@
                                             <tr>
                                                 <td>Payment Status</td>
                                                 <td>
-                                                    <span class="text-success" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'SUCCESS'">
-                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
+                                                    <span class="text-success" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'SUCCESS'">
+                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
                                                     </span>
-                                                    <span class="text-warning" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'PENDING'">
-                                                        {{ order.customerReturnOrderDto.returnRefundStatus}}
+                                                    <span class="text-warning" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'PENDING'">
+                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -282,16 +286,148 @@
                                             <tr>
                                                 <td>Payment Status</td>
                                                 <td>
-                                                    <span class="text-success" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'SUCCESS'">
-                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
+                                                    <span class="text-success" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'SUCCESS'">
+                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
                                                     </span>
-                                                    <span class="text-warning" *ngIf="order.customerReturnOrderDto.returnRefundStatus === 'PENDING'">
-                                                        {{ order.customerReturnOrderDto.returnRefundStatus }}
+                                                    <span class="text-warning" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'PENDING'">
+                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
                                                     </span>
                                                 </td>
                                             </tr>
                                     </tbody>
                                     </table>
+                                    
+                                        <p class="mb-1 fs13" *ngIf="order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime" >
+                                            <strong>Delivery Pickup Date:</strong>
+                                            <span class="text-success mx-2">
+                                                 {{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}
+                                            </span>
+                                        </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="order.deliveryStatus === 'EXCHANGE'">
+            <div class="card-header d-flex align-items-center flex-wrap p-2">
+                <div class="d-flex flex-wrap mr-4">
+                    <span class="changeDesign me-3">
+                        <span class="headerH">ORDER NO:</span>
+                        <span>{{ order.customOrderNumber }}</span>
+                    </span>
+                    <span class="changeDesign me-3">
+                        <span class="headerH">AMOUNT:</span>
+                        <span>₹ {{order.totalPrice}}</span>
+                    </span>
+                    <span class="changeDesign me-3">
+                        <span class="headerH">PLACED BY:</span>
+                        <span>{{order.orderDateTime}}</span>
+                    </span>
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                    </span>
+
+                    <span class="changeDesign mx-4">
+                        <span class="headerH fs13">STATUS - </span>
+                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
+                    </span>
+                </div>
+
+                <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
+                    class="mx-2 py-1 moreDetails ms-auto">
+                    Order Details
+                </button>
+            </div>
+
+            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
+                <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
+                    <div class="row">
+
+                        <!-- Product Image -->
+                        <div class="col-md-1">
+                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                        </div>
+
+                        <!-- Order Content -->
+                        <div class="col-md-7">
+                            <div class="order-content">
+                                <!-- Payment Status -->
+                                <div>
+                                    <span *ngIf="order.paymentStatus === 'PAID'" class="text-success">
+                                        {{order.paymentStatus}}
+                                        <i class="bi bi-check text-success"></i>
+                                    </span>
+                                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="text-warning">
+                                        {{order.paymentStatus}}
+                                        <i class="bi bi-check text-dark"></i>
+                                    </span>
+                                </div>
+
+                                <!-- Product Name -->
+                                <p class="mb-1 fs14">{{ order.productName }}</p>
+
+                                <!-- Product Details -->
+                                <p class="fs12 text-muted mb-2">
+                                    <strong>Quantity:</strong> {{ order.quantity }} |
+                                    <strong>Price:</strong> ₹{{ order.productPrice }} |
+                                    <strong>Size:</strong> {{ order.productSize }}
+                                </p>
+
+                                <!-- Tracking Info -->
+                                <div *ngIf="order.orderTrackingId" class="fs13 mb-2">
+                                    <p class="mb-1">
+                                        <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
+                                        <i style="cursor: pointer;" class="bi bi-copy"
+                                            (click)="copyTrackerId(order.orderTrackingId)"></i>
+
+                                        <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                            color="primary" class="mx-3 py-1 trackButton">
+                                            Track Order
+                                        </a>
+                                    </p>
+                                    <p class="mb-1 fs13">
+                                        <strong>Expected Delivery:</strong>
+                                        <span class="text-success mx-2">
+                                            DELIVERED <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
+                                        </span>
+                                    </p>
+                                </div>
+
+                                <div class="card mt-2 p-4" style="border-radius: 7px;">
+
+
+                                    <table class="custom-refund-table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Product SIZE</td>
+                                                <td>{{ order.customerReturnExchangeOrderDto.exchangeProductSize }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Exchange Status</td>
+                                                <td>
+                                                    <span class="text-warning">
+                                                        {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    
+                                        <p class="mb-1 fs13" *ngIf="order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime" >
+                                            <strong>Delivery Pickup Date:</strong>
+                                            <span class="text-success mx-2">
+                                                 {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}
+                                            </span>
+                                        </p>
                                 </div>
                             </div>
                         </div>

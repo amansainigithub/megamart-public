@@ -87,8 +87,10 @@ export class MyOrdersComponent {
   }
 
   order:any;
-  returnExchangeModelOpen(order:any) {
+  returnExchange:any;
+  returnExchangeModelOpen(order:any , returnExchange:any) {
     this.order = order;
+    this.returnExchange = returnExchange;
     this.returnExchangeModel.show();
   }
 
@@ -102,10 +104,23 @@ export class MyOrdersComponent {
   };
 
 
+  // model Properties ENDING
+
   
   finalJudgementCancelOrder() {
-    this.returnExchangeModelClose();
-    this.router.navigate(['/customer/returnProduct'], { state: { orderData: this.order } });
+    if(this.returnExchange === 'R')
+    {
+      this.returnExchangeModelClose();
+      this.router.navigate(['/customer/returnProduct'], { state: { orderData: this.order } });
+    }
+    else if(this.returnExchange === 'E')
+    { 
+      this.returnExchangeModelClose();
+      this.router.navigate(['/customer/exchangeProduct'], { state: { orderData: this.order } });
+    }else{
+      this.toast.warning({detail: "ERROR", summary: "Something Went Wrong", position: "topRight", duration: 2000});
+    }
+   
   }
 
 

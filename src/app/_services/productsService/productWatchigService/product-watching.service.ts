@@ -21,4 +21,8 @@ export class ProductWatchingService {
       return this.http.get(PUBLIC_API_URL + "categoryController/" + 
                           'productWatchingWithSize?pI='+pI + '&pl='+pl, httpOptions);
   }
+
+  getProductByIdCustomer(pI:any , pN:any): Observable<any> {
+    return this.http.get(PUBLIC_API_URL + "categoryController/" + 'getProductByIdCustomer?cI='+'&pI='+pI + '&pN='+pN, httpOptions);
+  }
 }
