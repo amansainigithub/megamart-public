@@ -57,6 +57,16 @@
 }
 
 
+/* //Download Invoice Buttons */
+
+.downloadInvoice{
+  background-color: #00FF00  ;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: black;
+}
+
 /* Running TRUCK */
 .running-truck {
   display: inline-block;

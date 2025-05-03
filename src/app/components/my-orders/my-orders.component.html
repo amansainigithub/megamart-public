@@ -91,6 +91,7 @@
                                     <span class="fs12">
                                         {{order.returnMessage}}
                                     </span>
+
                                     <div *ngIf="order.paymentMode === 'ONLINE'">
                                         <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
                                         class="mx-2 py-1 moreDetails ms-auto">
@@ -108,6 +109,8 @@
                                             Exchange
                                         </button>
                                     </div>
+
+                                    
                                 </div>
                             </div>
                         </div>
@@ -128,11 +131,21 @@
                                         [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
                                 </div>
                             </div>
+
+                            <button (click)="downloadInvoice(order.id)" 
+                                    mat-raised-button 
+                                    color="warn"
+                                    class="position-absolute end-0 bottom-0 me-3 mb-3 py-1 downloadInvoice">
+                                    Download Invoice
+                            </button>
+                    
                         </div>
 
                     </div>
                 </div>
             </div>
+
+           
         </div>
         <!-- DELIVERY END     -->
 

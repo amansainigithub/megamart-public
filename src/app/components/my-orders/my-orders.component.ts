@@ -14,6 +14,7 @@ declare var bootstrap: any; // Import Bootstrap JavaScript
   styleUrl: './my-orders.component.css'
 })
 export class MyOrdersComponent {
+
   orders:any;
 
 
@@ -121,8 +122,32 @@ export class MyOrdersComponent {
     }else{
       this.toast.warning({detail: "ERROR", summary: "Something Went Wrong", position: "topRight", duration: 2000});
     }
-   
   }
+
+
+  downloadInvoice(orderId: any) {
+
+    console.log("orderId :: " , orderId);
+
+    this.spinner.show();
+    this.orderService.invoiceDownload(orderId).subscribe({
+      next: (res: any) => {
+
+        // Assuming the response is a binary PDF file
+        const blob = new Blob([res], { type: 'application/pdf' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `invoice_${orderId}.pdf`;
+        link.click();
+        this.spinner.hide();
+      },
+      error: (err: any) => {
+        console.error('Error fetching in my-orders:', err);
+        this.spinner.hide();
+      },
+    });
+    
+    }
 
 
 
