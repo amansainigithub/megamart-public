@@ -112,6 +112,7 @@ export class MyOrdersComponent {
     {
       this.returnExchangeModelClose();
       this.router.navigate(['/customer/returnProduct'], { state: { orderData: this.order } });
+    
     }
     else if(this.returnExchange === 'E')
     { 

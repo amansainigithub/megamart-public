@@ -39,51 +39,6 @@
                     </div>
                 </div>
 
-                <!-- Show Bank Details ONLY if paymentMode == COD -->
-                <div *ngIf="orderData?.paymentMode === 'COD'" class="mt-4">
-
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input type="text" class="form-control mt-1" name="accountNumber"
-                            [(ngModel)]="returnExchangeForm.accountNumber" required #accountNumber="ngModel"
-                            [ngClass]="{ 'is-invalid': accountNumber.errors && (accountNumber.touched || accountNumber.dirty) }">
-
-                        <div *ngIf="accountNumber.errors && (accountNumber.touched || accountNumber.dirty)"
-                            class="invalid-feedback">
-                            <div *ngIf="accountNumber.errors['required']">
-                                Account Number is required
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <label>IFSC Code</label>
-                        <input type="text" class="form-control mt-1" name="ifscCode"
-                            [(ngModel)]="returnExchangeForm.ifscCode" required #ifscCode="ngModel"
-                            [ngClass]="{ 'is-invalid': ifscCode.errors && (ifscCode.touched || ifscCode.dirty) }">
-
-                        <div *ngIf="ifscCode.errors && (ifscCode.touched || ifscCode.dirty)" class="invalid-feedback">
-                            <div *ngIf="ifscCode.errors['required']">
-                                IFSC Code is required
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <label>Bank Name</label>
-                        <input type="text" class="form-control mt-1" name="bankName"
-                            [(ngModel)]="returnExchangeForm.bankName" required #bankName="ngModel"
-                            [ngClass]="{ 'is-invalid': bankName.errors && (bankName.touched || bankName.dirty) }">
-
-                        <div *ngIf="bankName.errors && (bankName.touched || bankName.dirty)" class="invalid-feedback">
-                            <div *ngIf="bankName.errors['required']">
-                                Bank Name is required
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
                 <!-- Submit Button -->
                 <div class="d-flex justify-content-center mt-4">
                     <button class="btn btn-sm btn-primary returnExchangeBtn" type="submit">

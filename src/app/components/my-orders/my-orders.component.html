@@ -4,7 +4,7 @@
 
     <div class="card mb-4" *ngFor="let order of orders; let i = index" style="width: 100%;">
 
-
+        <!-- DELIVERY START     -->
         <div *ngIf="order.deliveryStatus === 'DELIVERED'">
             <div class="card-header d-flex align-items-center flex-wrap p-2">
                 <div class="d-flex flex-wrap">
@@ -55,17 +55,6 @@
                         <!-- Order Content -->
                         <div class="col-md-7">
                             <div class="order-content">
-                                <!-- Payment Status -->
-                                <div>
-                                    <span *ngIf="order.paymentStatus === 'PAID'" class="text-success">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-success"></i>
-                                    </span>
-                                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="text-warning">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-dark"></i>
-                                    </span>
-                                </div>
 
                                 <!-- Product Name -->
                                 <p class="mb-1 fs14">{{ order.productName }}</p>
@@ -98,11 +87,12 @@
                                 </div>
 
                                 <!-- Return/Exchange -->
-                                <div *ngIf="order.returnMessage !== '0'">
+                                <div *ngIf="order.returnMessage !== '0'" class="mt-2">
                                     <span class="fs12">
                                         {{order.returnMessage}}
                                     </span>
-                                    <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
+                                    <div *ngIf="order.paymentMode === 'ONLINE'">
+                                        <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
                                         class="mx-2 py-1 moreDetails ms-auto">
                                         Return 
                                     </button>
@@ -110,6 +100,14 @@
                                         class="mx-2 py-1 moreDetails ms-auto">
                                          Exchange
                                     </button>
+                                    </div>
+
+                                    <div *ngIf="order.paymentMode === 'COD'">
+                                        <button (click)="returnExchangeModelOpen(order,'E')" mat-raised-button color="warn"
+                                            class="mx-2 py-1 moreDetails ms-auto">
+                                            Exchange
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +134,11 @@
                 </div>
             </div>
         </div>
+        <!-- DELIVERY END     -->
 
 
 
+         <!-- RETURN START     -->
         <div *ngIf="order.deliveryStatus === 'RETURN'">
             <div class="card-header d-flex align-items-center flex-wrap p-2">
                 <div class="d-flex flex-wrap mr-4">
@@ -188,17 +188,6 @@
                         <!-- Order Content -->
                         <div class="col-md-7">
                             <div class="order-content">
-                                <!-- Payment Status -->
-                                <div>
-                                    <span *ngIf="order.paymentStatus === 'PAID'" class="text-success">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-success"></i>
-                                    </span>
-                                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="text-warning">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-dark"></i>
-                                    </span>
-                                </div>
 
                                 <!-- Product Name -->
                                 <p class="mb-1 fs14">{{ order.productName }}</p>
@@ -210,52 +199,11 @@
                                     <strong>Size:</strong> {{ order.productSize }}
                                 </p>
 
-                                <!-- Tracking Info -->
-                                <div *ngIf="order.orderTrackingId" class="fs13 mb-2">
-                                    <p class="mb-1">
-                                        <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
-                                        <i style="cursor: pointer;" class="bi bi-copy"
-                                            (click)="copyTrackerId(order.orderTrackingId)"></i>
-
-                                        <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
-                                            color="primary" class="mx-3 py-1 trackButton">
-                                            Track Order
-                                        </a>
-                                    </p>
-                                    <p class="mb-1 fs13">
-                                        <strong>Expected Delivery:</strong>
-                                        <span class="text-success mx-2">
-                                            DELIVERED <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
-                                        </span>
-                                    </p>
-                                </div>
-
                                 <div class="card mt-2 p-4" style="border-radius: 7px;">
                                     <p class="fs12">
                                         Amount will be credited to customer’s bank account within 10-15 working days
                                         after the refund has processed. We will keep you updated via email or SMS.
                                     </p>
-
-
-                                    <table class="custom-refund-table" *ngIf="order.paymentMode==='COD'">
-                                        <tbody>
-                                            <tr>
-                                                <td>Product Price</td>
-                                                <td>₹{{ order.totalPrice }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Payment Status</td>
-                                                <td>
-                                                    <span class="text-success" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'SUCCESS'">
-                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
-                                                    </span>
-                                                    <span class="text-warning" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'PENDING'">
-                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus}}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
 
                                     <table class="custom-refund-table" *ngIf="order.paymentMode==='ONLINE'">
                                      <tbody>
@@ -280,29 +228,24 @@
                                                 <td>₹{{ order.razorpayFinalAmt }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Date & Time</td>
-                                                <td>{{ order.refundProcessedDateTime }}</td>
+                                                <td>Pickup DT</td>
+                                                <td>{{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Payment Status</td>
+                                                <td>Pickup Delivery</td>
+                                                <td>{{ order.customerReturnExchangeOrderDto.returnDeliveryStatus }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Refund Amount</td>
                                                 <td>
-                                                    <span class="text-success" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'SUCCESS'">
-                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
-                                                    </span>
-                                                    <span class="text-warning" *ngIf="order.customerReturnExchangeOrderDto.returnRefundStatus === 'PENDING'">
+                                                    <span>
                                                         {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
                                                     </span>
                                                 </td>
                                             </tr>
                                     </tbody>
                                     </table>
-                                    
-                                        <p class="mb-1 fs13" *ngIf="order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime" >
-                                            <strong>Delivery Pickup Date:</strong>
-                                            <span class="text-success mx-2">
-                                                 {{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}
-                                            </span>
-                                        </p>
+
                                 </div>
                             </div>
                         </div>
@@ -310,7 +253,11 @@
                 </div>
             </div>
         </div>
+         <!-- RETURN END     -->
 
+         
+
+         <!-- EXCHANGE START     -->
         <div *ngIf="order.deliveryStatus === 'EXCHANGE'">
             <div class="card-header d-flex align-items-center flex-wrap p-2">
                 <div class="d-flex flex-wrap mr-4">
@@ -360,17 +307,6 @@
                         <!-- Order Content -->
                         <div class="col-md-7">
                             <div class="order-content">
-                                <!-- Payment Status -->
-                                <div>
-                                    <span *ngIf="order.paymentStatus === 'PAID'" class="text-success">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-success"></i>
-                                    </span>
-                                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="text-warning">
-                                        {{order.paymentStatus}}
-                                        <i class="bi bi-check text-dark"></i>
-                                    </span>
-                                </div>
 
                                 <!-- Product Name -->
                                 <p class="mb-1 fs14">{{ order.productName }}</p>
@@ -382,29 +318,9 @@
                                     <strong>Size:</strong> {{ order.productSize }}
                                 </p>
 
-                                <!-- Tracking Info -->
-                                <div *ngIf="order.orderTrackingId" class="fs13 mb-2">
-                                    <p class="mb-1">
-                                        <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
-                                        <i style="cursor: pointer;" class="bi bi-copy"
-                                            (click)="copyTrackerId(order.orderTrackingId)"></i>
-
-                                        <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
-                                            color="primary" class="mx-3 py-1 trackButton">
-                                            Track Order
-                                        </a>
-                                    </p>
-                                    <p class="mb-1 fs13">
-                                        <strong>Expected Delivery:</strong>
-                                        <span class="text-success mx-2">
-                                            DELIVERED <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
-                                        </span>
-                                    </p>
-                                </div>
-
                                 <div class="card mt-2 p-4" style="border-radius: 7px;">
 
-
+                                    <p class="fs12">Exchange Status</p>
                                     <table class="custom-refund-table">
                                         <tbody>
                                             <tr>
@@ -414,20 +330,17 @@
                                             <tr>
                                                 <td>Exchange Status</td>
                                                 <td>
-                                                    <span class="text-warning">
-                                                        {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}
-                                                    </span>
+                                                    {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pickup Date</td>
+                                                <td>
+                                                    {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    
-                                        <p class="mb-1 fs13" *ngIf="order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime" >
-                                            <strong>Delivery Pickup Date:</strong>
-                                            <span class="text-success mx-2">
-                                                 {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}
-                                            </span>
-                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -435,129 +348,9 @@
                 </div>
             </div>
         </div>
+        <!-- EXCHANGE END     -->
     </div>
 </div>
-
-
-
-
-
-<!-- <div class="container mt-5" *ngIf="orders && orders.length > 0">
-    <h4 class="order-heading">Order Delivered</h4>
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let order of orders; let i = index" [expanded]="i === 0" class="mb-3">
-            <mat-expansion-panel-header class="p-5 d-flex justify-content-between align-items-center">
-                <mat-panel-title class="order-info d-flex w-100 align-items-center">
-                    <span class="changeDesign">
-                        <span class="headerH">ORDER NO:</span>
-                        {{ order.customOrderNumber }}
-                    </span>
-                    <span class="changeDesign">
-                        <span class="headerH">AMOUNT:</span> 
-                        ₹ {{orders.totalPrice}}
-                    </span>
-                    <span class="changeDesign">
-                        <span class="headerH">Placed By - </span> 
-                        {{order.orderDateTime}}
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
-                        <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
-                        <span class="headerH fs13">PAY MODE - </span> 
-                        <span class="p-1 rounded fs13 ONLINE" >{{order.paymentMode}}</span>
-                    </span>
-                    
-                    <button [routerLink]="['/customer/orders-details/', order.id]" 
-                            mat-raised-button color="warn" 
-                            class="mx-2 py-1 moreDetails ms-auto">
-                            Order Details
-                    </button>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            
-
-
-            <div [routerLink]="['/order-details', order.id]" class="order-card">
-                <img [src]="order.fileUrl" class="order-image" alt="Product Image">
-                <div class="order-content">
-                    <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
-                        {{order.paymentStatus}}
-                        <i class="bi bi-check text-success"></i>
-                    </span>
-                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
-                        {{order.paymentStatus}}
-                        <i class="bi bi-check text-dark"></i>
-                    </span>
-                    <p class="order-title">{{ order.productName }}</p>
-                    <p class="order-details">
-                        <strong>Quantity : </strong> {{ order.quantity }}
-                        &nbsp; | &nbsp;
-                        <strong>Price : </strong> ₹{{ order.productPrice }}
-                        &nbsp; | &nbsp;
-                        <strong>SIZE : </strong> {{ order.productSize }}
-                    </p>
-
-                    
-                    <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
-                        <p >
-                            <strong>TRACKER ID:</strong> {{ order.orderTrackingId }}
-                            <i style="cursor: pointer;" class="bi bi-copy" (click)="copyTrackerId(order.orderTrackingId)"></i>
-                        
-                            <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button color="primary" class="mx-3 py-1 trackButton">
-                                Track Order
-                            </a>
-                        </p>
-                        <p>
-                            <strong>Expected Delivery:</strong>
-                             <span class="text-success mx-2" >DELIVERED                        
-                                 <i class="bi bi-check "></i>
-                                 {{order.deliveryDateTime}}
-                             </span>
-                        </p>
-                    </div>
-
-                    <div *ngIf="order.returnMessage !== '0'">
-                        <span class="fs12" >
-                            {{order.returnMessage}}
-                        </span>
-                        <button (click)="returnExchangeModelOpen(order)" 
-                        mat-raised-button color="warn" 
-                        class="mx-2 py-1 moreDetails ms-auto">
-                        Return / Exchange
-                        </button>
-                    </div>
-                   
-                    
-                    
-                </div>
-                <div class="container trackerContainer">
-                    <div class="stepper">
-                      <div *ngFor="let step of statuses; let i = index" class="step">
-                        <div class="step-content">
-                          <div class="circle" [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
-                            <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i> 
-                          </div>
-                          <span class="status-text">{{ step }}</span>
-                        </div>
-                        <div *ngIf="i < statuses.length - 1" class="line" [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
-                      </div>
-                    </div>
-                  </div> 
-                
-                <i class="bi bi-chevron-right order-arrow"></i>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
-</div> -->
-
-
-
-
-
 
 
 

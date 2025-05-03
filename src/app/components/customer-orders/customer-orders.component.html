@@ -294,14 +294,7 @@
                             </tr>
                             <tr>
                                 <td>Payment Status</td>
-                                <td>
-                                    <span class="text-success" *ngIf="order.refundStatus === 'SUCCESS'">
-                                        {{ order.refundStatus }}
-                                    </span>
-                                    <span class="text-warning" *ngIf="order.refundStatus === 'PENDING'">
-                                        {{ order.refundStatus }}
-                                    </span>
-                                </td>
+                                <td>{{ order.refundStatus }} </td>
                             </tr>
                         </tbody>
                     </table>
