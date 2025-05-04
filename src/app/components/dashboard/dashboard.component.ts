@@ -35,7 +35,7 @@ export class DashboardComponent {
       .subscribe(
         {
             next:(res:any)=> {
-              console.log(res);
+            // console.log(res);
               
             this.dashboardData = res.data;
             this.spinner.hide();

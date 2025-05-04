@@ -11,7 +11,6 @@ import { OrderService } from '../../_services/orderService/order.service';
 })
 export class OrderDetailsComponent {
   orderData: any;
-
   orders:any
 
   constructor(
@@ -22,7 +21,7 @@ export class OrderDetailsComponent {
 
   ngOnInit() {
     const orderId = this.route.snapshot.paramMap.get('id');
-    console.log('Order ID:', orderId);
+    // console.log('Order ID:', orderId);
     this.getCustomerOrdersById(orderId);
   }
 
@@ -42,17 +41,9 @@ export class OrderDetailsComponent {
     this.spinner.show();
     this.orderService.getCustomerOrdersById(orderId).subscribe({
             next: (res: any) => {
-              console.log(res);
-              
+              // console.log(res);
               this.orders = res.data;
-            //   res.data.customerOrderItems.forEach((item: any) => {
-            //     const quantity = !isNaN(Number(item.quantity)) ? Number(item.quantity) : 0;
-            //     const mrp = !isNaN(Number(item.productMrp)) ? Number(item.productMrp) : 0;
-                
-            //     this.totalMrp += Number(mrp * quantity);
-            // });
-            console.log(this.orders);
-            this.spinner.hide();
+              this.spinner.hide();
           },
       error: (err: any) => {
         console.error('Error fetching in Order:', err);

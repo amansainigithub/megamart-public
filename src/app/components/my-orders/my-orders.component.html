@@ -20,19 +20,19 @@
                         <span class="headerH">PLACED BY:</span>
                         <span>{{order.orderDateTime}}</span>
                     </span>
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
-                    </span>
-
+                    
                     <span class="changeDesign mx-4">
                         <span class="headerH fs13">STATUS - </span>
                         <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                    </span>
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
                     </span>
 
                 </div>
@@ -73,7 +73,7 @@
                                         <i style="cursor: pointer;" class="bi bi-copy"
                                             (click)="copyTrackerId(order.orderTrackingId)"></i>
 
-                                        <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                        <a href="https://www.delhivery.com/tracking" target="_blank"
                                             color="primary" class="mx-3 py-1 trackButton">
                                             Track Order
                                         </a>
@@ -81,7 +81,7 @@
                                     <p class="mb-1 fs13">
                                         <strong>Expected Delivery:</strong>
                                         <span class="text-success mx-2">
-                                            DELIVERED <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
+                                            <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
                                         </span>
                                     </p>
                                 </div>
@@ -151,6 +151,11 @@
 
 
 
+
+<!-- =================================================================================================================== -->
+
+
+
          <!-- RETURN START     -->
         <div *ngIf="order.deliveryStatus === 'RETURN'">
             <div class="card-header d-flex align-items-center flex-wrap p-2">
@@ -167,20 +172,22 @@
                         <span class="headerH">PLACED BY:</span>
                         <span>{{order.orderDateTime}}</span>
                     </span>
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
-                    </span>
 
                     <span class="changeDesign mx-4">
                         <span class="headerH fs13">STATUS - </span>
                         <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
                     </span>
+
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                    </span>
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                    </span>
+
+                  
                 </div>
 
                 <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
@@ -268,7 +275,11 @@
         </div>
          <!-- RETURN END     -->
 
+
+<!-- =================================================================================================================== -->
          
+
+
 
          <!-- EXCHANGE START     -->
         <div *ngIf="order.deliveryStatus === 'EXCHANGE'">
@@ -286,6 +297,12 @@
                         <span class="headerH">PLACED BY:</span>
                         <span>{{order.orderDateTime}}</span>
                     </span>
+
+                    <span class="changeDesign mx-4">
+                        <span class="headerH fs13">STATUS - </span>
+                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
+                    </span>
+
                     <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
                         <span class="headerH fs13">PAY MODE - </span>
                         <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
@@ -294,11 +311,6 @@
                     <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
                         <span class="headerH fs13">PAY MODE - </span>
                         <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
-                    </span>
-
-                    <span class="changeDesign mx-4">
-                        <span class="headerH fs13">STATUS - </span>
-                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
                     </span>
                 </div>
 

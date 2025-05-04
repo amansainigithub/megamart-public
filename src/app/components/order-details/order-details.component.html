@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4"  *ngIf="orders as order">
 
     <h6>Order Details</h6>
     <div class="card p-3 shadow-sm orderDetailsCard">
@@ -6,9 +6,9 @@
         <!-- ORDER ID SECTION STARTING -->
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <p *ngIf="orders?.orderId" class="mb-1 fs14">Order ID: {{ orders.orderId }}</p>
+                <p *ngIf="orders.orderId" class="mb-1 fs14">Order ID: {{ orders.orderId }}</p>
 
-                <p *ngIf="orders?.orderDateTime" class="mb-1 text-muted fs14 bg-light px-1 rounded">
+                <p *ngIf="orders.orderDateTime" class="mb-1 text-muted fs14 bg-light px-1 rounded">
                     <span>Placed on -</span> 
                     {{ orders.orderDateTime }}
                 </p>
@@ -28,7 +28,8 @@
                         
                     <div class="product-card mb-3 d-flex align-items-center border-bottom py-2">
 
-                        <img [src]="orders.fileUrl" class="product-img rounded" alt="Sweet Bell Pepper">
+                        <img [src]="orders?.fileUrl" class="product-img rounded" alt="Sweet Bell Pepper">
+
 
                         <div class="product-info flex-grow-1">
                             <div class="product-title fs14 mx-2">{{orders.productName}}</div>
