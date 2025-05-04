@@ -377,32 +377,40 @@
           width: 100%;
         }
       }
-      
 
-
-      /* TABLE CSS STARTING */
-      .custom-refund-table {
-        font-size: 12px;
+      /* Charges Accordian Starting */
+      .chargesAccordian {
         width: 30%;
-        line-height: 1;
-        border: 1px solid #dee2e6; /* Bootstrap border color */
+        font-size: 11px;
       }
       
-      .custom-refund-table td {
-        padding: 4px;
-        border: 1px solid #dee2e6;
+      .fare-details {
+        padding: 0;
+        font-size: 11px; /* Ensures inner content also has 11px */
       }
       
-      .custom-refund-table tbody tr td:first-child {
-        font-weight: 500;
+      .fare-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0;
+        color: #333;
+        font-size: 11px;
       }
       
-      .text-success {
-        color: #28a745; /* Green */
+      .fare-row.bold {
+        font-weight: 600;
+        margin-top: 10px;
       }
       
-      .text-warning {
-        color: #ffc107; /* Yellow */
+      .fare-row.green {
+        color: #2e7d32;
       }
       
-      /* TABLE ENDING CSS */
+      hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 10px 0;
+      }
+      
+      
+      /* Charges Accordian Ending` */

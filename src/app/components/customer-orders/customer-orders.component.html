@@ -4,8 +4,8 @@
         <mat-expansion-panel *ngFor="let order of orders; let i = index" [expanded]="i === 0" class="mb-3">
 
 
-            <mat-expansion-panel-header
-                *ngIf="order.deliveryStatus === 'PENDING' || order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'"
+
+            <mat-expansion-panel-header *ngIf="order.deliveryStatus === 'PENDING'"
                 class="p-5 d-flex justify-content-between align-items-center">
                 <mat-panel-title class="order-info d-flex w-100 align-items-center mb-2">
                     <span class="changeDesign">
@@ -52,7 +52,7 @@
             </mat-expansion-panel-header>
 
             <!-- Iterate over items inside an order -->
-            <div *ngIf="order.deliveryStatus === 'PENDING' || order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'"
+            <div *ngIf="order.deliveryStatus === 'PENDING'"
                 [routerLink]="['/order-details', order.id]" class="order-card">
                 <img [src]="order.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
@@ -111,7 +111,138 @@
                         Order Cancel
                     </button>
 
+                </div>
+                <!-- ==============TRACKING STEPPER STARTING================== -->
+                <div class="container trackerContainer">
+                    <div class="stepper">
+                        <div *ngFor="let step of statuses; let i = index" class="step">
+                            <div class="step-content">
+                                <div class="circle"
+                                    [ngClass]="{'active': i <= getStatusIndex(order.deliveryStatus), 'completed': i < getStatusIndex(order.deliveryStatus)}">
+                                    <i *ngIf="i <= getStatusIndex(order.deliveryStatus)" class="bi bi-check2"></i>
+                                    <!-- <span *ngIf="i >= getStatusIndex()">{{ i + 1 }}</span> -->
+                                </div>
+                                <span class="status-text">{{ step }}</span>
+                            </div>
+                            <div *ngIf="i < statuses.length - 1" class="line"
+                                [ngClass]="{'completed': i < getStatusIndex(order.deliveryStatus)}"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ==============TRACKING STEPPER ENDING================== -->
 
+                <i class="bi bi-chevron-right order-arrow"></i>
+            </div>
+
+
+
+<!-- =====================================================================================================================-->
+
+
+
+
+
+
+            <mat-expansion-panel-header *ngIf="order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'"
+                class="p-5 d-flex justify-content-between align-items-center">
+                <mat-panel-title class="order-info d-flex w-100 align-items-center mb-2">
+                    <span class="changeDesign">
+                        <span class="headerH">ORDER NO:</span>
+                        {{ order.customOrderNumber }}
+                    </span>
+                    <!-- <span class="changeDesign">
+                            <span class="headerH">ORDERS :</span>
+                            {{order.totalOrders}}
+                        </span> -->
+                    <span class="changeDesign">
+                        <span class="headerH">AMOUNT:</span>
+                        ₹ {{order.productPrice}}
+                    </span>
+                    <!-- <span class="changeDesign">
+                            <span class="headerH">Placed By - </span> 
+                            {{order.orderDateTime}}
+                        </span> -->
+
+                    <span class="changeDesign">
+                        <span class="headerH">Status:</span>
+                        <span class="p-1 rounded fs13 deliveryStatus">{{order.deliveryStatus}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light p-1 rounded ">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light p-1 rounded">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                    </span>
+
+                    <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
+                        class="mx-2 py-1 moreDetails ms-auto">
+                        Order Details
+                    </button>
+
+
+
+
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- Iterate over items inside an order -->
+            <div *ngIf="order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'"
+                [routerLink]="['/order-details', order.id]" class="order-card">
+                <img [src]="order.fileUrl" class="order-image" alt="Product Image">
+                <div class="order-content">
+                    <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
+                        {{order.paymentStatus}}
+                        <i class="bi bi-check text-success"></i>
+                    </span>
+                    <span *ngIf="order.paymentStatus === 'UNPAID'" class="no-margin text-warning">
+                        {{order.paymentStatus}}
+                        <i class="bi bi-check text-dark"></i>
+                    </span>
+
+                    <p class="order-title">{{ order.productName }}</p>
+
+                    <p class="order-details">
+                        <strong>Quantity : </strong> {{ order.quantity }}
+                        &nbsp; | &nbsp;
+                        <strong>Price : </strong> ₹{{ order.productPrice }}
+                        &nbsp; | &nbsp;
+                        <strong>SIZE : </strong> {{ order.productSize }}
+                    </p>
+
+                    <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
+                        <p>
+                            <strong>Expected Delivery:</strong>
+                            {{ order.deliveryDateTime }}
+                        </p>
+
+                        <p>
+                            <strong>Courier Partner: </strong>
+                            <span class="courierPartner">
+                                {{order.courierName}}
+                            </span>
+                            <i class="bi bi-truck running-truck"></i>
+                        </p>
+
+                        <p>
+                            <span class="trackerId">TRACKER ID:</span>
+                            <span class="bg-light p-1 rounded-3 px-2">
+                                {{ order.orderTrackingId }}
+                            </span>
+
+                            <i style="cursor: pointer;" class="bi bi-copy"
+                                (click)="copyTrackerId(order.orderTrackingId)"></i>
+
+                            <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                                color="primary" class="mx-3 py-1 trackButton">
+                                Track Order
+                            </a>
+                        </p>
+
+                    </div>
 
                 </div>
                 <!-- ==============TRACKING STEPPER STARTING================== -->
@@ -138,8 +269,7 @@
 
 
 
-<!-- =====================================================================================================================
-========================================================================================================================== -->
+<!-- =====================================================================================================================-->
 
 
 
@@ -250,8 +380,7 @@
                     </div>
 
 
-                    <button *ngIf="order.deliveryStatus === 'CANCELLED'"
-                        (click)="cancelOrder(order); $event.stopPropagation()" mat-raised-button class="cancelButton">
+                    <button *ngIf="order.deliveryStatus === 'CANCELLED'" mat-raised-button class="cancelButton">
                         <span class="dot-line">
                             <span class="dot"></span>
                             <span class="cancelLine"></span>
@@ -261,45 +390,69 @@
 
                     <p class="fs13 mt-2" *ngIf="order.paymentMode === 'ONLINE' && order.deliveryStatus === 'CANCELLED'">
                         <i class="bi bi-wallet2"></i>
-                        Amount will be credited to customer’s bank account within 5-7 working days after the refund has
+                        Amount will be credited to customer’s bank account within 10-15 working days after the refund has
                         processed.
                         We will keep you updated via email or SMS.
                     </p>
 
-                    <table class="custom-refund-table" *ngIf="order.paymentMode==='ONLINE'">
-                        <tbody>
-                            <tr>
-                                <td>Product Price</td>
-                                <td>₹{{ order.totalPrice }}</td>
-                            </tr>
-                            <tr>
-                                <td>Fees</td>
-                                <td>₹{{ order.razorpayFees }}</td>
-                            </tr>
-                            <tr>
-                                <td>GST</td>
-                                <td>₹{{ order.razorpayGst }}</td>
-                            </tr>
-                            <tr>
-                                <td>Total Fees + Gst</td>
-                                <td>₹{{ order.razorpayTotalFees }}</td>
-                            </tr>
-                            <tr>
-                                <td>Refund Amount</td>
-                                <td>₹{{ order.razorpayFinalAmt }}</td>
-                            </tr>
-                            <tr>
-                                <td>Date & Time</td>
-                                <td>{{ order.refundProcessedDateTime }}</td>
-                            </tr>
-                            <tr>
-                                <td>Payment Status</td>
-                                <td>{{ order.refundStatus }} </td>
-                            </tr>
-                        </tbody>
-                    </table>
 
-                    <table class="custom-refund-table mt-2" *ngIf="order.paymentMode==='COD'">
+
+                    <!-- HTML -->
+                    <div class="chargesAccordian"  *ngIf="order.paymentMode==='ONLINE'">
+                        <mat-accordion>
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>Fare Amount</mat-panel-title>
+                            </mat-expansion-panel-header>
+                      
+                            <div class="fare-details">
+                              <div class="fare-row">
+                                <span>Product Price</span>
+                                <span>₹{{ order.totalPrice }}</span>
+                              </div>
+                              <div class="fare-row">
+                                <span>Convenience Fee</span>
+                                <span>₹{{ order.razorpayFees }}</span>
+                              </div>
+                              <div class="fare-row">
+                                <span> GST</span>
+                                <span>₹{{ order.razorpayGst }}</span>
+                              </div>
+                              <div class="fare-row">
+                                <span>Total Fees + Gst</span>
+                                <span>₹{{ order.razorpayTotalFees }}</span>
+                              </div>
+                              <div class="fare-row">
+                                <span>Refund Amount</span>
+                                <span>₹{{ order.razorpayFinalAmt }}</span>
+                              </div>
+                              <div class="fare-row">
+                                <span>Refund Date</span>
+                                <span>{{ order.refundProcessedDateTime }}</span>
+                              </div>
+                      
+                              <hr />
+                      
+                              <div class="fare-row bold">
+                                <span>Grand Total (Incl. of GST)</span>
+                                <span>₹{{ order.razorpayFinalAmt }}</span>
+                              </div>
+
+                              <div class="fare-row green">
+                                <span>Refund Status Status</span>
+                                <span>{{ order.refundStatus }}</span>
+                              </div>
+                            </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                      
+  
+                      
+
+                      
+                      
+                    <!-- <table class="custom-refund-table mt-2" *ngIf="order.paymentMode==='COD'">
                         <tbody>
                             <tr>
                                 <td>Product Price</td>
@@ -317,7 +470,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
 
 
 
