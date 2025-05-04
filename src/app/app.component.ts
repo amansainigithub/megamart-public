@@ -17,6 +17,8 @@ export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
   username?: string;
+  firstName?: string;
+  lastName?: string;
   homePageFlag: any;
 
   constructor(
@@ -59,6 +61,8 @@ export class AppComponent {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.username = user.username;
+      this.firstName = user.firstName;
+      this.lastName = user.lastName;
     }
 
     // Load the Cart Items
