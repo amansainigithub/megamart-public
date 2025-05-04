@@ -79,7 +79,7 @@
                                         </a>
                                     </p>
                                     <p class="mb-1 fs13">
-                                        <strong>Expected Delivery:</strong>
+                                        <strong>DELIVERY:</strong>
                                         <span class="text-success mx-2">
                                             <i class="bi bi-check"></i> {{ order.deliveryDateTime }}
                                         </span>
@@ -87,16 +87,16 @@
                                 </div>
 
                                 <!-- Return/Exchange -->
-                                <div *ngIf="order.returnMessage !== '0'" class="mt-2">
+                                <div *ngIf="order.returnMessage !== '0'">
                                     <span class="fs12">
                                         {{order.returnMessage}}
                                     </span>
 
                                     <div *ngIf="order.paymentMode === 'ONLINE'">
-                                        <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
+                                        <!-- <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
                                         class="mx-2 py-1 moreDetails ms-auto">
                                         Return 
-                                    </button>
+                                    </button> -->
                                     <button (click)="returnExchangeModelOpen(order,'E')" mat-raised-button color="warn"
                                         class="mx-2 py-1 moreDetails ms-auto">
                                          Exchange
@@ -153,132 +153,6 @@
 
 
 <!-- =================================================================================================================== -->
-
-
-
-         <!-- RETURN START     -->
-        <div *ngIf="order.deliveryStatus === 'RETURN'">
-            <div class="card-header d-flex align-items-center flex-wrap p-2">
-                <div class="d-flex flex-wrap mr-4">
-                    <span class="changeDesign me-3">
-                        <span class="headerH">ORDER NO:</span>
-                        <span>{{ order.customOrderNumber }}</span>
-                    </span>
-                    <span class="changeDesign me-3">
-                        <span class="headerH">AMOUNT:</span>
-                        <span>₹ {{order.totalPrice}}</span>
-                    </span>
-                    <span class="changeDesign me-3">
-                        <span class="headerH">PLACED BY:</span>
-                        <span>{{order.orderDateTime}}</span>
-                    </span>
-
-                    <span class="changeDesign mx-4">
-                        <span class="headerH fs13">STATUS - </span>
-                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
-                    </span>
-
-                  
-                </div>
-
-                <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
-                    class="mx-2 py-1 moreDetails ms-auto">
-                    Order Details
-                </button>
-            </div>
-
-            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
-                <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
-                    <div class="row">
-
-                        <!-- Product Image -->
-                        <div class="col-md-1">
-                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
-                        </div>
-
-                        <!-- Order Content -->
-                        <div class="col-md-7">
-                            <div class="order-content">
-
-                                <!-- Product Name -->
-                                <p class="mb-1 fs14">{{ order.productName }}</p>
-
-                                <!-- Product Details -->
-                                <p class="fs12 text-muted mb-2">
-                                    <strong>Quantity:</strong> {{ order.quantity }} |
-                                    <strong>Price:</strong> ₹{{ order.productPrice }} |
-                                    <strong>Size:</strong> {{ order.productSize }}
-                                </p>
-
-                                <div class="card mt-2 p-4" style="border-radius: 7px;">
-                                    <p class="fs12">
-                                        Amount will be credited to customer’s bank account within 10-15 working days
-                                        after the refund has processed. We will keep you updated via email or SMS.
-                                    </p>
-
-                                    <table class="custom-refund-table" *ngIf="order.paymentMode==='ONLINE'">
-                                     <tbody>
-                                            <tr>
-                                                <td>Product Price</td>
-                                                <td>₹{{ order.totalPrice }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fees</td>
-                                                <td>₹{{ order.razorpayFees }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>GST</td>
-                                                <td>₹{{ order.razorpayGst }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total Fees</td>
-                                                <td>₹{{ order.razorpayTotalFees }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Refund Amount</td>
-                                                <td>₹{{ order.razorpayFinalAmt }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pickup DT</td>
-                                                <td>{{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pickup Delivery</td>
-                                                <td>{{ order.customerReturnExchangeOrderDto.returnDeliveryStatus }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Refund Amount</td>
-                                                <td>
-                                                    <span>
-                                                        {{ order.customerReturnExchangeOrderDto.returnRefundStatus }}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                    </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-         <!-- RETURN END     -->
-
-
-<!-- =================================================================================================================== -->
-         
-
 
 
          <!-- EXCHANGE START     -->
@@ -343,30 +217,33 @@
                                     <strong>Size:</strong> {{ order.productSize }}
                                 </p>
 
-                                <div class="card mt-2 p-4" style="border-radius: 7px;">
+                                <div class="chargesAccordian" >
+                                    <mat-accordion>
+                                      <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>Exchange Status</mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                  
+                                        <div class="fare-details">
+                                          <div class="fare-row">
+                                            <span>Product SIZE</span>
+                                            <span>{{ order.customerReturnExchangeOrderDto.exchangeProductSize }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Exchange Status</span>
+                                            <span> {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Pickup Date</span>
+                                            <span> {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}</span>
+                                          </div>
+                                         
+                                        </div>
+                                      </mat-expansion-panel>
+                                    </mat-accordion>
+                                  </div>
 
-                                    <p class="fs12">Exchange Status</p>
-                                    <table class="custom-refund-table">
-                                        <tbody>
-                                            <tr>
-                                                <td>Product SIZE</td>
-                                                <td>{{ order.customerReturnExchangeOrderDto.exchangeProductSize }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Exchange Status</td>
-                                                <td>
-                                                    {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pickup Date</td>
-                                                <td>
-                                                    {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -374,6 +251,133 @@
             </div>
         </div>
         <!-- EXCHANGE END     -->
+
+
+<!-- =================================================================================================================== -->
+
+
+
+         <!-- RETURN START     -->
+         <!-- <div *ngIf="order.deliveryStatus === 'RETURN'">
+            <div class="card-header d-flex align-items-center flex-wrap p-2">
+                <div class="d-flex flex-wrap mr-4">
+                    <span class="changeDesign me-3">
+                        <span class="headerH">ORDER NO:</span>
+                        <span>{{ order.customOrderNumber }}</span>
+                    </span>
+                    <span class="changeDesign me-3">
+                        <span class="headerH">AMOUNT:</span>
+                        <span>₹ {{order.totalPrice}}</span>
+                    </span>
+                    <span class="changeDesign me-3">
+                        <span class="headerH">PLACED BY:</span>
+                        <span>{{order.orderDateTime}}</span>
+                    </span>
+
+                    <span class="changeDesign mx-4">
+                        <span class="headerH fs13">STATUS - </span>
+                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
+                    </span>
+
+                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
+                    </span>
+                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
+                        <span class="headerH fs13">PAY MODE - </span>
+                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
+                    </span>
+
+                  
+                </div>
+
+                <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
+                    class="mx-2 py-1 moreDetails ms-auto">
+                    Order Details
+                </button>
+            </div>
+
+            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
+                <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
+                    <div class="row">
+
+                        <div class="col-md-1">
+                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="order-content">
+
+                                <p class="mb-1 fs14">{{ order.productName }}</p>
+
+                                <p class="fs12 text-muted mb-2">
+                                    <strong>Quantity:</strong> {{ order.quantity }} |
+                                    <strong>Price:</strong> ₹{{ order.productPrice }} |
+                                    <strong>Size:</strong> {{ order.productSize }}
+                                </p>
+
+                                <div class="chargesAccordian" >
+                                    <mat-accordion>
+                                      <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>Exchange Status</mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                  
+                                        <div class="fare-details">
+                                          <div class="fare-row">
+                                            <span>Product Price</span>
+                                            <span>₹{{ order.totalPrice }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Fees</span>
+                                            <span> ₹{{ order.razorpayFees }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>GST</span>
+                                            <span>₹{{ order.razorpayGst }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Total Fees</span>
+                                            <span>₹{{ order.razorpayTotalFees }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Refund Amount</span>
+                                            <span>₹{{ order.razorpayFinalAmt }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Pickup DT</span>
+                                            <span>{{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Pickup Delivery</span>
+                                            <span>{{ order.customerReturnExchangeOrderDto.returnDeliveryStatus }}</span>
+                                          </div>
+                                          <div class="fare-row">
+                                            <span>Refund Amount</span>
+                                            <span>{{ order.customerReturnExchangeOrderDto.returnRefundStatus }}</span>
+                                          </div>
+                                         
+                                        </div>
+                                      </mat-expansion-panel>
+                                    </mat-accordion>
+                                  </div>
+                                  <p class="fs12 mt-3">
+                                    Amount will be credited to customer’s bank account within 10-15 working days
+                                    after the refund has processed. We will keep you updated via email or SMS.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+         <!-- RETURN END     -->
+
+
+<!-- =================================================================================================================== -->
+
+
+
     </div>
 </div>
 
