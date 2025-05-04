@@ -52,8 +52,7 @@
             </mat-expansion-panel-header>
 
             <!-- Iterate over items inside an order -->
-            <div *ngIf="order.deliveryStatus === 'PENDING'"
-                [routerLink]="['/order-details', order.id]" class="order-card">
+            <div *ngIf="order.deliveryStatus === 'PENDING'" class="order-card">
                 <img [src]="order.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
                     <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
@@ -186,8 +185,7 @@
             </mat-expansion-panel-header>
 
             <!-- Iterate over items inside an order -->
-            <div *ngIf="order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'"
-                [routerLink]="['/order-details', order.id]" class="order-card">
+            <div *ngIf="order.deliveryStatus === 'SHIPPED' || order.deliveryStatus === 'OUT_OF_DELIVERY'" class="order-card">
                 <img [src]="order.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">
                     <span *ngIf="order.paymentStatus === 'PAID'" class="no-margin text-success">
@@ -322,7 +320,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <!-- Iterate over items inside an order -->
-            <div *ngIf="order.deliveryStatus === 'CANCELLED'" [routerLink]="['/order-details', order.id]"
+            <div *ngIf="order.deliveryStatus === 'CANCELLED'"
                 class="order-card">
                 <img [src]="order.fileUrl" class="order-image" alt="Product Image">
                 <div class="order-content">

@@ -43,14 +43,12 @@ export class CustomerOrdersComponent {
     this.spinner.show();
     this.orderService.getCustomerOrders(userId).subscribe({
       next: (res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         this.orders = res.data;
-
         const user = this.tokenStorageService.getUser();
-
         const isLoggedIn = !!this.tokenStorageService.getToken();
-
+        
         if (isLoggedIn) {
           const user = this.tokenStorageService.getUser();
           const id = user.id;
