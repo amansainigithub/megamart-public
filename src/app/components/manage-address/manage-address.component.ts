@@ -13,6 +13,20 @@ declare var bootstrap: any; // Import Bootstrap JavaScript
 })
 
 export class ManageAddressComponent {
+
+  states: string[] = [
+  'Andhra Pradesh',
+  'Bihar',
+  'Delhi',
+  'Gujarat',
+  'Karnataka',
+  'Maharashtra',
+  'Rajasthan',
+  'Tamil Nadu',
+  'Uttar Pradesh',
+  'West Bengal'
+];
+
   
   showForm = false;      // Controls when to show the form
   addresses: any = [];
@@ -31,7 +45,9 @@ export class ManageAddressComponent {
     customerName: null,
     mobileNumber: null,
     area: null,
+    state:null,
     postalCode: null,
+    city: null,
     addressLine1: null,
     addressLine2: null,
     defaultAddress: null
@@ -43,9 +59,12 @@ export class ManageAddressComponent {
     mobileNumber: null,
     area: null,
     postalCode: null,
+    city: null,
+    state:null,
     addressLine1: null,
     addressLine2: null,
-    defaultAddress: null
+    defaultAddress: null,
+    
   };
 
   toggleForm() {
