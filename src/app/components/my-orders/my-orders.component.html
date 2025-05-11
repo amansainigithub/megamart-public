@@ -257,126 +257,6 @@
 
 
 
-         <!-- RETURN START     -->
-         <!-- <div *ngIf="order.deliveryStatus === 'RETURN'">
-            <div class="card-header d-flex align-items-center flex-wrap p-2">
-                <div class="d-flex flex-wrap mr-4">
-                    <span class="changeDesign me-3">
-                        <span class="headerH">ORDER NO:</span>
-                        <span>{{ order.customOrderNumber }}</span>
-                    </span>
-                    <span class="changeDesign me-3">
-                        <span class="headerH">AMOUNT:</span>
-                        <span>₹ {{order.totalPrice}}</span>
-                    </span>
-                    <span class="changeDesign me-3">
-                        <span class="headerH">PLACED BY:</span>
-                        <span>{{order.orderDateTime}}</span>
-                    </span>
-
-                    <span class="changeDesign mx-4">
-                        <span class="headerH fs13">STATUS - </span>
-                        <span class="p-1 rounded fs13">{{order.deliveryStatus}}</span>
-                    </span>
-
-                    <span *ngIf="order.paymentMode === 'COD'" class="changeDesign bg-light rounded ">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 COD">{{order.paymentMode}}</span>
-                    </span>
-                    <span *ngIf="order.paymentMode === 'ONLINE'" class="changeDesign bg-light rounded">
-                        <span class="headerH fs13">PAY MODE - </span>
-                        <span class="p-1 rounded fs13 ONLINE">{{order.paymentMode}}</span>
-                    </span>
-
-                  
-                </div>
-
-                <button [routerLink]="['/customer/orders-details/', order.id]" mat-raised-button color="warn"
-                    class="mx-2 py-1 moreDetails ms-auto">
-                    Order Details
-                </button>
-            </div>
-
-            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
-                <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
-                    <div class="row">
-
-                        <div class="col-md-1">
-                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
-                        </div>
-
-                        <div class="col-md-7">
-                            <div class="order-content">
-
-                                <p class="mb-1 fs14">{{ order.productName }}</p>
-
-                                <p class="fs12 text-muted mb-2">
-                                    <strong>Quantity:</strong> {{ order.quantity }} |
-                                    <strong>Price:</strong> ₹{{ order.productPrice }} |
-                                    <strong>Size:</strong> {{ order.productSize }}
-                                </p>
-
-                                <div class="chargesAccordian" >
-                                    <mat-accordion>
-                                      <mat-expansion-panel>
-                                        <mat-expansion-panel-header>
-                                          <mat-panel-title>Exchange Status</mat-panel-title>
-                                        </mat-expansion-panel-header>
-                                  
-                                        <div class="fare-details">
-                                          <div class="fare-row">
-                                            <span>Product Price</span>
-                                            <span>₹{{ order.totalPrice }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Fees</span>
-                                            <span> ₹{{ order.razorpayFees }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>GST</span>
-                                            <span>₹{{ order.razorpayGst }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Total Fees</span>
-                                            <span>₹{{ order.razorpayTotalFees }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Refund Amount</span>
-                                            <span>₹{{ order.razorpayFinalAmt }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Pickup DT</span>
-                                            <span>{{ order.customerReturnExchangeOrderDto.returnDeliveryPickUpDateTime }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Pickup Delivery</span>
-                                            <span>{{ order.customerReturnExchangeOrderDto.returnDeliveryStatus }}</span>
-                                          </div>
-                                          <div class="fare-row">
-                                            <span>Refund Amount</span>
-                                            <span>{{ order.customerReturnExchangeOrderDto.returnRefundStatus }}</span>
-                                          </div>
-                                         
-                                        </div>
-                                      </mat-expansion-panel>
-                                    </mat-accordion>
-                                  </div>
-                                  <p class="fs12 mt-3">
-                                    Amount will be credited to customer’s bank account within 10-15 working days
-                                    after the refund has processed. We will keep you updated via email or SMS.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-         <!-- RETURN END     -->
-
-
-<!-- =================================================================================================================== -->
-
-
 
     </div>
 </div>
@@ -384,7 +264,22 @@
 
 
 <div class="container mt-5" *ngIf="orders && orders.length === 0">
-    No Orders Found one
+     <div class="text-center p-4 rounded">
+    <h4 class="mb-3 text-danger">No Orders Delivered</h4>
+    <p class="text-muted mb-4">It looks like you haven’t placed any orders yet.</p>
+    <img 
+      src="../../../assets/NoProductFound/NoProductFound.gif" 
+      alt="No Orders Found" 
+      style="object-fit: cover; height: 250px; width: 250px;"
+      class="img-fluid rounded"
+    >
+
+    <div>
+         <a routerLink="/" mat-raised-button class="mx-2 py-1 startShopping ms-auto">
+          Start Shopping
+         </a>
+    </div>
+  </div>
 </div>
 
 

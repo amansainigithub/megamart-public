@@ -38,8 +38,10 @@ export class ExchangeProductComponent {
   //GET Product Byid Starting..
   getProductById(productId:any){
 
+    console.log("PRODUCTID:: " + productId);
+    
     this.spinner.show();
-    this.pwService.getProductByIdCustomer('2', "pN").subscribe({
+    this.pwService.getProductByIdCustomer(productId, "pN").subscribe({
       next: (res: any) => {
         console.log(res);
         this.productData = res.data.pw;

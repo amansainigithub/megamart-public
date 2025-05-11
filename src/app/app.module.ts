@@ -47,7 +47,6 @@ import { TermsAndConditionComponent } from './components/legalAndPolicies/terms-
 import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-policy/privacy-policy.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
-import { ReturnProductComponent } from './components/return-exchange-products/return-product/return-product.component';
 import { ExchangeProductComponent } from './components/return-exchange-products/exchange-product/exchange-product.component';
 
 @NgModule({
@@ -72,7 +71,6 @@ import { ExchangeProductComponent } from './components/return-exchange-products/
     ReviewsComponent,
     TermsAndConditionComponent,
     PrivacyPolicyComponent,
-    ReturnProductComponent,
     ExchangeProductComponent
   ],
   imports: [

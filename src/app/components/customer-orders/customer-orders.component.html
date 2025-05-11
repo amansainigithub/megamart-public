@@ -494,8 +494,24 @@
 
 
 <div class="container mt-5" *ngIf="orders && orders.length === 0">
-    No Orders Found
+  <div class="text-center p-4 rounded">
+    <h4 class="mb-3 text-danger">No Orders Available</h4>
+    <p class="text-muted mb-4">It looks like you haven’t placed any orders yet.</p>
+    <img 
+      src="../../../assets/NoProductFound/NoProductFound.gif" 
+      alt="No Orders Found" 
+      style="object-fit: cover; height: 250px; width: 250px;"
+      class="img-fluid rounded"
+    >
+
+    <div>
+         <a routerLink="/" mat-raised-button color="warn" class="mx-2 py-1 startShopping ms-auto">
+          Start Shopping
+         </a>
+    </div>
+  </div>
 </div>
+
 
 
 
