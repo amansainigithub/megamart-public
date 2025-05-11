@@ -207,7 +207,7 @@
                         <strong>SIZE : </strong> {{ order.productSize }}
                     </p>
 
-                    <div *ngIf="order.orderTrackingId" class="tracker-id fs13 ">
+                    <div  class="tracker-id fs13 ">
                         <p>
                             <strong>Expected Delivery:</strong>
                             {{ order.deliveryDateTime }}
@@ -216,21 +216,17 @@
                         <p>
                             <strong>Courier Partner: </strong>
                             <span class="courierPartner">
-                                {{order.courierName}}
+                                {{order.srCourierName}}
                             </span>
                             <i class="bi bi-truck running-truck"></i>
                         </p>
 
                         <p>
-                            <span class="trackerId">TRACKER ID:</span>
-                            <span class="bg-light p-1 rounded-3 px-2">
-                                {{ order.orderTrackingId }}
-                            </span>
-
+                            <span class="trackerId">TRACKER URL &nbsp;</span>
                             <i style="cursor: pointer;" class="bi bi-copy"
-                                (click)="copyTrackerId(order.orderTrackingId)"></i>
+                                (click)="copyTrackerId(order.srTrackerUrl)"></i>
 
-                            <a href="https://www.delhivery.com/tracking" target="_blank" mat-raised-button
+                            <a [href]="order.srTrackerUrl" target="_blank" mat-raised-button
                                 color="primary" class="mx-3 py-1 trackButton">
                                 Track Order
                             </a>
