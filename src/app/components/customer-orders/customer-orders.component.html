@@ -109,10 +109,16 @@
 
                     </div>
 
-                    <button (click)="cancelOrder(order); $event.stopPropagation()" mat-raised-button class="cancelBtn">
+                    <button (click)="cancelOrder(order); $event.stopPropagation()"
+                         mat-raised-button 
+                         matTooltip="Cancellation is not possible once the order has been SHIPPED."
+                         matTooltipPosition="above"
+                         aria-label="Cancellation is not possible once the order has been SHIPPED."
+                         class="cancelBtn">
                         <i class="bi bi-x "></i>
                         Order Cancel
                     </button>
+
 
                 </div>
                 <!-- ==============TRACKING STEPPER STARTING================== -->
@@ -568,7 +574,7 @@
                         and delivery charges will be deducted.
                         The remaining amount will be credited to your account.
                         For more details, please visit our
-                        <a href="YOUR_TERMS_AND_CONDITIONS_LINK" style="color: blue; text-decoration: underline;">Terms
+                        <a href="customer/terms-and-conditions" style="color: blue; text-decoration: underline;">Terms
                             and Conditions</a> page.
                     </p>
 

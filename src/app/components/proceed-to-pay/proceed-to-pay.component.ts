@@ -17,6 +17,23 @@ declare var Razorpay: any;
   styleUrl: './proceed-to-pay.component.css'
 })
 export class ProceedToPayComponent {
+  
+    states: string[] = [
+    'Andhra Pradesh',
+    'Bihar',
+    'Delhi',
+    'Gujarat',
+    'Karnataka',
+    'Maharashtra',
+    'Rajasthan',
+    'Tamil Nadu',
+    'Uttar Pradesh',
+    'West Bengal'
+  ];
+
+
+
+
     addresses: any = [];
     paymentMode: string = 'ONLINE'; // Default selected payment method
     resell: boolean = false;

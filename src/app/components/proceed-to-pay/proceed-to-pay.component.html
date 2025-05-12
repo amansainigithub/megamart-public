@@ -1,69 +1,78 @@
 <div class="container custom-container">
   <mat-horizontal-stepper #stepper>
 
+  <!-- STARTING 1 STEPPER DATA -->
     <mat-step label="Step 1">
-      <!-- STARTING 1 STEPPER DATA -->
       <div class="container mt-3 custom-container">
         <div class="row">
           <!-- Left Section: Address Selection -->
           <div class="col-md-7">
 
-           <div *ngIf="addresses?.length === 0"
-                class="alert py-1 text-center" role="alert" style="background-color: #eaeded;">
-                <span class="fs14" >Add Delivery Address </span>
+            <div *ngIf="addresses?.length === 0" class="alert py-1 text-center" role="alert"
+              style="background-color: #eaeded;">
+              <span class="fs14">Add Delivery Address </span>
 
               <a mat-raised-button class="addAddress" [routerLink]="'/customer/manageAddress'">
                 Add Address
               </a>
-           </div>
+            </div>
 
             <div *ngIf="addresses?.length > 0">
 
-               <div *ngIf="selectedAddressIndex === null || selectedAddressIndex === undefined"
+              <div *ngIf="selectedAddressIndex === null || selectedAddressIndex === undefined"
                 class="alert alert-warning py-1" role="alert">
-                Please select a delivery address before proceeding. 
+                Please select a delivery address before proceeding.
               </div>
 
               <h4 class="deliveryAddress">Select Delivery Address</h4>
-            <div *ngFor="let add of addresses; let i = index" class="mb-3">
-              <div class="card p-3 addressCard" [ngClass]="{ 'selected-card': selectedAddressIndex === i }">
-                <div class="d-flex align-items-start">
-                  <div class="me-3 d-flex align-items-center justify-content-center rounded-circle locationIcon">
-                    <mat-icon color="primary">place</mat-icon>
-                  </div>
-
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap">
-                      <h5 class="mb-0">{{ add.customerName }}</h5>
-                      <div class="btn-group">
-
-                        <button mat-raised-button class="mx-2 py-1 editBtn" (click)="getAddressById(add.id)">
-                          <i class="bi bi-pen"></i>
-                          Edit
-                        </button>
-
-                        <button mat-raised-button class="mx-2 py-1 addressDefault" *ngIf="!add.defaultAddress"
-                          (click)="setDefaultAddress(add.id)">
-                          Set Default
-                        </button>
-
-                        <input type="radio" name="address" [value]="i" [(ngModel)]="selectedAddressIndex"
-                          (change)="onAddressSelect(add)" />
-                      </div>
+              <div *ngFor="let add of addresses; let i = index" class="mb-3">
+                <div class="card p-3 addressCard" [ngClass]="{ 'selected-card': selectedAddressIndex === i }">
+                  <div class="d-flex align-items-start">
+                    <div class="me-3 d-flex align-items-center justify-content-center rounded-circle locationIcon">
+                      <mat-icon color="primary">place</mat-icon>
                     </div>
 
-                    <p class="text-muted small mb-1">{{ add.mobileNumber }}</p>
-                    <p class="small mb-1">
-                      {{ add.area }}, {{ add.addressLine1 }}, {{ add.addressLine2 }}, {{ add.postalCode }}
-                    </p>
+                    <div class="flex-grow-1 fs15">
+                      <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <p class="mb-0 fs20">{{ add.customerName }}</p>
+                        <div class="btn-group">
 
-                    <span *ngIf="add.defaultAddress" class="badge bg-primary small">
-                      Default Address
-                    </span>
+                          <button mat-raised-button class="mx-2 py-1 editBtn" (click)="getAddressById(add.id)">
+                            <i class="bi bi-pen"></i>
+                            Edit
+                          </button>
+
+                          <button mat-raised-button class="mx-2 py-1 addressDefault" *ngIf="!add.defaultAddress"
+                            (click)="setDefaultAddress(add.id)">
+                            Set Default
+                          </button>
+
+                          <input type="radio" name="address" [value]="i" [(ngModel)]="selectedAddressIndex"
+                            (change)="onAddressSelect(add)" />
+                        </div>
+                      </div>
+
+                      <p class="text-muted small mb-1">{{ add.mobileNumber }}</p>
+                      <p class="small mb-1">
+                        {{ add.area }},
+                      </p>
+                      <p class="small mb-1">
+                        {{ add.addressLine1 }},
+                      </p>
+                      <p class="small mb-1">
+                        {{ add.addressLine2 }},
+                      </p>
+                       <p class="small mb-1">
+                        , {{add.city}} &nbsp; {{add.state}} &nbsp;  , {{ add.postalCode }}
+                      </p>
+
+                      <span *ngIf="add.defaultAddress" class="badge bg-primary small">
+                        Default Address
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
 
@@ -99,14 +108,14 @@
           </div>
         </div>
       </div>
-      <!-- ENDING 1 STEPPER ENDING -->
       <!-- <button mat-button (click)="nextStep(stepper)">Next</button> -->
     </mat-step>
+   <!-- ENDING 1 STEPPER ENDING -->
 
 
 
+<!-- STARTING 2 STEPPER DATA -->
     <mat-step label="Step 2">
-      <!-- STARTING 2 STEPPER DATA -->
       <div class="container mt-4">
         <div class="row">
           <!-- Payment Selection -->
@@ -158,7 +167,7 @@
                 <img src="../../../assets/Payment Images/phonepay.png" alt="PhonePe">
                 <img src="../../../assets/Payment Images/cred.png" alt="CRED">
                 <img src="../../../assets/Payment Images/amazonPay.png" alt="Amazon Pay">
-                <img src="../../../assets/Payment Images/Upi.png" alt="UPI">
+                <img src="../../../assets/Payment Images/UPI.png" alt="UPI">
                 <img src="../../../assets/Payment Images/Rupay.png" alt="RUPAY">
                 <img src="../../../assets/Payment Images/Card.png" alt="CARD">
                 <img src="../../../assets/Payment Images/Visa.png" alt="VISA">
@@ -203,17 +212,17 @@
               </h6>
 
               <button class="btn btn-warning w-100 mt-2 py-3" *ngIf="showOnlineButton"
-                  (click)="amountPaying_Online(cartService.getCartTotalPrice())">
-                  
-                  <div *ngIf="payLoader; else showText" class="d-flex align-items-center justify-content-center">
-                    <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-                    <span>Processing...</span>
-                  </div>
-                  
-                  <ng-template #showText>
-                    <div>Proceed to Buy</div>
-                  </ng-template>
-                </button>
+                (click)="amountPaying_Online(cartService.getCartTotalPrice())">
+
+                <div *ngIf="payLoader; else showText" class="d-flex align-items-center justify-content-center">
+                  <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                  <span>Processing...</span>
+                </div>
+
+                <ng-template #showText>
+                  <div>Proceed to Buy</div>
+                </ng-template>
+              </button>
 
 
               <!-- COD BUTTON -->
@@ -232,10 +241,11 @@
           </div>
         </div>
       </div>
-      <!-- STARTING 2 STEPPER DATA -->
+     
       <!-- <button mat-button (click)="prevStep(stepper)">Back</button>
         <button mat-button (click)="nextStep(stepper)">Next</button> -->
     </mat-step>
+     <!-- STARTING 2 STEPPER DATA -->
   </mat-horizontal-stepper>
 </div>
 
@@ -245,135 +255,174 @@
 <!-- ================================================================================================================== -->
 <!-- Update Address Form Starting -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-modal-width ">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Address</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Address</h5>
         <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
       </div>
 
-      <div class="container-fluid">
-        <form name="form" (ngSubmit)="f.form.valid && saveUpdateAddress()" #f="ngForm">
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form name="form" (ngSubmit)="f.form.valid && saveUpdateAddress()" #f="ngForm">
 
-          <div class="row g-3 mt-2">
-            <div class="col-12">
-              <label for="inputState" class="form-label">State</label>
-              <select id="inputState" class="form-select bg-light text-dark">
-                <option selected>INDIA</option>
-              </select>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="inputState" class="form-label fs12">State</label>
+                <select id="inputState" class="form-select bg-light text-dark">
+                  <option selected>INDIA</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="row g-3 mt-2">
-            <!-- NAME -->
-            <div class="col-12 col-md-6">
-              <label for="Name" class="form-label">Full Name (First and Last Name)</label>
-              <input type="text" class="form-control" name="customerName" required="required"
-                [(ngModel)]="updateAddressForm.customerName" #customerName="ngModel" pattern="^[a-zA-Z ]{3,}$"
-                placeholder="Enter Full Name"
-                [ngClass]="{ 'is-invalid': customerName.errors && (customerName.touched || customerName.dirty ) }">
+            <div class="row g-3 mt-2">
+              <!-- NAME -->
+              <div class="col-12 col-md-6">
+                <label for="Name" class="form-label fs12">Full Name (First and Last Name)</label>
+                <input type="text" class="form-control form-control-sm" name="customerName" required="required"
+                  [(ngModel)]="updateAddressForm.customerName" #customerName="ngModel" pattern="^[a-zA-Z ]{3,}$"
+                  placeholder="Enter Full Name"
+                  [ngClass]="{ 'is-invalid': customerName.errors && (customerName.touched || customerName.dirty ) }">
 
-              <div *ngIf="customerName.errors && (customerName.touched || customerName.dirty )"
+                <div *ngIf="customerName.errors && (customerName.touched || customerName.dirty )"
+                  class="invalid-feedback">
+                  <div *ngIf="customerName.errors['required']">Full Name is required.</div>
+                  <div *ngIf="customerName.errors['pattern']">Full Name must be at least 3 characters.</div>
+                </div>
+              </div>
+
+              <!-- MOBILE -->
+              <div class="col-12 col-md-6">
+                <label for="Name" class="form-label fs12">Mobile Number</label>
+                <input type="tel" class="form-control form-control-sm" name="mobileNumber" required="required"
+                  [(ngModel)]="updateAddressForm.mobileNumber" #mobileNumber="ngModel" pattern="^\d{10}$"
+                  placeholder="Enter Mobile Number"
+                  [ngClass]="{ 'is-invalid': mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty ) }">
+
+                <div *ngIf="mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty )"
+                  class="invalid-feedback">
+                  <div *ngIf="mobileNumber.errors['required']">Mobile Number is required.</div>
+                  <div *ngIf="mobileNumber.errors['pattern']">Mobile Number must be exactly 10 digits.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-3 mt-2">
+              <!-- FLAT HOUSE NO BUILDING -->
+              <div class="col-12 col-md-6">
+                <label for="Name" class="form-label fs12">Flat, Area, House No</label>
+                <input type="text" class="form-control form-control-sm" name="area" required="required"
+                  [(ngModel)]="updateAddressForm.area" #area="ngModel" placeholder="Enter Flat, Area"
+                  [ngClass]="{ 'is-invalid': area.errors && (area.touched || area.dirty ) }">
+
+                <div *ngIf="area.errors && (area.touched || area.dirty )" class="invalid-feedback">
+                  <div *ngIf="area.errors['required']">Flat, House No, Apartment is required.</div>
+                </div>
+              </div>
+
+              <!-- POSTALCODE -->
+              <div class="col-12 col-md-6">
+                <label for="Name" class="form-label fs12">Postal Code</label>
+                <input type="tel" class="form-control form-control-sm" name="postalCode" required="required"
+                  [(ngModel)]="updateAddressForm.postalCode" #postalCode="ngModel" pattern="^\d{6}$"
+                  placeholder="Enter Postal Code"
+                  [ngClass]="{ 'is-invalid': postalCode.errors && (postalCode.touched || postalCode.dirty ) }">
+
+                <div *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty )" class="invalid-feedback">
+                  <div *ngIf="postalCode.errors['required']">Postal Code is required.</div>
+                  <div *ngIf="postalCode.errors['pattern']">Postal Code must be exactly 6 digits.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Line 1 -->
+            <div class="col-12 mt-2">
+              <label for="Name" class="form-label fs12">Address Line 1</label>
+              <input type="text" class="form-control form-control-sm" name="addressLine1" required="required"
+                [(ngModel)]="updateAddressForm.addressLine1" #addressLine1="ngModel" placeholder="Address Line 1"
+                [ngClass]="{ 'is-invalid': addressLine1.errors && (addressLine1.touched || addressLine1.dirty ) }">
+
+              <div *ngIf="addressLine1.errors && (addressLine1.touched || addressLine1.dirty )"
                 class="invalid-feedback">
-                <div *ngIf="customerName.errors['required']">Full Name is required.</div>
-                <div *ngIf="customerName.errors['pattern']">Full Name must be at least 3 characters.</div>
+                <div *ngIf="addressLine1.errors['required']">Address Line 1 is required.</div>
               </div>
             </div>
 
-            <!-- MOBILE -->
-            <div class="col-12 col-md-6">
-              <label for="Name" class="form-label">Mobile Number</label>
-              <input type="tel" class="form-control" name="mobileNumber" required="required"
-                [(ngModel)]="updateAddressForm.mobileNumber" #mobileNumber="ngModel" pattern="^\d{10}$"
-                placeholder="Enter Mobile Number"
-                [ngClass]="{ 'is-invalid': mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty ) }">
+            <!-- Address Line 2 -->
+            <div class="col-12 mt-2">
+              <label for="Name" class="form-label fs12">Address Line 2</label>
+              <input type="text" class="form-control form-control-sm" name="addressLine2" required="required"
+                [(ngModel)]="updateAddressForm.addressLine2" #addressLine2="ngModel" placeholder="Address Line 2"
+                [ngClass]="{ 'is-invalid': addressLine2.errors && (addressLine2.touched || addressLine2.dirty ) }">
 
-              <div *ngIf="mobileNumber.errors && (mobileNumber.touched || mobileNumber.dirty )"
+              <div *ngIf="addressLine2.errors && (addressLine2.touched || addressLine2.dirty )"
                 class="invalid-feedback">
-                <div *ngIf="mobileNumber.errors['required']">Mobile Number is required.</div>
-                <div *ngIf="mobileNumber.errors['pattern']">Mobile Number must be exactly 10 digits.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-3 mt-2">
-            <!-- FLAT HOUSE NO BUILDING -->
-            <div class="col-12 col-md-6">
-              <label for="Name" class="form-label">Flat, Area, House No</label>
-              <input type="text" class="form-control" name="area" required="required"
-                [(ngModel)]="updateAddressForm.area" #area="ngModel" placeholder="Enter Flat, Area"
-                [ngClass]="{ 'is-invalid': area.errors && (area.touched || area.dirty ) }">
-
-              <div *ngIf="area.errors && (area.touched || area.dirty )" class="invalid-feedback">
-                <div *ngIf="area.errors['required']">Flat, House No, Apartment is required.</div>
+                <div *ngIf="addressLine2.errors['required']">Address Line 2 is required.</div>
               </div>
             </div>
 
-            <!-- POSTALCODE -->
-            <div class="col-12 col-md-6">
-              <label for="Name" class="form-label">Postal Code</label>
-              <input type="tel" class="form-control" name="postalCode" required="required"
-                [(ngModel)]="updateAddressForm.postalCode" #postalCode="ngModel" pattern="^\d{6}$"
-                placeholder="Enter Postal Code"
-                [ngClass]="{ 'is-invalid': postalCode.errors && (postalCode.touched || postalCode.dirty ) }">
+            <!-- CITY -->
+            <div class="col">
+              <label for="Name" class="form-label fs12">City</label>
+              <input type="text" class="form-control form-control-sm" name="city" required="required"
+                [(ngModel)]="updateAddressForm.city" #city="ngModel" placeholder="Enter city" [class.dirty]="city.dirty"
+                [class.touched]="city.touched"
+                [ngClass]="{ 'is-invalid': city.errors && (city.touched || city.dirty ) }">
 
-              <div *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty )" class="invalid-feedback">
-                <div *ngIf="postalCode.errors['required']">Postal Code is required.</div>
-                <div *ngIf="postalCode.errors['pattern']">Postal Code must be exactly 6 digits.</div>
+              <div *ngIf="city.errors && (city.touched || city.dirty )" class="invalid-feedback">
+
+                <div *ngIf="city.errors['required']">
+                  city is required.
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Address Line 1 -->
-          <div class="col-12 mt-2">
-            <label for="Name" class="form-label">Address Line 1</label>
-            <input type="text" class="form-control" name="addressLine1" required="required"
-              [(ngModel)]="updateAddressForm.addressLine1" #addressLine1="ngModel" placeholder="Address Line 1"
-              [ngClass]="{ 'is-invalid': addressLine1.errors && (addressLine1.touched || addressLine1.dirty ) }">
+            <div>
+              <div class="col">
+                <label for="state" class="form-label fs12">Select State</label>
+                <select class="form-select form-select-sm" name="state" required [(ngModel)]="updateAddressForm.state" #state="ngModel"
+                  [class.dirty]="state.dirty" [class.touched]="state.touched"
+                  [ngClass]="{ 'is-invalid': state.errors && (state.touched || state.dirty) }">
+                  <option value="updateAddressForm.state" disabled selected>Select your state</option>
+                  <option *ngFor="let s of states" [value]="s">{{ s }}</option>
+                </select>
 
-            <div *ngIf="addressLine1.errors && (addressLine1.touched || addressLine1.dirty )" class="invalid-feedback">
-              <div *ngIf="addressLine1.errors['required']">Address Line 1 is required.</div>
+                <div *ngIf="state.errors && (state.touched || state.dirty)" class="invalid-feedback">
+                  <div *ngIf="state.errors['required']">
+                    State selection is required.
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </div>
 
-          <!-- Address Line 2 -->
-          <div class="col-12 mt-2">
-            <label for="Name" class="form-label">Address Line 2</label>
-            <input type="text" class="form-control" name="addressLine2" required="required"
-              [(ngModel)]="updateAddressForm.addressLine2" #addressLine2="ngModel" placeholder="Address Line 2"
-              [ngClass]="{ 'is-invalid': addressLine2.errors && (addressLine2.touched || addressLine2.dirty ) }">
-
-            <div *ngIf="addressLine2.errors && (addressLine2.touched || addressLine2.dirty )" class="invalid-feedback">
-              <div *ngIf="addressLine2.errors['required']">Address Line 2 is required.</div>
+            <div class="col-12 mb-3 mt-2">
+              <div class="form-check">
+                <input class="form-check-input" name="defaultAddress" [(ngModel)]="updateAddressForm.defaultAddress"
+                  type="checkbox" id="gridCheck1">
+                <label class="form-check-label fs13" for="gridCheck1">
+                  Make it default address
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 mb-3 mt-2">
-            <div class="form-check">
-              <input class="form-check-input" name="defaultAddress" [(ngModel)]="updateAddressForm.defaultAddress"
-                type="checkbox" id="gridCheck1">
-              <label class="form-check-label" for="gridCheck1">
-                Make it default address
-              </label>
+            <div class="mt-3 d-flex justify-content-center">
+              <button mat-raised-button color="primary" class="p-3" [disabled]="f.invalid">
+                Save Address
+              </button>
             </div>
-          </div>
 
-          <div class="mt-3 d-flex justify-content-center">
-            <button mat-raised-button color="primary" class="p-3" [disabled]="f.invalid">
-              Save Address
-            </button>
-          </div>
-
-        </form>
+          </form>
+        </div>
       </div>
 
       <!-- Update Form Ending -->
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-secondary modelClose" (click)="closeModal()">Close</button>
       </div>
 
     </div>

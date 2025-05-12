@@ -37,11 +37,6 @@
 }
 
 /* ================MODEL =============== */
-/* Model Width */
-.custom-modal-width {
-  max-width: 900px; /* Adjust the width as needed */
-  width: 90%;
-}
 
 /* UPI ICONS IMAGE  */
 .upi-icons img {
@@ -143,7 +138,7 @@
 
   /* CODE MODEL DESIGN TO CREATED ORDERE SUCCESS  STARTING*/
   .modal-dialog {
-    max-width: 370px; /* Adjust width */
+    max-width: 800px; /* Adjust width */
   }
   
   .modal-content {
@@ -151,9 +146,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
     padding: 25px;
-    text-align: center;
-    width: 100%; 
-    height: 450px; /* Adjust height */
+    height: 800px; /* Adjust height */
   }
   
   .modal-body {
@@ -161,7 +154,7 @@
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    margin-top: 40px;
+    margin-top: 5px;
     align-items: center;
   }
   .modal-body h4 {
@@ -225,11 +218,23 @@
 
 
 
-
-  .addAddress{
+/* Add Addresss BTN starting */
+.addAddress{
   background-color: #eafaf1;
   font-size: 12px;
   height: 30px; 
   width: 25%;
   color: black;
 }
+/* Add Addresss BTN Ending */
+
+
+/* Model Close BTN starting */
+.modelClose{
+  background-color: #ffda47	;
+  font-size: 12px;
+  height: 30px; 
+  min-width: 80px;
+  color: rgb(18, 17, 27);
+}
+/* Model Close BTN Ending */
