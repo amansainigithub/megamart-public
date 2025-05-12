@@ -8,12 +8,23 @@
           <!-- Left Section: Address Selection -->
           <div class="col-md-7">
 
-            <div *ngIf="selectedAddressIndex === null || selectedAddressIndex === undefined"
-              class="alert alert-warning py-1" role="alert">
-              Please select a delivery address before proceeding.
-            </div>
+           <div *ngIf="addresses?.length === 0"
+                class="alert py-1 text-center" role="alert" style="background-color: #eaeded;">
+                <span class="fs14" >Add Delivery Address </span>
 
-            <h4 class="deliveryAddress">Select Delivery Address</h4>
+              <a mat-raised-button class="addAddress" [routerLink]="'/customer/manageAddress'">
+                Add Address
+              </a>
+           </div>
+
+            <div *ngIf="addresses?.length > 0">
+
+               <div *ngIf="selectedAddressIndex === null || selectedAddressIndex === undefined"
+                class="alert alert-warning py-1" role="alert">
+                Please select a delivery address before proceeding. 
+              </div>
+
+              <h4 class="deliveryAddress">Select Delivery Address</h4>
             <div *ngFor="let add of addresses; let i = index" class="mb-3">
               <div class="card p-3 addressCard" [ngClass]="{ 'selected-card': selectedAddressIndex === i }">
                 <div class="d-flex align-items-start">
@@ -52,6 +63,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
 

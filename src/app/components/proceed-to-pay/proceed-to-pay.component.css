@@ -224,3 +224,12 @@
   /* CODE MODEL DESIGN TO CREATED ORDERE SUCCESS ENDING */
 
 
+
+
+  .addAddress{
+  background-color: #eafaf1;
+  font-size: 12px;
+  height: 30px; 
+  width: 25%;
+  color: black;
+}

@@ -41,7 +41,6 @@ export class ProceedToPayComponent {
     constructor(private addressService: AddressService,
       private toast: NgToastService,
       private spinner: NgxSpinnerService,
-      private http: HttpClient,
       public cartService:AddToCartService,
       private tokenStorageService:TokenStorageService,
       private razorpayService: RazorpayService,
