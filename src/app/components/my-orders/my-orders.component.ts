@@ -79,7 +79,6 @@ export class MyOrdersComponent {
 
   
   // model Properties Starting
-
   returnExchangeModel: any;
   ngAfterViewInit() {
     this.returnExchangeModel = new bootstrap.Modal(

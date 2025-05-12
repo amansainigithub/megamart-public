@@ -1,3 +1,30 @@
 .card{
     border-radius: 15px;
 }
+
+
+
+
+
+ /* MODEL  STARTING*/
+ .modal-dialog {
+  max-width: 400px; /* Adjust width */
+}
+
+.modal-content {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 15px;
+  max-height: 400px; /* Adjust height */
+}
+  /* MODEL  ENDING*/
+
+   /* More Details Button */
+.emailConform{
+  background-color: rgb(255, 230, 0);
+  font-size: 12px;
+  height: 30px; 
+  width: 100%;
+  color: black;
+}

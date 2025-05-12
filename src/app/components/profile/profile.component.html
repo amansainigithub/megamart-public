@@ -137,6 +137,9 @@
                   </span>
                   <span *ngIf="profileForm.emailVerify === 'N'" class="text-danger p-2">
                     <i class="bi bi-envelope-fill"></i> Not Verified
+                   <a (click)="resendLink()" style="cursor: pointer; text-decoration: none;" class="text-primary">
+                    Click Here To Verify
+                  </a>
                   </span>
                 </div>
 
@@ -179,3 +182,35 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<!-- Modal for Order Update Delivery Status -->
+<!-- Modal for Order Return/Exchange Confirmation -->
+<div class="modal fade" id="sendEmailConfirmModel" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body">
+               <p><i class="bi bi-envelope-check me-2"></i>Email Verification</p>
+
+                <hr>
+                <p class="mt-3 text-center text-muted fs13">
+                    A verification email has been sent to your email address. 
+                    Please click the link in the email to verify your address. The link is valid for 30 minutes.
+                </p>
+            </div>
+
+           <button type="button" class="btn btn-sm emailConform" data-bs-dismiss="modal">
+              Okay
+           </button>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Model Ending for Order Update Delivery Status -->

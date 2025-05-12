@@ -8,6 +8,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ProfileService } from '../../_services/profileService/profile.service';
 import { NgToastService } from 'ng-angular-popup';
 
+declare var bootstrap: any; // Import Bootstrap JavaScript
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -107,14 +109,14 @@ export class ProfileComponent implements OnInit {
 
     resendLink(){
 
+      this.sendEmailConfirmModel.show();
+
       this.spinner.show();
       this.profileService.resendEmailLink(this.currentUser.id).subscribe({
               next: (res: any) => {
                 this.profileForm = res.data;
                 console.log(this.profileForm);
                 this.toast.success({detail: "Email Link Sent", summary: "Profile Update Success", position: "bottomRight", duration: 2000});
-
-
                 this.getProfile(this.currentUser.id);
                 this.spinner.hide();
             },
@@ -125,6 +127,14 @@ export class ProfileComponent implements OnInit {
       });
 
     }
+
+    // MODEL PROPERTIES
+    sendEmailConfirmModel: any;
+  ngAfterViewInit() {
+    this.sendEmailConfirmModel = new bootstrap.Modal(
+      document.getElementById('sendEmailConfirmModel')
+    );
+  }
 
 
 }
