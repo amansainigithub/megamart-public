@@ -131,30 +131,31 @@
         </button>
 
         <!-- Dropdown Menu -->
-        <mat-menu #userProfile="matMenu">
-          <button mat-menu-item [routerLink]="'/customer/dashboard'" (click)="setActiveTab('/customer/dashboard')"
-            routerLinkActive="active-menu">
-            <mat-icon>dashboard</mat-icon>
-            <span>Dashboard</span>
+          <mat-menu #userProfile="matMenu">
+            <button mat-menu-item [routerLink]="'/customer/dashboard'" (click)="setActiveTab('/customer/dashboard')"
+              routerLinkActive="active-menu">
+              <mat-icon>dashboard</mat-icon>
+              <span>Dashboard</span>
+            </button>
+
+            <button mat-menu-item [routerLink]="'/customer/orders'"
+              (click)="setActiveTab('/customer/orders')" routerLinkActive="active-menu">
+                <mat-icon> beenhere</mat-icon>
+              <span>Orders</span>
+            </button>
+
+            <button mat-menu-item [routerLink]="'/customer/profile'"
+            (click)="setActiveTab('/customer/profile')" routerLinkActive="active-menu">
+            <mat-icon>account_circle</mat-icon>
+            <span>profile</span>
           </button>
 
-          <button mat-menu-item [routerLink]="'/customer/orders'"
-            (click)="setActiveTab('/customer/orders')" routerLinkActive="active-menu">
-            <mat-icon>history</mat-icon>
-            <span>Orders</span>
-          </button>
-
-          <button mat-menu-item [routerLink]="'/customer/profile'"
-          (click)="setActiveTab('/customer/profile')" routerLinkActive="active-menu">
-          <mat-icon>history</mat-icon>
-          <span>profile</span>
-        </button>
-
-          <button mat-menu-item class="text-danger" (click)="logout()">
-            <mat-icon class="text-danger">logout</mat-icon>
-            <span>Log Out</span>
-          </button>
-        </mat-menu>
+            <button mat-menu-item class="text-danger" (click)="logout()">
+              <mat-icon class="text-danger">logout</mat-icon>
+              <span>Log Out</span>
+            </button>
+          </mat-menu>
+        <!-- Dropdown Menu -->
 
       </div>
     </nav>
@@ -190,7 +191,7 @@
                 <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="/customer/my-orders"
                   [class.active]="activeTab === '/customer/my-orders'"
                   (click)="setActiveTab('/customer/my-orders')">
-                  <i class="bi bi-box-fill me-2"></i> Order Delivered
+                  <i class="bi bi-bag-check-fill me-2"></i> Order Delivered
                 </a>
               </li>
 
