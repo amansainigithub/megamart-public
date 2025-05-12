@@ -35,7 +35,6 @@ export class CustomerOrdersComponent {
       this.router.navigateByUrl('/login');
       return;
     }
-
     this.getOrderData(user.id);
   }
 
@@ -84,16 +83,6 @@ export class CustomerOrdersComponent {
       });
   }
   //TRACKING STEPPER ENDING
-
-
-
-
-
-
-
-
-
-
 
 
 

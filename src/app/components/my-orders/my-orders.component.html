@@ -49,7 +49,9 @@
 
                         <!-- Product Image -->
                         <div class="col-md-1">
-                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                             <a [routerLink]="['/pw']" [queryParams]="{ pI:order.productId, pN:order.productName }">
+                                <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                             </a>
                         </div>
 
                         <!-- Order Content -->
@@ -200,7 +202,9 @@
 
                         <!-- Product Image -->
                         <div class="col-md-1">
-                            <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                             <a [routerLink]="['/pw']" [queryParams]="{ pI:order.productId, pN:order.productName }">
+                                <img [src]="order.fileUrl" class="order-image img-fluid" alt="Product Image">
+                             </a>
                         </div>
 
                         <!-- Order Content -->

@@ -30,7 +30,9 @@
         <div class="row align-items-center">
 
           <div class="col-md-2">
-            <img [src]="unReviewd.fileUrl" height="80" width="80" alt="">
+            <a [routerLink]="['/pw']" [queryParams]="{ pI:unReviewd.productId, pN:unReviewd.productName }">
+             <img [src]="unReviewd.fileUrl" height="80" width="80" alt="">
+            </a>
           </div>
 
           <div class="col-md-6">
@@ -83,7 +85,9 @@
         <div class="row align-items-center">
 
           <div class="col-md-2">
+            <a [routerLink]="['/pw']" [queryParams]="{ pI:rv.productId, pN:rv.productName }">
             <img [src]="rv.productFileUrl" height="80" width="80" alt="" class="rounded-3" style="object-fit: cover;">
+            </a>
           </div>
 
           <div class="col-md-6 fs13">
@@ -100,7 +104,9 @@
             </div>
 
             <div class="mt-2" *ngFor="let prf of rv.productReviewFiles">
-              <img *ngIf="prf.reviewFileUrl"  [src]="prf.reviewFileUrl" height="60" width="60" class="rounded-3" alt="">
+              <a [routerLink]="['/pw']" [queryParams]="{ pI:rv.productId, pN:rv.productName }">
+              <img [src]="rv.productFileUrl" height="80" width="80" alt="" class="rounded-3" style="object-fit: cover;">
+              </a>
               <button mat-raised-button  class="editReview mx-3" >Edit Review</button>
             </div>
           </div>
