@@ -34,6 +34,12 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentUrl = event.urlAfterRedirects || this.router.url;
+       
+
+        if(currentUrl === '/customer/orders'){
+          this.setActiveTab(currentUrl);
+        }
+
         if (
           currentUrl.includes('customer') ||
           currentUrl === '/customer/dashboard' ||
