@@ -48,6 +48,7 @@ import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-po
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import { ExchangeProductComponent } from './components/return-exchange-products/exchange-product/exchange-product.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ExchangeProductComponent } from './components/return-exchange-products/
     ReviewsComponent,
     TermsAndConditionComponent,
     PrivacyPolicyComponent,
-    ExchangeProductComponent
+    ExchangeProductComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

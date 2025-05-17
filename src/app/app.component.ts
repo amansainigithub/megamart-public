@@ -65,7 +65,8 @@ export class AppComponent {
           currentUrl === '/customer/reviews' ||
           currentUrl === '/customer/terms-and-conditions' ||
           currentUrl === '/customer/privacy-policy' ||
-          currentUrl === '/customer/orders-cancel'
+          currentUrl === '/customer/orders-cancel' ||
+          currentUrl === '/customer/contact-us'
         ) {
           this.homePageFlag = true;
         } else {

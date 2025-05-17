@@ -21,6 +21,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { TermsAndConditionComponent } from './components/legalAndPolicies/terms-and-condition/terms-and-condition.component';
 import { PrivacyPolicyComponent } from './components/legalAndPolicies/privacy-policy/privacy-policy.component';
 import { ExchangeProductComponent } from './components/return-exchange-products/exchange-product/exchange-product.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
 { path: 'home', component: HomeComponent },
@@ -48,7 +49,8 @@ const routes: Routes = [
                   { path: 'reviews', component: ReviewsComponent},
                   { path: 'terms-and-conditions', component: TermsAndConditionComponent},
                   { path: 'privacy-policy', component: PrivacyPolicyComponent},
-                  { path: 'exchangeProduct', component: ExchangeProductComponent}
+                  { path: 'exchangeProduct', component: ExchangeProductComponent},
+                  //  { path: 'contact-us', component: ContactUsComponent}
                 ],
 },
 
