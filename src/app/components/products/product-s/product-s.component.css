@@ -34,7 +34,7 @@
 .product-image {
     width: 100%;
     /* max-height: 310px;  */
-    max-height: 310px;
+    height: 310px;
     object-fit: cover;
     transition: transform 0.3s;
 }
@@ -193,3 +193,8 @@
       padding: 13px 50px 13px;
     }
   }
+
+
+
+
+  

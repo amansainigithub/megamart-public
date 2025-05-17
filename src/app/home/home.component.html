@@ -66,7 +66,7 @@
 
   <!-- POPULAR CATEGORIES STARTING -->
   <div class="container-fluid mt-5">
-    <div class="categoryDesign" >Shop our most popular categories</div>
+    <div class="categoryDesign" >Most popular categories</div>
     <!-- <div class="line"></div> -->
   </div>
   <div class="container-fluid mt-2 ">
@@ -107,9 +107,11 @@
 <div class="container">
   <div class="row">
 
-      <div>
-        <h5 >Popular Products</h5>
+      <div class="popular-heading mb-3">
+        <h5 class="mr-5">Popular Products</h5>
+        <div class="popularProduct"></div>
       </div>
+
 
       <ng-container *ngFor="let data of productsList">
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
@@ -160,7 +162,10 @@
 
 <!-- Mens Category Card Starting -->
 <div class="container mt-4">
-  <div class="price-tag">Mens Category</div>
+  <div class="price-tag">
+    Mens Category
+    <div class="popularProduct"></div>
+  </div>
 
   <div class="row text-center card-container">
     <div *ngFor="let data of mensList" class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
