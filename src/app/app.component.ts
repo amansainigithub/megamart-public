@@ -40,6 +40,10 @@ export class AppComponent {
           this.setActiveTab(currentUrl);
         }
 
+        if(currentUrl === '/customer/my-orders'){
+          this.setActiveTab(currentUrl);
+        }
+
         if (
           currentUrl.includes('customer') ||
           currentUrl === '/customer/dashboard' ||

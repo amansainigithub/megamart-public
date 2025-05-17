@@ -8,19 +8,23 @@
         <div class="row g-3 mt-4 mx-3">
           <!-- Pending Orders -->
           <div class="col-md-3 col-sm-6 col-12">
-            <div class="custom-card">
-              <div class="icon bg-warning">
-                <i class="bi bi-clock-history"></i>
+            <a routerLink="/customer/orders" class="text-decoration-none text-dark">
+              <div class="custom-card">
+                <div class="icon bg-warning">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+                <div class="content">
+                  <h6>New Orders</h6>
+                  <p class="count">{{dashboardData.newOrders}}</p>
+                </div>
               </div>
-              <div class="content">
-                <h6>New Orders</h6>
-                <p class="count">{{dashboardData.newOrders}}</p>
-              </div>
-            </div>
+            </a>
           </div>
+
       
           <!-- Download Labels -->
           <div class="col-md-3 col-sm-6 col-12">
+            <a routerLink="/cart" class="text-decoration-none text-dark">
             <div class="custom-card">
               <div class="icon bg-primary">
                 <i class="bi bi-cart4"></i>
@@ -30,10 +34,12 @@
                 <p class="count">{{ cartService.getCartLength() }} </p>
               </div>
             </div>
+            </a>
           </div>
       
           <!-- Out of Stock -->
           <div class="col-md-3 col-sm-6 col-12">
+            <a routerLink="/customer/my-orders" class="text-decoration-none text-dark">
             <div class="custom-card">
               <div class="icon bg-danger">
                 <i class="bi bi-truck"></i>
@@ -43,6 +49,7 @@
                 <p class="count">{{dashboardData.orderDelivered}} </p>
               </div>
             </div>
+            </a>
           </div>
       
           <!-- Low Stock -->
