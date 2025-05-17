@@ -140,13 +140,25 @@
   .modal-dialog {
     max-width: 800px; /* Adjust width */
   }
-  
-  .modal-content {
+
+  .model-content-address{
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
     padding: 25px;
     height: 800px; /* Adjust height */
+  }
+
+  .model-dialog-cod{
+        max-width: 600px; /* Adjust width */
+  }
+
+  .model-content-cod {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 25px;
+    height: 400px; /* Adjust height */
   }
   
   .modal-body {
