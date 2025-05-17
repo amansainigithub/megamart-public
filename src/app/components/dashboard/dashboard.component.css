@@ -10,7 +10,7 @@
   
   .custom-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 2px 10px rgba(205, 56, 56, 0.3);
+    box-shadow: 0 2px 10px rgba(50, 6, 189, 0.6);
     cursor: pointer;
   }
   
