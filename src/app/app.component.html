@@ -124,9 +124,9 @@
         <!-- Profile Button -->
         <button mat-button [matMenuTriggerFor]="userProfile"
           class="d-flex align-items-center btn btn-light rounded-pill px-1">
-          <span class="me-2">{{firstName}}</span>
-          <img src="../assets/Avitar Images/male avitar12.jpg"alt="User Avatar" class="rounded-circle" width="32"
-            height="32">
+          <span class="me-2">{{firstName | uppercase}}</span>
+            <img src="../assets/Avitar Images/Gender.png"alt="User Avatar" class="rounded-circle" width="32"
+              height="32">
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
 
@@ -134,19 +134,19 @@
           <mat-menu #userProfile="matMenu">
             <button mat-menu-item [routerLink]="'/customer/dashboard'" (click)="setActiveTab('/customer/dashboard')"
               routerLinkActive="active-menu">
-              <mat-icon>dashboard</mat-icon>
+              <mat-icon style="color: #6495ED;" >dashboard</mat-icon>
               <span>Dashboard</span>
             </button>
 
             <button mat-menu-item [routerLink]="'/customer/orders'"
               (click)="setActiveTab('/customer/orders')" routerLinkActive="active-menu">
-                <mat-icon> beenhere</mat-icon>
+                <mat-icon style="color: #FF7F50;"> beenhere</mat-icon>
               <span>Orders</span>
             </button>
 
             <button mat-menu-item [routerLink]="'/customer/profile'"
             (click)="setActiveTab('/customer/profile')" routerLinkActive="active-menu">
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon style="color: #00FF00;"> account_circle</mat-icon>
             <span>profile</span>
           </button>
 
@@ -161,13 +161,17 @@
     </nav>
     <!-- NAVBAR ENDING  -->
 
+
+    <!-- Side Navbar Starting -->
     <div class="container-fluid" *ngIf="homePageFlag">
       <div class="row">
     
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar p-3 rounded-3">
           <div>
+          
+          
             <div class="text-center ">
-              <img src="../assets/Avitar Images/male avitar12.jpg" alt="User Avatar" class="rounded-circle" width="80">
+               <img src="../assets/Avitar Images/Gender.png" alt="User Avatar" class="rounded-circle" width="80">
               <h5 class="mt-2 fs15">{{firstName}} {{lastName}}</h5>
             </div>
     
@@ -250,6 +254,8 @@
         </div>
       </div>
     </div>
+    <!-- Side Navbar Ending -->
+
     
     <div class="container-fluid" *ngIf="!homePageFlag">
       <router-outlet></router-outlet>

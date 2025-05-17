@@ -18,3 +18,9 @@
     max-width: 800px; /* Adjust the width as needed */
     width: 100%;
   }
+
+  .defaultAdr{
+    background-color: #DFFF00;
+    display: inline-block;
+    border-radius: 4px;
+  }

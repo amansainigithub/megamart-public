@@ -70,31 +70,6 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
-
-
-
-
-
-
-
-
-  // form = {
-  //   fullname: '',
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   acceptTerms: false,
-  //   submitted:false
-  // };
-
-  // onSubmit(): void {
-  //   console.log(JSON.stringify(this.form, null, 2));
-  // }
-
-  // onReset(form: NgForm): void {
-  //   form.reset();
-  // }
   
 
 

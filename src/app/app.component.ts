@@ -19,6 +19,7 @@ export class AppComponent {
   username?: string;
   firstName?: string;
   lastName?: string;
+  gender?: string;
   homePageFlag: any;
 
   constructor(
@@ -73,6 +74,7 @@ export class AppComponent {
       this.username = user.username;
       this.firstName = user.firstName;
       this.lastName = user.lastName;
+      this.gender = user.gender;
     }
 
     // Load the Cart Items

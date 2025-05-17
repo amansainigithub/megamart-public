@@ -14,6 +14,7 @@ export class FreshUserRegisterComponent {
   regForm: any = {
     firstName:null,
     lastName:null,
+    gender:'',
     email:null,
     password: null,
     conformpassword: null,

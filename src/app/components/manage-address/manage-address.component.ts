@@ -45,7 +45,7 @@ export class ManageAddressComponent {
     customerName: null,
     mobileNumber: null,
     area: null,
-    state:null,
+    state:"",
     postalCode: null,
     city: null,
     addressLine1: null,
