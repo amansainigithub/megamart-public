@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 declare var bootstrap: any; // Import Bootstrap JavaScript
 
@@ -16,6 +17,8 @@ declare var bootstrap: any; // Import Bootstrap JavaScript
 export class MyOrdersComponent {
 
   orders:any;
+  userId:any;
+  totalElements: number = 0;
 
 
   constructor(
@@ -36,14 +39,16 @@ export class MyOrdersComponent {
       return;
     }
 
-    this.getMyOrders(user.id);
+    this.userId = user.id;
+    this.getMyOrders(user.id, { page: "0", size: "20" });
   }
 
-  getMyOrders(userId:any) {
+  getMyOrders(userId:any , request:any) {
     this.spinner.show();
-    this.orderService.getMyOrdersDelivered(userId).subscribe({
+    this.orderService.getMyOrdersDelivered(userId,request).subscribe({
       next: (res: any) => {
-        this.orders = res.data;
+        this.orders = res.data.content;
+        this.totalElements = res.data['totalElements'];
 
         console.log(this.orders);
         this.spinner.hide();
@@ -149,6 +154,15 @@ export class MyOrdersComponent {
     }
 
 
+
+      nextPage(event: PageEvent) {
+        console.log(event);
+        const request:any = {};
+        request['page'] = event.pageIndex.toString();
+        request['size'] = event.pageSize.toString();
+         this.getMyOrders(this.userId, { page: "0", size: "20" });
+    }
+    
 
 
 

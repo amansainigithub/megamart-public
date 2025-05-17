@@ -15,16 +15,19 @@ export class OrderService {
 
   constructor(private http:HttpClient) { }
 
-  getCustomerOrders(userId:any): Observable<any> {
-        return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrders/'+userId, httpOptions);
+  getCustomerOrders(userId:any,request:any): Observable<any> {
+        return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrders?id='+userId 
+          + '&page=' +request.page+ '&size=' +request.size, httpOptions);
    }
+//'getHotDealsEngines?page='+request.page + '&size=' +request.size, httpOptions);
 
    getCustomerOrdersById(orderId:any): Observable<any> {
     return this.http.get(PUBLIC_API_URL + "orderController/" + 'getCustomerOrdersById/'+orderId, httpOptions);
 }
 
-  getMyOrdersDelivered(userId:any): Observable<any> {
-    return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered/'+userId, httpOptions);
+  getMyOrdersDelivered(userId:any ,request:any): Observable<any> {
+    return this.http.get(PUBLIC_API_URL + "orderController/" + 'getMyOrdersDelivered?id='+userId 
+          + '&page=' +request.page+ '&size=' +request.size, httpOptions);
 }
 
 orderExchangeRequestInitiate(exchangeRequestForm:any): Observable<any> {

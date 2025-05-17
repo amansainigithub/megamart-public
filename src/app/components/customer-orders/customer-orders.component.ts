@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { CancleOrderService } from '../../_services/cancleOrders/cancle-order.service';
+import { PageEvent } from '@angular/material/paginator';
 
 
 declare var bootstrap: any; // Import Bootstrap JavaScript
@@ -15,6 +16,11 @@ declare var bootstrap: any; // Import Bootstrap JavaScript
   styleUrl: './customer-orders.component.css',
 })
 export class CustomerOrdersComponent {
+
+  userId:any;
+
+  totalElements: number = 0;
+
   readonly panelOpenState = signal(false);
   orders: any;
 
@@ -35,16 +41,21 @@ export class CustomerOrdersComponent {
       this.router.navigateByUrl('/login');
       return;
     }
-    this.getOrderData(user.id);
+    this.userId = user.id;
+    this.getOrderData(user.id , { page: "0", size: "20" });
   }
 
-  async getOrderData(userId: any) {
+  async getOrderData(userId: any , request:any) {
     this.spinner.show();
-    this.orderService.getCustomerOrders(userId).subscribe({
+    this.orderService.getCustomerOrders(userId,request).subscribe({
       next: (res: any) => {
-        console.log(res.data);
+        console.log(res.data.content);
+        console.log("-----------------------------------------------");
+        
 
-        this.orders = res.data;
+        this.orders = res.data.content;
+        this.totalElements = res.data['totalElements'];
+
         const user = this.tokenStorageService.getUser();
         const isLoggedIn = !!this.tokenStorageService.getToken();
         
@@ -145,7 +156,7 @@ export class CustomerOrdersComponent {
 
 
           const user = this.tokenStorageService.getUser();
-          this.getOrderData(user.id);
+          this.getOrderData(user.id, { page: "0", size: "20" });
         },
         error: (err: any) => {
           console.error('Error saving address:', err);
@@ -169,6 +180,16 @@ redirectToHome() {
   window.location.href = '/home'; 
 }
 
+
+
+
+  nextPage(event: PageEvent) {
+    console.log(event);
+    const request:any = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.getOrderData(this.userId , request);
+}
 
 
 
