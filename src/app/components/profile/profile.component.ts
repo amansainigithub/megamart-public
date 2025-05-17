@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
               next: (res: any) => {
                 this.profileForm = res.data;
                 console.log(this.profileForm);
-                this.toast.success({detail: "Email Link Sent", summary: "Profile Update Success", position: "bottomRight", duration: 2000});
+                this.toast.success({detail: "Success", summary: "Email Link Sent", position: "bottomRight", duration: 2000});
                 this.getProfile(this.currentUser.id);
                 this.spinner.hide();
             },

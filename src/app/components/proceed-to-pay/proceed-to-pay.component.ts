@@ -246,7 +246,6 @@ selectPayment(method: string) {
 // ===================PAYMENT STARTING======================
 
     payLoader:any = false;
-     //Amount PAying ONLINE----
     //Razorpay Integration Working Starting
     razorpayKey = 'rzp_test_cFBctGmM8MII0E';
     amountPaying_Online(amount: any) {
@@ -271,7 +270,7 @@ selectPayment(method: string) {
         this.payLoader = false;
         return;
       }
-    
+  
       // Check isValid Cart items
       const cart = JSON.parse(localStorage.getItem('cart') || '[]');
       const addressId = this.addressHolder.id;
@@ -302,9 +301,9 @@ selectPayment(method: string) {
               this.router.navigateByUrl('/home');
             },
             prefill: {
-              name: 'Aman Saini',
-              email: 'Aman@example.com',
-              contact: '9818644154'
+              name: this.addressHolder.customerName,
+              email: 'testing@example.com',
+              contact: this.addressHolder.mobileNumber
             },
             theme: {
               color: '#3399cc'
