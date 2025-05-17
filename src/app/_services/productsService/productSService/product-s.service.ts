@@ -35,4 +35,8 @@ export class ProductSService {
                           'productFilter?page='+request.page + '&size=' +request.size, productFilterRequest, httpOptions);
     }
 
+
+
+
+
 }

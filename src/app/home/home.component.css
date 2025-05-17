@@ -409,62 +409,6 @@ body {
 
 /* ===Card For Categories (Men and Women) Ending== */
 
-
-
-/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
-/* .image-container {
-  overflow: hidden;
-  border-radius: 10px; 
-}
-
-.zoom-image {
-  transition: transform 0.25s ease-in-out;
-}
-
-.card:hover .zoom-image {
-  transform: scale(1.1); 
-}
-
-.dealAnchor{
-  text-decoration: none; 
-  color: inherit; 
-  display: block;
-}
-
-.dealCard{
-  max-width: 300px; 
-  border-radius: 10px; 
-  margin-top: 10px; 
-  position: relative;
-}
-
-.image-container{
-  overflow: hidden; 
-  border-radius: 10px;
-}
-
-.dealImg{
-  height: 350px; 
-  width: 100%; object-fit: cover; 
-  display: block;
-  margin: auto; 
-  transition: transform 0.4s ease-in-out;
-}
-
-.dealCardOverlay{
-  top: 50%; 
-  transform: translateY(20%);
-} */
-/* =================<!-- HotDeal Container Second CSS STARTING-->=========================== */
-
-
-
-
-
-
-
-
-
  /* POPULAR CATEGORY  STARTING */
  @media (max-width: 400px) {
   .col-lg-2.col-md-4.col-sm-6.col-6 {
@@ -490,6 +434,13 @@ body {
     font-size: 12px; /* Reduce font size */
   }
 }
+
+
+
+
+
+
+
 
 @media (max-width: 350px) {
   .col-lg-2.col-md-4.col-sm-6.col-6 {
@@ -629,6 +580,8 @@ body {
 .blue { color: #007bff; }
 .green { color: #28a745; }
 .red { color: #dc3545; }
+
+
 
 
 

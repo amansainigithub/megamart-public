@@ -18,4 +18,9 @@ export class ProductCategoryService {
     return this.http.get(PUBLIC_API_URL + "categoryController/" + 'getProductCategory', httpOptions);
   }
 
+
+    //Get Product Category Footer (only shows footer Categories)
+   getCategoriesFooter(): Observable<any> {
+        return this.http.get(PUBLIC_API_URL + "categoryController/" + 'getBabyCategoryFooter', httpOptions);
+      }
 }

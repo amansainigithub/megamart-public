@@ -5,6 +5,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AddToCartService } from './_services/addToCartService/add-to-cart.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { ProductSService } from './_services/productsService/productSService/product-s.service';
+import { HomeComponent } from './home/home.component';
+import { ProductCategoryService } from './_services/categoriesService/product-category.service';
+
+declare var bootstrap: any; // Import Bootstrap JavaScript
+
 
 @Component({
   selector: 'app-root',
@@ -22,16 +27,21 @@ export class AppComponent {
   gender?: string;
   homePageFlag: any;
 
+  //categories
+  categories:any;
+
   constructor(
     private tokenStorageService: TokenStorageService,
     private toast: NgToastService,
     private spinner: NgxSpinnerService,
     private router: Router,
     public cartService: AddToCartService,
-    public productSearch: ProductSService
+    public productSearch: ProductSService,
+    public productService: ProductCategoryService,
   ) {}
 
   ngOnInit(): void {
+    
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentUrl = event.urlAfterRedirects || this.router.url;
@@ -79,21 +89,13 @@ export class AppComponent {
 
     // Load the Cart Items
     this.cartService.loadCart();
+
+
+    //Get Footer Category
+    this.getCategoriesFooter();
   }
 
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.href = '/';
-  }
 
-  genToast() {
-    this.toast.success({
-      detail: 'Success',
-      summary: 'This is Success',
-      position: 'topRight',
-      duration: 3000,
-    });
-  }
 
   setActiveTab(tab: string) {
     this.homePageFlag = true;
@@ -147,6 +149,56 @@ export class AppComponent {
   onClickOutside(event: Event) {
     this.isDropdownOpen = false;
   }
+
 //Searching ENDING !!! ==============================================================================
+
+
+// FOOTER CATEGORY START
+categoriesFooter:any;
+  getCategoriesFooter() {
+    this.spinner.show();
+    this.productService.getCategoriesFooter().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.categoriesFooter = res.data;
+        this.spinner.hide();
+      },
+      error: (err: any) => {
+        console.log('Error Aleert');
+
+        console.log(err);
+        this.spinner.hide();
+      },
+    });
+  }
+//FOOTER CATEGORY ENDING
+
+
+  //Logout
+  logout(): void {
+    // this.openLogoutModel();
+    // return;
+    this.tokenStorageService.signOut();
+    window.location.href = '/';
+  }
+
+
+    // model Properties Starting
+
+  // logoutModel: any;
+  // ngAfterViewInit() {
+  //   this.logoutModel = new bootstrap.Modal(
+  //     document.getElementById('logoutModel')
+  //   );
+  // }
+
+  // openLogoutModel() {
+  //   this.logoutModel.show();
+  // }
+
+  // closeLogoutModel() {
+  //   this.logoutModel.hide();
+  // }
+  // model Properties Ending
 
 }

@@ -40,12 +40,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    //this.spinner.show();
+    this.spinner.show();
     this.progressBarShow = true;
     const { username, password , userrole } = this.form;
     this.authService.login(username, password , userrole).subscribe(
       data => {
-        console.log("LOGIN:: "  , data) 
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 

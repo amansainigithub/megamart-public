@@ -240,7 +240,7 @@
               </li>
               <hr>
               <li class="nav-item">
-                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink=""
+                <a class="nav-link px-4 py-2 rounded d-flex align-items-center" routerLink="#"
                   [class.active]="activeTab === ''" (click)="logout()">
                   <i class="bi bi-lock me-2"></i>Logout
                 </a>
@@ -270,7 +270,7 @@
 
 
 
-
+<!-- Footer Starting -->
 <div>
   <footer class="footer" style="margin-top: 200px;">
     <div class="container-fluid">
@@ -278,25 +278,60 @@
             <div class="col-md-3 col-sm-6">
                 <h6 class="fw-bold">SUPPORT</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Returns & Exchange Policy</a></li>
-                    <li><a href="#">FAQ's</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#" routerLink="/customer/dashboard">Track Order</a></li>
+                    <li>
+                      <a routerLink="/customer/dashboard"
+                        [class.active]="activeTab === '/customer/dashboard'"
+                        (click)="setActiveTab('/customer/dashboard')">
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>
+                      <a routerLink="/customer/orders"
+                        [class.active]="activeTab === '/customer/orders'"
+                        (click)="setActiveTab('/customer/orders')">
+                        Orders
+                      </a>
+                    </li>
+                    <li>
+                       <a routerLink="/customer/terms-and-conditions"
+                        [class.active]="activeTab === '/customer/terms-and-conditions'"
+                        (click)="setActiveTab('/customer/terms-and-conditions')">
+                        Terms and Conditions
+                      </a>
+                    </li>
+                    <li>
+                        <a routerLink="/customer/privacy-policy"
+                        [class.active]="activeTab === '/customer/privacy-policy'"
+                        (click)="setActiveTab('/customer/privacy-policy')">
+                        privacy policy
+                      </a>
+                    </li>
+                    <li>
+                       <a routerLink="/customer/manageAddress"
+                        [class.active]="activeTab === '/customer/manageAddress'"
+                        (click)="setActiveTab('/customer/manageAddress')">
+                        Address
+                      </a>
+                    </li>
+                     <li>
+                       <a routerLink="/customer/my-orders"
+                        [class.active]="activeTab === '/customer/my-orders'"
+                        (click)="setActiveTab('/customer/my-orders')">
+                        My Orders
+                      </a>
+                    </li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
-                <h6 class="fw-bold">COMPANY</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Collaboration</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Media</a></li>
-                    <li><a href="#">Beyoungistan</a></li>
-                    <li><a href="#">Beyoung Blog</a></li>
-                    <li><a href="#">Sitemap</a></li>
+                <h6 class="fw-bold">Category</h6>
+                <ul class="list-unstyled" *ngFor="let cf of categoriesFooter" >
+                    <li>
+                      <a [routerLink]="['/Search']" [queryParams]="{ cI: cf.id,cN:cf.babyCategoryName,sQNext:'NO' }" >
+                        {{cf.babyCategoryName}}
+                      </a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -345,3 +380,22 @@
     </div>
   </footer>
 </div>
+<!-- Footer Ending -->
+
+
+
+
+
+<!-- Modal for Order Update Delivery Status -->
+  <!-- <div class="modal fade" id="logoutModel" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Notice</h5>
+        </div>
+
+      </div>
+    </div>
+  </div> -->
+<!-- Model Ending for Order Update Delivery Status -->
