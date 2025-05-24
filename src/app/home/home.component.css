@@ -77,7 +77,7 @@ body {
 
  /* ========Most popular categories Ending */
  .categoryDesign {
-  font-size: 28px;
+  font-size: 24px;
   color: #222;
   margin-bottom: 20px;
   font-family: 'Graphik Webfont', -apple-system, 'Helvetica Neue', 'Droid Sans', Arial, sans-serif;
@@ -281,7 +281,8 @@ body {
   transform: scale(1.1);
 }
 .product-title {
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 14px;
   color: #283747;
   margin: 0;
   padding: 0;

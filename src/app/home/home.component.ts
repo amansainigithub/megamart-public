@@ -63,8 +63,6 @@ export class HomeComponent implements OnInit {
     this.spinner.show();
     this.productCategory.getProductCategory().subscribe({
       next: (res: any) => {
-        console.log(res);
-        
         //Categories Data
         this.categories = res.data.listOfCategories;
 
@@ -73,6 +71,10 @@ export class HomeComponent implements OnInit {
 
         //Baby Category Data
         this.babyDataFilter = res.data.babyDataFilter;
+        console.log("Babay Filter ");
+        console.log(this.babyDataFilter);
+        
+        
 
          //Mens List
          this.mensList = res.data.mensList;
