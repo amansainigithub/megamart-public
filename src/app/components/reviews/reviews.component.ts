@@ -71,8 +71,6 @@ export class ReviewsComponent {
     this.spinner.show();
     this.reviewsService.unratingDeliveredProduct(request).subscribe({
       next: (res: any) => {
-        console.log(res.data.content);
-        
         this.unReviewdProduct = res.data.content;
         this.unReviewdTotalElements = res.data['totalElements'];
         this.spinner.hide();
@@ -156,7 +154,7 @@ export class ReviewsComponent {
         console.log('Review submitted successfully!', res);
 
         //Calling to unRevied elivered Product List
-        this.unReviewDeliveredProduct('');
+        this.unReviewDeliveredProduct(this.reviewPageRequest);
 
         //Closing Reviewd Model
         this.closeReviewModal();
@@ -180,9 +178,6 @@ export class ReviewsComponent {
         this.spinner.hide();
       },
     });
-
-    //Hide Spinner
-    this.spinner.hide();
   }
   //Submit Review Ending....
 
@@ -304,8 +299,10 @@ export class ReviewsComponent {
 
 
 updateReview(){
+  this.spinner.show();
 
     if (!this.updateReviewText || this.updateReviewRating === 0) {
+      this.spinner.hide();
       return;
     }
 
@@ -320,8 +317,6 @@ updateReview(){
     
     this.reviewsService.udapteReview(formData).subscribe({
       next: (res) => {
-        console.log('Review submitted successfully!', res);
-
         //Hide update Review Model
         this.updateReviewModel.hide();
 
@@ -340,7 +335,6 @@ updateReview(){
       },
       error: (err) => {
         console.error('Error submitting review', err);
-
         //Hide Spinner
         this.spinner.hide();
       },

@@ -70,6 +70,14 @@
   <!-- UNREVIEWED ENDING -->
 
 
+
+
+
+
+
+
+
+
   <!-- ===================================================================================================================== -->
   <!-- REVIEWED STARTING -->
   <div *ngIf="!reviewDecison">
@@ -104,9 +112,7 @@
             </div>
 
             <div class="mt-2" *ngFor="let prf of rv.productReviewFiles">
-              <a [routerLink]="['/pw']" [queryParams]="{ pI:rv.productId, pN:rv.productName }">
-              <img [src]="rv.productFileUrl" height="80" width="80" alt="" class="rounded-3" style="object-fit: cover;">
-              </a>
+              <img [src]="prf.reviewFileUrl" height="80" width="80" alt="" class="rounded-3" style="object-fit: cover;">
               <button mat-raised-button  class="editReview mx-3" >Edit Review</button>
             </div>
           </div>

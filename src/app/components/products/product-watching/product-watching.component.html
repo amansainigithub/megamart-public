@@ -1,11 +1,11 @@
 <div class="container mt-4">
     
     <div class="brandDesign mb-2 p-1 px-2" >
-        {{productData.brandField}}
+        {{productData?.brandField}}
     </div>
 
 
-    <div class="row">
+    <div class="row" *ngIf="productData">
 
         <!-- Sidebar Thumbnails -->
         <div class="col-md-1" *ngIf="productData; else loadingTemplate">
@@ -170,11 +170,6 @@
 
 
 
-
-
-
-
-
 <!-- ======================================================================================================== -->
 
 <!-- SIMILART PRODUCT SHOWING STARTING -->
@@ -207,14 +202,14 @@
                     </div>
 
                     <div *ngIf="data?.productFilesResponses?.length" class="card-body p-2">
-                        <p class="product-title">{{ data.brandField }}</p>
+                        <p class="product-title">{{ data?.brandField }}</p>
                         <p class="pdName mb-1">
                             {{ data?.productName | slice:0:30 }}{{ data?.productName?.length > 35 ? '...' : '' }}
                         </p>
                         <p class="price-details mb-0">
-                            <span class="actualPrice">Rs.{{ data.productPrice }}</span>
-                            <span class="mrpPrice mx-1">Rs.{{ data.productMrp }}</span>
-                            <span class="priceOff mx-1">({{ data.calculatedDiscount }})</span>
+                            <span class="actualPrice">Rs.{{ data?.productPrice }}</span>
+                            <span class="mrpPrice mx-1">Rs.{{ data?.productMrp }}</span>
+                            <span class="priceOff mx-1">({{ data?.calculatedDiscount }})</span>
                         </p>
                     </div>
                 </a>

@@ -14,6 +14,7 @@ export class ProductWatchingComponent {
   // Main Object
   productData: any;
   similarProducts: any;
+  productReviews :any;
 
   // Param Collectors
   productId: any;
@@ -56,15 +57,13 @@ export class ProductWatchingComponent {
     this.spinner.show();
     this.pwService.productWatchingService(pI, pN).subscribe({
       next: (res: any) => {
-        console.log("---------------------------------");
-        
-        console.log(res);
-
         this.productData = res.data.pw;
         //Set Image
         this.mainImage = res.data.pw.productFilesResponses[0].fileUrl;
-
+        //Similar Products
         this.similarProducts = res.data.similarProducts.content;
+        //Product Reviews
+       // this.productReviews = res.data.productReviews.content;
 
         this.spinner.hide();
       },
