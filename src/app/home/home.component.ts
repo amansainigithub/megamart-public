@@ -71,10 +71,6 @@ export class HomeComponent implements OnInit {
 
         //Baby Category Data
         this.babyDataFilter = res.data.babyDataFilter;
-        console.log("Babay Filter ");
-        console.log(this.babyDataFilter);
-        
-        
 
          //Mens List
          this.mensList = res.data.mensList;
@@ -85,8 +81,6 @@ export class HomeComponent implements OnInit {
         this.spinner.hide();
       },
       error: (err: any) => {
-        console.log('Error Aleert');
-
         console.log(err);
         this.spinner.hide();
       },

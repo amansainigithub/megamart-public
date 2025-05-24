@@ -1,4 +1,4 @@
-<div class="container" *ngIf="orders && orders.length > 0">
+<div class="container mt-3" *ngIf="orders && orders.length > 0">
     <h4 class="order-heading">Order Delivered</h4>
 
 
@@ -43,7 +43,7 @@
                 </button>
             </div>
 
-            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
+            <div class=" mb-3">
                 <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
                     <div class="row">
 
@@ -94,26 +94,15 @@
                                         {{order.returnMessage}}
                                     </span>
 
-                                    <div *ngIf="order.paymentMode === 'ONLINE'">
-                                        <!-- <button (click)="returnExchangeModelOpen(order,'R')" mat-raised-button color="warn"
-                                        class="mx-2 py-1 moreDetails ms-auto">
-                                        Return 
-                                    </button> -->
-                                    <button (click)="returnExchangeModelOpen(order,'E')" mat-raised-button color="warn"
-                                        class="mx-2 py-1 moreDetails ms-auto">
-                                         Exchange
-                                    </button>
-                                    </div>
-
-                                    <div *ngIf="order.paymentMode === 'COD'">
+                                    <div *ngIf="order.paymentMode === 'ONLINE' || order.paymentMode === 'COD'">
                                         <button (click)="returnExchangeModelOpen(order,'E')" mat-raised-button color="warn"
                                             class="mx-2 py-1 moreDetails ms-auto">
                                             Exchange
                                         </button>
                                     </div>
-
-                                    
                                 </div>
+
+                                
                             </div>
                         </div>
 
@@ -134,12 +123,11 @@
                                 </div>
                             </div>
 
-                            <button (click)="downloadInvoice(order.id)" 
-                                    mat-raised-button 
-                                    color="warn"
-                                    class="position-absolute end-0 bottom-0 me-3 mb-3 py-1 downloadInvoice">
-                                    Download Bill
-                            </button>
+                             <div class="d-flex justify-content-end mt-3">
+                                <button (click)="downloadInvoice(order.id)"  mat-raised-button  class="downloadInvoice">
+                                Download Bill
+                                </button>
+                            </div>
                     
                         </div>
 
@@ -196,7 +184,7 @@
                 </button>
             </div>
 
-            <div [routerLink]="['/order-details', order.id]" class=" mb-3">
+            <div class=" mb-3">
                 <div class="card-body innerCard card mx-4 mt-3" style="border-radius: 15px;">
                     <div class="row">
 
@@ -221,35 +209,41 @@
                                     <strong>Size:</strong> {{ order.productSize }}
                                 </p>
 
-                                <div class="chargesAccordian" >
+                               <div class="chargesAccordian">
                                     <mat-accordion>
-                                      <mat-expansion-panel>
+                                        <mat-expansion-panel>
                                         <mat-expansion-panel-header>
-                                          <mat-panel-title>Exchange Status</mat-panel-title>
+                                            <mat-panel-title>Exchange Status</mat-panel-title>
                                         </mat-expansion-panel-header>
-                                  
+
                                         <div class="fare-details">
-                                          <div class="fare-row">
+                                            <div class="fare-row">
                                             <span>Product SIZE</span>
                                             <span>{{ order.customerReturnExchangeOrderDto.exchangeProductSize }}</span>
-                                          </div>
-                                          <div class="fare-row">
+                                            </div>
+                                            <div class="fare-row">
                                             <span>Exchange Status</span>
-                                            <span> {{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}</span>
-                                          </div>
-                                          <div class="fare-row">
+                                            <span>{{ order.customerReturnExchangeOrderDto.exchangeDeliveryStatus }}</span>
+                                            </div>
+                                            <div class="fare-row">
                                             <span>Pickup Date</span>
-                                            <span> {{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}</span>
-                                          </div>
-                                         
+                                            <span>{{ order.customerReturnExchangeOrderDto.exchangeDeliveryPickUpDateTime }}</span>
+                                            </div>
                                         </div>
-                                      </mat-expansion-panel>
+                                        </mat-expansion-panel>
                                     </mat-accordion>
-                                  </div>
-
-
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <div class="button-align-end">
+                                <button (click)="downloadInvoice(order.id)" mat-raised-button class="downloadInvoice">
+                                Download Bill
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -304,7 +298,7 @@
                 <p class=" mt-2 text-center fs14">Are you sure you want to Return / Exchange this order?</p>
             </div>
 
-            <button type="button" class="btn btn-sm stockFillerBtn" (click)="finalJudgementCancelOrder()"
+            <button type="button" class="btn btn-sm returnExchangeBtn" (click)="finalJudgementCancelOrder()"
                 type="submit">
                 Continue
             </button>

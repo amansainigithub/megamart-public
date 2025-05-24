@@ -37,20 +37,15 @@ export class ExchangeProductComponent {
 
   //GET Product Byid Starting..
   getProductById(productId:any){
-
-    console.log("PRODUCTID:: " + productId);
-    
     this.spinner.show();
     this.pwService.getProductByIdCustomer(productId, "pN").subscribe({
       next: (res: any) => {
-        console.log(res);
         this.productData = res.data.pw;
         //Set Image
         this.mainImage = res.data.pw.productFilesResponses[0].fileUrl;
         this.spinner.hide();
       },
       error: (err: any) => {
-        console.log(err);
         this.spinner.hide();
       },
     });
@@ -75,14 +70,10 @@ exchangeRequestInitiated(){
   this.exchangeForm.selectedLabel = this.productLabel;
   this.exchangeForm.productId = this.orderItem.productId;
   this.exchangeForm.orderItemId = this.orderItem.id;
-
-  console.log("exchangeForm:: " , this.exchangeForm);
   
     this.spinner.show();
     this.orderService.orderExchangeRequestInitiate(this.exchangeForm).subscribe({
       next: (res: any) => {
-
-        console.log('Return Order Request Initiated Success', res);
           this.toast.success({
             detail: 'Success',
             summary: 'Return Order Request Initiated Success...',
@@ -94,7 +85,6 @@ exchangeRequestInitiated(){
           this.router.navigateByUrl('/customer/my-orders')
       },
       error: (err: any) => {
-        console.error('Error fetching in my-orders:', err);
 
         this.toast.error({
           detail: 'Failed',

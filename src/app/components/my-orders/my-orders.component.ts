@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { OrderService } from '../../_services/orderService/order.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
@@ -25,7 +24,6 @@ export class MyOrdersComponent {
     private orderService: OrderService,
     private toast: NgToastService,
     private spinner: NgxSpinnerService,
-    private http: HttpClient,
     private router: Router,
     private tokenStorageService:TokenStorageService
   ) {}
@@ -34,7 +32,6 @@ export class MyOrdersComponent {
     
     const user = this.tokenStorageService.getUser();
     if (!user || Object.keys(user).length === 0) {
-      console.log("User is null, undefined, or an empty object");
       this.router.navigateByUrl('/login');
       return;
     }
@@ -49,8 +46,6 @@ export class MyOrdersComponent {
       next: (res: any) => {
         this.orders = res.data.content;
         this.totalElements = res.data['totalElements'];
-
-        console.log(this.orders);
         this.spinner.hide();
       },
       error: (err: any) => {
@@ -131,8 +126,6 @@ export class MyOrdersComponent {
 
   downloadInvoice(orderId: any) {
 
-    console.log("orderId :: " , orderId);
-
     this.spinner.show();
     this.orderService.invoiceDownload(orderId).subscribe({
       next: (res: any) => {
@@ -146,7 +139,6 @@ export class MyOrdersComponent {
         this.spinner.hide();
       },
       error: (err: any) => {
-        console.error('Error fetching in my-orders:', err);
         this.spinner.hide();
       },
     });
@@ -156,7 +148,6 @@ export class MyOrdersComponent {
 
 
       nextPage(event: PageEvent) {
-        console.log(event);
         const request:any = {};
         request['page'] = event.pageIndex.toString();
         request['size'] = event.pageSize.toString();

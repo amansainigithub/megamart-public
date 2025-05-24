@@ -36,8 +36,9 @@ body {
     min-width: 200px;
 }
 .dropdown-title {
-    font-weight: bold;
+    font-weight: 400;
     color: #271eee;
+    font-size: 15px;
 }
 .dropdown-item {
     padding: 5px 0;
@@ -45,10 +46,8 @@ body {
 }
 .dropdown-item:hover {
     color: black;
-    font-weight: 600;
+    font-weight: 500;
     background-color: transparent;
-    /* border-radius: 6px;
-    margin-right: 2px; */
 } 
 
 .nav-link
@@ -56,6 +55,8 @@ body {
     font-family:Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
     text-transform: uppercase;
     color: #271eee;
+    font-weight: 500;
+    font-size: 15px;
 }
 /* Navbar Ending */
 

@@ -312,3 +312,10 @@
   min-width: 80px;
   color: rgb(18, 17, 27);
 }
+
+
+.button-align-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
