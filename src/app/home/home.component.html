@@ -12,9 +12,10 @@
                         <div *ngFor="let bc of pc.babyCategoryDtos, let i = index" class="dropdown-column me-4 mx-3">
                             <div class="dropdown-title">{{bc.babyCategoryName}}</div>
                             
-                            <a style="font-size: 13px;line-height: 1.1;" 
-                            *ngFor="let bornC of bc.bornCategoryDtos, let i = index" href="#" class="dropdown-item">
-                              {{bornC.bornCategoryName}}
+                            <a *ngFor="let bornC of bc.bornCategoryDtos, let i = index" 
+                                [routerLink]="['/Search']" [queryParams]="{ cI: bornC.id, cN: bornC.categoryName, sQNext: 'YES' }" 
+                                 class="dropdown-item bornCateName">
+                                  {{bornC.bornCategoryName}}
                             </a>
                         </div>
                     </div>

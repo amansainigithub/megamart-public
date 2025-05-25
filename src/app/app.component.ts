@@ -116,13 +116,11 @@ export class AppComponent {
     if (this.searchQuery.length > 3) {
       this.productSearch.productSearch(this.searchQuery).subscribe({
         next: (res: any) => {
-          console.log(res.data);
           this.filteredResults = this.searchQuery.length > 0 ? res.data : [];
           this.isDropdownOpen = this.filteredResults.length > 0;
           this.spinner.hide();
         },
         error: (err: any) => {
-          console.error('REVIEWS not Captured Error !!:', err);
           this.spinner.hide();
         },
       });
@@ -160,14 +158,10 @@ categoriesFooter:any;
     this.spinner.show();
     this.productService.getCategoriesFooter().subscribe({
       next: (res: any) => {
-        console.log(res);
         this.categoriesFooter = res.data;
         this.spinner.hide();
       },
       error: (err: any) => {
-        console.log('Error Aleert');
-
-        console.log(err);
         this.spinner.hide();
       },
     });

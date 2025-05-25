@@ -79,7 +79,7 @@ export class ProductSComponent {
           this.spinner.hide();
         },
         error:(err:any)=>  {
-          console.log(err);
+          // console.log(err);
           this.spinner.hide();
           // this.toast.error({detail:"Error",summary:err.error.data.message, position:"bottomRight",duration:3000});
         }
@@ -112,7 +112,6 @@ export class ProductSComponent {
             this.spinner.hide();
           },
           error:(err:any)=>  {
-            console.log(err);
             this.spinner.hide();
           }
         }
@@ -122,7 +121,6 @@ export class ProductSComponent {
 
 
     nextPage(event: PageEvent) {
-      console.log(event);
        const request: any = {};
        request['page'] = event.pageIndex.toString();
        request['size'] = event.pageSize.toString();
@@ -229,7 +227,7 @@ export class ProductSComponent {
                 this.spinner.hide();
               },
               error:(err:any)=>{
-                console.log(err);
+                // console.log(err);
                 this.spinner.hide();
               }
             });

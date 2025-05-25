@@ -25,6 +25,13 @@ body {
     margin-top: 5px;
 }
 
+/* Main Product Image */
+.productImage{
+   max-height: 600px; 
+   width: 100%; 
+   object-fit: cover;
+}
+
 /* ================================== */
 
 /* Brand Name  */
@@ -38,23 +45,15 @@ body {
 
 /* Product Name  */
 .productName{
-    font-size: 25px;
+    font-size: 20px;
     font-family: sans-serif;
     font-weight: 500;
 }
 
-/* Special Offers */
-.specialOffer{
-    font-family: sans-serif;
-    font-weight: 550;
-    color: 	rgb(38, 165, 65);
-}
-
 /* Special Price */
 .productPrice{
-    font-size: 26px;
+    font-size: 28px;
     font-family: sans-serif;
-    font-weight: 520;
 }
 
 /* Product Mrp */
@@ -65,11 +64,26 @@ body {
 
 /* Product off */
 .productOff{
-    font-size: 18px;
-    font-weight: 550;
-    color: 	rgb(38, 165, 65);
+    font-size: 26px;
+    color: 	rgb(195, 19, 39);
+    font-family: 'Times New Roman', Times, serif;
 }
 
+
+/* limited Deal Offer */
+.limitedDealOffer{
+    background-color: #CC0C39;
+    display: inline-block;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+}
+
+.custom-del {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(0, 0, 0, 0.6);
+}
 
 
 
@@ -81,7 +95,7 @@ body {
 
   .btn-group .btn {
     border-radius: 8px; 
-    padding: 10px 19px;;
+    padding: 7px 15px;;
   }
   
 .size-selector-btn {
