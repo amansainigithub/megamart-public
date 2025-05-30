@@ -252,6 +252,13 @@
 /* Model Close BTN Ending */
 
 
+.continueToPayment{
+  background-color: #FFCE12;
+  height: 55px;
+}
+
+
+
 .footerDown{
   margin-bottom: 200px;
 }
