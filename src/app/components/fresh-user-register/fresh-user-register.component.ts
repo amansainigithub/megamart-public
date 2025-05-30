@@ -4,6 +4,7 @@ import { AuthService } from '../../_services/auth.service';
 import Swal from 'sweetalert2';
 import { SnackBarHelperService } from '../../_helpers/snackBar_Service/snack-bar-helper.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-fresh-user-register',
@@ -23,10 +24,9 @@ export class FreshUserRegisterComponent {
   receivedData: any;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private _SHS: SnackBarHelperService,
+    private spinner: NgxSpinnerService,
     private tokenStorageService: TokenStorageService
   ) {
     const state = history.state;
@@ -50,10 +50,7 @@ export class FreshUserRegisterComponent {
   }
 
   createAccount() {
-
-    console.log("================");
-    
-    console.log(this.regForm);
+    this.spinner.show();
     this.authService.registerUser(this.regForm).subscribe(
       (data) => {
         Swal.fire({
@@ -62,11 +59,27 @@ export class FreshUserRegisterComponent {
           icon: 'success',
         });
         this.router.navigateByUrl('/login');
+         this.spinner.hide();
       },
       (err) => {
-        alert('Registeration Failed');
-        // this.errorMessage = err.error.message;
-        // this.isSignUpFailed = true;
+        if(err.error.message === "EMAILID_ALREADY_EXISTS"){
+          Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Registeration Failed | Email ID already exists.",
+          footer: 'Email ID already exists.'
+        });
+        this.spinner.hide();
+        return;
+        }
+        
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Registeration Failed",
+          footer: 'Please Try after some Time.'
+        });
+         this.spinner.hide();
       }
     );
   }
