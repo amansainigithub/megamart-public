@@ -4,7 +4,7 @@ label {
   }
   
   .card-container.card {
-    max-width: 400px !important;
+    max-width: 450px !important;
     padding: 40px 40px;
   }
   
@@ -66,4 +66,39 @@ label {
 
 
 
+.login{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.createNewAcc{
+  background-color: #f5ee0f;
+  height: 55px;
+  font-family: sans-serif;
+}
+
+
+
+
+.login-background-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(-45deg, #00f0ff, #ffa5ff, #c5f8f3, #fbb1bd);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
